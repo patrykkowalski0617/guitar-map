@@ -21,6 +21,26 @@ export const NOTES_FROM_C = [
   "B",
 ];
 
+export const getRelativeMinorScales = (notesArray = NOTES_FROM_C) => {
+  return notesArray
+    .map((majorNote, index) => {
+      const minorNoteIndex = (index + 9) % notesArray.length;
+      const minorNote = notesArray[minorNoteIndex];
+      return `${majorNote}/${minorNote}m`;
+    })
+    .map((scalePair) => {
+      const replacements = {
+        "D#/Cm": "Eb/Cm",
+        "G#/Fm": "Ab/Fm",
+        "C#/A#m": "Db/Bbm",
+      };
+
+      return replacements[scalePair] || scalePair;
+    });
+};
+
+export const MUSIC_KEYS = getRelativeMinorScales(NOTES_FROM_C);
+
 export const INTERVAL_NAMES = [
   "1",
   "m2",
@@ -142,7 +162,8 @@ export const {
 } = scales;
 
 export const noAvoidNotes = {
-  T: [_1, m2, M2, m3, M3, b5, _5, m6, M6, m7, M7],
+  T: [_1, M2, M3, _5, M6, M7],
+  t: [_1, M2, m3, _4, _5, m7],
   S: [],
   D: [],
   Ph: [],
@@ -157,13 +178,14 @@ export const chordTemplates = {
   },
   D: { _7: [_1, M3, _5, m7] },
   m: {
-    _7b5: [_1, m3, b5, m7],
-    _dim7: [_1, m3, b5, M6],
     _: [_1, m3, _5],
     _7: [_1, m3, _5, m7],
+    _9: [_1, m3, _5, m7, M9],
     __M7: [_1, m3, _5, M7],
     _add9: [_1, m3, _5, M9],
     _69: [_1, m3, M6, M9],
+    _7b5: [_1, m3, b5, m7],
+    _dim7: [_1, m3, b5, M6],
   },
 };
 
@@ -171,92 +193,80 @@ export const { M, D, m } = chordTemplates;
 
 export const MUSIC_FUCTIONS = {
   Tonics: {
-    M: {
-      sets: {
-        triand: M._,
-        _7: M._M7,
-        _9: M._9,
-        _add9: M._add9,
-        up: m._7,
-        noAvoidNotes: noAvoidNotes.T,
-        pent_M: pent_M.intervals,
-      },
+    Major: {
+      triand: M._,
+      7: M._M7,
+      _: M._9,
+      add9: M._add9,
+      "uper structure": m._7,
+      "no avoid notes": noAvoidNotes.T,
+      pent_M: pent_M.intervals,
     },
-    m: {
-      sets: {
-        triand: m._,
-        _7: m._7,
-        _9: m._9,
-        up: M._M7,
-        noAvoidNotes: noAvoidNotes.T,
-        pent_m: pent_m.intervals,
-        add9: m._add9,
-        _69: m._69,
-      },
+    minor: {
+      triand: m._,
+      7: m._7,
+      9: m._9,
+      "uper structure": M._M7,
+      "no avoid notes": noAvoidNotes.T,
+      "minor pentatonic": pent_m.intervals,
+      add9: m._add9,
+      69: m._69,
     },
   },
   Subdominants: {
-    M: {
-      sets: {
-        triand: [],
-        _9: chordTemplates.M,
-        up: [],
-        _7: chordTemplates.M,
-        noAvoidNotes: [],
-        pent_m: [],
-        add9: [],
-        _69: [],
-      },
+    Major: {
+      triand: [],
+      9: chordTemplates.M,
+      "uper structure": [],
+      7: chordTemplates.M,
+      "no avoid notes": [],
+      "minor pentatonic": [],
+      add9: [],
+      69: [],
     },
-    m: {
-      sets: {
-        triand: [],
-        _7: [],
-        _9: [],
-        up: [],
-        noAvoidNotes: [],
-        pent_m: [],
-        add9: [],
-        _69: [],
-      },
+    minor: {
+      triand: [],
+      7: [],
+      9: [],
+      "uper structure": [],
+      "no avoid notes": [],
+      "minor pentatonic": [],
+      add9: [],
+      69: [],
     },
   },
   Dominants: {
-    mixo: {
-      sets: {
-        triand: [],
-        _7: [],
-        _9: [],
-        up: [],
-        noAvoidNotes: [],
-        pent_M: [],
-        add9: [],
-        _69: [],
-        pent_m: [],
-      },
+    Mixolydian: {
+      triand: [],
+      7: [],
+      9: [],
+      "uper structure": [],
+      "no avoid notes": [],
+      pent_M: [],
+      add9: [],
+      69: [],
+      "minor pentatonic": [],
     },
-    ph: {
-      sets: {
-        triand: [],
-        _7: [],
-        _9: [],
-        up: [],
-        noAvoidNotes: [],
-        pent_m: [],
-        add9: [],
-        _69: [],
-      },
-    },
-  },
-  Mediant: {
-    sets: {
+    Phrygian: {
       triand: [],
       _7: [],
       _9: [],
-      up: [],
-      noAvoidNotes_pent_m: [],
+      "uper structure": [],
+      "no avoid notes": [],
+      "minor pentatonic": [],
       add9: [],
-      _69: [],
+      69: [],
+    },
+  },
+  Mediant: {
+    all: {
+      triand: [],
+      _7: [],
+      _9: [],
+      "uper structure": [],
+      "no avoid notes": [],
+      add9: [],
+      69: [],
     },
   },
 };
@@ -265,12 +275,12 @@ export const { Tonics, Subdominants, Dominants, Mediant } = MUSIC_FUCTIONS;
 
 export const MUSIC_FUCTIONS_NAMES = Object.keys(MUSIC_FUCTIONS);
 
-// export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
-//   const startIndex = notesArray.indexOf(tuneNote);
+export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
+  const startIndex = notesArray.indexOf(tuneNote);
 
-//   if (startIndex === -1) {
-//     throw new Error(`Note "${tuneNote}" not exist in data base`);
-//   }
+  if (startIndex === -1) {
+    throw new Error(`Note "${tuneNote}" not exist in data base`);
+  }
 
-//   return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
-// };
+  return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
+};

@@ -1,29 +1,53 @@
 import SegmentedSelect from "./components/forms/Selects/SegmentedSelect";
-import { NOTES_FROM_C, MUSIC_FUCTIONS_NAMES } from "./music-theory";
+import Fretboard from "./components/Fretboard/Fretboard";
+import {
+  MUSIC_KEYS,
+  MUSIC_FUCTIONS,
+  MUSIC_FUCTIONS_NAMES,
+} from "./music-theory";
 import { useMusicStore } from "./store/useMusicStore";
 
 function App() {
-  const { tuneKey, setTuneKey, musicFunction, setMusicFunction } =
-    useMusicStore();
+  const {
+    tuneKey,
+    setTuneKey,
+    musicFunction,
+    setMusicFunction,
+    notesSet,
+    setNotesSet,
+  } = useMusicStore();
+  const notesSets = Object.keys(MUSIC_FUCTIONS[musicFunction]).concat([
+    "Agregate",
+  ]);
+  console.log(notesSets);
 
   return (
     <>
       <SegmentedSelect
-        label="Major scale degree"
-        options={NOTES_FROM_C}
+        label="Unified keys"
+        options={MUSIC_KEYS}
         value={tuneKey}
         onChange={setTuneKey}
       />
 
       <SegmentedSelect
-        label="Mine set of functions"
+        label="Unified functions"
         options={MUSIC_FUCTIONS_NAMES}
         value={musicFunction}
         onChange={setMusicFunction}
       />
+      <SegmentedSelect
+        label="Function type"
+        options={notesSets}
+        value={notesSet}
+        onChange={setNotesSet}
+      />
+
       <div>
         {tuneKey} {musicFunction}
+        {console.log(MUSIC_FUCTIONS[musicFunction][notesSet])}
       </div>
+      <Fretboard />
     </>
   );
 }
