@@ -14,18 +14,18 @@ const Fretboard = () => {
   return (
     <FretboardContainer>
       {STRINGS.map((string, sIdx) => {
-        const strigId = `${string}-${6 - sIdx}`;
+        const stringId = `${string}-${6 - sIdx}`;
         const fretCells = extendArray(getNotesStartingFrom(string));
         return (
-          <StringRow key={strigId}>
+          <StringRow key={stringId}>
             {fretCells.map((note, fIdx) => {
-              const fretId = `fret-${fIdx + 1}`;
+              const fretId = `fret-${fIdx}`;
               return (
                 <FretCell
                   $numOfCells={fretCells.length}
-                  key={`${strigId}-${fretId}`}
+                  key={`${stringId}-${fretId}`}
                 >
-                  <Note note={note} strigId={strigId} fretId={fretId}></Note>
+                  <Note note={note} stringId={stringId} fretId={fretId}></Note>
                 </FretCell>
               );
             })}

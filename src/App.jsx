@@ -21,6 +21,8 @@ function App() {
     setNotesSet,
     chordType,
     setChordType,
+    string,
+    fret,
   } = useMusicStore();
   const functionTypes = Object.keys(MUSIC_FUCTIONS[musicFunction]).concat([
     "Agregate",
@@ -63,7 +65,15 @@ function App() {
         value={tuneKey}
         onChange={setTuneKey}
       />
-      {console.log(tuneKey, musicFunction, functionType, notesSet, chordType)}
+      {console.log(
+        tuneKey,
+        musicFunction,
+        functionType,
+        notesSet,
+        chordType,
+        string,
+        fret
+      )}
     </>
   );
 }

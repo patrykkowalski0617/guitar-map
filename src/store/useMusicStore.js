@@ -13,6 +13,12 @@ export const useMusicStore = create((set) => ({
   notesSet: "Triad",
   setNotesSet: (notesSet) => set({ notesSet }),
 
-  setChordType: (chordType) => set({ chordType }),
   chordType: "M",
+  setChordType: (chordType) => set({ chordType }),
+
+  string: "",
+  setString: (string) => set({ string }),
+
+  fret: "",
+  setFret: (fret) => set({ fret }),
 }));
