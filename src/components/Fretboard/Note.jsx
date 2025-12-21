@@ -1,12 +1,21 @@
 import { useMusicStore } from "../../store/useMusicStore";
 import * as S from "./parts";
+
 const Note = ({ stringId, fretId, note }) => {
-  const { setString, setFret } = useMusicStore();
+  const { string, setString, fret, setFret } = useMusicStore();
+
   const handleClick = () => {
     setString(stringId);
     setFret(fretId);
   };
-  return <S.Note onClick={handleClick}>{note}</S.Note>;
+
+  const isSelected = string === stringId && fret === fretId;
+
+  return (
+    <S.Note $isRootNote={isSelected} onClick={handleClick}>
+      {note}
+    </S.Note>
+  );
 };
 
 export default Note;

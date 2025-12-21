@@ -23,7 +23,6 @@ export const FretCell = styled.div`
 `;
 
 export const Note = styled.button`
-  border: none;
   outline: none;
   cursor: pointer;
 
@@ -50,4 +49,6 @@ export const Note = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+
+  border: ${({ $isRootNote }) => ($isRootNote ? "2px solid gold" : "none")};
 `;

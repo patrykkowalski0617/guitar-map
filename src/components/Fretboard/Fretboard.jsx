@@ -11,6 +11,7 @@ const extendArray = (arr, count = extendFretboardBy) => {
 };
 
 const Fretboard = () => {
+  const fretCounts = extendArray(getNotesStartingFrom("E")).fill(null);
   return (
     <FretboardContainer>
       {STRINGS.map((string, sIdx) => {
@@ -34,16 +35,17 @@ const Fretboard = () => {
       })}
       {
         <StringRow>
-          {extendArray(getNotesStartingFrom("E"))
-            .fill(null)
-            .map((x, fIdx) => {
-              const fretId = fIdx;
-              return (
-                <FretCell key={`fret-count-${fIdx}`}>
-                  {toRoman(fretId)}
-                </FretCell>
-              );
-            })}
+          {fretCounts.map((x, fIdx) => {
+            const fretId = fIdx;
+            return (
+              <FretCell
+                key={`fret-count-${fIdx}`}
+                $numOfCells={fretCounts.length}
+              >
+                {toRoman(fretId)}
+              </FretCell>
+            );
+          })}
         </StringRow>
       }
     </FretboardContainer>
