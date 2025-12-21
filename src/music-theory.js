@@ -21,25 +21,35 @@ export const NOTES_FROM_C = [
   "B",
 ];
 
-const getRelativeMinorScales = (notesArray = NOTES_FROM_C) => {
-  return notesArray
-    .map((majorNote, index) => {
-      const minorNoteIndex = (index + 9) % notesArray.length;
-      const minorNote = notesArray[minorNoteIndex];
-      return `${majorNote}/${minorNote}m`;
-    })
-    .map((scalePair) => {
-      const replacements = {
-        "D#/Cm": "Eb/Cm",
-        "G#/Fm": "Ab/Fm",
-        "C#/A#m": "Db/Bbm",
-      };
+export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
+  const startIndex = notesArray.indexOf(tuneNote);
 
-      return replacements[scalePair] || scalePair;
-    });
+  if (startIndex === -1) {
+    throw new Error(`Note "${tuneNote}" not exist in data base`);
+  }
+
+  return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
 };
 
-export const MUSIC_KEYS = getRelativeMinorScales(NOTES_FROM_C);
+export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
+  const minorNoteIndex = (index + 9) % NOTES_FROM_C.length;
+  const minorNote = NOTES_FROM_C[minorNoteIndex];
+  const scalePair = `${majorNote}/${minorNote}m`;
+
+  const replacements = {
+    "D#/Cm": "Eb/Cm",
+    "G#/Fm": "Ab/Fm",
+    "C#/A#m": "Db/Bbm",
+  };
+
+  return replacements[scalePair] || scalePair;
+});
+
+// SIGATURES
+
+// INTERVAL TEMPLATES
+
+// OLD CODE
 
 export const INTERVAL_NAMES = [
   "1",
@@ -95,56 +105,70 @@ export const [
   M14,
 ] = INTERVAL_NAMES;
 
+export const chordTypesSigntures = {
+  M: "M",
+  M7: "M7",
+  M_add9: "M(add9)",
+  Dominant: "Dominant",
+  m7b5: "m7b5",
+  dim7: "dim7",
+  m: "m",
+  m7: "m7",
+  m_M7: "m(M7)",
+  m_add9: "m(add9)",
+  m_69: "m69",
+};
+
 export const scales = {
   ionian: {
     name: "Ionian",
     modeNum: 1,
-    intervals: [_1, M2, M3, _4, b5, M6, M7],
+    intervalTemplate: [_1, M2, M3, _4, b5, M6, M7],
   },
   dorian: {
     name: "Dorian",
     modeNum: 2,
-    intervals: [_1, M2, m3, _4, b5, M6, m7],
+    intervalTemplate: [_1, M2, m3, _4, b5, M6, m7],
   },
   phrygian: {
     name: "Phrygian",
     modeNum: 3,
-    intervals: [_1, m2, m3, _4, b5, m6, m7],
+    intervalTemplate: [_1, m2, m3, _4, b5, m6, m7],
   },
   lydian: {
     name: "Lydian",
     modeNum: 4,
-    intervals: [_1, M2, M3, _4, b5, M6, M7],
+    intervalTemplate: [_1, M2, M3, _4, b5, M6, M7],
   },
   mixolydian: {
     name: "Mixolydian",
     modeNum: 5,
-    intervals: [_1, M2, M3, _4, b5, M6, m7],
+    intervalTemplate: [_1, M2, M3, _4, b5, M6, m7],
   },
   aeolian: {
     name: "Aeolian",
     modeNum: 6,
-    intervals: [_1, M2, m3, _4, b5, m6, m7],
+    intervalTemplate: [_1, M2, m3, _4, b5, m6, m7],
   },
   locrian: {
     name: "Locrian",
     modeNum: 7,
-    intervals: [_1, m2, m3, _4, b5, m6, m7],
+    intervalTemplate: [_1, m2, m3, _4, b5, m6, m7],
   },
   phrygianDominant: {
     name: "Phrygian Dominant",
     modeNum: 3,
-    intervals: [_1, m2, M3, _4, b5, m6, m7],
+    intervalTemplate: [_1, m2, M3, _4, b5, m6, m7],
   },
   pent_m: {
     name: "Minor Pentatonic",
     modeNum: 6,
-    intervals: [_1, m3, _4, _5, m6, m7],
+    intervalTemplate: [_1, m3, _4, _5, m6, m7],
   },
   pent_M: {
     name: "Major Pentatonic",
     modeNum: 1,
-    intervals: [],
+    intervalTemplate: [],
   },
 };
 
@@ -161,21 +185,9 @@ export const {
   pent_M,
 } = scales;
 
-export const chordTypes = {
-  M: "M",
-  M7: "M7",
-  M_add9: "Madd9",
-  Dominant: "Dominant",
-  m7b5: "m7b5",
-  dim7: "dim7",
-  m: "m",
-  m7: "m7",
-  m_M7: "m_M7",
-  m_add9: "m_add9",
-  m_69: "m_69",
-};
+export const intervalTemplates = {};
 
-export const noAvoidNotes = {
+export const noAvoidNotesTempltes = {
   T: [_1, M2, M3, _5, M6, M7],
   t: [_1, M2, m3, _4, _5, m7],
   S: [],
@@ -183,7 +195,7 @@ export const noAvoidNotes = {
   Ph: [],
 };
 
-export const chordTemplates = {
+export const chordIntervalTemplates = {
   M: {
     triad: [_1, M3, _5],
     M7: [_1, M3, _5, M7],
@@ -203,7 +215,7 @@ export const chordTemplates = {
   },
 };
 
-export const { M, D, m } = chordTemplates;
+export const { M, D, m } = chordIntervalTemplates;
 
 export const MUSIC_FUCTIONS = {
   Tonics: {
@@ -213,16 +225,16 @@ export const MUSIC_FUCTIONS = {
       M9: M.M9,
       add9: M.add9,
       "Uper structure": m.m7,
-      "No avoid notes": noAvoidNotes.T,
-      "Major pentatonic": pent_M.intervals,
+      "No avoid notes": noAvoidNotesTempltes.T,
+      "Major pentatonic": pent_M.intervalTemplate,
     },
     minor: {
       Triad: m._,
       m7: m._7,
       M9: m._9,
       "Uper structure": M._M7,
-      "No avoid notes": noAvoidNotes.T,
-      "Minor pentatonic": pent_m.intervals,
+      "No avoid notes": noAvoidNotesTempltes.T,
+      "Minor pentatonic": pent_m.intervalTemplate,
       add9: m.add9,
       _69: m._69,
     },
@@ -230,9 +242,9 @@ export const MUSIC_FUCTIONS = {
   Subdominants: {
     Major: {
       Triad: [],
-      _9: chordTemplates.M,
+      _9: chordIntervalTemplates.M,
       "Uper structure": [],
-      _7: chordTemplates.M,
+      _7: chordIntervalTemplates.M,
       "No avoid notes": [],
       "Minor pentatonic": [],
       add9: [],
@@ -288,13 +300,3 @@ export const MUSIC_FUCTIONS = {
 export const { Tonics, Subdominants, Dominants, Mediant } = MUSIC_FUCTIONS;
 
 export const MUSIC_FUCTIONS_NAMES = Object.keys(MUSIC_FUCTIONS);
-
-export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
-  const startIndex = notesArray.indexOf(tuneNote);
-
-  if (startIndex === -1) {
-    throw new Error(`Note "${tuneNote}" not exist in data base`);
-  }
-
-  return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
-};

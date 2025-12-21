@@ -5,10 +5,13 @@ export const useMusicStore = create((set) => ({
   setTuneKey: (tuneKey) => set({ tuneKey }),
 
   musicFunction: "Tonics",
-  setMusicFunction: (musicFunction) => set({ musicFunction }),
+  setMusicFunction: (musicFunction) => {
+    console.log("musicFunction", musicFunction);
+    return set({ musicFunction });
+  },
 
   functionType: "Major",
-  setFunctionType: (functionTypes) => set({ functionTypes }),
+  setFunctionType: (functionType) => set({ functionType }),
 
   notesSet: "Triad",
   setNotesSet: (notesSet) => set({ notesSet }),

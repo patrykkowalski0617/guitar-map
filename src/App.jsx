@@ -1,10 +1,10 @@
 import SegmentedSelect from "./components/forms/Selects/SegmentedSelect";
 import Fretboard from "./components/Fretboard/Fretboard";
 import {
-  MUSIC_KEYS,
+  UNIFIED_MUSIC_KEYS,
   MUSIC_FUCTIONS,
   MUSIC_FUCTIONS_NAMES,
-  chordTypes as _chordTypes,
+  chordTypesSigntures as _chordTypesSigntures,
 } from "./music-theory";
 import { useMusicStore } from "./store/useMusicStore";
 import "./App.css";
@@ -27,8 +27,9 @@ function App() {
   const functionTypes = Object.keys(MUSIC_FUCTIONS[musicFunction]).concat([
     "Agregate",
   ]);
+
   const notesSets = Object.keys(MUSIC_FUCTIONS[musicFunction][functionType]);
-  const chordTypes = Object.keys(_chordTypes);
+  const chordTypesSigntures = Object.values(_chordTypesSigntures);
   return (
     <>
       <SegmentedSelect
@@ -37,12 +38,14 @@ function App() {
         value={musicFunction}
         onChange={setMusicFunction}
       />
+
       <SegmentedSelect
         label="Function type"
         options={functionTypes}
         value={functionType}
         onChange={setFunctionType}
       />
+
       <SegmentedSelect
         label="Notes sets"
         options={notesSets}
@@ -52,7 +55,7 @@ function App() {
 
       <SegmentedSelect
         label={`Chord types`}
-        options={chordTypes}
+        options={chordTypesSigntures}
         value={chordType}
         onChange={setChordType}
       />
@@ -61,7 +64,7 @@ function App() {
 
       <SegmentedSelect
         label="Unified keys"
-        options={MUSIC_KEYS}
+        options={UNIFIED_MUSIC_KEYS}
         value={tuneKey}
         onChange={setTuneKey}
       />
