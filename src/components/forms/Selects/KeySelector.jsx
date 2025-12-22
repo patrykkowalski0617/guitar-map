@@ -1,4 +1,4 @@
-import { UNIFIED_MUSIC_KEYS } from "../../../music-theory";
+import { UNIFIED_MUSIC_KEYS } from "../../../data/music-theory";
 import { useMusicStore } from "../../../store/useMusicStore";
 import SegmentedSelect from "./SegmentedSelect";
 

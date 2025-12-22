@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { getNotesStartingFrom, NOTES_FROM_C } from "../../music-theory";
+import { getNotesStartingFrom, NOTES_FROM_C } from "../../data//music-theory";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { toRoman } from "../../utils/toRoman";
 import Note from "./Note";
 import { FretboardContainer, FretCell, FretCount, StringRow } from "./parts";
 import DownloadJSON from "./DownloadJSON";
+import { shapes } from "../../data/shapes";
 
 const STRINGS = ["E", "B", "G", "D", "A", "E"];
 const extendFretboardBy = 3;
@@ -18,6 +19,7 @@ const extendArray = (arr, count = extendFretboardBy) => {
 const Fretboard = () => {
   const { getActiveNotesSet, tuneKey, getActiveMarker } = useMusicStore();
   const [shape, setShape] = useState([]);
+  const [isCAGEDShapeType, setIsShapeType] = useState(false);
 
   const activeSet = getActiveNotesSet();
   const activeMarker = getActiveMarker();
@@ -45,6 +47,16 @@ const Fretboard = () => {
         ? prevShape.filter((id) => id !== CAGED_noteId)
         : [...prevShape, CAGED_noteId]
     );
+  };
+
+  const handleCAGEDClick = (cagedLetter) => {
+    if (cagedLetter) {
+      setShape(shapes[cagedLetter]);
+      setIsShapeType(true);
+    } else {
+      setShape([]);
+      setIsShapeType(false);
+    }
   };
 
   return (
@@ -80,6 +92,7 @@ const Fretboard = () => {
                       $isInSet={$isInSet}
                       $activeMarkerNote={$activeMarkerNote}
                       CAGED_noteId={CAGED_noteId}
+                      isCAGEDShapeType={isCAGEDShapeType}
                       handleClick={() => {
                         handleNoteClick(CAGED_noteId);
                       }}
@@ -102,6 +115,9 @@ const Fretboard = () => {
               <FretCount
                 key={`fret-count-${fIdx}`}
                 $numOfCells={fretCounts.length}
+                onClick={() => {
+                  handleCAGEDClick(cagedLetter);
+                }}
               >
                 {cagedLetter ? (
                   <span

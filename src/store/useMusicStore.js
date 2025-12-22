@@ -3,7 +3,7 @@ import {
   notesSetsInFunctionContexts,
   UNIFIED_MUSIC_KEYS,
   getNotesStartingFrom, // Importujemy, aby Store sam generował skalę
-} from "../music-theory";
+} from "../data//music-theory";
 
 export const useMusicStore = create((set, get) => ({
   tuneKey: UNIFIED_MUSIC_KEYS[0],

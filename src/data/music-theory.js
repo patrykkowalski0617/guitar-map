@@ -1,11 +1,3 @@
-export const CAGED = {
-  C: {},
-  A: {},
-  G: {},
-  E: {},
-  D: {},
-};
-
 export const NOTES_FROM_C = [
   "C",
   "C#",

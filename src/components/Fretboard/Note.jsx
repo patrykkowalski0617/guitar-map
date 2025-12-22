@@ -7,6 +7,7 @@ const Note = ({
   $activeMarkerNote,
   CAGED_noteId,
   $isSelected,
+  isCAGEDShapeType,
 }) => {
   return (
     <S.Note
@@ -15,6 +16,7 @@ const Note = ({
       onClick={handleClick}
       $isSelected={$isSelected}
       className={`CAGED_noteId__${CAGED_noteId}`}
+      $isCAGEDShapeType={isCAGEDShapeType}
     >
       {note}
     </S.Note>

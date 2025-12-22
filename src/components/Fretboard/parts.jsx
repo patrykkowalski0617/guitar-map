@@ -46,11 +46,13 @@ export const Note = styled.button`
   font-weight: 700;
   text-transform: uppercase;
   color: #64748b;
-  background: ${({ $isSelected }) => ($isSelected ? "green" : "transparent")};
+  background: ${({ $isSelected, $isCAGEDShapeType }) =>
+    $isSelected && !$isCAGEDShapeType ? "green" : "transparent"};
   &:hover {
     transform: scale(1.1);
   }
-
+  opacity: ${({ $isCAGEDShapeType, $isSelected }) =>
+    $isCAGEDShapeType && $isSelected ? "1" : "0.2"};
   border: ${({ $isInSet, $activeMarkerNote }) =>
     $isInSet
       ? $activeMarkerNote
