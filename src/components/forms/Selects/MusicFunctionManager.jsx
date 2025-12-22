@@ -1,0 +1,70 @@
+import {
+  getNotesStartingFrom,
+  notesSetsInFunctionContexts,
+} from "../../../music-theory";
+import { useMusicStore } from "../../../store/useMusicStore";
+import SegmentedSelect from "./SegmentedSelect";
+
+const MusicFunctionManager = () => {
+  const {
+    tuneKey,
+    selectedFunctionContext,
+    selectedNotesSetName,
+    selectedMarkerName,
+    setFunctionContextName,
+    setNotesSetName,
+    setMarkerName,
+    getActiveNotesSet,
+  } = useMusicStore();
+
+  const keyNotes = getNotesStartingFrom(tuneKey.majorNote);
+
+  const contextOptions = notesSetsInFunctionContexts.map(
+    (ctx) => ctx.FunctionContextName
+  );
+
+  const currentContext = notesSetsInFunctionContexts.find(
+    (ctx) => ctx.FunctionContextName === selectedFunctionContext
+  );
+
+  const notesSetOptions = currentContext
+    ? currentContext.notesSets.map((ns) => ns.getNotesSetName(keyNotes))
+    : [];
+
+  const activeSet = getActiveNotesSet();
+
+  const markerOptions = activeSet?.notesMarkers
+    ? activeSet.notesMarkers.map((m) => m.getMarkerName(keyNotes))
+    : [];
+
+  return (
+    <>
+      <SegmentedSelect
+        label="Function Contexts"
+        options={contextOptions}
+        value={selectedFunctionContext}
+        onChange={setFunctionContextName}
+      />
+
+      {notesSetOptions.length > 0 && (
+        <SegmentedSelect
+          label="Notes Sets"
+          options={notesSetOptions}
+          value={selectedNotesSetName}
+          onChange={setNotesSetName}
+        />
+      )}
+
+      {markerOptions.length > 0 && (
+        <SegmentedSelect
+          label="Marker specific note"
+          options={markerOptions}
+          value={selectedMarkerName}
+          onChange={setMarkerName}
+        />
+      )}
+    </>
+  );
+};
+
+export default MusicFunctionManager;

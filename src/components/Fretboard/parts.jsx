@@ -1,18 +1,17 @@
-import styled from "styled-components";
-
-const fretBorder = `5px solid`;
+import styled, { css } from "styled-components";
 
 export const FretboardContainer = styled.div`
   max-width: 100vw;
   overflow: auto;
+  padding: 20px 0;
 `;
 
 export const StringRow = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const FretCell = styled.div`
-  border-right: ${fretBorder};
+
+const Fret = css`
   min-width: 70px;
   max-width: 300px;
   width: calc(100vw / ${({ $numOfCells }) => $numOfCells});
@@ -22,13 +21,22 @@ export const FretCell = styled.div`
   height: 35px;
 `;
 
+export const FretCell = styled.div`
+  border-right: 5px solid;
+  ${Fret}
+`;
+
+export const FretCount = styled.div`
+  ${Fret}
+`;
+
 export const Note = styled.button`
   outline: none;
   cursor: pointer;
 
-  width: 32px;
+  width: 60px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 30px;
 
   display: flex;
   align-items: center;
@@ -37,18 +45,13 @@ export const Note = styled.button`
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-
-  transition: all 0.2s;
-  z-index: 10;
-  position: relative;
-
-  background: rgba(0, 0, 0, 0.2);
-  color: rgba(255, 255, 255, 0.3);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-
+  color: #64748b;
+  background: ${({ $activeMarkerNote }) =>
+    $activeMarkerNote ? "green" : "transparent"};
   &:hover {
     transform: scale(1.1);
   }
 
-  border: ${({ $isRootNote }) => ($isRootNote ? "2px solid gold" : "none")};
+  border: ${({ $isInSet }) =>
+    $isInSet ? "6px solid red" : "3px solid#64748b"};
 `;

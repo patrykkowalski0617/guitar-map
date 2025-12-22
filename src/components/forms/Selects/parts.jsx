@@ -17,7 +17,7 @@ export const Label = styled.span`
 
 export const OptionsWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap; // Pozwala na zawijanie przy wielu skalach
+  flex-wrap: wrap;
   gap: 4px;
   background-color: #f1f5f9;
   padding: 4px;

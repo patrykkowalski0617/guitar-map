@@ -21,6 +21,27 @@ export const NOTES_FROM_C = [
   "B",
 ];
 
+export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
+  const minorNoteIndex = (index + 9) % NOTES_FROM_C.length;
+  const minorNote = NOTES_FROM_C[minorNoteIndex];
+
+  const originalValue = `${majorNote}/${minorNote}m`;
+
+  const replacements = {
+    "D#/Cm": "Eb/Cm",
+    "G#/Fm": "Ab/Fm",
+    "C#/A#m": "Db/Bbm",
+    "A#/Gm": "Bb/Gm",
+  };
+
+  const label = replacements[originalValue] || originalValue;
+
+  return {
+    majorNote,
+    label,
+  };
+});
+
 export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
   const startIndex = notesArray.indexOf(tuneNote);
 
@@ -31,272 +52,256 @@ export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
   return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
 };
 
-export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
-  const minorNoteIndex = (index + 9) % NOTES_FROM_C.length;
-  const minorNote = NOTES_FROM_C[minorNoteIndex];
-  const scalePair = `${majorNote}/${minorNote}m`;
-
-  const replacements = {
-    "D#/Cm": "Eb/Cm",
-    "G#/Fm": "Ab/Fm",
-    "C#/A#m": "Db/Bbm",
-  };
-
-  return replacements[scalePair] || scalePair;
-});
-
-// SIGATURES
-
-// INTERVAL TEMPLATES
-
-// OLD CODE
-
-export const INTERVAL_NAMES = [
-  "1",
-  "m2",
-  "M2",
-  "m3",
-  "M3",
-  "4",
-  "4#",
-  "5",
-  "m6",
-  "M6",
-  "m7",
-  "M7",
-  "_8",
-  "m9",
-  "M9",
-  "m10",
-  "M10",
-  "11",
-  "11#",
-  "12",
-  "m13",
-  "M13",
-  "m14",
-  "M14",
-];
-
-export const [
-  _1,
-  m2,
-  M2,
-  m3,
-  M3,
-  _4,
-  b5,
-  _5,
-  m6,
-  M6,
-  m7,
-  M7,
-  _8,
-  m9,
-  M9,
-  m10,
-  M10,
-  _11,
-  b12,
-  _12,
-  m13,
-  M13,
-  m14,
-  M14,
-] = INTERVAL_NAMES;
-
-export const chordTypesSigntures = {
-  M: "M",
-  M7: "M7",
-  M_add9: "M(add9)",
-  Dominant: "Dominant",
-  m7b5: "m7b5",
-  dim7: "dim7",
-  m: "m",
-  m7: "m7",
-  m_M7: "m(M7)",
-  m_add9: "m(add9)",
-  m_69: "m69",
+export const intervals = {
+  _1: [0, "1"],
+  _m2: [1, "m2"],
+  _M2: [2, "M2"],
+  _m3: [3, "m3"],
+  _M3: [4, "M3"],
+  _4: [5, "4"],
+  _T: [6, "T"],
+  _5: [7, "5"],
+  _m6: [8, "m6"],
+  _M6: [9, "M6"],
+  _m7: [10, "m7"],
+  _M7: [11, "M7"],
+  _8: [12, "8"],
+  _m9: [13, "m9"],
+  _M9: [14, "M9"],
+  _m10: [15, "m10"],
+  _M10: [16, "M10"],
+  _11: [17, "11"],
+  _TT: [18, "TT"],
+  _12: [19, "12"],
+  _m13: [20, "m13"],
+  _M13: [21, "M13"],
+  _m14: [22, "m14"],
+  _M14: [23, "M14"],
 };
+export const {
+  _1,
+  _m2,
+  _M2,
+  _m3,
+  _M3,
+  _4,
+  _T,
+  _5,
+  _m6,
+  _M6,
+  _m7,
+  _M7,
+  _8,
+  _m9,
+  _M9,
+  _m10,
+  _M10,
+  _11,
+  _TT,
+  _12,
+  _m13,
+  _M13,
+  _m14,
+  _M14,
+} = intervals;
 
-export const scales = {
-  ionian: {
-    name: "Ionian",
-    modeNum: 1,
-    intervalTemplate: [_1, M2, M3, _4, b5, M6, M7],
-  },
-  dorian: {
-    name: "Dorian",
-    modeNum: 2,
-    intervalTemplate: [_1, M2, m3, _4, b5, M6, m7],
-  },
-  phrygian: {
-    name: "Phrygian",
-    modeNum: 3,
-    intervalTemplate: [_1, m2, m3, _4, b5, m6, m7],
-  },
-  lydian: {
-    name: "Lydian",
-    modeNum: 4,
-    intervalTemplate: [_1, M2, M3, _4, b5, M6, M7],
-  },
-  mixolydian: {
-    name: "Mixolydian",
-    modeNum: 5,
-    intervalTemplate: [_1, M2, M3, _4, b5, M6, m7],
-  },
-  aeolian: {
-    name: "Aeolian",
-    modeNum: 6,
-    intervalTemplate: [_1, M2, m3, _4, b5, m6, m7],
-  },
-  locrian: {
-    name: "Locrian",
-    modeNum: 7,
-    intervalTemplate: [_1, m2, m3, _4, b5, m6, m7],
-  },
-  phrygianDominant: {
-    name: "Phrygian Dominant",
-    modeNum: 3,
-    intervalTemplate: [_1, m2, M3, _4, b5, m6, m7],
-  },
-  pent_m: {
-    name: "Minor Pentatonic",
-    modeNum: 6,
-    intervalTemplate: [_1, m3, _4, _5, m6, m7],
-  },
-  pent_M: {
-    name: "Major Pentatonic",
-    modeNum: 1,
-    intervalTemplate: [],
-  },
+export const notesSets = {
+  M: { template: [_1, _M3, _5], setName: "M" },
+  M7: { template: [_1, _M3, _5, _M7], setName: "M7" },
+  M_add9: { template: [_1, _M3, _5, _M9], setName: "M(add9)" },
+  Dominant: { template: [_1, _M3, _5, _m7], setName: "Dominant" },
+  m7b5: { template: [_1, _m3, _T, _m7], setName: "m7b5" },
+  dim7: { template: [_1, _m3, _T, _M6], setName: "dim7" },
+  m: { template: [_1, _m3, _5], setName: "m" },
+  m7: { template: [_1, _m3, _5, _m7], setName: "m7" },
+  m_M7: { template: [_1, _m3, _5, _M7], setName: "m(M7)" },
+  m_add9: { template: [_1, _m3, _5, _M9], setName: "m(add9)" },
+  set_T_S: { template: [_1, _M2, _M3, _5, _M6, _M7], setName: "set-T" },
+  set_D: { template: [_1, _M2, _M3, _5, _M6, _m7], setName: "set-D" },
+  pent: { template: [_1, _M2, _M3, _5, _M6], setName: "pentatonic" },
 };
 
 export const {
-  ionian,
-  dorian,
-  phrygian,
-  lydian,
-  mixolydian,
-  aeolian,
-  locrian,
-  phrygianDominant,
-  pent_m,
-  pent_M,
-} = scales;
+  M,
+  M7,
+  M_add9,
+  Dominant,
+  m7b5,
+  dim7,
+  m,
+  m7,
+  m_M7,
+  m_add9,
+  set_T_S,
+  set_D,
+  pent,
+} = notesSets;
 
-export const intervalTemplates = {};
+export const notesSetsInFunctionContexts = [
+  {
+    FunctionContextName: "Tonics",
 
-export const noAvoidNotesTempltes = {
-  T: [_1, M2, M3, _5, M6, M7],
-  t: [_1, M2, m3, _4, _5, m7],
-  S: [],
-  D: [],
-  Ph: [],
-};
-
-export const chordIntervalTemplates = {
-  M: {
-    triad: [_1, M3, _5],
-    M7: [_1, M3, _5, M7],
-    M9: [_1, M3, _5, M7, M9],
-    add9: [_1, M3, _5, M9],
+    notesSets: [
+      {
+        getNotesSetName: (keyNotes) =>
+          `${keyNotes[_1[0]]}M7 / ${keyNotes[_M6[0]]}m upper structure`,
+        notesSets: M7,
+        keyDegree: _1,
+        notesMarkers: [
+          {
+            getMarkerName: (keyNotes) =>
+              `${keyNotes[_1[0]]}M7 1 / ${keyNotes[_M6[0]]}m 3`,
+            keyDegree: _1,
+          },
+          {
+            getMarkerName: (keyNotes) =>
+              `${keyNotes[_1[0]]}M7 3 / ${keyNotes[_M6[0]]}m 5`,
+            keyDegree: _M3,
+          },
+          {
+            getMarkerName: (keyNotes) =>
+              `${keyNotes[_1[0]]}M7 5 / ${keyNotes[_M6[0]]}m 7`,
+            keyDegree: _5,
+          },
+          {
+            getMarkerName: (keyNotes) =>
+              `${keyNotes[_1[0]]}M7 7 / ${keyNotes[_M6[0]]}m 9`,
+            keyDegree: _M7,
+          },
+        ],
+      },
+      {
+        getNotesSetName: (keyNotes) => {
+          const txt1 = keyNotes[_1[0]];
+          return `${txt1}M7 upper structure`;
+        },
+        notesSets: m7,
+        keyDegree: _M3,
+        notesMarkers: [
+          { getMarkerName: () => "Major Tonic 3", keyDegree: _M3 },
+          { getMarkerName: () => "Major Tonic 5", keyDegree: _M3 },
+          { getMarkerName: () => "Major Tonic 7", keyDegree: _M7 },
+          { getMarkerName: () => "Major Tonic 9", keyDegree: _M9 },
+        ],
+      },
+      {
+        getNotesSetName: (keyNotes) => {
+          const txt1 = keyNotes[_M6[0]];
+          return `${txt1}m7`;
+        },
+        notesSets: m7,
+        keyDegree: _M6,
+        notesMarkers: [
+          { getMarkerName: () => "minor Tonic 1", keyDegree: _M6 },
+          { getMarkerName: () => "minor Tonic 3", keyDegree: _1 },
+          { getMarkerName: () => "minor Tonic 5", keyDegree: _M3 },
+          { getMarkerName: () => "minor Tonic 7", keyDegree: _5 },
+        ],
+      },
+      {
+        getNotesSetName: (keyNotes) => {
+          const txt1 = keyNotes[_1[0]];
+          const txt2 = keyNotes[_M6[0]];
+          return `${txt1} Major pentatonic / ${txt2} minor pentatonic`;
+        },
+        notesSets: pent,
+        keyDegree: _1,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+        notesSets: set_T_S,
+        keyDegree: _1,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+    ],
   },
-  D: { _7: [_1, M3, _5, m7] },
-  m: {
-    triad: [_1, m3, _5],
-    m7: [_1, m3, _5, m7],
-    M9: [_1, m3, _5, m7, M9],
-    M7: [_1, m3, _5, M7],
-    add9: [_1, m3, _5, M9],
-    _69: [_1, m3, M6, M9],
-    m7b5: [_1, m3, b5, m7],
-    dim7: [_1, m3, b5, M6],
+  {
+    FunctionContextName: "Subdominants",
+    notesSets: [
+      {
+        getNotesSetName: () => "M7 / m upper structure",
+        notesSets: M7,
+        keyDegree: _4,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "M upper structure",
+        notesSets: m7,
+        keyDegree: _M6,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "m7",
+        notesSets: m7,
+        keyDegree: _M2,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "Pentatonic",
+        notesSets: pent,
+        keyDegree: _4,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+        notesSets: set_T_S,
+        keyDegree: _4,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+    ],
   },
-};
-
-export const { M, D, m } = chordIntervalTemplates;
-
-export const MUSIC_FUCTIONS = {
-  Tonics: {
-    Major: {
-      Triad: M.triad,
-      M7: M.M7,
-      M9: M.M9,
-      add9: M.add9,
-      "Uper structure": m.m7,
-      "No avoid notes": noAvoidNotesTempltes.T,
-      "Major pentatonic": pent_M.intervalTemplate,
-    },
-    minor: {
-      Triad: m._,
-      m7: m._7,
-      M9: m._9,
-      "Uper structure": M._M7,
-      "No avoid notes": noAvoidNotesTempltes.T,
-      "Minor pentatonic": pent_m.intervalTemplate,
-      add9: m.add9,
-      _69: m._69,
-    },
+  {
+    FunctionContextName: "Dominant",
+    notesSets: [
+      {
+        getNotesSetName: () => "Dominant (Myxolydian)",
+        notesSets: Dominant,
+        keyDegree: _5,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "Upper structure",
+        notesSets: m7b5,
+        keyDegree: _M7,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+        notesSets: set_D,
+        keyDegree: _5,
+        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+      },
+    ],
   },
-  Subdominants: {
-    Major: {
-      Triad: [],
-      _9: chordIntervalTemplates.M,
-      "Uper structure": [],
-      _7: chordIntervalTemplates.M,
-      "No avoid notes": [],
-      "Minor pentatonic": [],
-      add9: [],
-      _69: [],
-    },
-    minor: {
-      Triad: [],
-      7: [],
-      9: [],
-      "Uper structure": [],
-      "No avoid notes": [],
-      "Minor pentatonic": [],
-      add9: [],
-      69: [],
-    },
+  {
+    FunctionContextName: "Dominant in relative minor key",
+    notesSets: [
+      {
+        getNotesSetName: () => "Dominant (Phrygian)",
+        notesSets: Dominant,
+        keyDegree: _M3,
+      },
+      {
+        getNotesSetName: () => "Upper structure",
+        notesSets: dim7,
+        keyDegree: _M7,
+      },
+    ],
   },
-  Dominants: {
-    Mixolydian: {
-      Triad: [],
-      7: [],
-      9: [],
-      "Uper structure": [],
-      "No avoid notes": [],
-      pent_M: [],
-      add9: [],
-      69: [],
-      "Minor pentatonic": [],
-    },
-    Phrygian: {
-      Triad: [],
-      _7: [],
-      _9: [],
-      "Uper structure": [],
-      "No avoid notes": [],
-      "Minor pentatonic": [],
-      add9: [],
-      69: [],
-    },
+  {
+    FunctionContextName: "Phrygian",
+    notesSets: [
+      {
+        getNotesSetName: () => "m7",
+        notesSets: m7,
+        keyDegree: _M3,
+      },
+      {
+        getNotesSetName: () => "Pentatonic",
+        notesSets: pent,
+        keyDegree: _5,
+      },
+    ],
   },
-  Mediant: {
-    all: {
-      Triad: [],
-      _7: [],
-      _9: [],
-      "Uper structure": [],
-      "No avoid notes": [],
-      add9: [],
-      69: [],
-    },
-  },
-};
-
-export const { Tonics, Subdominants, Dominants, Mediant } = MUSIC_FUCTIONS;
-
-export const MUSIC_FUCTIONS_NAMES = Object.keys(MUSIC_FUCTIONS);
+];
