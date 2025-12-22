@@ -1,5 +1,14 @@
 import styled, { css } from "styled-components";
 
+const CAGED_COLOR = "#ffcc00";
+const DEFAULT_BORDER_COLOR = "#64748b";
+const btnHoverEffect = css`
+  transition: transform 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 export const FretboardContainer = styled.div`
   max-width: 100vw;
   overflow: auto;
@@ -28,6 +37,31 @@ export const FretCell = styled.div`
 
 export const FretCount = styled.div`
   ${Fret}
+  cursor: pointer;
+  user-select: none;
+  padding-right: 5px;
+  ${btnHoverEffect}
+`;
+
+export const FretboardLabelsWrapper = styled.div`
+  margin-top: 5px;
+`;
+export const CAGEDLetter = styled.span`
+  color: ${CAGED_COLOR};
+  cursor: pointer;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 3px solid;
 `;
 
 export const Note = styled.button`
@@ -46,17 +80,19 @@ export const Note = styled.button`
   font-weight: 700;
   text-transform: uppercase;
   color: #64748b;
+
   background: ${({ $isSelected, $isCAGEDShapeType }) =>
     $isSelected && !$isCAGEDShapeType ? "green" : "transparent"};
-  &:hover {
-    transform: scale(1.1);
-  }
+
+  ${btnHoverEffect}
+
   opacity: ${({ $isCAGEDShapeType, $isSelected }) =>
     $isCAGEDShapeType && $isSelected ? "1" : "0.2"};
+
   border: ${({ $isInSet, $activeMarkerNote }) =>
     $isInSet
       ? $activeMarkerNote
         ? "6px solid red"
         : "6px solid green"
-      : "3px solid#64748b"};
+      : `3px solid ${DEFAULT_BORDER_COLOR}`};
 `;

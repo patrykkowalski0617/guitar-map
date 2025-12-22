@@ -18,11 +18,11 @@ const DownloadJSON = ({ shape }) => {
 
   const handleExport = () => {
     // Możesz wzbogacić JSON o dodatkowe metadane, np. tonację
-    const dataToSave = {
-      notes: shape,
-    };
-
-    downloadJSON(dataToSave, `caged-shape.json`);
+    // const dataToSave = {
+    //   notes: shape,
+    // };
+    console.log(shape);
+    downloadJSON(shape, `caged-shape.json`);
   };
 
   return (

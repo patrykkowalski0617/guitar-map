@@ -5,7 +5,7 @@ import {
 import { useMusicStore } from "../../../store/useMusicStore";
 import SegmentedSelect from "./SegmentedSelect";
 
-const MusicFunctionManager = () => {
+const MusicFunctionSelector = () => {
   const {
     tuneKey,
     selectedFunctionContext,
@@ -18,21 +18,16 @@ const MusicFunctionManager = () => {
   } = useMusicStore();
 
   const keyNotes = getNotesStartingFrom(tuneKey.majorNote);
-
   const contextOptions = notesSetsInFunctionContexts.map(
     (ctx) => ctx.FunctionContextName
   );
-
   const currentContext = notesSetsInFunctionContexts.find(
     (ctx) => ctx.FunctionContextName === selectedFunctionContext
   );
-
   const notesSetOptions = currentContext
     ? currentContext.notesSets.map((ns) => ns.getNotesSetName(keyNotes))
     : [];
-
   const activeSet = getActiveNotesSet();
-
   const markerOptions = activeSet?.notesMarkers
     ? activeSet.notesMarkers.map((m) => m.getMarkerName(keyNotes))
     : [];
@@ -67,4 +62,4 @@ const MusicFunctionManager = () => {
   );
 };
 
-export default MusicFunctionManager;
+export default MusicFunctionSelector;

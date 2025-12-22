@@ -1,6 +1,6 @@
 import Fretboard from "./components/Fretboard/Fretboard";
 import "./App.css";
-import MusicFunctionManager from "./components/forms/Selects/MusicFunctionManager";
+import MusicFunctionSelector from "./components/forms/Selects/MusicFunctionSelector";
 import KeySelector from "./components/forms/Selects/KeySelector";
 import { isSameShape, transposeShape } from "./utils/transposer";
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <MusicFunctionManager />
+      <MusicFunctionSelector />
       <Fretboard />
       <KeySelector />
     </>
