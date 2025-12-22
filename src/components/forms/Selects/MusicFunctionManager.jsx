@@ -40,7 +40,7 @@ const MusicFunctionManager = () => {
   return (
     <>
       <SegmentedSelect
-        label="Function Contexts"
+        label="Choose Function Contexts"
         options={contextOptions}
         value={selectedFunctionContext}
         onChange={setFunctionContextName}
@@ -48,7 +48,7 @@ const MusicFunctionManager = () => {
 
       {notesSetOptions.length > 0 && (
         <SegmentedSelect
-          label="Notes Sets"
+          label="Choose Set of Notes"
           options={notesSetOptions}
           value={selectedNotesSetName}
           onChange={setNotesSetName}
@@ -57,7 +57,7 @@ const MusicFunctionManager = () => {
 
       {markerOptions.length > 0 && (
         <SegmentedSelect
-          label="Marker specific note"
+          label="Mark specific note"
           options={markerOptions}
           value={selectedMarkerName}
           onChange={setMarkerName}

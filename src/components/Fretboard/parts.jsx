@@ -46,12 +46,15 @@ export const Note = styled.button`
   font-weight: 700;
   text-transform: uppercase;
   color: #64748b;
-  background: ${({ $activeMarkerNote }) =>
-    $activeMarkerNote ? "green" : "transparent"};
+  background: ${({ $isSelected }) => ($isSelected ? "green" : "transparent")};
   &:hover {
     transform: scale(1.1);
   }
 
-  border: ${({ $isInSet }) =>
-    $isInSet ? "6px solid red" : "3px solid#64748b"};
+  border: ${({ $isInSet, $activeMarkerNote }) =>
+    $isInSet
+      ? $activeMarkerNote
+        ? "6px solid red"
+        : "6px solid green"
+      : "3px solid#64748b"};
 `;
