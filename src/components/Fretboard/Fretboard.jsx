@@ -81,7 +81,7 @@ const Fretboard = () => {
           handleCAGEDClick={handleCAGEDClick}
         />
       </FretboardContainer>
-      {/* <DownloadJSON shape={shape} /> */}
+      <DownloadJSON shape={shape} />
     </>
   );
 };
