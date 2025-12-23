@@ -1,5 +1,5 @@
 import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
-import { FretCell, StringRow, Note } from "./parts";
+import { FretCell, StringRow, Note as StyledNote } from "./parts";
 
 const FretRow = ({
   string,
@@ -18,10 +18,10 @@ const FretRow = ({
   return (
     <StringRow>
       {fretCells.map((note, fIdx) => {
-        const fretId = `fret-${fIdx}`;
         const $isInSet = notesSet.includes(note);
         const $activeMarkerNote = activeMarkerNote === note;
 
+        // Wyliczenie ID dla klasy i stanu
         const get_CAGED_noteId = () => {
           let index = NOTES_FROM_C.indexOf(note) - CAGED_shift;
           if (index < 0) index += 11;
@@ -29,22 +29,23 @@ const FretRow = ({
         };
 
         const CAGED_noteId = get_CAGED_noteId();
+        const $isSelected = shape.includes(CAGED_noteId);
 
         return (
           <FretCell
             $numOfCells={fretCells.length}
-            key={`${stringId}-${fretId}`}
+            key={`${stringId}-fret-${fIdx}`}
           >
-            <Note
+            <StyledNote
               $isInSet={$isInSet}
               $activeMarkerNote={$activeMarkerNote}
-              onClick={() => handleNoteClick(CAGED_noteId)}
-              $isSelected={shape.includes(CAGED_noteId)}
-              className={`CAGED_noteId__${CAGED_noteId}`}
+              $isSelected={$isSelected}
               $isCAGEDShapeType={isCAGEDShapeType}
+              className={`CAGED_noteId__${CAGED_noteId}`}
+              onClick={() => handleNoteClick(CAGED_noteId)}
             >
               {note}
-            </Note>
+            </StyledNote>
           </FretCell>
         );
       })}
