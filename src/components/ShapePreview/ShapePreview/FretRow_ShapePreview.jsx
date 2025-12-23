@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../../data/music-theory";
+import { NOTES_FROM_C } from "../../../data/music-theory";
 import { PreviewFretCell, PreviewStringRow, PreviewNote } from "./parts";
 
 const FretRow_ShapePreview = ({

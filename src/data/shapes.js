@@ -1,4 +1,4 @@
-export const shapes = {
+export const CAGEDshapes = {
   C: [
     "E1_B",
     "E1_C",
@@ -136,3 +136,74 @@ export const shapes = {
     "E6_F",
   ],
 };
+
+export const chordShapes = [
+  {
+    id: "M",
+    label: "Major",
+    shapes: [
+      ["E1_B", "A2_D", "D3_F", "G4_C"],
+      ["E1_B", "A2_D", "D3_F"],
+    ],
+  },
+  {
+    id: "M7",
+    label: "Major 7th",
+    shapes: [["A2_D", "D3_F", "G4_C"]],
+  },
+  {
+    id: "M_add9",
+    label: "Major add9",
+    shapes: [],
+  },
+  {
+    id: "Dominant",
+    label: "Dominant",
+    shapes: [],
+  },
+  {
+    id: "m7b5",
+    label: "m7b5 (Half-dim)",
+    shapes: [],
+  },
+  {
+    id: "dim7",
+    label: "Diminished 7",
+    shapes: [],
+  },
+  {
+    id: "m",
+    label: "Minor",
+    shapes: [],
+  },
+  {
+    id: "m7",
+    label: "Minor 7th",
+    shapes: [],
+  },
+  {
+    id: "m_M7",
+    label: "Minor with Major 7th",
+    shapes: [],
+  },
+  {
+    id: "m_add9",
+    label: "Minor add9",
+    shapes: [],
+  },
+  {
+    id: "set_T_S",
+    label: "Tonic Subdominant Set of No Avoid Notes",
+    shapes: [],
+  },
+  {
+    id: "set_D",
+    label: "Dominant Set of No Avoid Notes",
+    shapes: [],
+  },
+  {
+    id: "pent",
+    label: "Pentatonic minor and Major",
+    shapes: [],
+  },
+];

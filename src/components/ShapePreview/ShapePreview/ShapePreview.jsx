@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../../data/music-theory";
+import { NOTES_FROM_C } from "../../../data/music-theory";
 import FretRow_ShapePreview from "./FretRow_ShapePreview";
 import { PreviewContainer } from "./parts";
 

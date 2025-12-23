@@ -3,7 +3,7 @@ import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
-import { shapes } from "../../data/shapes";
+import { CAGEDshapes } from "../../data/shapes";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
 import CopyUserShapeButton from "./CopyUserShapeButton";
@@ -49,7 +49,7 @@ const Fretboard = () => {
 
   const handleCAGEDClick = (cagedLetter) => {
     if (cagedLetter) {
-      setShape(shapes[cagedLetter]);
+      setShape(CAGEDshapes[cagedLetter]);
     } else {
       setShape([]);
     }
