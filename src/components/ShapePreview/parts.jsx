@@ -49,7 +49,7 @@ export const PreviewNote = styled.div`
 
   /* Logika wyświetlania: szary kolor dla zaznaczonych, opacity dla reszty */
   background-color: ${GRAY_DARK};
-  opacity: ${({ $isSelected }) => ($isSelected ? "1" : "0.3")};
+  opacity: ${({ $isInShape }) => ($isInShape ? "1" : "0.3")};
 
   /* Brak obramowań i hoverów w trybie preview */
   border: none;

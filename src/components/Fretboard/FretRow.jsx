@@ -10,7 +10,7 @@ const FretRow = ({
   CAGED_shift,
   handleNoteClick,
   shape,
-  isCAGEDShapeType,
+  userShape,
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = extendArray(getNotesStartingFrom(string));
@@ -29,7 +29,8 @@ const FretRow = ({
         };
 
         const CAGED_noteId = get_CAGED_noteId();
-        const $isSelected = shape.includes(CAGED_noteId);
+        const $isInShape = shape.includes(CAGED_noteId);
+        const $isInUserShape = userShape.includes(CAGED_noteId);
 
         return (
           <FretCell
@@ -39,8 +40,8 @@ const FretRow = ({
             <StyledNote
               $isInSet={$isInSet}
               $activeMarkerNote={$activeMarkerNote}
-              $isSelected={$isSelected}
-              $isCAGEDShapeType={isCAGEDShapeType}
+              $isInShape={$isInShape}
+              $isInUserShape={$isInUserShape}
               className={`CAGED_noteId__${CAGED_noteId}`}
               onClick={() => handleNoteClick(CAGED_noteId)}
             >

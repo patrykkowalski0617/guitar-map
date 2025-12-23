@@ -3,10 +3,10 @@ import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
-import DownloadJSON from "./DownloadJSON";
 import { shapes } from "../../data/shapes";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
+import CopyUserShapeButton from "./CopyUserShapeButton";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const extendFretboardBy = 3;
@@ -19,7 +19,7 @@ const extendArray = (arr, count = extendFretboardBy) => {
 const Fretboard = () => {
   const { getActiveNotesSet, tuneKey, getActiveMarker } = useMusicStore();
   const [shape, setShape] = useState([]);
-  const [isCAGEDShapeType, setIsShapeType] = useState(false);
+  const [userShape, setUserShape] = useState([]);
 
   const activeSet = getActiveNotesSet();
   const activeMarker = getActiveMarker();
@@ -40,7 +40,7 @@ const Fretboard = () => {
   const CAGED = manageCAGED(tuneKey.majorNote, CAGED_shift);
 
   const handleNoteClick = (CAGED_noteId) => {
-    setShape((prevShape) =>
+    setUserShape((prevShape) =>
       prevShape.includes(CAGED_noteId)
         ? prevShape.filter((id) => id !== CAGED_noteId)
         : [...prevShape, CAGED_noteId]
@@ -50,10 +50,8 @@ const Fretboard = () => {
   const handleCAGEDClick = (cagedLetter) => {
     if (cagedLetter) {
       setShape(shapes[cagedLetter]);
-      setIsShapeType(true);
     } else {
       setShape([]);
-      setIsShapeType(false);
     }
   };
 
@@ -71,7 +69,7 @@ const Fretboard = () => {
             CAGED_shift={CAGED_shift}
             handleNoteClick={handleNoteClick}
             shape={shape}
-            isCAGEDShapeType={isCAGEDShapeType}
+            userShape={userShape}
           />
         ))}
 
@@ -81,7 +79,7 @@ const Fretboard = () => {
           handleCAGEDClick={handleCAGEDClick}
         />
       </FretboardContainer>
-      <DownloadJSON shape={shape} />
+      <CopyUserShapeButton userShape={userShape} />
     </>
   );
 };

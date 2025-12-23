@@ -17,12 +17,12 @@ const FretRow_ShapePreview = ({
     <PreviewStringRow>
       {cells.map((note, fIdx) => {
         const currentPointId = `${stringId}_${note}`;
-        const isSelected = normalizedShape.includes(currentPointId);
+        const isInShape = normalizedShape.includes(currentPointId);
 
         return (
           <PreviewFretCell key={`${stringId}-fret-${fIdx}`}>
             <PreviewNote
-              $isSelected={isSelected}
+              $isInShape={isInShape}
               className={`CAGED_noteId__${currentPointId}`}
             />
           </PreviewFretCell>

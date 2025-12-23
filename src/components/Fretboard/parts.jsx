@@ -64,7 +64,7 @@ export const CAGEDLetter = styled.span`
   border: 3px solid;
 `;
 
-export const Note = styled.button`
+export const Note = styled.div`
   outline: none;
   cursor: pointer;
 
@@ -81,13 +81,12 @@ export const Note = styled.button`
   text-transform: uppercase;
   color: #64748b;
 
-  background: ${({ $isSelected, $isCAGEDShapeType }) =>
-    $isSelected && !$isCAGEDShapeType ? "green" : "transparent"};
+  background: ${({ $isInUserShape }) =>
+    $isInUserShape ? "green" : "transparent"};
 
   ${btnHoverEffect}
 
-  opacity: ${({ $isCAGEDShapeType, $isSelected }) =>
-    $isCAGEDShapeType && $isSelected ? "1" : "0.2"};
+  opacity: ${({ $isInShape }) => ($isInShape ? "1" : "0.2")};
 
   border: ${({ $isInSet, $activeMarkerNote }) =>
     $isInSet
