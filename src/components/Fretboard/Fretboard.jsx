@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer, StyledButton } from "./parts";
@@ -8,11 +7,12 @@ import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
 import CopyUserShapeButton from "./CopyUserShapeButton";
 import { transposeShape } from "../../utils/transposer";
-import { extendArray } from "../../utils/extendArray";
 import { isTestMode } from "../../settings";
+import { getNotesFromNote } from "../../utils/getNotesFromNote";
+import { NOTES_FROM_C } from "../../data/music-theory";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
-const extendFretboardBy = 5;
+const numberOfFrets = 16;
 
 const Fretboard = () => {
   const { getActiveNotesSet, tuneKey, getActiveMarker } = useMusicStore();
@@ -22,7 +22,7 @@ const Fretboard = () => {
 
   const activeSet = getActiveNotesSet();
   const activeMarker = getActiveMarker();
-  const notesOfKey = getNotesStartingFrom(tuneKey.majorNote);
+  const notesOfKey = getNotesFromNote(tuneKey.majorNote);
 
   const findNotes = (set) => {
     if (!set?.notesSets?.template) return [];
@@ -34,10 +34,7 @@ const Fretboard = () => {
 
   const notesSet = findNotes(activeSet);
   const activeMarkerNote = notesOfKey[activeMarker.keyDegree[0]];
-  const fretCounts = extendArray(
-    getNotesStartingFrom("E"),
-    extendFretboardBy
-  ).fill(null);
+  const fretCounts = getNotesFromNote("E", numberOfFrets).fill(null);
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const CAGED = manageCAGED(tuneKey.majorNote, CAGED_shift);
 
@@ -87,7 +84,7 @@ const Fretboard = () => {
             key={string + sIdx}
             string={string}
             sIdx={sIdx}
-            extendFretboardBy={extendFretboardBy}
+            numberOfFrets={numberOfFrets}
             notesSet={notesSet}
             activeMarkerNote={activeMarkerNote}
             CAGED_shift={CAGED_shift}

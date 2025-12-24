@@ -2,8 +2,8 @@ import { create } from "zustand";
 import {
   notesSetsInFunctionContexts,
   UNIFIED_MUSIC_KEYS,
-  getNotesStartingFrom, // Importujemy, aby Store sam generował skalę
 } from "../data//music-theory";
+import { getNotesFromNote } from "../utils/getNotesFromNote";
 
 export const useMusicStore = create((set, get) => ({
   tuneKey: UNIFIED_MUSIC_KEYS[0],
@@ -11,7 +11,7 @@ export const useMusicStore = create((set, get) => ({
   // Helper do pobierania skali na podstawie aktualnego lub przekazanego tuneKey
   getKeyNotes: (keyObj) => {
     const k = keyObj || get().tuneKey;
-    return getNotesStartingFrom(k.majorNote);
+    return getNotesFromNote(k.majorNote);
   },
 
   setTuneKey: (keyObject) => {
@@ -19,7 +19,7 @@ export const useMusicStore = create((set, get) => ({
     const currentActiveSet = state.getActiveNotesSet();
 
     // Generujemy nową skalę raz dla całej operacji
-    const newKeyNotes = getNotesStartingFrom(keyObject.majorNote);
+    const newKeyNotes = getNotesFromNote(keyObject.majorNote);
     const oldKeyNotes = state.getKeyNotes();
 
     if (currentActiveSet) {
@@ -48,12 +48,12 @@ export const useMusicStore = create((set, get) => ({
   // Inicjalizacja z użyciem skali
   selectedNotesSetName:
     notesSetsInFunctionContexts[0].notesSets[0].getNotesSetName(
-      getNotesStartingFrom(UNIFIED_MUSIC_KEYS[0].majorNote)
+      getNotesFromNote(UNIFIED_MUSIC_KEYS[0].majorNote)
     ),
 
   selectedMarkerName:
     notesSetsInFunctionContexts[0].notesSets[0].notesMarkers?.[0]?.getMarkerName(
-      getNotesStartingFrom(UNIFIED_MUSIC_KEYS[0].majorNote)
+      getNotesFromNote(UNIFIED_MUSIC_KEYS[0].majorNote)
     ) || "",
 
   setFunctionContextName: (name) => {

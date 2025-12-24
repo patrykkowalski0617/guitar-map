@@ -1,9 +1,7 @@
-import {
-  getNotesStartingFrom,
-  notesSetsInFunctionContexts,
-} from "../../../data/music-theory";
+import { notesSetsInFunctionContexts } from "../../../data/music-theory";
 import { isTestMode } from "../../../settings";
 import { useMusicStore } from "../../../store/useMusicStore";
+import { getNotesFromNote } from "../../../utils/getNotesFromNote";
 import SegmentedSelect from "./SegmentedSelect";
 
 const MusicFunctionSelector = () => {
@@ -18,7 +16,7 @@ const MusicFunctionSelector = () => {
     getActiveNotesSet,
   } = useMusicStore();
 
-  const keyNotes = getNotesStartingFrom(tuneKey.majorNote);
+  const keyNotes = getNotesFromNote(tuneKey.majorNote);
   const contextOptions = notesSetsInFunctionContexts.map(
     (ctx) => ctx.FunctionContextName
   );

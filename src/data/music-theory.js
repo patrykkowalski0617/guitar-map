@@ -16,33 +16,19 @@ export const NOTES_FROM_C = [
 export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
   const minorNoteIndex = (index + 9) % NOTES_FROM_C.length;
   const minorNote = NOTES_FROM_C[minorNoteIndex];
-
   const originalValue = `${majorNote}/${minorNote}m`;
-
   const replacements = {
     "D#/Cm": "Eb/Cm",
     "G#/Fm": "Ab/Fm",
     "C#/A#m": "Db/Bbm",
     "A#/Gm": "Bb/Gm",
   };
-
   const label = replacements[originalValue] || originalValue;
-
   return {
     majorNote,
     label,
   };
 });
-
-export const getNotesStartingFrom = (tuneNote, notesArray = NOTES_FROM_C) => {
-  const startIndex = notesArray.indexOf(tuneNote);
-
-  if (startIndex === -1) {
-    throw new Error(`Note "${tuneNote}" not exist in data base`);
-  }
-
-  return [...notesArray.slice(startIndex), ...notesArray.slice(0, startIndex)];
-};
 
 export const intervals = {
   _1: [0, "1"],
