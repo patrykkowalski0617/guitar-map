@@ -11,57 +11,79 @@ const STRING_MAP = {
 
 const STRING_ORDER = ["E1", "A2", "D3", "G4", "B5", "E6"];
 
+// Odległość każdej struny od najniższego E1 w półtonach
+// E1=0, A2=5, D3=10, G4=15, B5=19 (skok o 4!), E6=24
+const STRING_OFFSETS = [0, 5, 10, 15, 19, 24];
+
 /**
- * Przesuwa kształt (tablicę punktów) do nowego punktu startowego.
- * @param {Array} initialShape - Tablica np. ["E1_A", "E1_B", ...]
- * @param {String} targetPoint - Punkt docelowy np. "A2_D"
- * @returns {Array} - Nowa tablica przesuniętych punktów
+ * Zwraca numer progu dla danej struny i nuty.
+ */
+const getFretValue = (stringName, noteName) => {
+  const startNote = STRING_MAP[stringName];
+  const startIndex = NOTES_FROM_C.indexOf(startNote);
+  const targetIndex = NOTES_FROM_C.indexOf(noteName);
+  let fret = targetIndex - startIndex;
+  if (fret < 0) fret += 12;
+  return fret;
+};
+
+/**
+ * Oblicza absolutną wartość półtonową punktu (np. "E1_A" -> 5)
+ */
+const getAbsoluteSemitones = (point) => {
+  const [sName, nName] = point.split("_");
+  const sIdx = STRING_ORDER.indexOf(sName);
+  const fret = getFretValue(sName, nName);
+  return STRING_OFFSETS[sIdx] + fret;
+};
+
+/**
+ * Przesuwa kształt do nowego punktu startowego.
+ * Wykorzystuje matematykę interwałów, co automatycznie rozwiązuje problem struny B.
  */
 export const transposeShape = (initialShape, targetPoint) => {
   if (!initialShape || initialShape.length === 0 || !targetPoint) return [];
 
-  // 1. Pomocnicza funkcja obliczająca próg
-  const getFretValue = (stringName, noteName) => {
-    const startNote = STRING_MAP[stringName];
-    const startIndex = NOTES_FROM_C.indexOf(startNote);
-    const targetIndex = NOTES_FROM_C.indexOf(noteName);
-    let fret = targetIndex - startIndex;
-    if (fret < 0) fret += 12;
-    return fret;
-  };
+  // 1. Obliczamy pozycję i "masę" muzyczną punktu startowego
+  const originAbs = getAbsoluteSemitones(initialShape[0]);
+  const targetAbs = getAbsoluteSemitones(targetPoint);
 
-  // 2. Analiza punktu odniesienia (pierwszy element tablicy wejściowej)
-  const [originString, originNote] = initialShape[0].split("_");
-  const originStringIdx = STRING_ORDER.indexOf(originString);
-  const originFret = getFretValue(originString, originNote);
+  // 2. Ustalamy różnicę strun (ile strun w górę/dół przesuwamy kształt)
+  const [originString] = initialShape[0].split("_");
+  const [targetString] = targetPoint.split("_");
+  const stringDiff =
+    STRING_ORDER.indexOf(targetString) - STRING_ORDER.indexOf(originString);
 
-  // 3. Analiza docelowego punktu startowego
-  const [tString, tNote] = targetPoint.split("_");
-  const tStringIdx = STRING_ORDER.indexOf(tString);
-  const tFret = getFretValue(tString, tNote);
-
-  // 4. Obliczanie różnicy (offsetu) między starym a nowym punktem startowym
-  const stringDiff = tStringIdx - originStringIdx;
-  const fretDiff = tFret - originFret;
-
-  // 5. Przesunięcie wszystkich punktów o wyliczoną różnicę
   return initialShape
     .map((point) => {
-      const [s, n] = point.split("_");
-      const sIdx = STRING_ORDER.indexOf(s);
-      const fVal = getFretValue(s, n);
+      const [sName] = point.split("_");
+      const currentSIdx = STRING_ORDER.indexOf(sName);
 
-      const newSIdx = sIdx + stringDiff;
-      const newFval = fVal + fretDiff;
+      // Wyliczamy interwał danej nuty względem bazy (np. tercja = 4 półtony)
+      const interval = getAbsoluteSemitones(point) - originAbs;
 
-      // Zabezpieczenie: jeśli punkt wypada poza gryf (struny)
+      // Wyliczamy docelową wartość półtonową
+      const newAbsValue = targetAbs + interval;
+
+      // Wyliczamy nową strunę (zachowując geometrię kształtu)
+      const newSIdx = currentSIdx + stringDiff;
+
+      // Zabezpieczenie przed wyjściem poza gryf
       if (newSIdx < 0 || newSIdx >= STRING_ORDER.length) return null;
 
       const newSName = STRING_ORDER[newSIdx];
+
+      // Kluczowy moment: wyliczamy próg odejmując offset nowej struny
+      // To tutaj automatycznie koryguje się różnica 4 vs 5 półtonów struny B
+      const newFret = newAbsValue - STRING_OFFSETS[newSIdx];
+
+      // Jeśli próg jest ujemny (nie da się zagrać tego kształtu w tej pozycji)
+      if (newFret < 0) return null;
+
+      // Zamieniamy próg z powrotem na nazwę nuty
       const startNoteOfNewString = STRING_MAP[newSName];
       const startNoteIdx = NOTES_FROM_C.indexOf(startNoteOfNewString);
-
-      let finalNoteIdx = (startNoteIdx + newFval) % 12;
+      let finalNoteIdx = (startNoteIdx + newFret) % 12;
       if (finalNoteIdx < 0) finalNoteIdx += 12;
 
       return `${newSName}_${NOTES_FROM_C[finalNoteIdx]}`;
@@ -70,50 +92,19 @@ export const transposeShape = (initialShape, targetPoint) => {
 };
 
 /**
- * Porównuje dwa kształty i sprawdza, czy są tą samą strukturą (transpozycją).
- * @param {Array} shapeA - Pierwszy kształt np. ["E1_A", "E1_B"]
- * @param {Array} shapeB - Drugi kształt np. ["A2_D", "A2_E"]
- * @returns {Boolean} - true jeśli to ten sam kształt, false w przeciwnym razie
+ * Porównuje dwa kształty sprawdzając, czy ich interwały są identyczne.
  */
 export const isSameShape = (shapeA, shapeB) => {
-  // 1. Podstawowe sprawdzenie długości
   if (!shapeA || !shapeB || shapeA.length !== shapeB.length) return false;
   if (shapeA.length === 0) return true;
 
-  const getFretValue = (stringName, noteName) => {
-    const startNote = STRING_MAP[stringName];
-    const startIndex = NOTES_FROM_C.indexOf(startNote);
-    const targetIndex = NOTES_FROM_C.indexOf(noteName);
-    let fret = targetIndex - startIndex;
-    if (fret < 0) fret += 12;
-    return fret;
+  const getShapeStructure = (shape) => {
+    const originAbs = getAbsoluteSemitones(shape[0]);
+    return shape.map((point) => getAbsoluteSemitones(point) - originAbs);
   };
 
-  // 2. Funkcja pomocnicza do generowania "odcisku palca" kształtu (wektorów)
-  const getShapeVectors = (shape) => {
-    const [originString, originNote] = shape[0].split("_");
-    const originStringIdx = STRING_ORDER.indexOf(originString);
-    const originFret = getFretValue(originString, originNote);
+  const structureA = getShapeStructure(shapeA);
+  const structureB = getShapeStructure(shapeB);
 
-    return shape.map((point) => {
-      const [s, n] = point.split("_");
-      const sIdx = STRING_ORDER.indexOf(s);
-      const fVal = getFretValue(s, n);
-
-      return {
-        sDiff: sIdx - originStringIdx,
-        fDiff: fVal - originFret,
-      };
-    });
-  };
-
-  // 3. Pobierz wektory dla obu kształtów
-  const vectorsA = getShapeVectors(shapeA);
-  const vectorsB = getShapeVectors(shapeB);
-
-  // 4. Porównaj każdy wektor (struna po strunie, próg po progu)
-  return vectorsA.every(
-    (vec, index) =>
-      vec.sDiff === vectorsB[index].sDiff && vec.fDiff === vectorsB[index].fDiff
-  );
+  return structureA.every((val, index) => val === structureB[index]);
 };

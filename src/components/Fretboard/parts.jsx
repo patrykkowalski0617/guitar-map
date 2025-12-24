@@ -21,13 +21,14 @@ export const StringRow = styled.div`
 `;
 
 const Fret = css`
-  min-width: 70px;
   max-width: 300px;
-  width: calc(100vw / ${({ $numOfCells }) => $numOfCells});
+  width: calc(100% / ${({ $numOfCells }) => $numOfCells});
+  min-width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 35px;
+  padding: 0 5px;
 `;
 
 export const FretCell = styled.div`
@@ -68,7 +69,7 @@ export const Note = styled.div`
   outline: none;
   cursor: pointer;
 
-  width: 60px;
+  width: 50px;
   height: 32px;
   border-radius: 30px;
 
@@ -94,4 +95,25 @@ export const Note = styled.div`
         ? "6px solid red"
         : "6px solid green"
       : `3px solid ${DEFAULT_BORDER_COLOR}`};
+`;
+export const StyledButton = styled.button`
+  padding: 8px 16px;
+  background-color: #64748b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  display: block;
+  margin: 10px auto;
+
+  &:hover {
+    background-color: #475569;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 `;

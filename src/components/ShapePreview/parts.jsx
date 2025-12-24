@@ -4,7 +4,7 @@ export const LibraryWrapper = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
 `;
 
 export const CategorySection = styled.section`
@@ -13,11 +13,10 @@ export const CategorySection = styled.section`
 `;
 
 export const CategoryTitle = styled.h2`
-  font-size: 1.2rem;
+  font-size: 12px;
   color: #475569;
   border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  padding-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
@@ -25,7 +24,7 @@ export const CategoryTitle = styled.h2`
 export const ShapesGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 14px;
 `;
 
 export const ShapeItem = styled.div`

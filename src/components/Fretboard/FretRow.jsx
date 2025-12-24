@@ -1,10 +1,11 @@
 import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
+import { extendArray } from "../../utils/extendArray";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
 
 const FretRow = ({
   string,
   sIdx,
-  extendArray,
+  extendFretboardBy,
   notesSet,
   activeMarkerNote,
   CAGED_shift,
@@ -13,7 +14,10 @@ const FretRow = ({
   userShape,
 }) => {
   const stringId = `${string}${6 - sIdx}`;
-  const fretCells = extendArray(getNotesStartingFrom(string));
+  const fretCells = extendArray(
+    getNotesStartingFrom(string),
+    extendFretboardBy
+  );
 
   return (
     <StringRow>
@@ -21,10 +25,9 @@ const FretRow = ({
         const $isInSet = notesSet.includes(note);
         const $activeMarkerNote = activeMarkerNote === note;
 
-        // Wyliczenie ID dla klasy i stanu
         const get_CAGED_noteId = () => {
           let index = NOTES_FROM_C.indexOf(note) - CAGED_shift;
-          if (index < 0) index += 11;
+          if (index < 0) index += 12;
           return `${stringId}_${NOTES_FROM_C[index]}`;
         };
 

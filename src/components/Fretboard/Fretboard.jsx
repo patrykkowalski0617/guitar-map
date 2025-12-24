@@ -2,24 +2,23 @@ import { useState } from "react";
 import { getNotesStartingFrom, NOTES_FROM_C } from "../../data/music-theory";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
-import { FretboardContainer } from "./parts";
-import { CAGEDshapes } from "../../data/shapes";
+import { FretboardContainer, StyledButton } from "./parts";
+import { CAGEDshapes, getShapesByInterval } from "../../data/shapes";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
 import CopyUserShapeButton from "./CopyUserShapeButton";
+import { transposeShape } from "../../utils/transposer";
+import { extendArray } from "../../utils/extendArray";
+import { isTestMode } from "../../settings";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
-const extendFretboardBy = 3;
-
-const extendArray = (arr, count = extendFretboardBy) => {
-  const elementsToAppend = arr.slice(0, count);
-  return [...arr, ...elementsToAppend];
-};
+const extendFretboardBy = 5;
 
 const Fretboard = () => {
   const { getActiveNotesSet, tuneKey, getActiveMarker } = useMusicStore();
   const [shape, setShape] = useState([]);
   const [userShape, setUserShape] = useState([]);
+  const [currentShapeVariant, setCurrentShapeVariant] = useState(0);
 
   const activeSet = getActiveNotesSet();
   const activeMarker = getActiveMarker();
@@ -35,16 +34,37 @@ const Fretboard = () => {
 
   const notesSet = findNotes(activeSet);
   const activeMarkerNote = notesOfKey[activeMarker.keyDegree[0]];
-  const fretCounts = extendArray(getNotesStartingFrom("E")).fill(null);
+  const fretCounts = extendArray(
+    getNotesStartingFrom("E"),
+    extendFretboardBy
+  ).fill(null);
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const CAGED = manageCAGED(tuneKey.majorNote, CAGED_shift);
 
   const handleNoteClick = (CAGED_noteId) => {
-    setUserShape((prevShape) =>
-      prevShape.includes(CAGED_noteId)
-        ? prevShape.filter((id) => id !== CAGED_noteId)
-        : [...prevShape, CAGED_noteId]
+    if (isTestMode) {
+      setUserShape((prevShape) =>
+        prevShape.includes(CAGED_noteId)
+          ? prevShape.filter((id) => id !== CAGED_noteId)
+          : [...prevShape, CAGED_noteId]
+      );
+    }
+    const CAGED_note = CAGED_noteId.split("_")[1];
+    const CAGED_interval = NOTES_FROM_C.indexOf(CAGED_note);
+    const shapesAvailableForThisNote = getShapesByInterval(CAGED_interval);
+    const activeSet = getActiveNotesSet();
+    console.log({ shapesAvailableForThisNote, activeSet });
+
+    setShape(
+      transposeShape(
+        shapesAvailableForThisNote[0].shapes[currentShapeVariant],
+        CAGED_noteId
+      )
     );
+    setCurrentShapeVariant((prev) => {
+      if (prev >= shapesAvailableForThisNote[0].shapes.length) return 0;
+      return prev + 1;
+    });
   };
 
   const handleCAGEDClick = (cagedLetter) => {
@@ -55,6 +75,10 @@ const Fretboard = () => {
     }
   };
 
+  const handleClearUserShape = () => {
+    setUserShape([]);
+  };
+
   return (
     <>
       <FretboardContainer>
@@ -63,7 +87,7 @@ const Fretboard = () => {
             key={string + sIdx}
             string={string}
             sIdx={sIdx}
-            extendArray={extendArray}
+            extendFretboardBy={extendFretboardBy}
             notesSet={notesSet}
             activeMarkerNote={activeMarkerNote}
             CAGED_shift={CAGED_shift}
@@ -79,7 +103,12 @@ const Fretboard = () => {
           handleCAGEDClick={handleCAGEDClick}
         />
       </FretboardContainer>
-      <CopyUserShapeButton userShape={userShape} />
+      {isTestMode && (
+        <CopyUserShapeButton
+          userShape={userShape}
+          handleClearUserShape={handleClearUserShape}
+        />
+      )}
     </>
   );
 };

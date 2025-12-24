@@ -1,3 +1,5 @@
+import { _1, _4, _5, _M2, _M3, _m6, _M6, _M7 } from "./music-theory";
+
 export const CAGEDshapes = {
   C: [
     "E1_B",
@@ -141,69 +143,153 @@ export const chordShapes = [
   {
     id: "M",
     label: "Major",
+    rootIntervals: [_1, _4],
     shapes: [
-      ["E1_B", "A2_D", "D3_F", "G4_C"],
-      ["E1_B", "A2_D", "D3_F"],
+      ["E1_A", "E1_C#", "A2_E", "D3_A"],
+      ["E1_A", "A2_C#", "A2_E", "D3_A"],
+      ["E1_A", "A2_C#", "D3_E", "G4_A"],
     ],
   },
   {
     id: "M7",
     label: "Major 7th",
-    shapes: [["A2_D", "D3_F", "G4_C"]],
+    rootIntervals: [_1, _4],
+    shapes: [
+      ["E1_G", "E1_B", "A2_D", "D3_F#", "D3_G"],
+      ["E1_C", "A2_E", "A2_G", "D3_B", "D3_C"],
+      ["E1_C", "A2_E", "D3_G", "D3_B", "G4_C"],
+    ],
   },
   {
     id: "M_add9",
     label: "Major add9",
-    shapes: [],
+    rootIntervals: [_1, _4],
+    shapes: [
+      ["E1_G", "E1_A", "E1_B", "A2_D", "D3_G"],
+      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_C"],
+      ["E1_C", "A2_D", "A2_E", "D3_G", "G4_C"],
+    ],
+  },
+  {
+    id: "M9",
+    label: "Major 9",
+    rootIntervals: [_1, _4],
+    shapes: [
+      ["E1_G", "E1_A", "E1_B", "A2_D", "D3_F#", "D3_G"],
+      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_B", "D3_C"],
+      ["E1_C", "A2_D", "A2_E", "D3_G", "D3_B", "G4_C"],
+    ],
   },
   {
     id: "Dominant",
     label: "Dominant",
-    shapes: [],
+    rootIntervals: [_5],
+    shapes: [
+      ["E1_G", "E1_B", "A2_D", "D3_F", "D3_G"],
+      ["E1_G", "A2_B", "A2_D", "D3_F", "D3_G"],
+      ["E1_G", "A2_B", "D3_D", "D3_F", "G4_G"],
+    ],
   },
   {
     id: "m7b5",
     label: "m7b5 (Half-dim)",
-    shapes: [],
+    rootIntervals: [_M7],
+    shapes: [
+      ["E1_B", "E1_D", "A2_F", "D3_A", "D3_B"],
+      ["E1_B", "A2_D", "D3_F", "D3_A", "G4_D"],
+    ],
   },
   {
     id: "dim7",
     label: "Diminished 7",
-    shapes: [],
+    shapes: [
+      ["E1_B", "E1_D", "A2_F", "A2_G#", "D3_B"],
+      ["E1_B", "A2_D", "A2_F", "D3_G#", "D3_B"],
+      ["E1_B", "A2_D", "D3_F", "D3_G#", "G4_B"],
+    ],
+    rootIntervals: [_M7],
   },
   {
     id: "m",
     label: "Minor",
-    shapes: [],
+    rootIntervals: [_M6, _M2, _M3],
+    shapes: [
+      ["E1_A", "E1_C", "A2_E", "D3_A"],
+      ["E1_A", "A2_C", "A2_E", "D3_A"],
+      ["E1_A", "A2_C", "D3_E", "G4_A"],
+    ],
   },
   {
     id: "m7",
     label: "Minor 7th",
-    shapes: [],
+    rootIntervals: [_M6, _M2, _M3],
+    shapes: [
+      ["E1_A", "E1_C", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "A2_C", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "A2_C", "D3_E", "D3_G", "G4_A"],
+    ],
   },
   {
     id: "m_M7",
     label: "Minor with Major 7th",
+    rootIntervals: [_M6, _M2, _M3],
     shapes: [],
   },
   {
     id: "m_add9",
     label: "Minor add9",
-    shapes: [],
+    rootIntervals: [_M6, _M2],
+    shapes: [
+      ["E1_A", "E1_B", "E1_C", "A2_E", "D3_A"],
+      ["E1_A", "E1_B", "A2_C", "A2_E", "D3_A"],
+      ["E1_A", "A2_B", "A2_C", "D3_E", "G4_A"],
+    ],
   },
   {
-    id: "set_T_S",
-    label: "Tonic Subdominant Set of No Avoid Notes",
-    shapes: [],
+    id: "m9",
+    label: "Minor 9",
+    rootIntervals: [_M6, _M2],
+    shapes: [
+      ["E1_A", "E1_B", "E1_C", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "E1_B", "A2_C", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "A2_B", "A2_C", "D3_E", "D3_G", "G4_A"],
+    ],
   },
   {
-    id: "set_D",
-    label: "Dominant Set of No Avoid Notes",
-    shapes: [],
+    id: "minorPent",
+    label: "Minor Pentatonic 9",
+    rootIntervals: [_M6],
+    shapes: [
+      ["E1_A", "E1_C", "A2_D", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "A2_C", "A2_D", "A2_E", "D3_G", "D3_A"],
+      ["E1_A", "A2_C", "A2_D", "D3_E", "D3_G", "G4_A"],
+    ],
   },
   {
-    id: "pent",
-    label: "Pentatonic minor and Major",
-    shapes: [],
+    id: "majorPent",
+    label: "Major Pentatonic",
+    rootIntervals: [_1],
+    shapes: [
+      ["E1_G", "E1_A", "E1_B", "A2_D", "A2_E", "D3_G"],
+      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_A", "D3_C"],
+      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_A", "D3_C"],
+    ],
   },
 ];
+
+export const getShapesByInterval = (semitones) => {
+  // Sprawdzamy czy semitones jest liczbą (wliczając 0) oraz czy biblioteka istnieje
+  if (typeof semitones !== "number" || !chordShapes) return [];
+
+  // Opcjonalnie: jeśli chcesz, aby np. 12 półtonów (oktawa)
+  // również dopasowywało się do interwału _1 (0 półtonów):
+  // const normalizedSemitones = semitones % 12;
+
+  return chordShapes.filter((item) => {
+    if (!item.rootIntervals) return false;
+
+    // Sprawdzamy, czy którykolwiek z zadeklarowanych interwałów
+    // w rootIntervals ma taką samą liczbę półtonów
+    return item.rootIntervals.some((interval) => interval[0] === semitones);
+  });
+};

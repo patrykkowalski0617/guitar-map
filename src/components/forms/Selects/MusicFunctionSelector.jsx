@@ -2,6 +2,7 @@ import {
   getNotesStartingFrom,
   notesSetsInFunctionContexts,
 } from "../../../data/music-theory";
+import { isTestMode } from "../../../settings";
 import { useMusicStore } from "../../../store/useMusicStore";
 import SegmentedSelect from "./SegmentedSelect";
 
@@ -35,12 +36,11 @@ const MusicFunctionSelector = () => {
   return (
     <>
       <SegmentedSelect
-        label="Choose Function Contexts"
+        label="Choose Unified Function Contexts"
         options={contextOptions}
         value={selectedFunctionContext}
         onChange={setFunctionContextName}
       />
-
       {notesSetOptions.length > 0 && (
         <SegmentedSelect
           label="Choose Set of Notes"
@@ -49,8 +49,13 @@ const MusicFunctionSelector = () => {
           onChange={setNotesSetName}
         />
       )}
-
-      {markerOptions.length > 0 && (
+      Set fancy role name: Major Tonic | Major Tonic upper structure | Minor
+      Tonic | Minor Tonic upper structure
+      <br></br>
+      What it actually highlights (color): Major Tonic Root | Major Tonic 3th...
+      <br></br>
+      Shape: XM, XM7, Xadd9, XM9, ...
+      {markerOptions.length > 0 && isTestMode && (
         <SegmentedSelect
           label="Mark specific note"
           options={markerOptions}

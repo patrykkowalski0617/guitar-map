@@ -1,29 +1,7 @@
 import { useState } from "react";
-import styled from "styled-components";
+import { StyledButton } from "./parts";
 
-const StyledButton = styled.button`
-  padding: 8px 16px;
-  background-color: #64748b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: background-color 0.2s;
-  display: block;
-  margin: 10px auto;
-
-  &:hover {
-    background-color: #475569;
-  }
-
-  &:active {
-    transform: translateY(1px);
-  }
-`;
-
-const CopyUserShapeButton = ({ userShape }) => {
+const CopyUserShapeButton = ({ userShape, handleClearUserShape }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -39,6 +17,7 @@ const CopyUserShapeButton = ({ userShape }) => {
     } catch (err) {
       console.error("Error:", err);
     }
+    handleClearUserShape();
   };
 
   return (

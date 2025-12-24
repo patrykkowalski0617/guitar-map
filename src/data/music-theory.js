@@ -132,11 +132,9 @@ export const {
 export const notesSetsInFunctionContexts = [
   {
     FunctionContextName: "Tonics",
-
     notesSets: [
       {
-        getNotesSetName: (keyNotes) =>
-          `${keyNotes[_1[0]]}M7 / ${keyNotes[_M6[0]]}m upper structure`,
+        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M7`,
         notesSets: M7,
         keyDegree: _1,
         notesMarkers: [
@@ -164,8 +162,7 @@ export const notesSetsInFunctionContexts = [
       },
       {
         getNotesSetName: (keyNotes) => {
-          const txt1 = keyNotes[_1[0]];
-          return `${txt1}M7 upper structure`;
+          return `${keyNotes[_M3[0]]}m7`;
         },
         notesSets: m7,
         keyDegree: _M3,
@@ -178,8 +175,7 @@ export const notesSetsInFunctionContexts = [
       },
       {
         getNotesSetName: (keyNotes) => {
-          const txt1 = keyNotes[_M6[0]];
-          return `${txt1}m7`;
+          return `${keyNotes[_M6[0]]}m7`;
         },
         notesSets: m7,
         keyDegree: _M6,
@@ -191,6 +187,12 @@ export const notesSetsInFunctionContexts = [
         ],
       },
       {
+        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M(add9)`,
+        notesSets: M_add9,
+        keyDegree: _1,
+        notesMarkers: [{ getMarkerName: () => "Root note", keyDegree: _1 }],
+      },
+      {
         getNotesSetName: (keyNotes) => {
           const txt1 = keyNotes[_1[0]];
           const txt2 = keyNotes[_M6[0]];
@@ -198,7 +200,10 @@ export const notesSetsInFunctionContexts = [
         },
         notesSets: pent,
         keyDegree: _1,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
+        notesMarkers: [
+          { getMarkerName: () => "Major", keyDegree: _1 },
+          { getMarkerName: () => "minor", keyDegree: _M6 },
+        ],
       },
       {
         getNotesSetName: () => "No avoid notes",

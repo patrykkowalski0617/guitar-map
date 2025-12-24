@@ -25,7 +25,7 @@ const ShapesLibrary = () => {
               {group.shapes.map((shape, index) => (
                 <ShapeItem key={`${group.id}-${index}`}>
                   <ShapePreview shape={shape} />
-                  <ShapeLabel>Wariant {index + 1}</ShapeLabel>
+                  <ShapeLabel>Variant {index + 1}</ShapeLabel>
                 </ShapeItem>
               ))}
             </ShapesGrid>
