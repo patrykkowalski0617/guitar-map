@@ -6,8 +6,6 @@ const FretRow = ({
   string,
   sIdx,
   numberOfFrets,
-  notesSet,
-  activeMarkerNote,
   CAGED_shift,
   handleNoteClick,
   shape,
@@ -19,9 +17,6 @@ const FretRow = ({
   return (
     <StringRow>
       {fretCells.map((note, fIdx) => {
-        const $isInSet = notesSet.includes(note);
-        const $activeMarkerNote = activeMarkerNote === note;
-
         const get_CAGED_noteId = () => {
           let index = NOTES_FROM_C.indexOf(note) - CAGED_shift;
           if (index < 0) index += 12;
@@ -38,8 +33,6 @@ const FretRow = ({
             key={`${stringId}-fret-${fIdx}`}
           >
             <StyledNote
-              $isInSet={$isInSet}
-              $activeMarkerNote={$activeMarkerNote}
               $isInShape={$isInShape}
               $isInUserShape={$isInUserShape}
               className={`CAGED_noteId__${CAGED_noteId}`}

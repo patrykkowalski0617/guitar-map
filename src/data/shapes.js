@@ -293,3 +293,94 @@ export const getShapesByInterval = (semitones) => {
     return item.rootIntervals.some((interval) => interval[0] === semitones);
   });
 };
+
+export const musicFunctionContextSelectorData = [
+  {
+    FunctionContextName: "Tonics",
+    shapes: [
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M7`,
+        CAGED_rootNote: "C",
+      },
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_M3[0]]}m7`,
+        CAGED_rootNote: "C",
+      },
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_M6[0]]}m7`,
+        CAGED_rootNote: "A",
+      },
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M(add9)`,
+        CAGED_rootNote: "C",
+      },
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]} Major pentatonic`,
+        CAGED_rootNote: "C",
+      },
+      {
+        getNotesSetName: (keyNotes) => `${keyNotes[_M6[0]]} minor pentatonic`,
+        CAGED_rootNote: "A",
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+      },
+    ],
+  },
+  {
+    FunctionContextName: "Subdominants",
+    shapes: [
+      {
+        getNotesSetName: () => "M7 / m upper structure",
+      },
+      {
+        getNotesSetName: () => "M upper structure",
+      },
+      {
+        getNotesSetName: () => "m7",
+      },
+      {
+        getNotesSetName: () => "Pentatonic",
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+      },
+    ],
+  },
+  {
+    FunctionContextName: "Dominant",
+    shapes: [
+      {
+        getNotesSetName: () => "Dominant (Myxolydian)",
+      },
+      {
+        getNotesSetName: () => "Upper structure",
+      },
+      {
+        getNotesSetName: () => "No avoid notes",
+      },
+    ],
+  },
+  {
+    FunctionContextName: "Dominant in relative minor key",
+    shapes: [
+      {
+        getNotesSetName: () => "Dominant (Phrygian)",
+      },
+      {
+        getNotesSetName: () => "Upper structure",
+      },
+    ],
+  },
+  {
+    FunctionContextName: "Phrygian",
+    shapes: [
+      {
+        getNotesSetName: () => "m7",
+      },
+      {
+        getNotesSetName: () => "Pentatonic",
+      },
+    ],
+  },
+];

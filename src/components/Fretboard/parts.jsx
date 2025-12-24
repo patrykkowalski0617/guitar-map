@@ -89,12 +89,7 @@ export const Note = styled.div`
 
   opacity: ${({ $isInShape }) => ($isInShape ? "1" : "0.2")};
 
-  border: ${({ $isInSet, $activeMarkerNote }) =>
-    $isInSet
-      ? $activeMarkerNote
-        ? "6px solid red"
-        : "6px solid green"
-      : `3px solid ${DEFAULT_BORDER_COLOR}`};
+  border: 3px solid ${DEFAULT_BORDER_COLOR};
 `;
 export const StyledButton = styled.button`
   padding: 8px 16px;

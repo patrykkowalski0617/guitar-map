@@ -15,13 +15,12 @@ const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
 
 const Fretboard = () => {
-  const { getActiveNotesSet, tuneKey, getActiveMarker } = useMusicStore();
+  const { getActiveNotesSet, tuneKey } = useMusicStore();
   const [shape, setShape] = useState([]);
   const [userShape, setUserShape] = useState([]);
   const [currentShapeVariant, setCurrentShapeVariant] = useState(0);
 
   const activeSet = getActiveNotesSet();
-  const activeMarker = getActiveMarker();
   const notesOfKey = getNotesFromNote(tuneKey.majorNote);
 
   const findNotes = (set) => {
@@ -33,7 +32,6 @@ const Fretboard = () => {
   };
 
   const notesSet = findNotes(activeSet);
-  const activeMarkerNote = notesOfKey[activeMarker.keyDegree[0]];
   const fretCounts = getNotesFromNote("E", numberOfFrets).fill(null);
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const CAGED = manageCAGED(tuneKey.majorNote, CAGED_shift);
@@ -49,8 +47,6 @@ const Fretboard = () => {
     const CAGED_note = CAGED_noteId.split("_")[1];
     const CAGED_interval = NOTES_FROM_C.indexOf(CAGED_note);
     const shapesAvailableForThisNote = getShapesByInterval(CAGED_interval);
-    const activeSet = getActiveNotesSet();
-    console.log({ shapesAvailableForThisNote, activeSet });
 
     setShape(
       transposeShape(
@@ -76,6 +72,13 @@ const Fretboard = () => {
     setUserShape([]);
   };
 
+  // Pobieramy activeShape i ewentualnie getKeyNotes do nazw
+  const { activeShape, getKeyNotes } = useMusicStore();
+
+  const keyNotes = getKeyNotes();
+
+  console.log({ activeShape, keyNotes });
+
   return (
     <>
       <FretboardContainer>
@@ -86,7 +89,6 @@ const Fretboard = () => {
             sIdx={sIdx}
             numberOfFrets={numberOfFrets}
             notesSet={notesSet}
-            activeMarkerNote={activeMarkerNote}
             CAGED_shift={CAGED_shift}
             handleNoteClick={handleNoteClick}
             shape={shape}

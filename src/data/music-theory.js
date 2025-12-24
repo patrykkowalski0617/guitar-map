@@ -123,28 +123,6 @@ export const notesSetsInFunctionContexts = [
         getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M7`,
         notesSets: M7,
         keyDegree: _1,
-        notesMarkers: [
-          {
-            getMarkerName: (keyNotes) =>
-              `${keyNotes[_1[0]]}M7 1 / ${keyNotes[_M6[0]]}m 3`,
-            keyDegree: _1,
-          },
-          {
-            getMarkerName: (keyNotes) =>
-              `${keyNotes[_1[0]]}M7 3 / ${keyNotes[_M6[0]]}m 5`,
-            keyDegree: _M3,
-          },
-          {
-            getMarkerName: (keyNotes) =>
-              `${keyNotes[_1[0]]}M7 5 / ${keyNotes[_M6[0]]}m 7`,
-            keyDegree: _5,
-          },
-          {
-            getMarkerName: (keyNotes) =>
-              `${keyNotes[_1[0]]}M7 7 / ${keyNotes[_M6[0]]}m 9`,
-            keyDegree: _M7,
-          },
-        ],
       },
       {
         getNotesSetName: (keyNotes) => {
@@ -152,12 +130,6 @@ export const notesSetsInFunctionContexts = [
         },
         notesSets: m7,
         keyDegree: _M3,
-        notesMarkers: [
-          { getMarkerName: () => "Major Tonic 3", keyDegree: _M3 },
-          { getMarkerName: () => "Major Tonic 5", keyDegree: _M3 },
-          { getMarkerName: () => "Major Tonic 7", keyDegree: _M7 },
-          { getMarkerName: () => "Major Tonic 9", keyDegree: _M9 },
-        ],
       },
       {
         getNotesSetName: (keyNotes) => {
@@ -165,18 +137,11 @@ export const notesSetsInFunctionContexts = [
         },
         notesSets: m7,
         keyDegree: _M6,
-        notesMarkers: [
-          { getMarkerName: () => "minor Tonic 1", keyDegree: _M6 },
-          { getMarkerName: () => "minor Tonic 3", keyDegree: _1 },
-          { getMarkerName: () => "minor Tonic 5", keyDegree: _M3 },
-          { getMarkerName: () => "minor Tonic 7", keyDegree: _5 },
-        ],
       },
       {
         getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M(add9)`,
         notesSets: M_add9,
         keyDegree: _1,
-        notesMarkers: [{ getMarkerName: () => "Root note", keyDegree: _1 }],
       },
       {
         getNotesSetName: (keyNotes) => {
@@ -186,16 +151,11 @@ export const notesSetsInFunctionContexts = [
         },
         notesSets: pent,
         keyDegree: _1,
-        notesMarkers: [
-          { getMarkerName: () => "Major", keyDegree: _1 },
-          { getMarkerName: () => "minor", keyDegree: _M6 },
-        ],
       },
       {
         getNotesSetName: () => "No avoid notes",
         notesSets: set_T_S,
         keyDegree: _1,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
     ],
   },
@@ -206,31 +166,26 @@ export const notesSetsInFunctionContexts = [
         getNotesSetName: () => "M7 / m upper structure",
         notesSets: M7,
         keyDegree: _4,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "M upper structure",
         notesSets: m7,
         keyDegree: _M6,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "m7",
         notesSets: m7,
         keyDegree: _M2,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "Pentatonic",
         notesSets: pent,
         keyDegree: _4,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "No avoid notes",
         notesSets: set_T_S,
         keyDegree: _4,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
     ],
   },
@@ -241,19 +196,16 @@ export const notesSetsInFunctionContexts = [
         getNotesSetName: () => "Dominant (Myxolydian)",
         notesSets: Dominant,
         keyDegree: _5,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "Upper structure",
         notesSets: m7b5,
         keyDegree: _M7,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
       {
         getNotesSetName: () => "No avoid notes",
         notesSets: set_D,
         keyDegree: _5,
-        notesMarkers: [{ getMarkerName: () => "test", keyDegree: _M3 }],
       },
     ],
   },
