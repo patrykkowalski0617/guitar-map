@@ -9,7 +9,7 @@ import CopyUserShapeButton from "./CopyUserShapeButton";
 import { isTestMode } from "../../settings";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { NOTES_FROM_C } from "../../data/data";
-import { transposeShape } from "../../utils/NEW_transposer";
+import { transposeShape } from "../../utils/transposer";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
