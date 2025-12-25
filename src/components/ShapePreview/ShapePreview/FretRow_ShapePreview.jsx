@@ -1,29 +1,23 @@
-import { NOTES_FROM_C } from "../../../data/music-theory";
 import { PreviewFretCell, PreviewStringRow, PreviewNote } from "./parts";
 
 const FretRow_ShapePreview = ({
-  stringId,
-  rootNote,
+  stringIndex,
   numberOfFrets,
-  normalizedShape,
+  points, // punkty przypisane tylko do tej struny
 }) => {
-  const startIndex = NOTES_FROM_C.indexOf(rootNote);
-  const cells = Array.from({ length: numberOfFrets }, (_, i) => {
-    let noteIdx = (startIndex + i) % 12;
-    return NOTES_FROM_C[noteIdx];
-  });
+  const frets = Array.from({ length: numberOfFrets }, (_, i) => i);
 
   return (
     <PreviewStringRow>
-      {cells.map((note, fIdx) => {
-        const currentPointId = `${stringId}_${note}`;
-        const isInShape = normalizedShape.includes(currentPointId);
+      {frets.map((fIdx) => {
+        // Sprawdzamy, czy któryś z punktów na tej strunie ma ten próg
+        const isInShape = points.some((p) => p.normalizedFret === fIdx);
 
         return (
-          <PreviewFretCell key={`${stringId}-fret-${fIdx}`}>
+          <PreviewFretCell key={`s${stringIndex}-f${fIdx}`}>
             <PreviewNote
               $isInShape={isInShape}
-              className={`CAGED_noteId__${currentPointId}`}
+              className={isInShape ? "active-note" : ""}
             />
           </PreviewFretCell>
         );

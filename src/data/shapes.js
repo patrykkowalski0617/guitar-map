@@ -139,143 +139,6 @@ export const CAGEDshapes = {
   ],
 };
 
-export const chordShapes = [
-  {
-    id: "M",
-    label: "Major",
-
-    shapes: [
-      ["E1_A", "E1_C#", "A2_E", "D3_A"],
-      ["E1_A", "A2_C#", "A2_E", "D3_A"],
-      ["E1_A", "A2_C#", "D3_E", "G4_A"],
-    ],
-  },
-  {
-    id: "M7",
-    label: "Major 7th",
-
-    shapes: [
-      ["E1_G", "E1_B", "A2_D", "D3_F#", "D3_G"],
-      ["E1_C", "A2_E", "A2_G", "D3_B", "D3_C"],
-      ["E1_C", "A2_E", "D3_G", "D3_B", "G4_C"],
-    ],
-  },
-  {
-    id: "M_add9",
-    label: "Major add9",
-
-    shapes: [
-      ["E1_G", "E1_A", "E1_B", "A2_D", "D3_G"],
-      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_C"],
-      ["E1_C", "A2_D", "A2_E", "D3_G", "G4_C"],
-    ],
-  },
-  {
-    id: "M9",
-    label: "Major 9",
-
-    shapes: [
-      ["E1_G", "E1_A", "E1_B", "A2_D", "D3_F#", "D3_G"],
-      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_B", "D3_C"],
-      ["E1_C", "A2_D", "A2_E", "D3_G", "D3_B", "G4_C"],
-    ],
-  },
-  {
-    id: "Dominant",
-    label: "Dominant",
-
-    shapes: [
-      ["E1_G", "E1_B", "A2_D", "D3_F", "D3_G"],
-      ["E1_G", "A2_B", "A2_D", "D3_F", "D3_G"],
-      ["E1_G", "A2_B", "D3_D", "D3_F", "G4_G"],
-    ],
-  },
-  {
-    id: "m7b5",
-    label: "m7b5 (Half-dim)",
-
-    shapes: [
-      ["E1_B", "E1_D", "A2_F", "D3_A", "D3_B"],
-      ["E1_B", "A2_D", "D3_F", "D3_A", "G4_D"],
-    ],
-  },
-  {
-    id: "dim7",
-    label: "Diminished 7",
-    shapes: [
-      ["E1_B", "E1_D", "A2_F", "A2_G#", "D3_B"],
-      ["E1_B", "A2_D", "A2_F", "D3_G#", "D3_B"],
-      ["E1_B", "A2_D", "D3_F", "D3_G#", "G4_B"],
-    ],
-  },
-  {
-    id: "m",
-    label: "Minor",
-
-    shapes: [
-      ["E1_A", "E1_C", "A2_E", "D3_A"],
-      ["E1_A", "A2_C", "A2_E", "D3_A"],
-      ["E1_A", "A2_C", "D3_E", "G4_A"],
-    ],
-  },
-  {
-    id: "m7",
-    label: "Minor 7th",
-
-    shapes: [
-      ["E1_A", "E1_C", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "A2_C", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "A2_C", "D3_E", "D3_G", "G4_A"],
-    ],
-  },
-  {
-    id: "m_M7",
-    label: "Minor with Major 7th",
-
-    shapes: [],
-  },
-  {
-    id: "m_add9",
-    label: "Minor add9",
-
-    shapes: [
-      ["E1_A", "E1_B", "E1_C", "A2_E", "D3_A"],
-      ["E1_A", "E1_B", "A2_C", "A2_E", "D3_A"],
-      ["E1_A", "A2_B", "A2_C", "D3_E", "G4_A"],
-    ],
-  },
-  {
-    id: "m9",
-    label: "Minor 9",
-
-    shapes: [
-      ["E1_A", "E1_B", "E1_C", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "E1_B", "A2_C", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "A2_B", "A2_C", "D3_E", "D3_G", "G4_A"],
-    ],
-  },
-  {
-    id: "minorPent",
-    label: "Minor Pentatonic 9",
-
-    shapes: [
-      ["E1_A", "E1_C", "A2_D", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "A2_C", "A2_D", "A2_E", "D3_G", "D3_A"],
-      ["E1_A", "A2_C", "A2_D", "D3_E", "D3_G", "G4_A"],
-    ],
-  },
-  {
-    id: "majorPent",
-    label: "Major Pentatonic",
-
-    shapes: [
-      ["E1_G", "E1_A", "E1_B", "A2_D", "A2_E", "D3_G"],
-      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_A", "D3_C"],
-      ["E1_C", "E1_D", "A2_E", "A2_G", "D3_A", "D3_C"],
-    ],
-  },
-];
-
 export const NEW_chordShapes = [
   {
     id: "M",
@@ -622,14 +485,6 @@ export const NEW_chordShapes = [
         [2, 9],
         [2, 12],
       ],
-      [
-        [0, 0],
-        [0, 2],
-        [1, 4],
-        [1, 7],
-        [2, 9],
-        [2, 12],
-      ],
     ],
   },
 ];
@@ -679,7 +534,7 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "M7 / m upper structure",
-        rootSemitone: _M2[0], // Zakładam relację II stopnia
+        rootSemitone: _4[0], // Zakładam relację II stopnia
         chordShapeId: "M7",
       },
       {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
-import { FretboardContainer, StyledButton } from "./parts";
+import { FretboardContainer } from "./parts";
 import { CAGEDshapes } from "../../data/shapes";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
@@ -16,31 +16,22 @@ const numberOfFrets = 16;
 
 const Fretboard = () => {
   const {
-    getActiveNotesSet,
     tuneKey,
     getActiveChordVariants,
-    activeShape,
     getActiveShapeRootNote,
+    // Pobieramy stan i akcje ze store
+    shape,
+    setShape,
+    variantState,
+    setVariantState,
   } = useMusicStore();
-  const [shape, setShape] = useState([]);
+
   const [userShape, setUserShape] = useState([]);
 
-  const activeSet = getActiveNotesSet();
-  const notesOfKey = getNotesFromNote(tuneKey.majorNote);
-
-  const findNotes = (set) => {
-    if (!set?.notesSets?.template) return [];
-    const template = set.notesSets.template.map((el) => el[0]);
-    const startingPoint = set.keyDegree[0];
-    const doubledScale = [...notesOfKey, ...notesOfKey];
-    return template.map((index) => doubledScale[index + startingPoint]);
-  };
-
-  const notesSet = findNotes(activeSet);
   const fretCounts = getNotesFromNote("E", numberOfFrets).fill(null);
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const CAGED = manageCAGED(tuneKey.majorNote, CAGED_shift);
-  const activeChordVariants = getActiveChordVariants(); // Pobieramy activeShape i ewentualnie getKeyNotes do nazw
+  const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
   const handleNoteClick = (note, CAGED_noteId) => {
@@ -52,14 +43,28 @@ const Fretboard = () => {
       );
     }
 
-    console.log({ activeChordVariants, activeShape, activeShapeRootNote });
-    if (activeShapeRootNote === note) {
-      const shape = transposeShape(activeChordVariants[0], CAGED_noteId);
-      setShape(shape);
+    if (activeShapeRootNote === note && activeChordVariants.length > 0) {
+      let nextIndex = 0;
+
+      // Korzystamy z globalnego variantState
+      if (variantState.lastId === CAGED_noteId) {
+        nextIndex = (variantState.index + 1) % activeChordVariants.length;
+      }
+
+      const selectedVariant = activeChordVariants[nextIndex];
+      const newShape = transposeShape(selectedVariant, CAGED_noteId);
+
+      setShape(newShape);
+      setVariantState({
+        lastId: CAGED_noteId,
+        index: nextIndex,
+      });
     }
   };
 
   const handleCAGEDClick = (cagedLetter) => {
+    // Resetujemy stan wariantów globalnie
+    setVariantState({ lastId: null, index: 0 });
     if (cagedLetter) {
       setShape(CAGEDshapes[cagedLetter]);
     } else {
@@ -80,15 +85,13 @@ const Fretboard = () => {
             string={string}
             sIdx={sIdx}
             numberOfFrets={numberOfFrets}
-            notesSet={notesSet}
             CAGED_shift={CAGED_shift}
             handleNoteClick={handleNoteClick}
-            shape={shape}
+            shape={shape} // pochodzi ze store
             userShape={userShape}
             activeShapeRootNote={activeShapeRootNote}
           />
         ))}
-
         <FretboardLabels
           fretCounts={fretCounts}
           CAGED={CAGED}

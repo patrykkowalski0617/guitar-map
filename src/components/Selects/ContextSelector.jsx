@@ -54,7 +54,7 @@ const FunctionContextSelector = () => {
         value={activeMusicContext?.FunctionContextName}
         onChange={setActiveMusicContextByName}
       />
-
+      tutaj opis: realese, tension...
       {shapeOptions.length > 0 && (
         <SegmentedSelect
           label="Set of notes - chords, scales, other kind of sets"
@@ -64,6 +64,9 @@ const FunctionContextSelector = () => {
           onChange={setActiveShapeByName}
         />
       )}
+      tutaj opis: upper structor...
+      <br />
+      jakie kolory są podkreślane
     </>
   );
 };
