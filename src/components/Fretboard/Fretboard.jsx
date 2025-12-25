@@ -10,6 +10,7 @@ import { isTestMode } from "../../settings";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
+import Copy_CAGED_ID_Button from "./Copy_CAGED_ID_Button";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -99,10 +100,16 @@ const Fretboard = () => {
         />
       </FretboardContainer>
       {isTestMode && (
-        <CopyUserShapeButton
-          userShape={userShape}
-          handleClearUserShape={handleClearUserShape}
-        />
+        <>
+          <CopyUserShapeButton
+            userShape={userShape}
+            handleClearUserShape={handleClearUserShape}
+          />
+          <Copy_CAGED_ID_Button
+            userShape={userShape}
+            handleClearUserShape={handleClearUserShape}
+          />
+        </>
       )}
     </>
   );

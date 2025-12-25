@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Selector from "./Selector";
 import { musicFunctionContextSelectorData } from "../../data/data";
 import { useStore } from "../../store/useStore";
