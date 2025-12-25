@@ -30,7 +30,7 @@ const Fret = css`
 `;
 
 export const FretCell = styled.div`
-  border-right: 5px solid;
+  border-right: 1px solid;
   ${Fret}
 `;
 

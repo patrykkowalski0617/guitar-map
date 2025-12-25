@@ -94,4 +94,7 @@ export const useStore = create((set, get) => ({
     );
     return chordGroup ? chordGroup.shapes : [];
   },
+
+  mode: "Major",
+  setMode: (newMode) => set({ mode: newMode }),
 }));
