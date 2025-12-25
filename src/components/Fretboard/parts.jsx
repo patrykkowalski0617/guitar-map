@@ -16,6 +16,7 @@ export const FretboardContainer = styled.div`
   max-width: 100vw;
   overflow: auto;
   padding: 20px 0;
+  user-select: none;
 `;
 
 export const StringRow = styled.div`
