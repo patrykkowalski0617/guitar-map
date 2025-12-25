@@ -1,4 +1,4 @@
-import { UNIFIED_MUSIC_KEYS } from "../../data/data";
+import { UNIFIED_MUSIC_KEYS } from "../../data/notes";
 import { useStore } from "../../store/useStore";
 import Selector from "./Selector";
 

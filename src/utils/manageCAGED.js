@@ -1,5 +1,3 @@
-import { NOTES_FROM_C } from "../data/data";
-
 const manageCAGED = (keyName, CAGED_shift) => {
   const CAGED_base = {
     C: [8, 20],

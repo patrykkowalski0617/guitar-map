@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data/data";
+import { NOTES_FROM_C } from "../data/notes";
 
 const STRING_MAP = {
   E1: "E",

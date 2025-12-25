@@ -1,8 +1,6 @@
 import { create } from "zustand";
-import {
-  musicFunctionContextSelectorData,
-  UNIFIED_MUSIC_KEYS,
-} from "../data/data";
+import { musicFunctionContextSelectorData } from "../data/data";
+import { UNIFIED_MUSIC_KEYS } from "../data/notes";
 import { getNotesFromNote } from "../utils/getNotesFromNote";
 import { setsShapes } from "../data/setsShapes";
 

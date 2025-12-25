@@ -8,7 +8,7 @@ import FretboardLabels from "./FretboardLabels";
 import CopyUserShapeButton from "./CopyUserShapeButton";
 import { isTestMode } from "../../settings";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
-import { NOTES_FROM_C } from "../../data/data";
+import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];

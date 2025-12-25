@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data/data";
+import { NOTES_FROM_C } from "../data/notes";
 
 export const getNotesFromNote = (startFormNote, howManyNotes = 12) => {
   const startIndex = NOTES_FROM_C.indexOf(startFormNote);
