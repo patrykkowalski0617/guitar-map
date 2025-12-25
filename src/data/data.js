@@ -57,33 +57,6 @@ export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
   };
 });
 
-export const intervals = {
-  _1: 0,
-  _m2: 1,
-  _M2: 2,
-  _m3: 3,
-  _M3: 4,
-  _4: 5,
-  _T: 6,
-  _5: 7,
-  _m6: 8,
-  _M6: 9,
-  _m7: 10,
-  _M7: 11,
-  _8: 12,
-  _m9: 13,
-  _M9: 14,
-  _m10: 15,
-  _M10: 16,
-  _11: 17,
-  _TT: 18,
-  _12: 19,
-  _m13: 20,
-  _M13: 21,
-  _m14: 22,
-  _M14: 23,
-};
-
 export const CAGEDshapes = {
   C: [
     "E1_B",

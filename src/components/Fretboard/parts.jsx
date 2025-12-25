@@ -1,12 +1,6 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../theme";
 
-const { text, yellow } = theme.colors;
-
-const CAGED_COLOR = "#ffcc00";
-const DEFAULT_BORDER_COLOR = "#64748b";
 const btnHoverEffect = css`
-  transition: transform 0.1s ease-in-out;
   &:hover {
     transform: scale(1.1);
   }
@@ -15,7 +9,7 @@ const btnHoverEffect = css`
 export const FretboardContainer = styled.div`
   max-width: 100vw;
   overflow: auto;
-  padding: 20px 0;
+  padding: 10px 0;
   user-select: none;
 `;
 
@@ -52,17 +46,13 @@ export const FretboardLabelsWrapper = styled.div`
   margin-top: 5px;
 `;
 export const CAGEDLetter = styled.span`
-  color: ${CAGED_COLOR};
   cursor: pointer;
-
   width: 32px;
   height: 32px;
   border-radius: 30px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -72,49 +62,28 @@ export const CAGEDLetter = styled.span`
 export const Note = styled.div`
   outline: none;
   cursor: pointer;
-
   width: 50px;
   height: 32px;
   border-radius: 30px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #64748b;
-
-  background: ${({ $isInUserShape }) =>
-    $isInUserShape ? "green" : "transparent"};
-
+  background: ${({ $isInUserShape }) => ($isInUserShape ? "#00ff00" : "unset")};
   ${btnHoverEffect}
-
   opacity: ${({ $isInShape, $isActiveShapeRootNote, $isAnyShapeActive }) =>
     $isInShape || (!$isAnyShapeActive && $isActiveShapeRootNote) ? "1" : "0.2"};
-
-  border: 3px solid
-    ${({ $isActiveShapeRootNote }) => ($isActiveShapeRootNote ? yellow : text)};
+  border: 3px solid;
 `;
 export const StyledButton = styled.button`
   padding: 8px 16px;
-  background-color: #64748b;
-  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  transition: background-color 0.2s;
   display: block;
   margin: 10px auto;
-
-  &:hover {
-    background-color: #475569;
-  }
-
-  &:active {
-    transform: translateY(1px);
-  }
 `;

@@ -1,18 +1,22 @@
 import Fretboard from "./components/Fretboard/Fretboard";
-import "./App.css";
 import KeySelector from "./components/Selects/KeySelector";
 import ShapesLibrary from "./components/ShapePreview/ShapesLibrary";
 import { isTestMode } from "./settings";
 import ContextSelector from "./components/Selects/ContextSelector";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
+import { AppWrapper } from "./parts";
 
 function App() {
   return (
-    <>
-      {isTestMode && <ShapesLibrary />}
-      <ContextSelector />
-      <Fretboard />
-      <KeySelector />
-    </>
+    <ThemeProvider theme={theme}>
+      <AppWrapper>
+        {isTestMode && <ShapesLibrary />}
+        <ContextSelector />
+        <Fretboard />
+        <KeySelector />
+      </AppWrapper>{" "}
+    </ThemeProvider>
   );
 }
 

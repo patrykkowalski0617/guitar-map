@@ -1,6 +1,11 @@
+:root {
+  color-scheme: only light;
+}
 body {
   font-family: sans-serif;
   font-weight: 300;
+  font-size: 16px;
+  margin: 0;
 }
 * {
   box-sizing: border-box;
