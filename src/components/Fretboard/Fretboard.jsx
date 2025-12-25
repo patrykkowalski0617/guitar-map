@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMusicStore } from "../../store/useMusicStore";
+import { useStore } from "../../store/useStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
 import { CAGEDshapes } from "../../data/data";
@@ -24,7 +24,7 @@ const Fretboard = () => {
     setShape,
     variantState,
     setVariantState,
-  } = useMusicStore();
+  } = useStore();
 
   const [userShape, setUserShape] = useState([]);
 

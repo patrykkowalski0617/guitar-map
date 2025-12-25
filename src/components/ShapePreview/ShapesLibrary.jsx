@@ -1,4 +1,4 @@
-import { NEW_chordShapes } from "../../data/data";
+import { setsShapes } from "../../data/setsShapes";
 import {
   LibraryWrapper,
   CategorySection,
@@ -10,14 +10,14 @@ import {
 import ShapePreview from "./ShapePreview/ShapePreview";
 
 const ShapesLibrary = () => {
-  if (!NEW_chordShapes || !Array.isArray(NEW_chordShapes)) return null;
+  if (!setsShapes || !Array.isArray(setsShapes)) return null;
 
   // Definiujemy nazwy strun dla etykiet sub-wersji
   const STRING_NAMES = ["E1", "A2", "D3", "G4", "B5", "E6"];
 
   return (
     <LibraryWrapper>
-      {NEW_chordShapes.map((group) => {
+      {setsShapes.map((group) => {
         if (group.shapes.length === 0) return null;
 
         return (

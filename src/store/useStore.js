@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { UNIFIED_MUSIC_KEYS } from "../data/data";
 import {
   musicFunctionContextSelectorData,
-  NEW_chordShapes,
+  UNIFIED_MUSIC_KEYS,
 } from "../data/data";
 import { getNotesFromNote } from "../utils/getNotesFromNote";
+import { setsShapes } from "../data/setsShapes";
 
-export const useMusicStore = create((set, get) => ({
+export const useStore = create((set, get) => ({
   // --- STAN ---
   tuneKey: UNIFIED_MUSIC_KEYS[0],
   activeMusicContext: musicFunctionContextSelectorData[0],
@@ -91,7 +91,7 @@ export const useMusicStore = create((set, get) => ({
   getActiveChordVariants: () => {
     const { activeShape } = get();
     if (!activeShape || !activeShape.chordShapeId) return [];
-    const chordGroup = NEW_chordShapes.find(
+    const chordGroup = setsShapes.find(
       (chord) => chord.id === activeShape.chordShapeId
     );
     return chordGroup ? chordGroup.shapes : [];

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Selector from "./Selector";
 import { musicFunctionContextSelectorData } from "../../data/data";
-import { useMusicStore } from "../../store/useMusicStore";
+import { useStore } from "../../store/useStore";
 
 const FunctionContextSelector = () => {
   const {
@@ -11,7 +11,7 @@ const FunctionContextSelector = () => {
     setActiveShape,
     setActiveShapeByName,
     getKeyNotes,
-  } = useMusicStore();
+  } = useStore();
 
   const keyNotes = getKeyNotes();
 
