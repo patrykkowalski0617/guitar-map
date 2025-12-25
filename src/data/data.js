@@ -199,6 +199,11 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "minorPent",
       },
       {
+        getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
+        rootSemitone: _M3,
+        chordShapeId: "minorPent",
+      },
+      {
         getNotesSetName: () => "No avoid notes",
         // brak chordShapeId dla pustych stanów
       },
@@ -251,7 +256,7 @@ export const musicFunctionContextSelectorData = [
     ],
   },
   {
-    FunctionContextName: "Dominant in relative minor key",
+    FunctionContextName: "Phrygian Dominant",
     shapes: [
       {
         getNotesSetName: () => "Dominant (Phrygian)",
@@ -262,21 +267,6 @@ export const musicFunctionContextSelectorData = [
         getNotesSetName: () => "Upper structure",
         rootSemitone: _M3,
         chordShapeId: "dim7",
-      },
-    ],
-  },
-  {
-    FunctionContextName: "Phrygian",
-    shapes: [
-      {
-        getNotesSetName: () => "m7",
-        rootSemitone: _M3,
-        chordShapeId: "m7",
-      },
-      {
-        getNotesSetName: () => "Pentatonic",
-        rootSemitone: _M3,
-        chordShapeId: "minorPent",
       },
     ],
   },

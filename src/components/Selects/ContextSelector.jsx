@@ -64,7 +64,8 @@ const FunctionContextSelector = () => {
           onChange={setActiveShapeByName}
         />
       )}
-      tutaj opis: upper structor...
+      w zależności od kontekstu (minor, major, może jakiś inny (np G dur w a
+      moll lub e moll w c dur??))
       <br />
       jakie kolory są podkreślane
     </>
