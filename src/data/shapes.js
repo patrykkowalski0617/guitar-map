@@ -143,7 +143,7 @@ export const chordShapes = [
   {
     id: "M",
     label: "Major",
-    rootIntervals: [_1, _4],
+
     shapes: [
       ["E1_A", "E1_C#", "A2_E", "D3_A"],
       ["E1_A", "A2_C#", "A2_E", "D3_A"],
@@ -153,7 +153,7 @@ export const chordShapes = [
   {
     id: "M7",
     label: "Major 7th",
-    rootIntervals: [_1, _4],
+
     shapes: [
       ["E1_G", "E1_B", "A2_D", "D3_F#", "D3_G"],
       ["E1_C", "A2_E", "A2_G", "D3_B", "D3_C"],
@@ -163,7 +163,7 @@ export const chordShapes = [
   {
     id: "M_add9",
     label: "Major add9",
-    rootIntervals: [_1, _4],
+
     shapes: [
       ["E1_G", "E1_A", "E1_B", "A2_D", "D3_G"],
       ["E1_C", "E1_D", "A2_E", "A2_G", "D3_C"],
@@ -173,7 +173,7 @@ export const chordShapes = [
   {
     id: "M9",
     label: "Major 9",
-    rootIntervals: [_1, _4],
+
     shapes: [
       ["E1_G", "E1_A", "E1_B", "A2_D", "D3_F#", "D3_G"],
       ["E1_C", "E1_D", "A2_E", "A2_G", "D3_B", "D3_C"],
@@ -183,7 +183,7 @@ export const chordShapes = [
   {
     id: "Dominant",
     label: "Dominant",
-    rootIntervals: [_5],
+
     shapes: [
       ["E1_G", "E1_B", "A2_D", "D3_F", "D3_G"],
       ["E1_G", "A2_B", "A2_D", "D3_F", "D3_G"],
@@ -193,7 +193,7 @@ export const chordShapes = [
   {
     id: "m7b5",
     label: "m7b5 (Half-dim)",
-    rootIntervals: [_M7],
+
     shapes: [
       ["E1_B", "E1_D", "A2_F", "D3_A", "D3_B"],
       ["E1_B", "A2_D", "D3_F", "D3_A", "G4_D"],
@@ -207,12 +207,11 @@ export const chordShapes = [
       ["E1_B", "A2_D", "A2_F", "D3_G#", "D3_B"],
       ["E1_B", "A2_D", "D3_F", "D3_G#", "G4_B"],
     ],
-    rootIntervals: [_M7],
   },
   {
     id: "m",
     label: "Minor",
-    rootIntervals: [_M6, _M2, _M3],
+
     shapes: [
       ["E1_A", "E1_C", "A2_E", "D3_A"],
       ["E1_A", "A2_C", "A2_E", "D3_A"],
@@ -222,7 +221,7 @@ export const chordShapes = [
   {
     id: "m7",
     label: "Minor 7th",
-    rootIntervals: [_M6, _M2, _M3],
+
     shapes: [
       ["E1_A", "E1_C", "A2_E", "D3_G", "D3_A"],
       ["E1_A", "A2_C", "A2_E", "D3_G", "D3_A"],
@@ -232,13 +231,13 @@ export const chordShapes = [
   {
     id: "m_M7",
     label: "Minor with Major 7th",
-    rootIntervals: [_M6, _M2, _M3],
+
     shapes: [],
   },
   {
     id: "m_add9",
     label: "Minor add9",
-    rootIntervals: [_M6, _M2],
+
     shapes: [
       ["E1_A", "E1_B", "E1_C", "A2_E", "D3_A"],
       ["E1_A", "E1_B", "A2_C", "A2_E", "D3_A"],
@@ -248,7 +247,7 @@ export const chordShapes = [
   {
     id: "m9",
     label: "Minor 9",
-    rootIntervals: [_M6, _M2],
+
     shapes: [
       ["E1_A", "E1_B", "E1_C", "A2_E", "D3_G", "D3_A"],
       ["E1_A", "E1_B", "A2_C", "A2_E", "D3_G", "D3_A"],
@@ -258,7 +257,7 @@ export const chordShapes = [
   {
     id: "minorPent",
     label: "Minor Pentatonic 9",
-    rootIntervals: [_M6],
+
     shapes: [
       ["E1_A", "E1_C", "A2_D", "A2_E", "D3_G", "D3_A"],
       ["E1_A", "A2_C", "A2_D", "A2_E", "D3_G", "D3_A"],
@@ -268,7 +267,7 @@ export const chordShapes = [
   {
     id: "majorPent",
     label: "Major Pentatonic",
-    rootIntervals: [_1],
+
     shapes: [
       ["E1_G", "E1_A", "E1_B", "A2_D", "A2_E", "D3_G"],
       ["E1_C", "E1_D", "A2_E", "A2_G", "D3_A", "D3_C"],
@@ -277,53 +276,401 @@ export const chordShapes = [
   },
 ];
 
-export const getShapesByInterval = (semitones) => {
-  // Sprawdzamy czy semitones jest liczbą (wliczając 0) oraz czy biblioteka istnieje
-  if (typeof semitones !== "number" || !chordShapes) return [];
-
-  // Opcjonalnie: jeśli chcesz, aby np. 12 półtonów (oktawa)
-  // również dopasowywało się do interwału _1 (0 półtonów):
-  // const normalizedSemitones = semitones % 12;
-
-  return chordShapes.filter((item) => {
-    if (!item.rootIntervals) return false;
-
-    // Sprawdzamy, czy którykolwiek z zadeklarowanych interwałów
-    // w rootIntervals ma taką samą liczbę półtonów
-    return item.rootIntervals.some((interval) => interval[0] === semitones);
-  });
-};
+export const NEW_chordShapes = [
+  {
+    id: "M",
+    label: "Major",
+    shapes: [
+      [
+        [0, 0],
+        [0, 4],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [2, 7],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "M7",
+    label: "Major 7th",
+    shapes: [
+      [
+        [0, 0],
+        [0, 4],
+        [1, 7],
+        [2, 11],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [1, 7],
+        [2, 11],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [2, 7],
+        [2, 11],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "M_add9",
+    label: "Major add9",
+    shapes: [
+      [
+        [0, 0],
+        [0, 2],
+        [0, 4],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 4],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 2],
+        [1, 4],
+        [2, 7],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "M9",
+    label: "Major 9",
+    shapes: [
+      [
+        [0, 0],
+        [0, 2],
+        [0, 4],
+        [1, 7],
+        [2, 11],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 4],
+        [1, 7],
+        [2, 11],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 2],
+        [1, 4],
+        [2, 7],
+        [2, 11],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "Dominant",
+    label: "Dominant",
+    shapes: [
+      [
+        [0, 0],
+        [0, 4],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 4],
+        [2, 7],
+        [2, 10],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "m7b5",
+    label: "m7b5 (Half-dim)",
+    shapes: [
+      [
+        [0, 0],
+        [0, 3],
+        [1, 6],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [2, 6],
+        [2, 10],
+        [3, 15],
+      ],
+    ],
+  },
+  {
+    id: "dim7",
+    label: "Diminished 7",
+    shapes: [
+      [
+        [0, 0],
+        [0, 3],
+        [1, 6],
+        [1, 9],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [1, 6],
+        [2, 9],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [2, 6],
+        [2, 9],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "m",
+    label: "Minor",
+    shapes: [
+      [
+        [0, 0],
+        [0, 3],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [2, 7],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "m7",
+    label: "Minor 7th",
+    shapes: [
+      [
+        [0, 0],
+        [0, 3],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [2, 7],
+        [2, 10],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "m_M7",
+    label: "Minor with Major 7th",
+    shapes: [],
+  },
+  {
+    id: "m_add9",
+    label: "Minor add9",
+    shapes: [
+      [
+        [0, 0],
+        [0, 2],
+        [0, 3],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 3],
+        [1, 7],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 2],
+        [1, 3],
+        [2, 7],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "m9",
+    label: "Minor 9",
+    shapes: [
+      [
+        [0, 0],
+        [0, 2],
+        [0, 3],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 3],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 2],
+        [1, 3],
+        [2, 7],
+        [2, 10],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "minorPent",
+    label: "Minor Pentatonic 9",
+    shapes: [
+      [
+        [0, 0],
+        [0, 3],
+        [1, 5],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [1, 5],
+        [1, 7],
+        [2, 10],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [1, 3],
+        [1, 5],
+        [2, 7],
+        [2, 10],
+        [3, 12],
+      ],
+    ],
+  },
+  {
+    id: "majorPent",
+    label: "Major Pentatonic",
+    shapes: [
+      [
+        [0, 0],
+        [0, 2],
+        [0, 4],
+        [1, 7],
+        [1, 9],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 4],
+        [1, 7],
+        [2, 9],
+        [2, 12],
+      ],
+      [
+        [0, 0],
+        [0, 2],
+        [1, 4],
+        [1, 7],
+        [2, 9],
+        [2, 12],
+      ],
+    ],
+  },
+];
 
 export const musicFunctionContextSelectorData = [
   {
     FunctionContextName: "Tonics",
     shapes: [
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M7`,
-        CAGED_rootNote: "C",
+        getNotesSetName: (rootNote) => `${rootNote}M7`,
+        rootSemitone: _1[0],
+        chordShapeId: "M7",
       },
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_M3[0]]}m7`,
-        CAGED_rootNote: "C",
+        getNotesSetName: (rootNote) => `${rootNote}m7`,
+        rootSemitone: _M3[0],
+        chordShapeId: "m7",
       },
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_M6[0]]}m7`,
-        CAGED_rootNote: "A",
+        getNotesSetName: (rootNote) => `${rootNote}m7`,
+        rootSemitone: _M6[0],
+        chordShapeId: "m7",
       },
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]}M(add9)`,
-        CAGED_rootNote: "C",
+        getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
+        rootSemitone: _1[0],
+        chordShapeId: "M_add9",
       },
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_1[0]]} Major pentatonic`,
-        CAGED_rootNote: "C",
+        getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
+        rootSemitone: _1[0],
+        chordShapeId: "majorPent",
       },
       {
-        getNotesSetName: (keyNotes) => `${keyNotes[_M6[0]]} minor pentatonic`,
-        CAGED_rootNote: "A",
+        getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
+        rootSemitone: _M6[0],
+        chordShapeId: "minorPent",
       },
       {
         getNotesSetName: () => "No avoid notes",
+        // brak chordShapeId dla pustych stanów
       },
     ],
   },
@@ -332,15 +679,23 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "M7 / m upper structure",
+        rootSemitone: _M2[0], // Zakładam relację II stopnia
+        chordShapeId: "M7",
       },
       {
         getNotesSetName: () => "M upper structure",
+        rootSemitone: _M2[0],
+        chordShapeId: "M",
       },
       {
         getNotesSetName: () => "m7",
+        rootSemitone: _M2[0],
+        chordShapeId: "m7",
       },
       {
         getNotesSetName: () => "Pentatonic",
+        rootSemitone: _M2[0],
+        chordShapeId: "minorPent",
       },
       {
         getNotesSetName: () => "No avoid notes",
@@ -352,9 +707,13 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "Dominant (Myxolydian)",
+        rootSemitone: _5[0],
+        chordShapeId: "Dominant",
       },
       {
         getNotesSetName: () => "Upper structure",
+        rootSemitone: _5[0],
+        chordShapeId: "M", // Często US to triad dur
       },
       {
         getNotesSetName: () => "No avoid notes",
@@ -366,9 +725,13 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "Dominant (Phrygian)",
+        rootSemitone: _M3[0],
+        chordShapeId: "Dominant",
       },
       {
         getNotesSetName: () => "Upper structure",
+        rootSemitone: _M3[0],
+        chordShapeId: "dim7", // Często używane w tym kontekście
       },
     ],
   },
@@ -377,9 +740,13 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "m7",
+        rootSemitone: _M3[0],
+        chordShapeId: "m7",
       },
       {
         getNotesSetName: () => "Pentatonic",
+        rootSemitone: _M3[0],
+        chordShapeId: "minorPent",
       },
     ],
   },

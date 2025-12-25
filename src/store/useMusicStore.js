@@ -5,7 +5,8 @@ import {
   // Import Twojego nowego obiektu
 } from "../data/music-theory";
 import {
-  musicFunctionContextSelectorData, // Import Twojego nowego obiektu
+  musicFunctionContextSelectorData,
+  NEW_chordShapes, // Import Twojego nowego obiektu
 } from "../data/shapes";
 import { getNotesFromNote } from "../utils/getNotesFromNote";
 
@@ -109,13 +110,22 @@ export const useMusicStore = create((set, get) => ({
   setActiveShape: (shapeObject) => set({ activeShape: shapeObject }),
 
   // Pomocnicza akcja do ustawiania po nazwie (używana przez selektor)
+  // Wewnątrz create w useMusicStore:
+
   setActiveShapeByName: (name) => {
     const { activeMusicContext, getKeyNotes } = get();
     const keyNotes = getKeyNotes();
 
-    const foundShape = activeMusicContext?.shapes?.find(
-      (s) => s.getNotesSetName(keyNotes) === name
-    );
+    // Szukamy obiektu, którego nazwa (wygenerowana z konkretnej nuty)
+    // zgadza się z tym, co przyszło z SegmentedSelect
+    const foundShape = activeMusicContext?.shapes?.find((shape) => {
+      const rootNote =
+        shape.rootSemitone !== undefined
+          ? keyNotes[shape.rootSemitone]
+          : undefined;
+
+      return shape.getNotesSetName(rootNote) === name;
+    });
 
     if (foundShape) {
       set({ activeShape: foundShape });
@@ -131,5 +141,38 @@ export const useMusicStore = create((set, get) => ({
     }
   },
   activeShapeName: "",
-  setActiveShapeName: (name) => set({ activeShapeName: name }),
+  setActiveShapeName: (name) => set({ activeShapeName: name }), // Wewnątrz create w useMusicStore:
+
+  getActiveShapeRootNote: () => {
+    const { activeShape, getKeyNotes } = get();
+
+    // Jeśli nie ma wybranego kształtu, zwracamy null
+    if (!activeShape) return null;
+
+    // Pobieramy aktualną tablicę 12 nut (chromatyczną)
+    const keyNotes = getKeyNotes();
+
+    // Jeśli kształt ma zdefiniowany rootSemitone (np. 0, 9),
+    // zwracamy nutę z tej pozycji. W przeciwnym razie null.
+    if (activeShape.rootSemitone !== undefined) {
+      return keyNotes[activeShape.rootSemitone];
+    }
+
+    return null;
+  }, // Wewnątrz create w useMusicStore:
+
+  getActiveChordVariants: () => {
+    const { activeShape } = get();
+
+    // Jeśli nie wybrano kształtu lub kształt nie ma powiązanego ID akordu
+    if (!activeShape || !activeShape.chordShapeId) return [];
+
+    // Szukamy grupy akordów w NEW_chordShapes
+    const chordGroup = NEW_chordShapes.find(
+      (chord) => chord.id === activeShape.chordShapeId
+    );
+
+    // Zwracamy tablicę wszystkich wariantów shapes [[...], [...]]
+    return chordGroup ? chordGroup.shapes : [];
+  },
 }));

@@ -6,7 +6,7 @@ import { useMusicStore } from "../../store/useMusicStore";
 const FunctionContextSelector = () => {
   const {
     activeMusicContext,
-    setActiveMusicContextByName, // Ta nazwa musi się zgadzać z tą w onChange
+    setActiveMusicContextByName,
     activeShape,
     setActiveShape,
     setActiveShapeByName,
@@ -15,18 +15,26 @@ const FunctionContextSelector = () => {
 
   const keyNotes = getKeyNotes();
 
-  // Opcje dla kontekstów (Tonics, Subdominants...)
+  // Helper do renderowania nazwy konkretnego kształtu
+  const renderShapeName = (shape) => {
+    if (!shape) return "";
+    // Jeśli zdefiniowano rootSemitone, przekaż odpowiednią nutę z tablicy
+    const rootNote =
+      shape.rootSemitone !== undefined
+        ? keyNotes[shape.rootSemitone]
+        : undefined;
+    return shape.getNotesSetName(rootNote);
+  };
+
+  // Opcje dla kontekstów
   const contextOptions = musicFunctionContextSelectorData.map(
     (item) => item.FunctionContextName
   );
 
-  // Opcje dla kształtów (zrenderowane nazwy: "C M7" itp.)
+  // Opcje dla kształtów - teraz przekazujemy tylko pojedynczą nutę do funkcji
   const shapeOptions =
-    activeMusicContext?.shapes?.map((shape) =>
-      shape.getNotesSetName(keyNotes)
-    ) || [];
+    activeMusicContext?.shapes?.map((shape) => renderShapeName(shape)) || [];
 
-  // Automatyczny wybór pierwszego kształtu przy zmianie kategorii
   useEffect(() => {
     if (activeMusicContext?.shapes?.length > 0) {
       const isStillValid = activeMusicContext.shapes.some(
@@ -41,17 +49,18 @@ const FunctionContextSelector = () => {
   return (
     <>
       <SegmentedSelect
-        label="Context"
+        label="Context - Unified Functions"
         options={contextOptions}
         value={activeMusicContext?.FunctionContextName}
-        onChange={setActiveMusicContextByName} // Poprawione z setActiveByName
+        onChange={setActiveMusicContextByName}
       />
 
       {shapeOptions.length > 0 && (
         <SegmentedSelect
-          label="Shape"
+          label="Set of notes - chords, scales, other kind of sets"
           options={shapeOptions}
-          value={activeShape?.getNotesSetName(keyNotes)}
+          // Tutaj również używamy helpera, aby wyświetlić poprawną nazwę aktywnego kształtu
+          value={renderShapeName(activeShape)}
           onChange={setActiveShapeByName}
         />
       )}

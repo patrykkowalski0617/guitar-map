@@ -1,4 +1,7 @@
 import styled, { css } from "styled-components";
+import { theme } from "../../theme";
+
+const { text, yellow } = theme.colors;
 
 const CAGED_COLOR = "#ffcc00";
 const DEFAULT_BORDER_COLOR = "#64748b";
@@ -87,9 +90,11 @@ export const Note = styled.div`
 
   ${btnHoverEffect}
 
-  opacity: ${({ $isInShape }) => ($isInShape ? "1" : "0.2")};
+  opacity: ${({ $isInShape, $isActiveShapeRootNote, $isAnyShapeActive }) =>
+    $isInShape || (!$isAnyShapeActive && $isActiveShapeRootNote) ? "1" : "0.2"};
 
-  border: 3px solid ${DEFAULT_BORDER_COLOR};
+  border: 3px solid
+    ${({ $isActiveShapeRootNote }) => ($isActiveShapeRootNote ? yellow : text)};
 `;
 export const StyledButton = styled.button`
   padding: 8px 16px;

@@ -10,6 +10,7 @@ const FretRow = ({
   handleNoteClick,
   shape,
   userShape,
+  activeShapeRootNote,
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
@@ -36,7 +37,9 @@ const FretRow = ({
               $isInShape={$isInShape}
               $isInUserShape={$isInUserShape}
               className={`CAGED_noteId__${CAGED_noteId}`}
-              onClick={() => handleNoteClick(CAGED_noteId)}
+              onClick={() => handleNoteClick(note, CAGED_noteId)}
+              $isActiveShapeRootNote={activeShapeRootNote === note}
+              $isAnyShapeActive={shape.length}
             >
               {note}
             </StyledNote>
