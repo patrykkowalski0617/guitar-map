@@ -31,30 +31,30 @@ export const UNIFIED_MUSIC_KEYS = NOTES_FROM_C.map((majorNote, index) => {
 });
 
 export const intervals = {
-  _1: [0, "1"],
-  _m2: [1, "m2"],
-  _M2: [2, "M2"],
-  _m3: [3, "m3"],
-  _M3: [4, "M3"],
-  _4: [5, "4"],
-  _T: [6, "T"],
-  _5: [7, "5"],
-  _m6: [8, "m6"],
-  _M6: [9, "M6"],
-  _m7: [10, "m7"],
-  _M7: [11, "M7"],
-  _8: [12, "8"],
-  _m9: [13, "m9"],
-  _M9: [14, "M9"],
-  _m10: [15, "m10"],
-  _M10: [16, "M10"],
-  _11: [17, "11"],
-  _TT: [18, "TT"],
-  _12: [19, "12"],
-  _m13: [20, "m13"],
-  _M13: [21, "M13"],
-  _m14: [22, "m14"],
-  _M14: [23, "M14"],
+  _1: 0,
+  _m2: 1,
+  _M2: 2,
+  _m3: 3,
+  _M3: 4,
+  _4: 5,
+  _T: 6,
+  _5: 7,
+  _m6: 8,
+  _M6: 9,
+  _m7: 10,
+  _M7: 11,
+  _8: 12,
+  _m9: 13,
+  _M9: 14,
+  _m10: 15,
+  _M10: 16,
+  _11: 17,
+  _TT: 18,
+  _12: 19,
+  _m13: 20,
+  _M13: 21,
+  _m14: 22,
+  _M14: 23,
 };
 export const {
   _1,
@@ -578,32 +578,32 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: (rootNote) => `${rootNote}M7`,
-        rootSemitone: _1[0],
+        rootSemitone: _1,
         chordShapeId: "M7",
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M3[0],
+        rootSemitone: _M3,
         chordShapeId: "m7",
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M6[0],
+        rootSemitone: _M6,
         chordShapeId: "m7",
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
-        rootSemitone: _1[0],
+        rootSemitone: _1,
         chordShapeId: "M_add9",
       },
       {
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
-        rootSemitone: _1[0],
+        rootSemitone: _1,
         chordShapeId: "majorPent",
       },
       {
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
-        rootSemitone: _M6[0],
+        rootSemitone: _M6,
         chordShapeId: "minorPent",
       },
       {
@@ -617,22 +617,22 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "M7 / m upper structure",
-        rootSemitone: _4[0], // Zakładam relację II stopnia
+        rootSemitone: _4, // Zakładam relację II stopnia
         chordShapeId: "M7",
       },
       {
         getNotesSetName: () => "M upper structure",
-        rootSemitone: _M2[0],
+        rootSemitone: _M2,
         chordShapeId: "M",
       },
       {
         getNotesSetName: () => "m7",
-        rootSemitone: _M2[0],
+        rootSemitone: _M2,
         chordShapeId: "m7",
       },
       {
         getNotesSetName: () => "Pentatonic",
-        rootSemitone: _M2[0],
+        rootSemitone: _M2,
         chordShapeId: "minorPent",
       },
       {
@@ -645,12 +645,12 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "Dominant (Myxolydian)",
-        rootSemitone: _5[0],
+        rootSemitone: _5,
         chordShapeId: "Dominant",
       },
       {
         getNotesSetName: () => "Upper structure",
-        rootSemitone: _5[0],
+        rootSemitone: _5,
         chordShapeId: "M", // Często US to triad dur
       },
       {
@@ -663,12 +663,12 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "Dominant (Phrygian)",
-        rootSemitone: _M3[0],
+        rootSemitone: _M3,
         chordShapeId: "Dominant",
       },
       {
         getNotesSetName: () => "Upper structure",
-        rootSemitone: _M3[0],
+        rootSemitone: _M3,
         chordShapeId: "dim7",
       },
     ],
@@ -678,12 +678,12 @@ export const musicFunctionContextSelectorData = [
     shapes: [
       {
         getNotesSetName: () => "m7",
-        rootSemitone: _M3[0],
+        rootSemitone: _M3,
         chordShapeId: "m7",
       },
       {
         getNotesSetName: () => "Pentatonic",
-        rootSemitone: _M3[0],
+        rootSemitone: _M3,
         chordShapeId: "minorPent",
       },
     ],
