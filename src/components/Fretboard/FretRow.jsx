@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../../data/music-theory";
+import { NOTES_FROM_C } from "../../data/data";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
 

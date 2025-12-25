@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data/music-theory";
+import { NOTES_FROM_C } from "../data/data";
 
 const STRING_MAP = {
   E1: "E",

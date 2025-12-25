@@ -1,6 +1,6 @@
 import { Container, Label, OptionsWrapper, OptionButton } from "./parts";
 
-const SegmentedSelect = ({ label, options, value, onChange }) => {
+const Selector = ({ label, options, value, onChange }) => {
   return (
     <Container>
       {label && <Label>{label}</Label>}
@@ -21,4 +21,4 @@ const SegmentedSelect = ({ label, options, value, onChange }) => {
   );
 };
 
-export default SegmentedSelect;
+export default Selector;

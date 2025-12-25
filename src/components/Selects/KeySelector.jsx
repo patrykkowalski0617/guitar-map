@@ -1,6 +1,6 @@
-import { UNIFIED_MUSIC_KEYS } from "../../data/music-theory";
+import { UNIFIED_MUSIC_KEYS } from "../../data/data";
 import { useMusicStore } from "../../store/useMusicStore";
-import SegmentedSelect from "./SegmentedSelect";
+import Selector from "./Selector";
 
 const KeySelector = () => {
   const tuneKey = useMusicStore((state) => state.tuneKey);
@@ -19,7 +19,7 @@ const KeySelector = () => {
   };
 
   return (
-    <SegmentedSelect
+    <Selector
       label="Unified Keys"
       options={keyOptions}
       value={tuneKey?.label}

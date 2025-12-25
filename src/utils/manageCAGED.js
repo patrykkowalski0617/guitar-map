@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data//music-theory";
+import { NOTES_FROM_C } from "../data/data";
 
 const manageCAGED = (keyName, CAGED_shift) => {
   const CAGED_base = {

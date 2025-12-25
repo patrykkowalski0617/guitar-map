@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { UNIFIED_MUSIC_KEYS } from "../data/music-theory";
+import { UNIFIED_MUSIC_KEYS } from "../data/data";
 import {
   musicFunctionContextSelectorData,
   NEW_chordShapes,
-} from "../data/shapes";
+} from "../data/data";
 import { getNotesFromNote } from "../utils/getNotesFromNote";
 
 export const useMusicStore = create((set, get) => ({

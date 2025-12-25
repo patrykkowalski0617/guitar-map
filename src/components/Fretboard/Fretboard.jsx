@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useMusicStore } from "../../store/useMusicStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
-import { CAGEDshapes } from "../../data/shapes";
+import { CAGEDshapes } from "../../data/data";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
 import CopyUserShapeButton from "./CopyUserShapeButton";
 import { isTestMode } from "../../settings";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
-import { NOTES_FROM_C } from "../../data/music-theory";
+import { NOTES_FROM_C } from "../../data/data";
 import { transposeShape } from "../../utils/NEW_transposer";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];

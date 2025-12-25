@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import SegmentedSelect from "./SegmentedSelect";
-import { musicFunctionContextSelectorData } from "../../data/shapes";
+import Selector from "./Selector";
+import { musicFunctionContextSelectorData } from "../../data/data";
 import { useMusicStore } from "../../store/useMusicStore";
 
 const FunctionContextSelector = () => {
@@ -48,7 +48,7 @@ const FunctionContextSelector = () => {
 
   return (
     <>
-      <SegmentedSelect
+      <Selector
         label="Context - Unified Functions"
         options={contextOptions}
         value={activeMusicContext?.FunctionContextName}
@@ -56,7 +56,7 @@ const FunctionContextSelector = () => {
       />
       tutaj opis: realese, tension...
       {shapeOptions.length > 0 && (
-        <SegmentedSelect
+        <Selector
           label="Set of notes - chords, scales, other kind of sets"
           options={shapeOptions}
           // Tutaj również używamy helpera, aby wyświetlić poprawną nazwę aktywnego kształtu

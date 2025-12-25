@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data/music-theory";
+import { NOTES_FROM_C } from "../data/data";
 
 export const getNotesFromNote = (startFormNote, howManyNotes = 12) => {
   const startIndex = NOTES_FROM_C.indexOf(startFormNote);

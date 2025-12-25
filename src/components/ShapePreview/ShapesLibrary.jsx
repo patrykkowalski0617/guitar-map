@@ -1,4 +1,4 @@
-import { NEW_chordShapes } from "../../data/shapes";
+import { NEW_chordShapes } from "../../data/data";
 import {
   LibraryWrapper,
   CategorySection,
