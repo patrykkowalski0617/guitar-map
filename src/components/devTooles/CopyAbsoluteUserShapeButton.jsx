@@ -1,18 +1,13 @@
 import { useState } from "react";
 import { StyledButton } from "./parts";
-import { getAbsoluteSemitones } from "../../utils/transposer";
 
-const CopyUserShapeButton = ({ userShape, handleClearUserShape }) => {
+const CopyAbsoluteUserShapeButton = ({ userShape, handleClearUserShape }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
     if (!userShape || userShape.length === 0) return;
 
-    const formattedArray = JSON.stringify(
-      userShape.map((el) => getAbsoluteSemitones(el)),
-      null,
-      2
-    );
+    const formattedArray = JSON.stringify(userShape, null, 2);
 
     try {
       await navigator.clipboard.writeText(formattedArray);
@@ -27,9 +22,9 @@ const CopyUserShapeButton = ({ userShape, handleClearUserShape }) => {
 
   return (
     <StyledButton onClick={handleCopy}>
-      {copied ? "Copied!" : "Copie user shape as JS Array"}
+      {copied ? "Copied!" : "Copy Absolute User Shape"}
     </StyledButton>
   );
 };
 
-export default CopyUserShapeButton;
+export default CopyAbsoluteUserShapeButton;

@@ -15,6 +15,9 @@ export const ShapeContainer = styled.div`
 export const StringRow = styled.div`
   display: flex;
   flex-direction: row;
+  & > :last-child {
+    border: none;
+  }
 `;
 
 export const FretCell = styled.div`

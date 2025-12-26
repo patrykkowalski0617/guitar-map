@@ -77,13 +77,3 @@ export const Note = styled.div`
     $isInShape || (!$isAnyShapeActive && $isActiveShapeRootNote) ? "1" : "0.2"};
   border: 3px solid;
 `;
-export const StyledButton = styled.button`
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  display: block;
-  margin: 10px auto;
-`;

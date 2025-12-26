@@ -5,12 +5,11 @@ import { FretboardContainer } from "./parts";
 import { CAGEDshapes } from "../../data/data";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
-import CopyUserShapeButton from "./CopyUserShapeButton";
-import { isTestMode } from "../../settings";
+import { isDevMode } from "../../settings";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
-import Copy_CAGED_ID_Button from "./Copy_CAGED_ID_Button";
+import DevTools from "../devTooles/DevTools";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -36,7 +35,7 @@ const Fretboard = () => {
   const activeShapeRootNote = getActiveShapeRootNote();
 
   const handleNoteClick = (note, CAGED_noteId) => {
-    if (isTestMode) {
+    if (isDevMode) {
       setUserShape((prevShape) =>
         prevShape.includes(CAGED_noteId)
           ? prevShape.filter((id) => id !== CAGED_noteId)
@@ -99,17 +98,11 @@ const Fretboard = () => {
           handleCAGEDClick={handleCAGEDClick}
         />
       </FretboardContainer>
-      {isTestMode && (
-        <>
-          <CopyUserShapeButton
-            userShape={userShape}
-            handleClearUserShape={handleClearUserShape}
-          />
-          <Copy_CAGED_ID_Button
-            userShape={userShape}
-            handleClearUserShape={handleClearUserShape}
-          />
-        </>
+      {isDevMode && (
+        <DevTools
+          userShape={userShape}
+          handleClearUserShape={handleClearUserShape}
+        />
       )}
     </>
   );

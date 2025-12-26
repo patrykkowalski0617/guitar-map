@@ -9,7 +9,7 @@ const STRING_MAP = {
   E6: "E",
 };
 
-const STRING_ORDER = ["E1", "A2", "D3", "G4", "B5", "E6"];
+export const STRING_ORDER = ["E1", "A2", "D3", "G4", "B5", "E6"];
 const STRING_OFFSETS = [0, 5, 10, 15, 19, 24];
 
 export const getAbsoluteSemitones = (point) => {
