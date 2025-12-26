@@ -174,6 +174,8 @@ export const musicFunctionContextSelectorData = [
   {
     FunctionContextName: "Tonics",
     harmonicFunctionDescription: harmonicFunctionDescription.RELEASE,
+    majorRoot: _1,
+    minorRoot: _M6,
     shapes: [
       {
         getNotesSetName: (rootNote) => `${rootNote}M7`,
@@ -181,14 +183,12 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "M7",
         colorProfile: {
           major: {
-            root_rel: _1,
-            exposedTone_abs: 1,
-            usedTones_abs: [3, 5, 7],
+            exposedTone: 1,
+            usedTones: [3, 5, 7],
           },
           minor: {
-            root_rel: _M6,
-            exposedTone_abs: 3,
-            usedTones_abs: [5, 7, 9],
+            exposedTone: 3,
+            usedTones: [5, 7, 9],
           },
         },
       },
@@ -198,12 +198,12 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "m7",
         colorProfile: {
           major: {
-            exposedTone_abs: 3,
-            usedTones_abs: [5, 7, 9],
+            exposedTone: 3,
+            usedTones: [5, 7, 9],
           },
           minor: {
-            exposedTone_abs: 5,
-            usedTones_abs: [7, 9, 11],
+            exposedTone: 5,
+            usedTones: [7, 9, 11],
           },
         },
       },
@@ -211,61 +211,166 @@ export const musicFunctionContextSelectorData = [
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M6,
         chordShapeId: "m7",
+        colorProfile: {
+          major: {
+            exposedTone: 13,
+            usedTones: [1, 3, 5],
+          },
+          minor: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
         rootSemitone: _1,
         chordShapeId: "M_add9",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [3, 7, 9],
+          },
+          minor: {
+            exposedTone: 3,
+            usedTones: [5, 7, 11],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _1,
         chordShapeId: "majorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [3, 5, 9, 13],
+          },
+          minor: {
+            exposedTone: 3,
+            usedTones: [1, 5, 7, 13],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M6,
         chordShapeId: "minorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 13,
+            usedTones: [1, 3, 5, 9],
+          },
+          minor: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7, 13],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
         chordShapeId: "minorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 3,
+            usedTones: [5, 13, 7, 9],
+          },
+          minor: {
+            exposedTone: 5,
+            usedTones: [7, 1, 9, 13],
+          },
+        },
       },
       {
         getNotesSetName: () => "No avoid notes",
-        // brak chordShapeId dla pustych stanów
+        colorProfile: {
+          major: {
+            usedTones: [1, 3, 5, 7, 9, 13],
+          },
+          minor: {
+            usedTones: [1, 3, 5, 7, 9, 11],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Ionian`,
+        rootSemitone: _1,
+        chordShapeId: "ionian",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7, 9, 13],
+            avoidNotes: [11],
+          },
+          minor: {
+            exposedTone: 3,
+            usedTones: [1, 5, 7, 9, 11],
+            avoidNotes: [13],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Aeolian`,
+        rootSemitone: _M6,
+        chordShapeId: "aeolian",
+        colorProfile: {
+          major: {
+            exposedTone: 13,
+            usedTones: [1, 3, 5, 7, 9],
+            avoidNotes: [11],
+          },
+          minor: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7, 9, 11],
+            avoidNotes: [13],
+          },
+        },
       },
     ],
   },
   {
     FunctionContextName: "Subdominants",
     harmonicFunctionDescription: harmonicFunctionDescription.MOTION,
+    majorRoot: _4,
+    minorRoot: _M2,
     shapes: [
       {
-        getNotesSetName: () => "M7 / m upper structure",
-        rootSemitone: _4, // Zakładam relację II stopnia
+        getNotesSetName: (rootNote) => `${rootNote}M7`,
+        rootSemitone: _4,
         chordShapeId: "M7",
         colorProfile: {
           major: {
             root_rel: _4,
-            exposedTone_abs: 1,
-            usedTones_abs: [3, 5, 7],
+            exposedTone: 1,
+            usedTones: [3, 5, 7],
           },
           minor: {
             root_rel: _M2,
-            exposedTone_abs: 3,
-            usedTones_abs: [5, 7, 9],
+            exposedTone: 3,
+            usedTones: [5, 7, 9],
           },
         },
       },
       {
-        getNotesSetName: () => "M upper structure",
-        rootSemitone: _M2,
-        chordShapeId: "M",
+        getNotesSetName: (rootNote) => `${rootNote}m7`,
+        rootSemitone: _M6,
+        chordShapeId: "m7",
+        colorProfile: {
+          major: {
+            root_rel: _4,
+            exposedTone: 3,
+            usedTones: [5, 7, 9],
+          },
+          minor: {
+            root_rel: _M2,
+            exposedTone: 5,
+            usedTones: [7, 9, 11],
+          },
+        },
       },
       {
-        getNotesSetName: () => "m7",
+        getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M2,
         chordShapeId: "m7",
       },
@@ -282,6 +387,7 @@ export const musicFunctionContextSelectorData = [
   {
     FunctionContextName: "Dominant",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
+    majorRoot: _5,
     shapes: [
       {
         getNotesSetName: () => "Dominant (Myxolydian)",
@@ -301,6 +407,7 @@ export const musicFunctionContextSelectorData = [
   {
     FunctionContextName: "Phrygian Dominant",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
+    majorRoot: _M3,
     shapes: [
       {
         getNotesSetName: () => "Dominant (Phrygian)",

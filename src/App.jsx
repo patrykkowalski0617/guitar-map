@@ -14,14 +14,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <ContextSelector />
-        <HarmonicFunctionDisplay />
-        <ShapeSelector />
-        <ShapesLibrary />
-        <ModeSelector />
-        <ColorProfileVisualizer />
-        <Fretboard />
         <KeySelector />
+        <ContextSelector />
+        <ShapeSelector />
+        {/* <ModeSelector /> */}
+        <HarmonicFunctionDisplay />
+        <ColorProfileVisualizer />
+        <ShapesLibrary />
+        <Fretboard />
       </AppWrapper>
     </ThemeProvider>
   );

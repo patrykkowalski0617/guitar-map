@@ -42,7 +42,7 @@ const ShapeSelector = () => {
 
   return (
     <Selector
-      label="Set of notes available for context"
+      label="Set of notes in context"
       options={shapeOptions}
       value={renderShapeName(activeShape)}
       onChange={setActiveShapeByName}

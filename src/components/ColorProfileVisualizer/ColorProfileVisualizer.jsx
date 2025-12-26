@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useStore } from "../../store/useStore";
 
-// --- STYLES (bez zmian) ---
+// --- STYLES ---
 
-const getIntervalColor = (interval, colors) => {
+const getIntervalColor = (interval, colors, $isAvoid) => {
+  if ($isAvoid) return colors.red;
   if (interval === 1 || interval === 5) return colors.text;
   if (interval === 3 || interval === 7) return colors.yellow;
   if (interval === 9) return colors.blue;
@@ -20,11 +21,12 @@ const Wrapper = styled.div`
 const VisualizerContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 60px;
+  gap: 40px;
   padding: 40px;
   background-color: ${({ theme }) => theme.colors.bg};
   border-radius: 12px;
   width: fit-content;
+  align-items: flex-start;
 `;
 
 const ProfileColumn = styled.div`
@@ -41,6 +43,33 @@ const DotsWrapper = styled.div`
   height: 65px;
 `;
 
+// --- LEGEND STYLES ---
+
+const LegendColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 65px;
+  gap: 4px;
+  padding-left: 25px;
+  border-left: 1px solid ${({ theme }) => theme.colors.text}11;
+`;
+
+const LegendLabel = styled.div`
+  height: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 0.55rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: ${({ $color }) => $color};
+  opacity: 0.7;
+  white-space: nowrap;
+`;
+
+// --- DOT STYLES ---
+
 const DotStack = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,8 +80,10 @@ const DotStack = styled.div`
 const IntervalNumber = styled.span`
   font-size: 0.65rem;
   font-weight: bold;
-  color: ${({ $interval, theme, $isActive }) =>
-    $isActive ? getIntervalColor($interval, theme.colors) : theme.colors.text};
+  color: ${({ $interval, theme, $isActive, $isAvoid }) =>
+    $isActive
+      ? getIntervalColor($interval, theme.colors, $isAvoid)
+      : theme.colors.text};
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   transition: all 0.5s ease;
 `;
@@ -69,7 +100,7 @@ const MainLabel = styled.span`
 
   strong {
     color: ${({ theme }) => theme.colors.yellow};
-    margin-left: 5px;
+    margin-right: 5px;
   }
 `;
 
@@ -77,16 +108,16 @@ const ToneDot = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 5px;
-  background-color: ${({ $interval, theme }) =>
-    getIntervalColor($interval, theme.colors)};
+  background-color: ${({ $interval, theme, $isAvoid }) =>
+    getIntervalColor($interval, theme.colors, $isAvoid)};
 
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform: translateY(${({ $offset }) => $offset}px);
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
 
-  box-shadow: ${({ $isExposed, $interval, theme }) => {
+  box-shadow: ${({ $isExposed, $interval, theme, $isAvoid }) => {
     if (!$isExposed) return "none";
-    const color = getIntervalColor($interval, theme.colors);
+    const color = getIntervalColor($interval, theme.colors, $isAvoid);
     return `0 0 12px ${color}`;
   }};
 `;
@@ -100,13 +131,14 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
     <ProfileColumn>
       <DotsWrapper>
         {INTERVALS.map((interval) => {
-          const isExposed = profile?.exposedTone_abs === interval;
-          const isUsed = profile?.usedTones_abs?.includes(interval);
-          const isActive = isExposed || isUsed;
+          const isExposed = profile?.exposedTone === interval;
+          const isUsed = profile?.usedTones?.includes(interval);
+          const isAvoid = profile?.avoidNotes?.includes(interval);
+          const isActive = isExposed || isUsed || isAvoid;
 
           let offset = 0;
           if (isExposed) offset = -35;
-          else if (isUsed) offset = -18;
+          else if (isUsed || isAvoid) offset = -18;
 
           return (
             <DotStack key={interval}>
@@ -115,8 +147,14 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
                 $offset={offset}
                 $isExposed={isExposed}
                 $isActive={isActive}
+                $isAvoid={isAvoid}
+                title={isAvoid ? `Avoid: ${interval}` : `Interval: ${interval}`}
               />
-              <IntervalNumber $interval={interval} $isActive={isActive}>
+              <IntervalNumber
+                $interval={interval}
+                $isActive={isActive}
+                $isAvoid={isAvoid}
+              >
                 {interval}
               </IntervalNumber>
             </DotStack>
@@ -132,18 +170,13 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
 
 const ColorProfileVisualizer = () => {
   const activeShape = useStore((state) => state.activeShape);
-  // Wyciągamy helper zamiast całej tablicy nut
+  const activeMusicContext = useStore((state) => state.activeMusicContext);
   const getNoteNameByOffset = useStore((state) => state.getNoteNameByOffset);
 
-  if (!activeShape?.colorProfile) return null;
+  if (!activeShape?.colorProfile || !activeMusicContext) return null;
 
-  // Używamy helpera - kod jest teraz bardziej deklaratywny
-  const majorRootName = getNoteNameByOffset(
-    activeShape.colorProfile.major.root_rel
-  );
-  const minorRootName = getNoteNameByOffset(
-    activeShape.colorProfile.minor.root_rel
-  );
+  const majorRootName = getNoteNameByOffset(activeMusicContext.majorRoot);
+  const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
 
   return (
     <Wrapper>
@@ -158,6 +191,24 @@ const ColorProfileVisualizer = () => {
           profile={activeShape.colorProfile.minor}
           rootNoteName={minorRootName}
         />
+
+        <LegendColumn>
+          <LegendLabel $color={({ theme }) => theme.colors.text}>
+            Transparent
+          </LegendLabel>
+          <LegendLabel $color={({ theme }) => theme.colors.yellow}>
+            Color (Guide Tones)
+          </LegendLabel>
+          <LegendLabel $color={({ theme }) => theme.colors.blue}>
+            Tension
+          </LegendLabel>
+          <LegendLabel $color={({ theme }) => theme.colors.violet}>
+            More Tension
+          </LegendLabel>
+          <LegendLabel $color={({ theme }) => theme.colors.red}>
+            Avoid Notes
+          </LegendLabel>
+        </LegendColumn>
       </VisualizerContainer>
     </Wrapper>
   );
