@@ -76,6 +76,11 @@ export const useStore = create((set, get) => ({
   setActiveShape: (shapeObject) => set({ activeShape: shapeObject }),
 
   // --- GETTERY ---
+  getNoteNameByOffset: (offset) => {
+    const { getKeyNotes } = get();
+    const notes = getKeyNotes();
+    return notes[offset] || "";
+  },
   getActiveShapeRootNote: () => {
     const { activeShape, getKeyNotes } = get();
     if (!activeShape) return null;

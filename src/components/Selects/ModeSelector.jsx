@@ -13,15 +13,12 @@ const ModeSelector = () => {
   };
 
   return (
-    <>
-      <Selector
-        label="Mode"
-        options={MODE_OPTIONS}
-        value={mode}
-        onChange={handleModeChange}
-      />
-      tu kolory
-    </>
+    <Selector
+      label="Mode DISP MOBILE"
+      options={MODE_OPTIONS}
+      value={mode}
+      onChange={handleModeChange}
+    />
   );
 };
 

@@ -179,11 +179,33 @@ export const musicFunctionContextSelectorData = [
         getNotesSetName: (rootNote) => `${rootNote}M7`,
         rootSemitone: _1,
         chordShapeId: "M7",
+        colorProfile: {
+          major: {
+            root_rel: _1,
+            exposedTone_abs: 1,
+            usedTones_abs: [3, 5, 7],
+          },
+          minor: {
+            root_rel: _M6,
+            exposedTone_abs: 3,
+            usedTones_abs: [5, 7, 9],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M3,
         chordShapeId: "m7",
+        colorProfile: {
+          major: {
+            exposedTone_abs: 3,
+            usedTones_abs: [5, 7, 9],
+          },
+          minor: {
+            exposedTone_abs: 5,
+            usedTones_abs: [7, 9, 11],
+          },
+        },
       },
       {
         getNotesSetName: (rootNote) => `${rootNote}m7`,
@@ -224,6 +246,18 @@ export const musicFunctionContextSelectorData = [
         getNotesSetName: () => "M7 / m upper structure",
         rootSemitone: _4, // Zakładam relację II stopnia
         chordShapeId: "M7",
+        colorProfile: {
+          major: {
+            root_rel: _4,
+            exposedTone_abs: 1,
+            usedTones_abs: [3, 5, 7],
+          },
+          minor: {
+            root_rel: _M2,
+            exposedTone_abs: 3,
+            usedTones_abs: [5, 7, 9],
+          },
+        },
       },
       {
         getNotesSetName: () => "M upper structure",

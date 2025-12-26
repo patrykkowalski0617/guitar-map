@@ -32,6 +32,7 @@ export const Note = styled.div`
   height: 10px;
   border-radius: 30px;
   text-align: center;
+  transition: 0.6s;
   opacity: ${({ $isInShape }) => ($isInShape ? "1" : "0.05")};
   background-color: ${({ theme }) => theme.colors.text};
 `;
