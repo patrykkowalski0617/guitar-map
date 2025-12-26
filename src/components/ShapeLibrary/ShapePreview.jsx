@@ -8,11 +8,6 @@ import { useState } from "react";
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 6;
 
-// const renderPoints = [
-//   ["E1_E", "A2_A", "D3_D", "G4_G", "B5_B", "E6_E"],
-//   ["E1_F#", "A2_B", "D3_E", "G4_A", "B5_C#", "E6_F#"],
-//   ["E1_G#", "A2_C#", "D3_F#", "G4_B", "B5_D#", "E6_G#"],
-// ];
 const renderPoints = [
   ["E1_E", "A2_A", "D3_D", "G4_G", "B5_C", "E6_F"],
   ["E1_F#", "A2_B", "D3_E", "G4_A", "B5_D", "E6_G"],

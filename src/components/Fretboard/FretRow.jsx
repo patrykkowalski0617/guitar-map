@@ -39,7 +39,6 @@ const FretRow = ({
               className={`CAGED_noteId__${CAGED_noteId}`}
               onClick={() => handleNoteClick(note, CAGED_noteId)}
               $isActiveShapeRootNote={activeShapeRootNote === note}
-              $isAnyShapeActive={shape.length}
             >
               {note}
             </StyledNote>
