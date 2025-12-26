@@ -164,9 +164,16 @@ export const CAGEDshapes = {
   ],
 };
 
+export const harmonicFunctionDescription = {
+  RELEASE: "Release",
+  MOTION: "Motion",
+  TENSION: "Tension",
+};
+
 export const musicFunctionContextSelectorData = [
   {
     FunctionContextName: "Tonics",
+    harmonicFunctionDescription: harmonicFunctionDescription.RELEASE,
     shapes: [
       {
         getNotesSetName: (rootNote) => `${rootNote}M7`,
@@ -211,6 +218,7 @@ export const musicFunctionContextSelectorData = [
   },
   {
     FunctionContextName: "Subdominants",
+    harmonicFunctionDescription: harmonicFunctionDescription.MOTION,
     shapes: [
       {
         getNotesSetName: () => "M7 / m upper structure",
@@ -239,6 +247,7 @@ export const musicFunctionContextSelectorData = [
   },
   {
     FunctionContextName: "Dominant",
+    harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     shapes: [
       {
         getNotesSetName: () => "Dominant (Myxolydian)",
@@ -257,6 +266,7 @@ export const musicFunctionContextSelectorData = [
   },
   {
     FunctionContextName: "Phrygian Dominant",
+    harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     shapes: [
       {
         getNotesSetName: () => "Dominant (Phrygian)",
