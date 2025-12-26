@@ -1,14 +1,29 @@
+import { useStore } from "../../store/useStore";
 import { ShapeContainer } from "./parts";
 import ShapePreview from "./ShapePreview";
 
 const ShapesLibrary = () => {
+  const { getActiveChordLabel, getActiveChordVariants, variantState } =
+    useStore();
+
+  const activeChordVariants = getActiveChordVariants();
+
+  const activeVariantIndex = variantState.index;
+  const stringIndex = variantState.lastId?.match(/\d+/)[0] - 1;
+
   return (
     <>
-      {/* GEMINI tu ma być nazwa shapu */}
+      {getActiveChordLabel()}
       <ShapeContainer>
-        <ShapePreview variant={0} />
-        <ShapePreview variant={1} />
-        <ShapePreview variant={2} />
+        {activeChordVariants.map((variant, index) => (
+          <ShapePreview
+            variant={variant}
+            key={index}
+            index={index}
+            activeVariantIndex={activeVariantIndex}
+            stringIndex={stringIndex}
+          />
+        ))}
       </ShapeContainer>
     </>
   );

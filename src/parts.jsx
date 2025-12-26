@@ -15,8 +15,8 @@ export const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.sm};
-  border: 1px solid ${({ theme }) => theme.colors.violet}44;
-  box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.violet}22`};
+  border: 1px solid ${({ theme }) => theme.colors.blue}44;
+  box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}22`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
 `;
 export const SubSectionContainer = styled.div`

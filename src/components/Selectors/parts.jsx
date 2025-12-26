@@ -2,8 +2,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.sm};
-  margin: ${({ theme }) => theme.spacing.md} 0;
 `;
 export const Label = styled.span`
   text-transform: uppercase;
@@ -16,10 +14,9 @@ export const Label = styled.span`
 `;
 export const OptionsWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.xs};
-  padding: ${({ theme }) => theme.spacing.xs};
-  width: fit-content;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 export const OptionButton = styled.button`

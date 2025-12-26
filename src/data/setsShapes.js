@@ -1,9 +1,8 @@
 export const setsShapes = [
   {
     id: "M",
-    label: "Major", // GEMINI to jest nazwa którą chcę wyświetlać w ShapeLibrary
+    label: "Major", // GEMINI napisz mi geter do tego labela
     shapes: [
-      // GEMINI to są warianty shapu
       [
         [0, 0],
         [0, 4],
@@ -297,7 +296,7 @@ export const setsShapes = [
   },
   {
     id: "minorPent",
-    label: "Minor Pentatonic 9",
+    label: "Minor Pentatonic",
     shapes: [
       [
         [0, 0],

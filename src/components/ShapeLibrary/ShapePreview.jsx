@@ -3,7 +3,7 @@ import { ShapePreviewContainer, VariantLabel } from "./parts";
 import FretRow from "./FretRow";
 import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 6;
@@ -14,21 +14,23 @@ const renderPoints = [
   ["E1_G#", "A2_C#", "D3_F#", "G4_B", "B5_E", "E6_A"],
 ];
 
-const ShapePreview = ({ variant }) => {
-  const { tuneKey, getActiveChordVariants, getActiveShapeRootNote } =
-    useStore();
+const ShapePreview = ({ variant, index, activeVariantIndex, stringIndex }) => {
+  const { tuneKey, getActiveShapeRootNote } = useStore();
 
-  const [renderPointsIndex, setRenderPointsIndex] = useState(0);
+  const [renderPointsIndex, setRenderPointsIndex] = useState(stringIndex || 0);
 
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
-  const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
-  const selectedVariant = activeChordVariants[variant];
+  const selectedVariant = variant;
   const newShape = transposeShape(
     selectedVariant,
-    renderPoints[variant][renderPointsIndex]
+    renderPoints[index][renderPointsIndex]
   );
+
+  useEffect(() => {
+    setRenderPointsIndex(stringIndex || 0);
+  }, [stringIndex]);
 
   const clickHandler = () => {
     setRenderPointsIndex(
@@ -36,7 +38,10 @@ const ShapePreview = ({ variant }) => {
     );
   };
   return (
-    <ShapePreviewContainer onClick={clickHandler}>
+    <ShapePreviewContainer
+      $isActive={activeVariantIndex === index}
+      onClick={clickHandler}
+    >
       {STRINGS_FIRST_NOTES.map((string, sIdx) => (
         <FretRow
           key={string + sIdx}
@@ -48,7 +53,7 @@ const ShapePreview = ({ variant }) => {
           activeShapeRootNote={activeShapeRootNote}
         />
       ))}
-      <VariantLabel>Variant {variant + 1}</VariantLabel>
+      <VariantLabel>Variant {index + 1}</VariantLabel>
     </ShapePreviewContainer>
   );
 };

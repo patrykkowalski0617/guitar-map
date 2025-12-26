@@ -90,7 +90,16 @@ export const useStore = create((set, get) => ({
     }
     return null;
   },
+  getActiveChordLabel: () => {
+    const { activeShape } = get();
+    if (!activeShape || !activeShape.chordShapeId) return "";
 
+    const chordGroup = setsShapes.find(
+      (chord) => chord.id === activeShape.chordShapeId
+    );
+
+    return chordGroup ? chordGroup.label : "";
+  },
   getActiveChordVariants: () => {
     const { activeShape } = get();
     if (!activeShape || !activeShape.chordShapeId) return [];

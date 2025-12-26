@@ -15,18 +15,18 @@ function App() {
     <ThemeProvider theme={theme}>
       <AppWrapper>
         <SectionContainer>
-          <KeySelector />
-          <ContextSelector />
-          <ShapeSelector />
-          {/* <ModeSelector /> */}
-        </SectionContainer>
-        <SectionContainer>
           <SubSectionContainer>
             <HarmonicFunctionDisplay />
           </SubSectionContainer>
           <SubSectionContainer>
             <ColorProfileVisualizer />
           </SubSectionContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <KeySelector />
+          <ContextSelector />
+          <ShapeSelector />
+          {/* <ModeSelector /> */}
         </SectionContainer>
         <SectionContainer>
           <ShapesLibrary />

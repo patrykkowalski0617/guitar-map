@@ -24,6 +24,7 @@ const KeySelector = () => {
       options={keyOptions}
       value={tuneKey?.label}
       onChange={handleKeyChange}
+      isCompact={true}
     />
   );
 };

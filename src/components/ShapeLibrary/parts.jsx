@@ -5,12 +5,13 @@ export const ShapePreviewContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.sm};
   user-select: none;
   cursor: pointer;
-
+  opacity: ${({ $isActive }) => ($isActive ? "1" : "0.3")};
   background-color: transparent;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.bgLight}44;
+    opacity: 1;
   }
 `;
 
