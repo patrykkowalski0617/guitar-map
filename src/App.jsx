@@ -11,8 +11,8 @@ import {
 } from "./parts";
 import ShapesLibrary from "./components/ShapeLibrary/ShapeLibrary";
 import ShapeSelector from "./components/Selectors/ShapeSelector";
-import HarmonicFunctionDisplay from "./components/HarmonicFunctionDisplay/HarmonicFunctionDisplay";
 import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
+import HarmonicFunctionHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/HarmonicFunctionHorizontalScrollDisplay";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             <h2>Visualizer</h2>
           </SectionTitle>
           <SubSectionContainer>
-            <HarmonicFunctionDisplay />
+            <HarmonicFunctionHorizontalScrollDisplay />
           </SubSectionContainer>
           <SubSectionContainer>
             <ColorProfileVisualizer />

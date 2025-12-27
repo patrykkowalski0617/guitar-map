@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./parts";
 
 const INTERVALS = [1, 3, 5, 7, 9, 11, 13];

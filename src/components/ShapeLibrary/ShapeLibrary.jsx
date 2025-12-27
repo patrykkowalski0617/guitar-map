@@ -1,5 +1,5 @@
 import { useStore } from "../../store/useStore";
-import ShapeTypeDisplay from "../ShapeTypeDisplay/ShapeTypeDisplay";
+import ShapeTypeHorizontalScrollDisplay from "../HorizontalScrollDisplays/ShapeTypeHorizontalScrollDisplay";
 import { ShapeContainer } from "./parts";
 import ShapePreview from "./ShapePreview";
 
@@ -13,7 +13,7 @@ const ShapesLibrary = () => {
 
   return (
     <>
-      <ShapeTypeDisplay />
+      <ShapeTypeHorizontalScrollDisplay />
       <ShapeContainer>
         {activeChordVariants.map((variant, index) => (
           <ShapePreview

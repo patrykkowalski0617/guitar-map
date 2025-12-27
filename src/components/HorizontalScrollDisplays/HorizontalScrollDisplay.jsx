@@ -1,15 +1,11 @@
 import { useEffect, useRef } from "react";
-import { useStore } from "../../store/useStore";
-import { setsShapes } from "../../data/setsShapes";
 import { Label, SelectorContainer } from "./parts";
 
-const ShapeTypeDisplay = () => {
-  const activeChordId = useStore((state) => state.getActiveChordId());
-  const setActiveChordId = useStore((state) => state.setActiveChordId);
+const HorizontalScrollDisplay = ({ items, activeId, onItemClick }) => {
   const containerRef = useRef(null);
-  const validSets = setsShapes.filter((set) => set.id && set.label);
 
   useEffect(() => {
+    // Szukamy elementu z data-active="true" wewnątrz tego konkretnego kontenera
     const activeElement = containerRef.current?.querySelector(
       '[data-active="true"]'
     );
@@ -21,16 +17,16 @@ const ShapeTypeDisplay = () => {
         block: "nearest",
       });
     }
-  }, [activeChordId]);
+  }, [activeId]); // Reaguje na zmianę aktywnego ID
 
   return (
     <SelectorContainer ref={containerRef}>
-      {validSets.map((item) => (
+      {items.map((item) => (
         <Label
           key={item.id}
-          $isActive={activeChordId === item.id}
-          data-active={activeChordId === item.id}
-          onClick={() => setActiveChordId(item.id)}
+          $isActive={activeId === item.id}
+          data-active={activeId === item.id}
+          onClick={() => onItemClick && onItemClick(item.id)}
         >
           {item.label}
         </Label>
@@ -39,4 +35,4 @@ const ShapeTypeDisplay = () => {
   );
 };
 
-export default ShapeTypeDisplay;
+export default HorizontalScrollDisplay;
