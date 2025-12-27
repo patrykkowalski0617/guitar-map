@@ -22,6 +22,7 @@ export const OptionsWrapper = styled.div`
   padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 export const OptionButton = styled.button`
+  white-space: nowrap;
   height: ${({ theme }) => theme.sizes.controls};
   padding: 0 ${({ theme }) => theme.spacing.md};
   display: flex;

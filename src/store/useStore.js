@@ -90,15 +90,33 @@ export const useStore = create((set, get) => ({
     }
     return null;
   },
+  // Zwraca ID aktywnego typu (np. "M", "M7")
+  getActiveChordId: () => {
+    return get().activeShape?.chordShapeId || null;
+  },
+
+  // Zwraca pełny obiekt aktywnego zestawu z setsShapes
+  getActiveChordGroup: () => {
+    const id = get().getActiveChordId();
+    return setsShapes.find((chord) => chord.id === id) || null;
+  },
+
+  // Twoja stara funkcja, teraz używa nowego gettera (Clean Code)
   getActiveChordLabel: () => {
-    const { activeShape } = get();
-    if (!activeShape || !activeShape.chordShapeId) return "";
+    return get().getActiveChordGroup()?.label || "";
+  },
 
-    const chordGroup = setsShapes.find(
-      (chord) => chord.id === activeShape.chordShapeId
+  // Akcja do zmiany aktywnego zestawu (przyda się do klikania w labels)
+  setActiveChordId: (id) => {
+    const { activeMusicContext } = get();
+    // Szukamy shape'a w aktualnym kontekście, który pasuje do wybranego ID zestawu
+    const foundShape = activeMusicContext.shapes.find(
+      (s) => s.chordShapeId === id
     );
-
-    return chordGroup ? chordGroup.label : "";
+    if (foundShape) {
+      get().resetShape();
+      set({ activeShape: foundShape });
+    }
   },
   getActiveChordVariants: () => {
     const { activeShape } = get();

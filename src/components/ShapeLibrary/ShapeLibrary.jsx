@@ -1,10 +1,10 @@
 import { useStore } from "../../store/useStore";
+import ShapeTypeDisplay from "../ShapeTypeDisplay/ShapeTypeDisplay";
 import { ShapeContainer } from "./parts";
 import ShapePreview from "./ShapePreview";
 
 const ShapesLibrary = () => {
-  const { getActiveChordLabel, getActiveChordVariants, variantState } =
-    useStore();
+  const { getActiveChordVariants, variantState } = useStore();
 
   const activeChordVariants = getActiveChordVariants();
 
@@ -13,7 +13,7 @@ const ShapesLibrary = () => {
 
   return (
     <>
-      {getActiveChordLabel()} Shape
+      <ShapeTypeDisplay />
       <ShapeContainer>
         {activeChordVariants.map((variant, index) => (
           <ShapePreview
