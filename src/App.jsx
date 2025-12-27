@@ -42,11 +42,9 @@ function App() {
           <ShapeSelector />
         </SectionContainer>
         <SectionContainer>
-          <SubSectionContainer>
-            <SectionTitle>
-              <h2>Shape Library</h2>
-            </SectionTitle>
-          </SubSectionContainer>
+          <SectionTitle>
+            <h2>Shape Library</h2>
+          </SectionTitle>
           <SubSectionContainer>
             <ShapesLibrary />
           </SubSectionContainer>

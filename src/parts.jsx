@@ -53,7 +53,7 @@ export const SubsectionTitle = styled.h3`
   text-align: center;
   background-color: ${({ theme }) => theme.colors.bg};
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  margin: 0 0 ${({ theme }) => theme.spacing.sm};
   line-height: 1;
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
