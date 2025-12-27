@@ -8,8 +8,6 @@ const FaderContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
-  /* Maska (cień) - włącza się TYLKO gdy treść faktycznie wystaje */
   ${({ $isScrollable }) =>
     $isScrollable &&
     css`
@@ -17,14 +15,7 @@ const FaderContainer = styled.div`
         to right,
         transparent,
         black 40px,
-        black calc(100% - 40px),
-        transparent
-      );
-      -webkit-mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 40px,
-        black calc(100% - 40px),
+        black calc(100% - 140px),
         transparent
       );
     `}
@@ -37,12 +28,7 @@ const ScrollContent = styled.div`
   margin: 0 auto;
   min-width: 100%;
 
-  /* Centrowanie działa zawsze, ale przy długich listach 
-     width: max-content i tak wymusi start od lewej */
   justify-content: center;
-
-  /* Te pseudo-elementy są teraz STAŁE. 
-     Gwarantują, że każda lista ma ten sam "bezpieczny" odstęp od krawędzi (20px) */
   &::before,
   &::after {
     content: "";
@@ -58,7 +44,6 @@ const ScrollFader = ({ children, activeValue }) => {
   const checkScroll = () => {
     if (containerRef.current) {
       const { scrollWidth, clientWidth } = containerRef.current;
-      // Sprawdzamy, czy treść (razem ze stałymi gapami) wystaje poza kontener
       setIsScrollable(scrollWidth > clientWidth + 2);
     }
   };

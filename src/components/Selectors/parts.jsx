@@ -11,12 +11,10 @@ export const OptionsWrapper = styled.div`
   overflow-x: auto;
   gap: ${({ theme }) => theme.spacing.sm};
   background-color: ${({ theme }) => theme.colors.bg};
-  /* scrollbar-width: none; */
 `;
 export const OptionButton = styled.button`
   white-space: nowrap;
-  height: ${({ theme }) => theme.sizes.controls};
-  padding: 0 ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
   display: flex;
   align-items: center;
   justify-content: center;

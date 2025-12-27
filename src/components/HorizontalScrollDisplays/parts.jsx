@@ -4,9 +4,6 @@ export const DisplayContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   padding-bottom: ${({ theme }) => theme.spacing.sm};
-  overflow-x: auto;
-
-  /* Centrowanie zawartości */
   margin: 0 auto;
   width: max-content;
   max-width: 100%;
@@ -22,13 +19,10 @@ export const Label = styled.div`
     const shadowColor = $color || theme.colors.text;
     return `0 0 10px ${shadowColor}66`;
   }};
-
-  opacity: ${({ $isActive }) => ($isActive ? 1 : 0.5)};
+  opacity: ${({ $isActive, $opacityOff }) =>
+    $opacityOff || $isActive ? 1 : 0.5};
   font-size: ${({ theme }) => theme.fontSize.sm};
   white-space: nowrap;
   transition: ${({ theme }) => theme.transitions.default};
   text-transform: uppercase;
-
-  /* Ważne: Zwiększamy font-weight dla aktywnych, by lepiej się wyróżniały w masce */
-  font-weight: ${({ $isActive }) => ($isActive ? "700" : "500")};
 `;

@@ -26,12 +26,13 @@ export const StringRow = styled.div`
 const Fret = css`
   max-width: 300px;
   width: calc(100% / ${({ $numOfCells }) => $numOfCells});
-  min-width: 60px; /* Zwiększone minimalnie dla lepszej czytelności */
+  min-width: 60px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: ${({ theme }) => theme.sizes.fretboardHeight};
-  padding: 0 ${({ theme }) => theme.spacing.xs};
+  padding: ${({ theme }) => theme.spacing.xs};
 `;
 
 export const FretCell = styled.div`
@@ -39,7 +40,7 @@ export const FretCell = styled.div`
   ${Fret}
 
   &:first-child {
-    border-left: 2px solid ${({ theme }) => theme.colors.border}; /* Próg zerowy / siodełko */
+    border-left: 4px solid ${({ theme }) => theme.colors.border}; /* Próg zerowy / siodełko */
   }
 `;
 
@@ -49,7 +50,7 @@ export const FretCount = styled.div`
   user-select: none;
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.5;
-  font-size: 0.7rem;
+  font-size: ${({ theme }) => theme.fontSize.md};
 `;
 
 export const FretboardLabelsWrapper = styled.div`
@@ -57,47 +58,51 @@ export const FretboardLabelsWrapper = styled.div`
 `;
 
 export const CAGEDLetter = styled.span`
+  outline: none;
   cursor: pointer;
-  width: ${({ theme }) => theme.sizes.controlsSm};
-  height: ${({ theme }) => theme.sizes.controlsSm};
+  width: 31px;
+  height: 31px;
   border-radius: ${({ theme }) => theme.borderRadius.full};
+  padding: ${({ theme }) => theme.spacing.xs};
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  font-weight: 800;
+  font-size: ${({ theme }) => theme.fontSize.md};
   text-transform: uppercase;
-  border: 2px solid ${({ theme }) => theme.colors.yellow};
-  color: ${({ theme }) => theme.colors.yellow};
   background: ${({ theme }) => theme.colors.bgLight};
+  box-shadow: ${({ theme, $isInShape }) =>
+    $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
+  border: 1px solid
+    ${({ theme, $isInShape }) =>
+      $isInShape ? theme.colors.yellow : theme.colors.border};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const Note = styled.div`
   outline: none;
   cursor: pointer;
-  /* Nuta jest nieco mniejsza niż wysokość progu, by "pływać" wewnątrz */
   width: 48px;
-  height: ${({ theme }) => theme.sizes.controlsSm};
   border-radius: ${({ theme }) => theme.borderRadius.full};
-
+  height: 31px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 11px;
+  font-size: ${({ theme }) => theme.fontSize.md};
   text-transform: uppercase;
-
   background: ${({ $isInUserShape, theme }) =>
     $isInUserShape ? theme.colors.green : theme.colors.bgLight};
   opacity: ${({ $isInShape, $isActiveShapeRootNote }) =>
     $isInShape || $isActiveShapeRootNote ? "1" : "0.1"};
-
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
-
   border: 1px solid
     ${({ theme, $isInShape }) =>
       $isInShape ? theme.colors.yellow : theme.colors.border};
-
   color: ${({ theme }) => theme.colors.text};
+  transition: ${({ theme }) => theme.transitions.default};
+  &:hover {
+    border: 1px solid
+      ${({ $isActiveShapeRootNote, theme }) =>
+        $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
+  }
 `;

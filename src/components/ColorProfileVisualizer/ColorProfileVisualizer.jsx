@@ -15,7 +15,7 @@ const ColorProfileVisualizer = () => {
 
   return (
     <>
-      <SubsectionTitle>Set Of Feeling</SubsectionTitle>
+      <SubsectionTitle>Feeling of Set Of Notes </SubsectionTitle>
       <S.VisualizerContainer>
         <ProfileRow
           label="Major"

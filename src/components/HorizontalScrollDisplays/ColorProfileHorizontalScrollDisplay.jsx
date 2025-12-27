@@ -14,8 +14,8 @@ const ColorProfileHorizontalScrollDisplay = () => {
   ];
   return (
     <>
-      <SubsectionTitle>Note Set Visualizer Legend</SubsectionTitle>
-      <HorizontalScrollDisplay items={legendItems} />
+      <SubsectionTitle>"Dots" Legend</SubsectionTitle>
+      <HorizontalScrollDisplay items={legendItems} opacityOff={true} />
     </>
   );
 };

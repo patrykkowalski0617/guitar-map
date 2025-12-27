@@ -17,7 +17,7 @@ const HarmonicFunctionHorizontalScrollDisplay = () => {
 
   return (
     <>
-      <SubsectionTitle>Context Feeling</SubsectionTitle>
+      <SubsectionTitle>Feeling of Context </SubsectionTitle>
       <HorizontalScrollDisplay
         items={allFunctions}
         activeId={currentActiveFunction}

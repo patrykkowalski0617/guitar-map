@@ -12,9 +12,7 @@ export const theme = {
     border: "#ffffff1a",
   },
   sizes: {
-    controls: "32px",
-    controlsSm: "24px",
-    dot: "10px",
+    dot: "15px",
     dotXl: "20px",
     fretboardHeight: "35px",
   },

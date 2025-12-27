@@ -15,10 +15,12 @@ import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorPro
 import HarmonicFunctionHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/HarmonicFunctionHorizontalScrollDisplay";
 import ColorProfileHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ColorProfileHorizontalScrollDisplay";
 import ShapeTypeHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ShapeTypeHorizontalScrollDisplay";
+import GlobalStyle from "./GlobalStyle";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <AppWrapper>
         <SectionContainer>
           <SectionTitle>
@@ -38,9 +40,16 @@ function App() {
           <SectionTitle>
             <h2>Configurator</h2>
           </SectionTitle>
-          <KeySelector />
-          <ContextSelector />
-          <ShapeSelector />
+          <SubSectionContainer>
+            <KeySelector />
+          </SubSectionContainer>
+          <SubSectionContainer>
+            <ContextSelector />
+          </SubSectionContainer>
+
+          <SubSectionContainer>
+            <ShapeSelector />
+          </SubSectionContainer>
         </SectionContainer>
         <SectionContainer>
           <SectionTitle>
