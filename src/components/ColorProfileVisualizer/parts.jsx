@@ -8,19 +8,13 @@ const getIntervalColor = (interval, colors, $isAvoid) => {
   return colors.violet;
 };
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
 export const VisualizerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.bg};
-  width: fit-content;
-  align-items: flex-start;
+  justify-content: space-evenly;
 `;
 
 export const ProfileColumn = styled.div`
@@ -37,26 +31,26 @@ export const DotsWrapper = styled.div`
   height: 65px;
 `;
 
-export const LegendColumn = styled.div`
+export const LegendContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 65px;
-  gap: 4px;
-  padding-left: ${({ theme }) => theme.spacing.md};
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const LegendLabel = styled.div`
-  height: 10px;
   display: flex;
   align-items: center;
-  font-size: 0.55rem;
-  font-weight: 800;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1px;
   color: ${({ $color }) => $color};
   opacity: 0.7;
   white-space: nowrap;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 export const DotStack = styled.div`
@@ -79,9 +73,8 @@ export const IntervalNumber = styled.span`
 
 export const MainLabel = styled.span`
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.75rem;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   text-transform: uppercase;
-  letter-spacing: 2px;
   text-align: center;
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   padding-top: ${({ theme }) => theme.spacing.sm};
@@ -101,7 +94,7 @@ export const ToneDot = styled.div`
     getIntervalColor($interval, theme.colors, $isAvoid)};
 
   transition: ${({ theme }) => theme.transitions.bounce};
-  transform: translateY(${({ $offset }) => $offset}px);
+  transform: translateY(${({ $offset }) => $offset / 2}px);
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
 
   box-shadow: ${({ $isExposed, $interval, theme, $isAvoid }) => {

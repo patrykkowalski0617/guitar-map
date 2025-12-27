@@ -1,9 +1,7 @@
 import { useStore } from "../../store/useStore";
 import { ShapePreviewContainer, VariantLabel } from "./parts";
 import FretRow from "./FretRow";
-import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
-import { useEffect, useState } from "react";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 6;
@@ -15,40 +13,22 @@ const renderPoints = [
 ];
 
 const ShapePreview = ({ variant, index, activeVariantIndex, stringIndex }) => {
-  const { tuneKey, getActiveShapeRootNote } = useStore();
-
-  const [renderPointsIndex, setRenderPointsIndex] = useState(stringIndex || 0);
-
-  const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
+  const { getActiveShapeRootNote } = useStore();
   const activeShapeRootNote = getActiveShapeRootNote();
-
   const selectedVariant = variant;
   const newShape = transposeShape(
     selectedVariant,
-    renderPoints[index][renderPointsIndex]
+    renderPoints[index][stringIndex]
   );
 
-  useEffect(() => {
-    setRenderPointsIndex(stringIndex || 0);
-  }, [stringIndex]);
-
-  const clickHandler = () => {
-    setRenderPointsIndex(
-      (prevIndex) => (prevIndex + 1) % renderPoints[0].length
-    );
-  };
   return (
-    <ShapePreviewContainer
-      $isActive={activeVariantIndex === index}
-      onClick={clickHandler}
-    >
+    <ShapePreviewContainer $isActive={activeVariantIndex === index}>
       {STRINGS_FIRST_NOTES.map((string, sIdx) => (
         <FretRow
           key={string + sIdx}
           string={string}
           sIdx={sIdx}
           numberOfFrets={numberOfFrets}
-          CAGED_shift={CAGED_shift}
           shape={newShape}
           activeShapeRootNote={activeShapeRootNote}
         />

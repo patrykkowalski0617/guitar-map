@@ -15,7 +15,7 @@ const ContextSelector = () => {
   return (
     <>
       <Selector
-        label="Context - Unified Functions"
+        label="Context"
         options={contextOptions}
         value={activeMusicContext?.FunctionContextName}
         onChange={setActiveMusicContextByName}

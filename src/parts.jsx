@@ -8,28 +8,43 @@ export const AppWrapper = styled.div`
 `;
 
 export const SectionContainer = styled.section`
-  margin: 0 auto ${({ theme }) => theme.spacing.lg};
+  margin: ${({ theme }) => theme.spacing.lg} auto 0;
   max-width: 1200px;
-  padding: ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.md}
-    0;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: 40px ${({ theme }) => `${theme.spacing.md} ${theme.spacing.lg}`};
   border: 1px solid ${({ theme }) => theme.colors.blue}44;
   box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}22`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
+  position: relative;
 `;
 export const SubSectionContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  /* margin-bottom: ${({ theme }) => theme.spacing.xl}; */
 `;
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  opacity: 0.6;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-  border-left: 3px solid ${({ theme }) => theme.colors.yellow};
-  padding-left: ${({ theme }) => theme.spacing.sm};
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -15px;
+  height: 30px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}22`};
+  border: 1px solid ${({ theme }) => theme.colors.blue}44;
+  background-color: ${({ theme }) => theme.colors.bg};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
+  > h2 {
+    line-height: 20px;
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    opacity: 0.5;
+  }
 `;

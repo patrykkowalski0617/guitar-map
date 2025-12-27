@@ -2,7 +2,7 @@ import { NOTES_FROM_C } from "../../data/notes";
 import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
 
-const FretRow = ({ string, sIdx, numberOfFrets, CAGED_shift, shape }) => {
+const FretRow = ({ string, sIdx, numberOfFrets, shape }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
 
@@ -10,7 +10,7 @@ const FretRow = ({ string, sIdx, numberOfFrets, CAGED_shift, shape }) => {
     <StringRow>
       {fretCells.map((note, fIdx) => {
         const get_CAGED_noteId = () => {
-          let index = NOTES_FROM_C.indexOf(note) - CAGED_shift;
+          let index = NOTES_FROM_C.indexOf(note);
           if (index < 0) index += 12;
           return `${stringId}_${NOTES_FROM_C[index]}`;
         };

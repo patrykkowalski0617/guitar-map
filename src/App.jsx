@@ -3,8 +3,12 @@ import KeySelector from "./components/Selectors/KeySelector";
 import ContextSelector from "./components/Selectors/ContextSelector";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
-import { AppWrapper, SectionContainer, SubSectionContainer } from "./parts";
-import ModeSelector from "./components/Selectors/ModeSelector";
+import {
+  AppWrapper,
+  SectionContainer,
+  SectionTitle,
+  SubSectionContainer,
+} from "./parts";
 import ShapesLibrary from "./components/ShapeLibrary/ShapeLibrary";
 import ShapeSelector from "./components/Selectors/ShapeSelector";
 import HarmonicFunctionDisplay from "./components/HarmonicFunctionDisplay/HarmonicFunctionDisplay";
@@ -15,6 +19,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <AppWrapper>
         <SectionContainer>
+          <SectionTitle>
+            <h2>Visualizer</h2>
+          </SectionTitle>
           <SubSectionContainer>
             <HarmonicFunctionDisplay />
           </SubSectionContainer>
@@ -23,12 +30,17 @@ function App() {
           </SubSectionContainer>
         </SectionContainer>
         <SectionContainer>
+          <SectionTitle>
+            <h2>Configurator</h2>
+          </SectionTitle>
           <KeySelector />
           <ContextSelector />
           <ShapeSelector />
-          {/* <ModeSelector /> */}
         </SectionContainer>
         <SectionContainer>
+          <SectionTitle>
+            <h2>Shape Library</h2>
+          </SectionTitle>
           <ShapesLibrary />
           <Fretboard />
         </SectionContainer>

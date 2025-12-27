@@ -497,17 +497,16 @@ export const musicFunctionContextSelectorData = [
     majorRoot: _5,
     shapes: [
       {
-        getNotesSetName: () => "Dominant",
+        getNotesSetName: (rootNote) => `${rootNote}M7`,
         rootSemitone: _5,
         chordShapeId: "Dominant",
-      },
-      {
-        getNotesSetName: () => "Upper structure",
-        rootSemitone: _M7,
-        chordShapeId: "m7b5",
-      },
-      {
-        getNotesSetName: () => "No avoid notes",
+        colorProfile: {
+          major: {
+            root_rel: _5,
+            exposedTone: 1,
+            usedTones: [3, 5, 7],
+          },
+        },
       },
     ],
   },

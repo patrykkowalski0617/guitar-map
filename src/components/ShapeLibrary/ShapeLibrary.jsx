@@ -13,7 +13,7 @@ const ShapesLibrary = () => {
 
   return (
     <>
-      {getActiveChordLabel()}
+      {getActiveChordLabel()} Shape
       <ShapeContainer>
         {activeChordVariants.map((variant, index) => (
           <ShapePreview

@@ -14,8 +14,14 @@ export const theme = {
   sizes: {
     controls: "32px",
     controlsSm: "24px",
-    dot: "20px",
+    dot: "10px",
+    dotXl: "20px",
     fretboardHeight: "35px",
+  },
+  fontSize: {
+    sm: "0.9rem",
+    md: "1rem",
+    lg: "1.50rem",
   },
   borderRadius: { sm: "4px", md: "8px", lg: "12px", full: "500px" },
   shadows: { glow: "0 0 12px", panel: "0 4px 20px rgba(0, 0, 0, 0.4)" },

@@ -17,7 +17,9 @@ export const OptionsWrapper = styled.div`
   flex-wrap: nowrap;
   width: 100%;
   overflow-x: auto;
+  gap: ${({ theme }) => theme.spacing.xs};
   background-color: ${({ theme }) => theme.colors.bg};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 export const OptionButton = styled.button`
   height: ${({ theme }) => theme.sizes.controls};
@@ -27,14 +29,13 @@ export const OptionButton = styled.button`
   justify-content: center;
   border: 1px solid
     ${({ theme, $active }) =>
-      $active ? theme.colors.yellow : theme.colors.border};
+      $active ? `${theme.colors.yellow}66` : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme, $active }) =>
     $active ? theme.colors.yellow : theme.colors.text};
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   transition: ${({ theme }) => theme.transitions.default};
   box-shadow: ${({ theme, $active }) =>
     $active ? `0 0 15px ${theme.colors.yellow}22` : "none"};

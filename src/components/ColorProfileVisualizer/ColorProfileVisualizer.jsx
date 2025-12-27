@@ -13,42 +13,38 @@ const ColorProfileVisualizer = () => {
   const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
 
   return (
-    <S.Wrapper>
-      <S.VisualizerContainer>
-        {/* Rząd dla Major */}
-        <ProfileRow
-          label="Major"
-          profile={activeShape.colorProfile.major}
-          rootNoteName={majorRootName}
-        />
-
-        {/* Rząd dla Minor */}
+    <S.VisualizerContainer>
+      <ProfileRow
+        label="Major"
+        profile={activeShape.colorProfile.major}
+        rootNoteName={majorRootName}
+      />
+      {activeShape.colorProfile.minor && (
         <ProfileRow
           label="Minor"
           profile={activeShape.colorProfile.minor}
           rootNoteName={minorRootName}
         />
+      )}
 
-        {/* Legenda z kolorami z theme */}
-        <S.LegendColumn>
-          <S.LegendLabel $color={({ theme }) => theme.colors.text}>
-            Transparent
-          </S.LegendLabel>
-          <S.LegendLabel $color={({ theme }) => theme.colors.yellow}>
-            Color (Guide Tones)
-          </S.LegendLabel>
-          <S.LegendLabel $color={({ theme }) => theme.colors.blue}>
-            Tension
-          </S.LegendLabel>
-          <S.LegendLabel $color={({ theme }) => theme.colors.violet}>
-            More Tension
-          </S.LegendLabel>
-          <S.LegendLabel $color={({ theme }) => theme.colors.red}>
-            Avoid Notes
-          </S.LegendLabel>
-        </S.LegendColumn>
-      </S.VisualizerContainer>
-    </S.Wrapper>
+      <S.LegendContainer>
+        <S.LegendLabel $color={({ theme }) => theme.colors.text}>
+          Transparent
+        </S.LegendLabel>
+        <S.LegendLabel $color={({ theme }) => theme.colors.yellow}>
+          Color (Guide Tones)
+        </S.LegendLabel>
+        <S.LegendLabel $color={({ theme }) => theme.colors.blue}>
+          Tension
+        </S.LegendLabel>
+        <S.LegendLabel $color={({ theme }) => theme.colors.violet}>
+          More Tension
+        </S.LegendLabel>
+        <S.LegendLabel $color={({ theme }) => theme.colors.red}>
+          "Avoid Notes"
+        </S.LegendLabel>
+      </S.LegendContainer>
+    </S.VisualizerContainer>
   );
 };
 
