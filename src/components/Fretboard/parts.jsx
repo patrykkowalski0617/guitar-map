@@ -69,17 +69,16 @@ const fretboardButtonStyles = css`
       $isInShape ? theme.colors.yellow : theme.colors.border};
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
-  &:hover {
-    border: 1px solid
-      ${({ $isActiveShapeRootNote, theme }) =>
-        $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
-  }
+  cursor: pointer;
 `;
 
 export const CAGEDLetter = styled.div`
   width: 31px;
   height: 31px;
   ${fretboardButtonStyles}
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.yellow};
+  }
 `;
 
 export const Note = styled.div`
@@ -92,5 +91,9 @@ export const Note = styled.div`
       ? "0.4"
       : "0.1"};
   ${fretboardButtonStyles}
-  cursor: pointer;
+  &:hover {
+    border: 1px solid
+      ${({ $isActiveShapeRootNote, theme }) =>
+        $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
+  }
 `;
