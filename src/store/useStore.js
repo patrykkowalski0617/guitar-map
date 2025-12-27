@@ -5,34 +5,26 @@ import { getNotesFromNote } from "../utils/getNotesFromNote";
 import { setsShapes } from "../data/setsShapes";
 
 export const useStore = create((set, get) => ({
-  // --- STAN ---
   tuneKey: UNIFIED_MUSIC_KEYS[0],
   activeMusicContext: musicFunctionContextSelectorData[0],
   activeShape: musicFunctionContextSelectorData[0].shapes[0],
   activeShapeName: "",
 
-  // Stan wizualizacji na gryfie
   shape: [],
   variantState: { lastId: null, index: 0 },
 
-  // --- POMOCNICZE ---
   getKeyNotes: (keyObj) => {
     const k = keyObj || get().tuneKey;
     return getNotesFromNote(k.majorNote);
   },
 
-  // --- AKCJE RESETUJĄCE ---
   setShape: (newShape) => set({ shape: newShape }),
   setVariantState: (newState) => set({ variantState: newState }),
 
-  // Funkcja czyszcząca widok gryfu
   resetShape: () =>
     set({ shape: [], variantState: { lastId: null, index: 0 } }),
 
-  // --- AKCJE GŁÓWNE ---
   setTuneKey: (keyObject) => {
-    // Przy zmianie tonacji również warto zresetować kształt,
-    // bo nuty bazowe (RootNotes) się przesuwają
     get().resetShape();
     set({ tuneKey: keyObject });
   },
@@ -51,7 +43,6 @@ export const useStore = create((set, get) => ({
     });
 
     if (foundShape) {
-      // RESETUJEMY kształt przy zmianie konkretnego typu (np. z Major na Major7)
       get().resetShape();
       set({ activeShape: foundShape });
     }
@@ -62,11 +53,10 @@ export const useStore = create((set, get) => ({
       (item) => item.FunctionContextName === name
     );
     if (newContext) {
-      // RESETUJEMY kształt przy zmianie kontekstu (np. z Triads na Seventh Chords)
       get().resetShape();
       set({
         activeMusicContext: newContext,
-        // Opcjonalnie: ustawiamy pierwszy kształt z nowej listy jako aktywny
+
         activeShape: newContext.shapes[0],
       });
     }
@@ -75,7 +65,6 @@ export const useStore = create((set, get) => ({
   setActiveShapeName: (name) => set({ activeShapeName: name }),
   setActiveShape: (shapeObject) => set({ activeShape: shapeObject }),
 
-  // --- GETTERY ---
   getNoteNameByOffset: (offset) => {
     const { getKeyNotes } = get();
     const notes = getKeyNotes();
@@ -90,26 +79,23 @@ export const useStore = create((set, get) => ({
     }
     return null;
   },
-  // Zwraca ID aktywnego typu (np. "M", "M7")
+
   getActiveChordId: () => {
     return get().activeShape?.chordShapeId || null;
   },
 
-  // Zwraca pełny obiekt aktywnego zestawu z setsShapes
   getActiveChordGroup: () => {
     const id = get().getActiveChordId();
     return setsShapes.find((chord) => chord.id === id) || null;
   },
 
-  // Twoja stara funkcja, teraz używa nowego gettera (Clean Code)
   getActiveChordLabel: () => {
     return get().getActiveChordGroup()?.label || "";
   },
 
-  // Akcja do zmiany aktywnego zestawu (przyda się do klikania w labels)
   setActiveChordId: (id) => {
     const { activeMusicContext } = get();
-    // Szukamy shape'a w aktualnym kontekście, który pasuje do wybranego ID zestawu
+
     const foundShape = activeMusicContext.shapes.find(
       (s) => s.chordShapeId === id
     );

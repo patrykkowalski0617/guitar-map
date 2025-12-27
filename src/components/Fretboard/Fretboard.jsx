@@ -17,7 +17,6 @@ const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
 
 const Fretboard = () => {
-  // ... (cała logika store i handlerów pozostaje bez zmian)
   const {
     tuneKey,
     getActiveChordVariants,

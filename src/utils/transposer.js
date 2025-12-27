@@ -40,16 +40,12 @@ export const transposeShape = (relativeShape, targetPoint) => {
       const newSName = STRING_ORDER[newSIdx];
       const newAbsValue = targetAbs + iDiff;
 
-      // OBLICZENIE Z KOREKTĄ OKTAWY
       let newFret = newAbsValue - STRING_OFFSETS[newSIdx];
 
-      // Jeśli próg jest ujemny (za siodełkiem),
-      // przesuwamy go o oktawę w górę, aż będzie >= 0
       while (newFret < 0) {
         newFret += 12;
       }
 
-      // 4. Zamieniamy próg z powrotem na nazwę nuty
       const startNoteOfNewString = STRING_MAP[newSName];
       const startNoteIdx = NOTES_FROM_C.indexOf(startNoteOfNewString);
       let finalNoteIdx = (startNoteIdx + newFret) % 12;

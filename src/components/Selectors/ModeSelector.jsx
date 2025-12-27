@@ -8,7 +8,6 @@ const ModeSelector = () => {
   const setMode = useStore((state) => state.setMode);
 
   const handleModeChange = (selectedMode) => {
-    // Prosta zmiana stringa w stanie
     setMode(selectedMode);
   };
 

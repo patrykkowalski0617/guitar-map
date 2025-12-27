@@ -13,7 +13,7 @@ const Selector = ({ label, options, value, onChange, isCompact }) => {
             <OptionButton
               key={option}
               $active={value === option}
-              data-active={value === option} // Kluczowe dla działania ScrollFadera
+              data-active={value === option}
               onClick={() => onChange(option)}
             >
               {option}

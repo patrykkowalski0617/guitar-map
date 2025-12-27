@@ -50,7 +50,6 @@ export const IntervalNumber = styled.span`
 `;
 
 export const ToneDot = styled.div`
-  /* Rozmiar domyślny (mobile) */
   width: ${({ theme }) => theme.sizes.dot};
   height: ${({ theme }) => theme.sizes.dot};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
@@ -67,7 +66,6 @@ export const ToneDot = styled.div`
     return `${theme.shadows.glow} ${color}`;
   }};
 
-  /* Zmiana rozmiaru dla tabletu i większych urządzeń */
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: ${({ theme }) => theme.sizes.dotXl};
     height: ${({ theme }) => theme.sizes.dotXl};

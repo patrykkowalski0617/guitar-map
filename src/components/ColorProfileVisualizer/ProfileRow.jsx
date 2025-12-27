@@ -13,7 +13,6 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
           const isAvoid = profile?.avoidNotes?.includes(interval);
           const isActive = isExposed || isUsed || isAvoid;
 
-          // Logika przesunięcia w pionie (animacja wejścia)
           let offset = 0;
           if (isExposed) offset = -35;
           else if (isUsed || isAvoid) offset = -18;

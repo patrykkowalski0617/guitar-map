@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const FretboardContainer = styled.div`
   max-width: 100vw;
   user-select: none;
-  / &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     height: 8px;
   }
   &::-webkit-scrollbar-track {

@@ -1,7 +1,7 @@
 export const setsShapes = [
   {
     id: "M",
-    label: "Major", // GEMINI napisz mi geter do tego labela
+    label: "Major",
     shapes: [
       [
         [0, 0],
