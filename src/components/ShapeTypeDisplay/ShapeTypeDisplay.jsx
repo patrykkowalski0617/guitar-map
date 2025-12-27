@@ -1,37 +1,35 @@
-import styled from "styled-components";
+import { useEffect, useRef } from "react";
 import { useStore } from "../../store/useStore";
 import { setsShapes } from "../../data/setsShapes";
-
-const SelectorContainer = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
-  padding: 10px 0;
-  overflow-x: auto;
-`;
-
-const Label = styled.div`
-  padding: 6px 12px;
-  background: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.primary : "transparent"};
-  color: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.yellow : theme.colors.text};
-  font-size: 0.8rem;
-  white-space: nowrap;
-`;
+import { Label, SelectorContainer } from "./parts";
 
 const ShapeTypeDisplay = () => {
   const activeChordId = useStore((state) => state.getActiveChordId());
   const setActiveChordId = useStore((state) => state.setActiveChordId);
-
+  const containerRef = useRef(null);
   const validSets = setsShapes.filter((set) => set.id && set.label);
 
+  useEffect(() => {
+    const activeElement = containerRef.current?.querySelector(
+      '[data-active="true"]'
+    );
+
+    if (activeElement) {
+      activeElement.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [activeChordId]);
+
   return (
-    <SelectorContainer>
+    <SelectorContainer ref={containerRef}>
       {validSets.map((item) => (
         <Label
           key={item.id}
           $isActive={activeChordId === item.id}
+          data-active={activeChordId === item.id}
           onClick={() => setActiveChordId(item.id)}
         >
           {item.label}

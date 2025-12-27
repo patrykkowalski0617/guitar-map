@@ -19,7 +19,7 @@ export const OptionsWrapper = styled.div`
   overflow-x: auto;
   gap: ${({ theme }) => theme.spacing.xs};
   background-color: ${({ theme }) => theme.colors.bg};
-  padding-bottom: ${({ theme }) => theme.spacing.sm};
+  scrollbar-width: none;
 `;
 export const OptionButton = styled.button`
   white-space: nowrap;
