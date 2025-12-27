@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Label, SelectorContainer } from "./parts";
+import { Label, DisplayContainer } from "./parts";
 
-const HorizontalScrollDisplay = ({ items, activeId, onItemClick }) => {
+const HorizontalScrollDisplay = ({ items, activeId }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -20,18 +20,18 @@ const HorizontalScrollDisplay = ({ items, activeId, onItemClick }) => {
   }, [activeId]); // Reaguje na zmianę aktywnego ID
 
   return (
-    <SelectorContainer ref={containerRef}>
+    <DisplayContainer ref={containerRef}>
       {items.map((item) => (
         <Label
           key={item.id}
           $isActive={activeId === item.id}
           data-active={activeId === item.id}
-          onClick={() => onItemClick && onItemClick(item.id)}
+          $color={item.color} // Przekazujemy kolor do styled-components
         >
           {item.label}
         </Label>
       ))}
-    </SelectorContainer>
+    </DisplayContainer>
   );
 };
 
