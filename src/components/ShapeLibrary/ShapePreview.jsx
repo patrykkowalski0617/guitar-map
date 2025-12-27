@@ -1,7 +1,8 @@
 import { useStore } from "../../store/useStore";
-import { ShapePreviewContainer, VariantLabel } from "./parts";
+import { ShapePreviewContainer } from "./parts";
 import FretRow from "./FretRow";
 import { transposeShape } from "../../utils/transposer";
+import { UnderLabel } from "../../parts";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 6;
@@ -33,7 +34,7 @@ const ShapePreview = ({ variant, index, activeVariantIndex, stringIndex }) => {
           activeShapeRootNote={activeShapeRootNote}
         />
       ))}
-      <VariantLabel>Variant {index + 1}</VariantLabel>
+      <UnderLabel>Variant {index + 1}</UnderLabel>
     </ShapePreviewContainer>
   );
 };

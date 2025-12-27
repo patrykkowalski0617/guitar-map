@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const FretboardContainer = styled.div`
   max-width: 100vw;
-  overflow: auto;
+
   user-select: none;
 
   /* Stylizacja scrollbara dla zachowania estetyki DAW */

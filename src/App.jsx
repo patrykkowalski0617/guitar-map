@@ -14,6 +14,7 @@ import ShapeSelector from "./components/Selectors/ShapeSelector";
 import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
 import HarmonicFunctionHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/HarmonicFunctionHorizontalScrollDisplay";
 import ColorProfileHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ColorProfileHorizontalScrollDisplay";
+import ShapeTypeHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ShapeTypeHorizontalScrollDisplay";
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
           <SectionTitle>
             <h2>Shape Library</h2>
           </SectionTitle>
+          <SubSectionContainer>
+            <ShapeTypeHorizontalScrollDisplay />
+          </SubSectionContainer>
           <SubSectionContainer>
             <ShapesLibrary />
           </SubSectionContainer>

@@ -59,3 +59,16 @@ export const SubsectionTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => `${theme.colors.blue}44`};
 `;
+
+export const UnderLabel = styled.div`
+  text-align: center;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  margin-top: ${({ theme }) => theme.spacing.xs};
+  color: ${({ theme }) => theme.colors.text};
+  opacity: 0.6;
+  strong {
+    color: ${({ theme }) => theme.colors.yellow};
+    margin-right: ${({ theme }) => theme.spacing.xs};
+  }
+`;

@@ -1,6 +1,5 @@
 import { SubsectionTitle } from "../../parts";
 import { useStore } from "../../store/useStore";
-import ShapeTypeHorizontalScrollDisplay from "../HorizontalScrollDisplays/ShapeTypeHorizontalScrollDisplay";
 import { ShapeContainer } from "./parts";
 import ShapePreview from "./ShapePreview";
 
@@ -14,7 +13,6 @@ const ShapesLibrary = () => {
 
   return (
     <>
-      <ShapeTypeHorizontalScrollDisplay />
       <SubsectionTitle>Shape diagram</SubsectionTitle>
       <ShapeContainer>
         {activeChordVariants.map((variant, index) => (

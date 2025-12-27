@@ -57,12 +57,3 @@ export const Note = styled.div`
   box-shadow: ${({ $isInShape, theme }) =>
     $isInShape ? `0 0 4px ${theme.colors.text}aa` : "none"};
 `;
-
-export const VariantLabel = styled.div`
-  text-align: center;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  margin-top: ${({ theme }) => theme.spacing.xs};
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.6;
-`;

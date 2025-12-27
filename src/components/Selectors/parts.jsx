@@ -11,7 +11,7 @@ export const OptionsWrapper = styled.div`
   overflow-x: auto;
   gap: ${({ theme }) => theme.spacing.sm};
   background-color: ${({ theme }) => theme.colors.bg};
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 `;
 export const OptionButton = styled.button`
   white-space: nowrap;

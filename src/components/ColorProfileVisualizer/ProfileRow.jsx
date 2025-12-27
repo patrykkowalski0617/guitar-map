@@ -1,3 +1,4 @@
+import { UnderLabel } from "../../parts";
 import * as S from "./parts";
 
 const INTERVALS = [1, 3, 5, 7, 9, 11, 13];
@@ -38,9 +39,9 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
           );
         })}
       </S.DotsWrapper>
-      <S.MainLabel>
+      <UnderLabel>
         <strong>{rootNoteName}</strong> {label}
-      </S.MainLabel>
+      </UnderLabel>
     </S.ProfileColumn>
   );
 };

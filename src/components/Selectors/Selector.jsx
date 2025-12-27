@@ -1,23 +1,26 @@
 import { SubsectionTitle } from "../../parts";
+import ScrollFader from "../ScrollFader/ScrollFader";
 import { Container, OptionsWrapper, OptionButton } from "./parts";
 
 const Selector = ({ label, options, value, onChange, isCompact }) => {
   return (
     <Container>
       {label && <SubsectionTitle>{label}</SubsectionTitle>}
-      <OptionsWrapper $isCompact={isCompact}>
-        {options.map((option) => {
-          return (
+
+      <ScrollFader activeValue={value}>
+        <OptionsWrapper $isCompact={isCompact}>
+          {options.map((option) => (
             <OptionButton
               key={option}
               $active={value === option}
+              data-active={value === option} // Kluczowe dla działania ScrollFadera
               onClick={() => onChange(option)}
             >
               {option}
             </OptionButton>
-          );
-        })}
-      </OptionsWrapper>
+          ))}
+        </OptionsWrapper>
+      </ScrollFader>
     </Container>
   );
 };

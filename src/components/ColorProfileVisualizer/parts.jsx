@@ -70,21 +70,6 @@ export const IntervalNumber = styled.span`
   transition: ${({ theme }) => theme.transitions.default};
 `;
 
-export const MainLabel = styled.span`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  text-transform: uppercase;
-  text-align: center;
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-  padding-top: ${({ theme }) => theme.spacing.sm};
-  width: 100%;
-
-  strong {
-    color: ${({ theme }) => theme.colors.yellow};
-    margin-right: ${({ theme }) => theme.spacing.xs};
-  }
-`;
-
 export const ToneDot = styled.div`
   width: ${({ theme }) => theme.sizes.dot};
   height: ${({ theme }) => theme.sizes.dot};
