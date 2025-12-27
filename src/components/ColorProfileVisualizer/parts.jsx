@@ -12,16 +12,16 @@ export const VisualizerContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.bg};
   justify-content: space-evenly;
+  max-width: 600px;
+  margin: auto;
 `;
 
 export const ProfileColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.md};
 `;
 
 export const DotsWrapper = styled.div`
@@ -29,27 +29,6 @@ export const DotsWrapper = styled.div`
   gap: ${({ theme }) => theme.spacing.sm};
   align-items: flex-end;
   height: 65px;
-`;
-
-export const LegendContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
-export const LegendLabel = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  text-transform: uppercase;
-  color: ${({ $color }) => $color};
-  opacity: 0.7;
-  white-space: nowrap;
-  margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
 `;
 
 export const DotStack = styled.div`
@@ -71,6 +50,7 @@ export const IntervalNumber = styled.span`
 `;
 
 export const ToneDot = styled.div`
+  /* Rozmiar domyślny (mobile) */
   width: ${({ theme }) => theme.sizes.dot};
   height: ${({ theme }) => theme.sizes.dot};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
@@ -86,4 +66,10 @@ export const ToneDot = styled.div`
     const color = getIntervalColor($interval, theme.colors, $isAvoid);
     return `${theme.shadows.glow} ${color}`;
   }};
+
+  /* Zmiana rozmiaru dla tabletu i większych urządzeń */
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: ${({ theme }) => theme.sizes.dotXl};
+    height: ${({ theme }) => theme.sizes.dotXl};
+  }
 `;
