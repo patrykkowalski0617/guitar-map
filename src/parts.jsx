@@ -64,7 +64,7 @@ export const UnderLabel = styled.div`
   text-align: center;
   font-size: 0.65rem;
   text-transform: uppercase;
-  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.6;
   strong {

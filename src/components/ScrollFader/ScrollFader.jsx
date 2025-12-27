@@ -9,7 +9,7 @@ const FaderContainer = styled.div`
     display: none;
   }
 
-  /* Maska pojawia się tylko, gdy lista jest skrolowalna */
+  /* Maska (cień) - włącza się TYLKO gdy treść faktycznie wystaje */
   ${({ $isScrollable }) =>
     $isScrollable &&
     css`
@@ -37,12 +37,17 @@ const ScrollContent = styled.div`
   margin: 0 auto;
   min-width: 100%;
 
-  /* Pseudo-elementy mają teraz stały flex-basis */
-  /* Dzięki temu margines jest identyczny dla każdej listy w aplikacji */
+  /* Centrowanie działa zawsze, ale przy długich listach 
+     width: max-content i tak wymusi start od lewej */
+  justify-content: center;
+
+  /* Te pseudo-elementy są teraz STAŁE. 
+     Gwarantują, że każda lista ma ten sam "bezpieczny" odstęp od krawędzi (20px) */
   &::before,
   &::after {
     content: "";
     flex: 0 0 20px;
+    display: block;
   }
 `;
 
@@ -53,13 +58,12 @@ const ScrollFader = ({ children, activeValue }) => {
   const checkScroll = () => {
     if (containerRef.current) {
       const { scrollWidth, clientWidth } = containerRef.current;
-      // Porównujemy szerokość treści z szerokością kontenera
+      // Sprawdzamy, czy treść (razem ze stałymi gapami) wystaje poza kontener
       setIsScrollable(scrollWidth > clientWidth + 2);
     }
   };
 
   useEffect(() => {
-    // Mały delay pomaga, gdy style styled-components jeszcze się ładują
     const timer = setTimeout(checkScroll, 0);
     window.addEventListener("resize", checkScroll);
     return () => {
@@ -69,17 +73,19 @@ const ScrollFader = ({ children, activeValue }) => {
   }, [children]);
 
   useEffect(() => {
-    const activeElement = containerRef.current?.querySelector(
-      '[data-active="true"]'
-    );
-    if (activeElement) {
-      activeElement.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
-      });
+    if (isScrollable) {
+      const activeElement = containerRef.current?.querySelector(
+        '[data-active="true"]'
+      );
+      if (activeElement) {
+        activeElement.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      }
     }
-  }, [activeValue]);
+  }, [activeValue, isScrollable]);
 
   return (
     <FaderContainer ref={containerRef} $isScrollable={isScrollable}>
