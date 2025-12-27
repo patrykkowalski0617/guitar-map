@@ -183,12 +183,14 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "M7",
         colorProfile: {
           major: {
-            exposedTone: 1,
-            usedTones: [3, 5, 7],
+            exposedTone: 1, // tą unosimy wyżej i dajemy box shadow
+            usedTones: [1, 3, 5, 7, 11], // te unosimy nisko
+            avoidNotes: [11], // tej dajemy czerwony kolor
           },
           minor: {
             exposedTone: 3,
-            usedTones: [5, 7, 9],
+            usedTones: [3, 5, 7, 9],
+            avoidNotes: [13],
           },
         },
       },
@@ -215,10 +217,12 @@ export const musicFunctionContextSelectorData = [
           major: {
             exposedTone: 13,
             usedTones: [1, 3, 5],
+            avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
             usedTones: [3, 5, 7],
+            avoidNotes: [13],
           },
         },
       },

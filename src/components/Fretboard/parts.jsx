@@ -37,7 +37,7 @@ export const FretCell = styled.div`
   ${Fret}
 
   &:first-child {
-    border-left: 4px solid ${({ theme }) => theme.colors.border}; /* Próg zerowy / siodełko */
+    border-left: 4px solid ${({ theme }) => theme.colors.border};
   }
 `;
 

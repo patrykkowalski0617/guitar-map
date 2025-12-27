@@ -41,11 +41,12 @@ export const DotStack = styled.div`
 export const IntervalNumber = styled.span`
   font-size: 0.65rem;
   font-weight: bold;
-  color: ${({ $interval, theme, $isActive, $isAvoid }) =>
-    $isActive
+  color: ${({ $interval, theme, $isRaised, $isAvoid }) =>
+    $isRaised || $isAvoid
       ? getIntervalColor($interval, theme.colors, $isAvoid)
       : theme.colors.text};
-  opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
+
+  opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.2)};
   transition: ${({ theme }) => theme.transitions.default};
 `;
 
@@ -55,11 +56,9 @@ export const ToneDot = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   background-color: ${({ $interval, theme, $isAvoid }) =>
     getIntervalColor($interval, theme.colors, $isAvoid)};
-
   transition: ${({ theme }) => theme.transitions.bounce};
   transform: translateY(${({ $offset }) => $offset / 2}px);
-  opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
-
+  opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.2)};
   box-shadow: ${({ $isExposed, $interval, theme, $isAvoid }) => {
     if (!$isExposed) return "none";
     const color = getIntervalColor($interval, theme.colors, $isAvoid);

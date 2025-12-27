@@ -11,11 +11,15 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
           const isExposed = profile?.exposedTone === interval;
           const isUsed = profile?.usedTones?.includes(interval);
           const isAvoid = profile?.avoidNotes?.includes(interval);
-          const isActive = isExposed || isUsed || isAvoid;
 
           let offset = 0;
-          if (isExposed) offset = -35;
-          else if (isUsed || isAvoid) offset = -18;
+          if (isExposed) {
+            offset = -35;
+          } else if (isUsed) {
+            offset = -18;
+          }
+
+          const isRaised = offset !== 0;
 
           return (
             <S.DotStack key={interval}>
@@ -23,13 +27,13 @@ const ProfileRow = ({ label, profile, rootNoteName }) => {
                 $interval={interval}
                 $offset={offset}
                 $isExposed={isExposed}
-                $isActive={isActive}
+                $isRaised={isRaised}
                 $isAvoid={isAvoid}
                 title={isAvoid ? `Avoid: ${interval}` : `Interval: ${interval}`}
               />
               <S.IntervalNumber
                 $interval={interval}
-                $isActive={isActive}
+                $isRaised={isRaised}
                 $isAvoid={isAvoid}
               >
                 {interval}
