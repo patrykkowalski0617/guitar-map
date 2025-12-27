@@ -24,20 +24,6 @@ function App() {
       <AppWrapper>
         <SectionContainer>
           <SectionTitle>
-            <h2>Visualizer</h2>
-          </SectionTitle>
-          <SubSectionContainer>
-            <HarmonicFunctionHorizontalScrollDisplay />
-          </SubSectionContainer>
-          <SubSectionContainer>
-            <ColorProfileVisualizer />
-          </SubSectionContainer>
-          <SubSectionContainer>
-            <ColorProfileHorizontalScrollDisplay />
-          </SubSectionContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionTitle>
             <h2>Configurator</h2>
           </SectionTitle>
           <SubSectionContainer>
@@ -49,6 +35,20 @@ function App() {
 
           <SubSectionContainer>
             <ShapeSelector />
+          </SubSectionContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <SectionTitle>
+            <h2>Visualizer</h2>
+          </SectionTitle>
+          <SubSectionContainer>
+            <HarmonicFunctionHorizontalScrollDisplay />
+          </SubSectionContainer>
+          <SubSectionContainer>
+            <ColorProfileVisualizer />
+          </SubSectionContainer>
+          <SubSectionContainer>
+            <ColorProfileHorizontalScrollDisplay />
           </SubSectionContainer>
         </SectionContainer>
         <SectionContainer>

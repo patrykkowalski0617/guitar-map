@@ -9,9 +9,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 18px;
     }
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-      font-size: 22px;
-    }
   }
 
   body {

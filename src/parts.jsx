@@ -12,7 +12,6 @@ export const SectionContainer = styled.section`
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => `50px ${theme.spacing.md} ${theme.spacing.sm}`};
   border: 1px solid ${({ theme }) => theme.colors.blue}44;
   box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}22`};
@@ -30,7 +29,7 @@ export const SectionTitle = styled.div`
   transform: translateX(-50%);
   top: -15px;
   height: 35px;
-  width: 270px;
+  width: 260px;
   display: flex;
   align-items: center;
   justify-content: center;

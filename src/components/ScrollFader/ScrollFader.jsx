@@ -3,6 +3,10 @@ import styled, { css } from "styled-components";
 
 const FaderContainer = styled.div`
   overflow-x: auto;
+  padding-top: 20px;
+  margin-top: -20px;
+  padding-bottom: 20px;
+  margin-bottom: -20px;
   width: 100%;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -59,14 +63,20 @@ const ScrollFader = ({ children, activeValue }) => {
 
   useEffect(() => {
     if (isScrollable) {
-      const activeElement = containerRef.current?.querySelector(
-        '[data-active="true"]'
-      );
-      if (activeElement) {
-        activeElement.scrollIntoView({
+      const container = containerRef.current;
+      const activeElement = container?.querySelector('[data-active="true"]');
+
+      if (container && activeElement) {
+        // Obliczamy pozycję: środek kontenera minus środek elementu
+        const elementOffset = activeElement.offsetLeft;
+        const elementWidth = activeElement.clientWidth;
+        const containerWidth = container.clientWidth;
+
+        const scrollTo = elementOffset - containerWidth / 2 + elementWidth / 2;
+
+        container.scrollTo({
+          left: scrollTo,
           behavior: "smooth",
-          inline: "center",
-          block: "nearest",
         });
       }
     }
