@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 export const FretboardContainer = styled.div`
   max-width: 100vw;
   overflow: auto;
-  padding: ${({ theme }) => theme.spacing.md} 0;
   user-select: none;
 
   /* Stylizacja scrollbara dla zachowania estetyki DAW */
@@ -51,7 +50,6 @@ export const FretCount = styled.div`
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.5;
   font-size: 0.7rem;
-  font-weight: 600;
 `;
 
 export const FretboardLabelsWrapper = styled.div`
@@ -87,7 +85,6 @@ export const Note = styled.div`
   justify-content: center;
 
   font-size: 11px;
-  font-weight: 700;
   text-transform: uppercase;
 
   background: ${({ $isInUserShape, theme }) =>

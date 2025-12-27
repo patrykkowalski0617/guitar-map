@@ -3,21 +3,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Label = styled.span`
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
-  padding-left: ${({ theme }) => theme.spacing.xs};
-`;
+
 export const OptionsWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
   overflow-x: auto;
-  gap: ${({ theme }) => theme.spacing.xs};
+  gap: ${({ theme }) => theme.spacing.sm};
   background-color: ${({ theme }) => theme.colors.bg};
   scrollbar-width: none;
 `;

@@ -13,6 +13,7 @@ import ShapesLibrary from "./components/ShapeLibrary/ShapeLibrary";
 import ShapeSelector from "./components/Selectors/ShapeSelector";
 import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
 import HarmonicFunctionHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/HarmonicFunctionHorizontalScrollDisplay";
+import ColorProfileHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ColorProfileHorizontalScrollDisplay";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           <SubSectionContainer>
             <ColorProfileVisualizer />
           </SubSectionContainer>
+          <SubSectionContainer>
+            <ColorProfileHorizontalScrollDisplay />
+          </SubSectionContainer>
         </SectionContainer>
         <SectionContainer>
           <SectionTitle>
@@ -38,11 +42,17 @@ function App() {
           <ShapeSelector />
         </SectionContainer>
         <SectionContainer>
-          <SectionTitle>
-            <h2>Shape Library</h2>
-          </SectionTitle>
-          <ShapesLibrary />
-          <Fretboard />
+          <SubSectionContainer>
+            <SectionTitle>
+              <h2>Shape Library</h2>
+            </SectionTitle>
+          </SubSectionContainer>
+          <SubSectionContainer>
+            <ShapesLibrary />
+          </SubSectionContainer>
+          <SubSectionContainer>
+            <Fretboard />
+          </SubSectionContainer>
         </SectionContainer>
       </AppWrapper>
     </ThemeProvider>

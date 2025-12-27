@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const DisplayContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: ${({ theme }) => theme.spacing.sm};
-  padding: ${({ theme }) => theme.spacing.sm} 0;
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
   overflow-x: auto;
 
   /* Centrowanie zawartości */
@@ -44,8 +43,5 @@ export const Label = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   white-space: nowrap;
   transition: ${({ theme }) => theme.transitions.default};
-
-  /* Wyraźniejsza czcionka dla lepszego efektu glow */
-  font-weight: ${({ $isActive }) => ($isActive ? "700" : "500")};
   text-transform: uppercase;
 `;

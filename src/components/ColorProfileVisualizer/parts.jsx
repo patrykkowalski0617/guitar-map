@@ -42,7 +42,6 @@ export const LegendLabel = styled.div`
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  font-weight: 500;
   text-transform: uppercase;
   color: ${({ $color }) => $color};
   opacity: 0.7;

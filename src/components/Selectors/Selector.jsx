@@ -1,9 +1,10 @@
-import { Container, Label, OptionsWrapper, OptionButton } from "./parts";
+import { SubsectionTitle } from "../../parts";
+import { Container, OptionsWrapper, OptionButton } from "./parts";
 
 const Selector = ({ label, options, value, onChange, isCompact }) => {
   return (
     <Container>
-      {label && <Label>{label}</Label>}
+      {label && <SubsectionTitle>{label}</SubsectionTitle>}
       <OptionsWrapper $isCompact={isCompact}>
         {options.map((option) => {
           return (

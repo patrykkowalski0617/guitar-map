@@ -61,9 +61,7 @@ export const Note = styled.div`
 export const VariantLabel = styled.div`
   text-align: center;
   font-size: 0.65rem;
-  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin-top: ${({ theme }) => theme.spacing.xs};
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.6;

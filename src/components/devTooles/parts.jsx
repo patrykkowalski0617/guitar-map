@@ -17,7 +17,6 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
   font-size: 14px;
   display: block;
   margin: 10px;

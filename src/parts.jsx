@@ -24,7 +24,6 @@ export const SubSectionContainer = styled.div`
 `;
 
 export const SectionTitle = styled.div`
-  color: ${({ theme }) => theme.colors.text};
   text-transform: uppercase;
   position: absolute;
   left: 50%;
@@ -41,10 +40,22 @@ export const SectionTitle = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
   > h2 {
-    line-height: 20px;
+    line-height: 1;
     margin: 0;
     letter-spacing: 2px;
     font-size: ${({ theme }) => theme.fontSize.sm};
-    opacity: 0.5;
+    color: ${({ theme }) => `${theme.colors.blue}44`};
   }
+`;
+
+export const SubsectionTitle = styled.h3`
+  text-transform: uppercase;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.bg};
+  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => `${theme.colors.blue}44`};
 `;

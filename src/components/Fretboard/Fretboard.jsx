@@ -10,6 +10,7 @@ import { getNotesFromNote } from "../../utils/getNotesFromNote";
 import { NOTES_FROM_C } from "../../data/notes";
 import { transposeShape } from "../../utils/transposer";
 import DevTools from "../devTooles/DevTools";
+import { SubsectionTitle } from "../../parts";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -78,6 +79,7 @@ const Fretboard = () => {
 
   return (
     <>
+      <SubsectionTitle>Shapes on Fretboard</SubsectionTitle>
       <FretboardContainer>
         {STRINGS_FIRST_NOTES.map((string, sIdx) => (
           <FretRow
