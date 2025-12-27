@@ -25,7 +25,7 @@ import {
   _M14,
 } from "./intervals";
 
-export const CAGEDshapes = {
+export const CAGED_hoverShapes = {
   C: [
     "E1_B",
     "E1_C",

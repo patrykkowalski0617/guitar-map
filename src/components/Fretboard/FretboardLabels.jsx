@@ -6,7 +6,12 @@ import {
   FretboardLabelsWrapper,
 } from "./parts";
 
-const FretboardLabels = ({ fretCounts, CAGED, handleCAGEDClick }) => {
+const FretboardLabels = ({
+  fretCounts,
+  CAGED,
+  handleCAGED_MouseOver,
+  handleCAGED_MouseLeave,
+}) => {
   return (
     <FretboardLabelsWrapper>
       <StringRow>
@@ -19,7 +24,11 @@ const FretboardLabels = ({ fretCounts, CAGED, handleCAGEDClick }) => {
             <FretCount
               key={`fret-count-${fIdx}`}
               $numOfCells={fretCounts.length}
-              onClick={() => handleCAGEDClick(cagedLetter)}
+              onMouseLeave={handleCAGED_MouseLeave}
+              onMouseOver={() =>
+                cagedLetter ? handleCAGED_MouseOver(cagedLetter) : null
+              }
+              style={cagedLetter ? { cursor: "pointer" } : null}
             >
               {cagedLetter ? (
                 <CAGEDLetter>{cagedLetter}</CAGEDLetter>

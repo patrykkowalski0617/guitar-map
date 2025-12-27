@@ -2,11 +2,8 @@ import styled, { css } from "styled-components";
 
 export const FretboardContainer = styled.div`
   max-width: 100vw;
-
   user-select: none;
-
-  /* Stylizacja scrollbara dla zachowania estetyki DAW */
-  &::-webkit-scrollbar {
+  / &::-webkit-scrollbar {
     height: 8px;
   }
   &::-webkit-scrollbar-track {
@@ -46,10 +43,8 @@ export const FretCell = styled.div`
 
 export const FretCount = styled.div`
   ${Fret}
-  cursor: pointer;
   user-select: none;
   color: ${({ theme }) => theme.colors.text};
-  opacity: 0.5;
   font-size: ${({ theme }) => theme.fontSize.md};
 `;
 
@@ -57,33 +52,8 @@ export const FretboardLabelsWrapper = styled.div`
   margin-top: ${({ theme }) => theme.spacing.sm};
 `;
 
-export const CAGEDLetter = styled.span`
-  outline: none;
-  cursor: pointer;
-  width: 31px;
-  height: 31px;
+const fretboardButtonStyles = css`
   border-radius: ${({ theme }) => theme.borderRadius.full};
-  padding: ${({ theme }) => theme.spacing.xs};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: ${({ theme }) => theme.fontSize.md};
-  text-transform: uppercase;
-  background: ${({ theme }) => theme.colors.bgLight};
-  box-shadow: ${({ theme, $isInShape }) =>
-    $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
-  border: 1px solid
-    ${({ theme, $isInShape }) =>
-      $isInShape ? theme.colors.yellow : theme.colors.border};
-  color: ${({ theme }) => theme.colors.text};
-`;
-
-export const Note = styled.div`
-  outline: none;
-  cursor: pointer;
-  width: 48px;
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  height: 31px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,8 +61,7 @@ export const Note = styled.div`
   text-transform: uppercase;
   background: ${({ $isInUserShape, theme }) =>
     $isInUserShape ? theme.colors.green : theme.colors.bgLight};
-  opacity: ${({ $isInShape, $isActiveShapeRootNote }) =>
-    $isInShape || $isActiveShapeRootNote ? "1" : "0.1"};
+
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
   border: 1px solid
@@ -105,4 +74,23 @@ export const Note = styled.div`
       ${({ $isActiveShapeRootNote, theme }) =>
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }
+`;
+
+export const CAGEDLetter = styled.div`
+  width: 31px;
+  height: 31px;
+  ${fretboardButtonStyles}
+`;
+
+export const Note = styled.div`
+  width: 48px;
+  height: 31px;
+  opacity: ${({ $isInShape, $isActiveShapeRootNote, $isInCAGED_hoverShape }) =>
+    $isInShape || $isActiveShapeRootNote
+      ? "1"
+      : $isInCAGED_hoverShape
+      ? "0.4"
+      : "0.1"};
+  ${fretboardButtonStyles}
+  cursor: pointer;
 `;

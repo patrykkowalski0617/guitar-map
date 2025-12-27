@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useStore } from "../../store/useStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
-import { CAGEDshapes } from "../../data/data";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
 import { isDevMode } from "../../settings";
@@ -12,6 +11,7 @@ import { transposeShape } from "../../utils/transposer";
 import DevTools from "../devTooles/DevTools";
 import { SubsectionTitle } from "../../parts";
 import ScrollFader from "../ScrollFader/ScrollFader";
+import { CAGED_hoverShapes } from "../../data/data";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -29,6 +29,7 @@ const Fretboard = () => {
   } = useStore();
 
   const [userShape, setUserShape] = useState([]);
+  const [CAGED_hoverShape, setCAGED_hoverShape] = useState([]);
 
   const fretCounts = getNotesFromNote("E", numberOfFrets).fill(null);
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
@@ -37,7 +38,6 @@ const Fretboard = () => {
   const activeShapeRootNote = getActiveShapeRootNote();
 
   const handleNoteClick = (note, CAGED_noteId) => {
-    // ... (logika handleNoteClick)
     if (isDevMode) {
       setUserShape((prevShape) =>
         prevShape.includes(CAGED_noteId)
@@ -58,13 +58,13 @@ const Fretboard = () => {
     }
   };
 
-  const handleCAGEDClick = (cagedLetter) => {
+  const handleCAGED_MouseOver = (cagedLetter) => {
     setVariantState({ lastId: null, index: 0 });
-    if (cagedLetter) {
-      setShape(CAGEDshapes[cagedLetter]);
-    } else {
-      setShape([]);
-    }
+    setCAGED_hoverShape(CAGED_hoverShapes[cagedLetter]);
+  };
+
+  const handleCAGED_MouseLeave = () => {
+    setCAGED_hoverShape([]);
   };
 
   const handleClearUserShape = () => setUserShape([]);
@@ -72,12 +72,6 @@ const Fretboard = () => {
   return (
     <>
       <SubsectionTitle>Shapes on Fretboard</SubsectionTitle>
-
-      {/* Owijamy gryf faderem. 
-          Nie podajemy activeValue, bo gryf zazwyczaj nie musi 
-          automatycznie centrować się na konkretnej nucie przy zmianie kształtu 
-          (mogłoby to być dezorientujące dla użytkownika).
-      */}
       <ScrollFader>
         <FretboardContainer>
           {STRINGS_FIRST_NOTES.map((string, sIdx) => (
@@ -89,6 +83,7 @@ const Fretboard = () => {
               CAGED_shift={CAGED_shift}
               handleNoteClick={handleNoteClick}
               shape={shape}
+              CAGED_hoverShape={CAGED_hoverShape}
               userShape={userShape}
               activeShapeRootNote={activeShapeRootNote}
             />
@@ -96,7 +91,8 @@ const Fretboard = () => {
           <FretboardLabels
             fretCounts={fretCounts}
             CAGED={CAGED}
-            handleCAGEDClick={handleCAGEDClick}
+            handleCAGED_MouseOver={handleCAGED_MouseOver}
+            handleCAGED_MouseLeave={handleCAGED_MouseLeave}
           />
         </FretboardContainer>
       </ScrollFader>
