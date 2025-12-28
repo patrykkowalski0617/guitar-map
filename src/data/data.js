@@ -218,12 +218,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5],
+            usedTones: [1, 3, 5, 13],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7],
+            usedTones: [1, 3, 5, 7],
             avoidNotes: [13],
           },
         },
@@ -235,12 +235,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 7, 9],
+            usedTones: [1, 3, 5, 9],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [5, 7, 11],
+            usedTones: [3, 5, 7, 11],
             avoidNotes: [13],
           },
         },
@@ -269,11 +269,13 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 9],
+            usedTones: [1, 3, 5, 9, 13],
+            avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 13],
+            usedTones: [1, 3, 5, 7, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -284,22 +286,26 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [5, 13, 7, 9],
+            usedTones: [5, 7, 9, 13],
+            avoidNotes: [11],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [7, 1, 9, 13],
+            usedTones: [1, 5, 7, 9, 11],
+            avoidNotes: [13],
           },
         },
       },
       {
-        getNotesSetName: () => "No avoid notes",
+        getNotesSetName: () => 'Unified "no avoid notes"',
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
+            avoidNotes: [11],
           },
           minor: {
             usedTones: [1, 3, 5, 7, 9, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -310,12 +316,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 11, 13],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 5, 7, 9, 11, 13],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
             avoidNotes: [13],
           },
         },
@@ -327,13 +333,25 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 7, 9],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 11],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
             avoidNotes: [13],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Dorian`,
+        rootSemitone: _M6,
+        chordShapeId: "dorian",
+        colorProfile: {
+          minor: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7, 9, 11, 13],
+            alteredTones: [13],
           },
         },
       },
@@ -351,14 +369,13 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "M7",
         colorProfile: {
           major: {
-            root_rel: _4,
             exposedTone: 1,
-            usedTones: [3, 5, 7],
+            usedTones: [1, 3, 5, 7],
           },
           minor: {
-            root_rel: _M2,
             exposedTone: 3,
-            usedTones: [5, 7, 9],
+            usedTones: [3, 5, 7, 9],
+            avoidNotes: [13],
           },
         },
       },
@@ -368,14 +385,13 @@ export const musicFunctionContextSelectorData = [
         chordShapeId: "m7",
         colorProfile: {
           major: {
-            root_rel: _4,
             exposedTone: 3,
-            usedTones: [5, 7, 9],
+            usedTones: [3, 5, 7, 9],
           },
           minor: {
-            root_rel: _M2,
             exposedTone: 5,
-            usedTones: [7, 9, 11],
+            usedTones: [5, 7, 9, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -386,11 +402,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5],
+            usedTones: [1, 3, 5, 13],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7],
+            usedTones: [1, 3, 5, 7],
+            avoidNotes: [13],
           },
         },
       },
@@ -401,11 +418,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 7, 9],
+            usedTones: [1, 3, 5, 9],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [5, 7, 11],
+            usedTones: [3, 5, 7, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -416,11 +434,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 5, 9, 13],
+            usedTones: [1, 3, 5, 9, 13],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 5, 7, 13],
+            usedTones: [1, 3, 5, 7, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -431,11 +450,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 9],
+            usedTones: [1, 3, 5, 9, 13],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 13],
+            usedTones: [1, 3, 5, 7, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -446,22 +466,24 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [5, 13, 7, 9],
+            usedTones: [5, 7, 9, 13],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [7, 1, 9, 13],
+            usedTones: [1, 5, 7, 9, 11],
+            avoidNotes: [13],
           },
         },
       },
       {
-        getNotesSetName: () => "No avoid notes",
+        getNotesSetName: () => 'Unified "no avoid notes"',
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
           },
           minor: {
             usedTones: [1, 3, 5, 7, 9, 11],
+            avoidNotes: [13],
           },
         },
       },
@@ -472,12 +494,11 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 13],
-            avoidNotes: [11],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 5, 7, 9, 11],
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
             avoidNotes: [13],
           },
         },
@@ -487,15 +508,9 @@ export const musicFunctionContextSelectorData = [
         rootSemitone: _M2,
         chordShapeId: "dorian",
         colorProfile: {
-          major: {
-            exposedTone: 13,
-            usedTones: [1, 3, 5, 7, 9],
-            avoidNotes: [11],
-          },
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 11],
-            avoidNotes: [13],
+            usedTones: [3, 5, 7, 9, 11, 13],
           },
         },
       },
@@ -507,14 +522,71 @@ export const musicFunctionContextSelectorData = [
     majorRoot: _5,
     shapes: [
       {
-        getNotesSetName: (rootNote) => `${rootNote}M7`,
+        getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _5,
         chordShapeId: "Dominant",
         colorProfile: {
           major: {
-            root_rel: _5,
             exposedTone: 1,
-            usedTones: [3, 5, 7],
+            usedTones: [1, 3, 5, 7],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote}m7b5`,
+        rootSemitone: _M7,
+        chordShapeId: "m7b5",
+        colorProfile: {
+          major: {
+            exposedTone: 3,
+            usedTones: [3, 5, 7, 9],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
+        rootSemitone: _5,
+        chordShapeId: "mixolydian",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            avoidNotes: [11],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
+        rootSemitone: _5,
+        chordShapeId: "majorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 9, 13],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
+        rootSemitone: _M3,
+        chordShapeId: "minorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 13,
+            usedTones: [1, 3, 5, 9, 13],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
+        rootSemitone: _5,
+        chordShapeId: "minorPent",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 5, 7, 9, 11],
+            avoidNotes: [11],
+            alteredTones: [9],
           },
         },
       },
@@ -526,14 +598,50 @@ export const musicFunctionContextSelectorData = [
     majorRoot: _M3,
     shapes: [
       {
-        getNotesSetName: () => "Dominant",
+        getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _M3,
         chordShapeId: "Dominant",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [3, 5, 7],
+          },
+        },
       },
       {
-        getNotesSetName: () => "Upper structure",
-        rootSemitone: _M3,
+        getNotesSetName: (rootNote) => `${rootNote}dim7`,
+        rootSemitone: _M7,
         chordShapeId: "dim7",
+        colorProfile: {
+          major: {
+            exposedTone: 3,
+            usedTones: [3, 5, 7, 9],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant`,
+        rootSemitone: _M3,
+        chordShapeId: "phrygianDominant",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            avoidNotes: [11],
+          },
+        },
+      },
+      {
+        getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
+        rootSemitone: _M3,
+        chordShapeId: "mixolydian",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            avoidNotes: [11],
+          },
+        },
       },
     ],
   },
