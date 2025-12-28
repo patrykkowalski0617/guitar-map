@@ -310,12 +310,12 @@ export const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 13],
+            usedTones: [3, 5, 7, 9, 11, 13],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 5, 7, 9, 11],
+            usedTones: [1, 5, 7, 9, 11, 13],
             avoidNotes: [13],
           },
         },

@@ -8,7 +8,6 @@ export const theme = {
     violet: "#9d4edd",
     red: "#e63946",
     green: "#2a9d8f",
-    overlay: "rgba(0, 0, 0, 0.5)",
     border: "#ffffff1a",
   },
   sizes: {
