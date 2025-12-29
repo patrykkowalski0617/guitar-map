@@ -67,8 +67,4 @@ export const UnderLabel = styled.div`
   margin-top: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.8;
-  strong {
-    color: ${({ theme }) => theme.colors.yellow};
-    margin-right: ${({ theme }) => theme.spacing.xs};
-  }
 `;

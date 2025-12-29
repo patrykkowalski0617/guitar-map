@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 const getIntervalColor = (interval, colors, $isAvoid) => {
   if ($isAvoid) return colors.red;
   if (interval === 1 || interval === 5) return colors.text;
@@ -7,7 +6,6 @@ const getIntervalColor = (interval, colors, $isAvoid) => {
   if (interval === 9) return colors.blue;
   return colors.violet;
 };
-
 export const VisualizerContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -17,7 +15,6 @@ export const VisualizerContainer = styled.div`
   max-width: 600px;
   margin: auto;
 `;
-
 export const ProfileColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,14 +27,12 @@ export const DotsWrapper = styled.div`
   align-items: flex-end;
   height: 65px;
 `;
-
 export const DotStack = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
 `;
-
 export const IntervalNumber = styled.span`
   font-size: 0.65rem;
   font-weight: bold;
@@ -45,11 +40,9 @@ export const IntervalNumber = styled.span`
     $isRaised || $isAvoid
       ? getIntervalColor($interval, theme.colors, $isAvoid)
       : theme.colors.text};
-
   opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.2)};
   transition: ${({ theme }) => theme.transitions.default};
 `;
-
 export const ToneDot = styled.div`
   width: ${({ theme }) => theme.sizes.dot};
   height: ${({ theme }) => theme.sizes.dot};
@@ -57,14 +50,17 @@ export const ToneDot = styled.div`
   background-color: ${({ $interval, theme, $isAvoid }) =>
     getIntervalColor($interval, theme.colors, $isAvoid)};
   transition: ${({ theme }) => theme.transitions.bounce};
-  transform: translateY(${({ $offset }) => $offset / 2}px);
-  opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.2)};
-  box-shadow: ${({ $isExposed, $interval, theme, $isAvoid }) => {
-    if (!$isExposed) return "none";
+  transform: translateY(
+      ${({ $offset, $legendRender }) => ($legendRender ? 0 : $offset / 2)}px
+    )
+    rotate(${({ $isAltered }) => ($isAltered ? "45deg" : "0deg")});
+  opacity: ${({ $isRaised, $legendRender }) =>
+    $legendRender || $isRaised ? 1 : 0.2};
+  box-shadow: ${({ $isExposed, $interval, theme, $isAvoid, $legendRender }) => {
+    if (!$isExposed || $legendRender) return "none";
     const color = getIntervalColor($interval, theme.colors, $isAvoid);
     return `${theme.shadows.glow} ${color}`;
   }};
-
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: ${({ theme }) => theme.sizes.dotXl};
     height: ${({ theme }) => theme.sizes.dotXl};

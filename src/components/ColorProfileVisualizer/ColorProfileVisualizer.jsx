@@ -4,18 +4,26 @@ import * as S from "./parts";
 import { SubsectionTitle } from "../../parts";
 
 const ColorProfileVisualizer = () => {
-  const activeShape = useStore((state) => state.activeShape);
-  const activeMusicContext = useStore((state) => state.activeMusicContext);
-  const getNoteNameByOffset = useStore((state) => state.getNoteNameByOffset);
+  // Jedno wywołanie useStore z destrukturyzacją potrzebnych elementów
+  const {
+    activeShape,
+    activeMusicContext,
+    getNoteNameByOffset,
+    getActiveShapeName,
+  } = useStore();
 
   if (!activeShape?.colorProfile || !activeMusicContext) return null;
 
   const majorRootName = getNoteNameByOffset(activeMusicContext.majorRoot);
   const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
 
+  const activeShapeName = getActiveShapeName();
+
   return (
     <>
-      <SubsectionTitle>Feeling of Set Of Notes </SubsectionTitle>
+      <SubsectionTitle>
+        Feeling of {activeShapeName} played over:
+      </SubsectionTitle>
       <S.VisualizerContainer>
         <ProfileRow
           label="Major"

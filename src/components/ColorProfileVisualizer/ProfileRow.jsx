@@ -1,50 +1,20 @@
 import { UnderLabel } from "../../parts";
 import * as S from "./parts";
+import ToneDot from "./ToneDot";
 
 const INTERVALS = [1, 3, 5, 7, 9, 11, 13];
 
 const ProfileRow = ({ label, profile, rootNoteName }) => {
   return (
     <S.ProfileColumn>
-      <S.DotsWrapper>
-        {INTERVALS.map((interval) => {
-          const isExposed = profile?.exposedTone === interval;
-          const isUsed = profile?.usedTones?.includes(interval);
-          const isAvoid = profile?.avoidNotes?.includes(interval);
-
-          let offset = 0;
-          if (isExposed) {
-            offset = -35;
-          } else if (isUsed) {
-            offset = -18;
-          }
-
-          const isRaised = offset !== 0;
-
-          return (
-            <S.DotStack key={interval}>
-              <S.ToneDot
-                $interval={interval}
-                $offset={offset}
-                $isExposed={isExposed}
-                $isRaised={isRaised}
-                $isAvoid={isAvoid}
-                title={isAvoid ? `Avoid: ${interval}` : `Interval: ${interval}`}
-              />
-              <S.IntervalNumber
-                $interval={interval}
-                $isRaised={isRaised}
-                $isAvoid={isAvoid}
-              >
-                {interval}
-              </S.IntervalNumber>
-            </S.DotStack>
-          );
-        })}
-      </S.DotsWrapper>
       <UnderLabel>
-        <strong>{rootNoteName}</strong> {label}
+        {rootNoteName} {label}
       </UnderLabel>
+      <S.DotsWrapper>
+        {INTERVALS.map((interval) => (
+          <ToneDot key={interval} interval={interval} profile={profile} />
+        ))}
+      </S.DotsWrapper>
     </S.ProfileColumn>
   );
 };

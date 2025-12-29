@@ -1,6 +1,7 @@
 import { useTheme } from "styled-components";
 import HorizontalScrollDisplay from "./HorizontalScrollDisplay";
 import { SubsectionTitle } from "../../parts";
+import DotTone_TestPreview from "../../components/ColorProfileVisualizer/DotTone_TestPreview";
 
 const ColorProfileHorizontalScrollDisplay = () => {
   const theme = useTheme();
@@ -14,7 +15,6 @@ const ColorProfileHorizontalScrollDisplay = () => {
   ];
   return (
     <>
-      <SubsectionTitle>"Dots" Legend</SubsectionTitle>
       <HorizontalScrollDisplay items={legendItems} opacityOff={true} />
     </>
   );

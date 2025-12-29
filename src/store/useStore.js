@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { musicFunctionContextSelectorData } from "../data/data";
-import { UNIFIED_MUSIC_KEYS } from "../data/notes";
+import { enharmonicTransform, UNIFIED_MUSIC_KEYS } from "../data/notes";
 import { getNotesFromNote } from "../utils/getNotesFromNote";
 import { setsShapes } from "../data/setsShapes";
 
@@ -115,4 +115,32 @@ export const useStore = create((set, get) => ({
 
   mode: "Major",
   setMode: (newMode) => set({ mode: newMode }),
+
+  // NOWA FUNKCJA: Dynamiczne pobieranie nazwy aktywnego kształtu
+  getActiveShapeName: () => {
+    const { activeShape, getKeyNotes } = get();
+    if (!activeShape) return "";
+
+    const keyNotes = getKeyNotes();
+    const rootNote =
+      activeShape.rootSemitone !== undefined
+        ? keyNotes[activeShape.rootSemitone]
+        : undefined;
+
+    // Pobieramy nazwę z obiektu shape i transformujemy enharmonicznie
+    const name = activeShape.getNotesSetName(rootNote);
+    return enharmonicTransform(name);
+  },
+
+  // Pomocnicza funkcja do formatowania dowolnego kształtu (przydatne dla listy opcji)
+  formatShapeName: (shape) => {
+    if (!shape) return "";
+    const keyNotes = get().getKeyNotes();
+    const rootNote =
+      shape.rootSemitone !== undefined
+        ? keyNotes[shape.rootSemitone]
+        : undefined;
+
+    return enharmonicTransform(shape.getNotesSetName(rootNote));
+  },
 }));

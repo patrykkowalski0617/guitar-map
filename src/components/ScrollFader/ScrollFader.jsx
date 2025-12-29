@@ -19,7 +19,7 @@ const FaderContainer = styled.div`
         to right,
         transparent,
         black 40px,
-        black calc(100% - 140px),
+        black calc(100% - 40px),
         transparent
       );
     `}

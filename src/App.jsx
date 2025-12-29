@@ -58,9 +58,9 @@ function App() {
           <SubSectionContainer>
             <ShapeTypeHorizontalScrollDisplay />
           </SubSectionContainer>
-          <SubSectionContainer>
+          {/* <SubSectionContainer>
             <ShapesLibrary />
-          </SubSectionContainer>
+          </SubSectionContainer> */}
           <SubSectionContainer>
             <Fretboard />
           </SubSectionContainer>

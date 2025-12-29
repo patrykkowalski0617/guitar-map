@@ -70,7 +70,7 @@ const Fretboard = () => {
 
   return (
     <>
-      <SubsectionTitle>Shapes on Fretboard</SubsectionTitle>
+      {/* <SubsectionTitle>Shapes on Fretboard</SubsectionTitle> */}
       <ScrollFader>
         <FretboardContainer>
           {STRINGS_FIRST_NOTES.map((string, sIdx) => (
