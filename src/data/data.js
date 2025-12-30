@@ -178,6 +178,7 @@ export const musicFunctionContextSelectorData = [
     minorRoot: _M6,
     shapes: [
       {
+        id: "tonics-root_1-shape_M7",
         getNotesSetName: (rootNote) => `${rootNote}M7`,
         rootSemitone: _1,
         chordShapeId: "M7",
@@ -195,6 +196,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M3-shape_m7",
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M3,
         chordShapeId: "m7",
@@ -212,6 +214,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M6-shape_m7",
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M6,
         chordShapeId: "m7",
@@ -229,6 +232,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_M_add9",
         getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
         rootSemitone: _1,
         chordShapeId: "M_add9",
@@ -246,6 +250,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_majorPent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _1,
         chordShapeId: "majorPent",
@@ -263,6 +268,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M6-shape_minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M6,
         chordShapeId: "minorPent",
@@ -280,6 +286,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M3-shape_minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
         chordShapeId: "minorPent",
@@ -297,7 +304,10 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_noAvoidNotes_1",
         getNotesSetName: () => 'Unified "no avoid notes"',
+        rootSemitone: _1,
+        chordShapeId: "noAvoidNotes_1",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
@@ -310,6 +320,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_ionian",
         getNotesSetName: (rootNote) => `${rootNote} Ionian`,
         rootSemitone: _1,
         chordShapeId: "ionian",
@@ -327,6 +338,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M6-shape_aeolian",
         getNotesSetName: (rootNote) => `${rootNote} Aeolian`,
         rootSemitone: _M6,
         chordShapeId: "aeolian",
@@ -344,6 +356,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_M6-shape_dorian",
         getNotesSetName: (rootNote) => `${rootNote} Dorian`,
         rootSemitone: _M6,
         chordShapeId: "dorian",
@@ -364,6 +377,7 @@ export const musicFunctionContextSelectorData = [
     minorRoot: _M2,
     shapes: [
       {
+        id: "subdominants-root_4-shape_M7",
         getNotesSetName: (rootNote) => `${rootNote}M7`,
         rootSemitone: _4,
         chordShapeId: "M7",
@@ -380,6 +394,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_M6-shape_m7",
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M6,
         chordShapeId: "m7",
@@ -396,6 +411,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_M2-shape_m7",
         getNotesSetName: (rootNote) => `${rootNote}m7`,
         rootSemitone: _M2,
         chordShapeId: "m7",
@@ -412,6 +428,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_4-shape_M_add9",
         getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
         rootSemitone: _4,
         chordShapeId: "M_add9",
@@ -428,6 +445,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_4-shape_majorPent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _4,
         chordShapeId: "majorPent",
@@ -444,6 +462,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_M2-shape_minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M2,
         chordShapeId: "minorPent",
@@ -460,6 +479,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_M6-shape_minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M6,
         chordShapeId: "minorPent",
@@ -476,7 +496,10 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_4-shape_noAvoidNotes_1",
         getNotesSetName: () => 'Unified "no avoid notes"',
+        rootSemitone: _4,
+        chordShapeId: "noAvoidNotes_1",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
@@ -488,6 +511,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_4-shape_lydian",
         getNotesSetName: (rootNote) => `${rootNote} Lydian`,
         rootSemitone: _4,
         chordShapeId: "lydian",
@@ -504,6 +528,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "subdominants-root_M2-shape_dorian",
         getNotesSetName: (rootNote) => `${rootNote} Dorian`,
         rootSemitone: _M2,
         chordShapeId: "dorian",
@@ -522,6 +547,7 @@ export const musicFunctionContextSelectorData = [
     majorRoot: _5,
     shapes: [
       {
+        id: "dominant-root_5-shape-Dominant",
         getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _5,
         chordShapeId: "Dominant",
@@ -533,6 +559,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominant-root_M7-shape-m7b5",
         getNotesSetName: (rootNote) => `${rootNote}m7b5`,
         rootSemitone: _M7,
         chordShapeId: "m7b5",
@@ -544,6 +571,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominant-root_5-shape-mixolydian",
         getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
         rootSemitone: _5,
         chordShapeId: "mixolydian",
@@ -556,6 +584,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominant-root_5-shape-majorPent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _5,
         chordShapeId: "majorPent",
@@ -567,6 +596,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominant-root_M3-shape-minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
         chordShapeId: "minorPent",
@@ -578,6 +608,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominant-root_5-shape-minorPent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _5,
         chordShapeId: "minorPent",
@@ -598,6 +629,7 @@ export const musicFunctionContextSelectorData = [
     majorRoot: _M3,
     shapes: [
       {
+        id: "dominantPh-root_M3-shape-Dominant",
         getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _M3,
         chordShapeId: "Dominant",
@@ -609,6 +641,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominantPh-root_M7-shape-dim7",
         getNotesSetName: (rootNote) => `${rootNote}dim7`,
         rootSemitone: _M7,
         chordShapeId: "dim7",
@@ -620,6 +653,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominantPh-root_M3-shape-phrygianDominant",
         getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant`,
         rootSemitone: _M3,
         chordShapeId: "phrygianDominant",
@@ -632,6 +666,7 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominantPh-root_M3-shape-mixolydian",
         getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
         rootSemitone: _M3,
         chordShapeId: "mixolydian",
