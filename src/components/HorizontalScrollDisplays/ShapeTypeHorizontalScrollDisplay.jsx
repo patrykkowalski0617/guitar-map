@@ -12,7 +12,6 @@ const ShapeTypeHorizontalScrollDisplay = () => {
 
   return (
     <>
-      <SubsectionTitle>Shapes</SubsectionTitle>
       <HorizontalScrollDisplay items={validSets} activeId={activeChordId} />
     </>
   );
