@@ -9,13 +9,12 @@ import {
   SectionTitle,
   SubSectionContainer,
 } from "./parts";
-import ShapesLibrary from "./components/ShapeLibrary/ShapeLibrary";
 import ShapeSelector from "./components/Selectors/ShapeSelector";
 import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
 import HarmonicFunctionHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/HarmonicFunctionHorizontalScrollDisplay";
-import ColorProfileHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ColorProfileHorizontalScrollDisplay";
 import ShapeTypeHorizontalScrollDisplay from "./components/HorizontalScrollDisplays/ShapeTypeHorizontalScrollDisplay";
 import GlobalStyle from "./GlobalStyle";
+import VisualizerLegend from "./components/ColorProfileVisualizer/Legend/VisualizerLegend";
 
 function App() {
   return (
@@ -48,7 +47,7 @@ function App() {
             <ColorProfileVisualizer />
           </SubSectionContainer>
           <SubSectionContainer>
-            <ColorProfileHorizontalScrollDisplay />
+            <VisualizerLegend />
           </SubSectionContainer>
         </SectionContainer>
         <SectionContainer>
@@ -58,9 +57,6 @@ function App() {
           <SubSectionContainer>
             <ShapeTypeHorizontalScrollDisplay />
           </SubSectionContainer>
-          {/* <SubSectionContainer>
-            <ShapesLibrary />
-          </SubSectionContainer> */}
           <SubSectionContainer>
             <Fretboard />
           </SubSectionContainer>

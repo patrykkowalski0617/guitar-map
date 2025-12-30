@@ -79,6 +79,7 @@ export const CAGED_hoverShapes = {
     "E6_C",
     "B5_G",
     "G4_D#",
+    "A2_F#",
   ],
   G: [
     "E1_F",

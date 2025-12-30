@@ -4,7 +4,6 @@ import * as S from "./parts";
 import { SubsectionTitle } from "../../parts";
 
 const ColorProfileVisualizer = () => {
-  // Jedno wywołanie useStore z destrukturyzacją potrzebnych elementów
   const {
     activeShape,
     activeMusicContext,

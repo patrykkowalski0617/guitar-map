@@ -40,7 +40,7 @@ export const IntervalNumber = styled.span`
     $isRaised || $isAvoid
       ? getIntervalColor($interval, theme.colors, $isAvoid)
       : theme.colors.text};
-  opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.2)};
+  opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.5)};
   transition: ${({ theme }) => theme.transitions.default};
 `;
 export const ToneDot = styled.div`
