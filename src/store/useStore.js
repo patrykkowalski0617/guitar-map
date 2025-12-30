@@ -39,7 +39,11 @@ export const useStore = create((set, get) => ({
           ? keyNotes[shape.rootSemitone]
           : undefined;
 
-      return shape.getNotesSetName(rootNote) === name;
+      // TUTAJ POPRAWKA: Dodajemy enharmonicTransform, aby dopasować do tego, co widzi użytkownik
+      const formattedName = enharmonicTransform(
+        shape.getNotesSetName(rootNote)
+      );
+      return formattedName === name;
     });
 
     if (foundShape) {
