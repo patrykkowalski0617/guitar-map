@@ -81,4 +81,7 @@ export const Description = styled.div`
   max-width: 75%;
   line-height: 1.5;
   margin: 0 auto 20px;
+  > span {
+    color: ${({ theme }) => theme.colors.yellow};
+  }
 `;

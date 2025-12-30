@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import {
   AppWrapper,
+  RowWrapper,
   SectionContainer,
   SectionTitle,
   SubSectionContainer,
@@ -20,33 +21,34 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AppWrapper>
-        <SectionContainer>
-          <SectionTitle>
-            <h2>Configurator</h2>
-          </SectionTitle>
-          <SubSectionContainer>
-            <KeySelector />
-          </SubSectionContainer>
-          <SubSectionContainer>
-            <ContextSelector />
-          </SubSectionContainer>
-          <SubSectionContainer>
-            <ShapeSelector />
-          </SubSectionContainer>
-        </SectionContainer>
+        <RowWrapper>
+          <SectionContainer>
+            <SectionTitle>
+              <h2>Configurator</h2>
+            </SectionTitle>
+            <SubSectionContainer>
+              <KeySelector />
+            </SubSectionContainer>
+            <SubSectionContainer>
+              <ContextSelector />
+            </SubSectionContainer>
+            <SubSectionContainer>
+              <ShapeSelector />
+            </SubSectionContainer>
+          </SectionContainer>
 
-        <SectionContainer>
-          <SectionTitle>
-            <h2>Visualizer</h2>
-          </SectionTitle>
-          <SubSectionContainer>
-            <ColorProfileVisualizer />
-          </SubSectionContainer>
-          <SubSectionContainer>
-            <VisualizerLegend />
-          </SubSectionContainer>
-        </SectionContainer>
-
+          <SectionContainer>
+            <SectionTitle>
+              <h2>Visualizer</h2>
+            </SectionTitle>
+            <SubSectionContainer>
+              <ColorProfileVisualizer />
+            </SubSectionContainer>
+            <SubSectionContainer>
+              <VisualizerLegend />
+            </SubSectionContainer>
+          </SectionContainer>
+        </RowWrapper>
         <SectionContainer>
           <SectionTitle>
             <h2>Shape Library</h2>

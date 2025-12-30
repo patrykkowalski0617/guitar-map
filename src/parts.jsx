@@ -5,6 +5,9 @@ export const AppWrapper = styled.div`
   padding: 10px;
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing?.lg || "20px"};
 `;
 
 export const SectionContainer = styled.section`
@@ -67,4 +70,27 @@ export const UnderLabel = styled.div`
   margin-top: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.8;
+`;
+
+export const RowWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: ${({ theme }) => theme.spacing?.lg || "20px"};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row;
+    align-items: stretch;
+    & > ${SectionContainer} {
+      flex: 1;
+      width: 0;
+      min-width: 50%;
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 60px;
+    }
+  }
 `;

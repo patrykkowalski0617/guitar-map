@@ -6,7 +6,6 @@ import {
   FretboardLabelsWrapper,
 } from "./parts";
 
-// --- WEWNĘTRZNY KOMPONENT DLA CZYSTOŚCI ---
 const InteractiveCAGEDLetter = ({
   letter,
   isLocked,

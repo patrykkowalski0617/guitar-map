@@ -5,7 +5,6 @@ import { getNotesFromNote } from "../utils/getNotesFromNote";
 import { setsShapes } from "../data/setsShapes";
 
 export const useStore = create((set, get) => ({
-  // --- STATE ---
   tuneKey: UNIFIED_MUSIC_KEYS[0],
   activeMusicContext: musicFunctionContextSelectorData[0],
   activeShape: musicFunctionContextSelectorData[0].shapes[0],
@@ -14,7 +13,6 @@ export const useStore = create((set, get) => ({
   variantState: { lastId: null, index: 0 },
   mode: "Major",
 
-  // --- GETTERS ---
   getKeyNotes: (keyObj) => {
     const k = keyObj || get().tuneKey;
     return getNotesFromNote(k.majorNote);
@@ -80,7 +78,7 @@ export const useStore = create((set, get) => ({
     const chordGroup = setsShapes.find(
       (chord) => chord.id === activeShape.chordShapeId
     );
-    // Zwraca tablicę obiektów { notAllowedOnStrings, shape }
+
     return chordGroup ? chordGroup.shapes : [];
   },
 
@@ -88,7 +86,6 @@ export const useStore = create((set, get) => ({
     return get().activeShape?.id || null;
   },
 
-  // --- ACTIONS ---
   setShape: (newShape) => set({ shape: newShape }),
   setVariantState: (newState) => set({ variantState: newState }),
   setMode: (newMode) => set({ mode: newMode }),

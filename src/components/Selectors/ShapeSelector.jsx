@@ -7,12 +7,11 @@ const ShapeSelector = () => {
     activeMusicContext,
     activeShape,
     setActiveShape,
-    setActiveShapeById, // Nowa metoda
-    getActiveShapeId, // Nowy getter
-    formatShapeName, // Gotowy pomocnik ze store
+    setActiveShapeById,
+    getActiveShapeId,
+    formatShapeName,
   } = useStore();
 
-  // Budujemy tablicę obiektów { label, value }, gdzie value to unikalne ID
   const shapeOptions =
     activeMusicContext?.shapes?.map((shape) => ({
       label: formatShapeName(shape),
@@ -21,7 +20,6 @@ const ShapeSelector = () => {
 
   useEffect(() => {
     if (activeMusicContext?.shapes?.length > 0) {
-      // Sprawdzamy ważność po ID, aby uniknąć pętli referencyjnych obiektów
       const isStillValid = activeMusicContext.shapes.some(
         (s) => s.id === activeShape?.id
       );
@@ -30,7 +28,6 @@ const ShapeSelector = () => {
         setActiveShape(activeMusicContext.shapes[0]);
       }
     }
-    // Reagujemy na zmianę kontekstu lub utratę ważności kształtu
   }, [
     activeMusicContext?.FunctionContextName,
     activeShape?.id,
@@ -44,9 +41,7 @@ const ShapeSelector = () => {
     <Selector
       label="Set of notes"
       options={shapeOptions}
-      // Przekazujemy unikalne ID jako aktualną wartość
       value={getActiveShapeId()}
-      // Przekazujemy ID do funkcji zmieniającej stan
       onChange={setActiveShapeById}
     />
   );

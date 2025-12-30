@@ -83,16 +83,13 @@ const ScrollFader = ({ children, activeValue }) => {
       const activeElement = container?.querySelector('[data-active="true"]');
 
       if (container && activeElement) {
-        // Pobieramy dokładne wymiary i pozycje w oknie (viewport)
         const containerRect = container.getBoundingClientRect();
         const elementRect = activeElement.getBoundingClientRect();
 
-        // Obliczamy różnicę między środkiem elementu a środkiem kontenera
         const elementCenter = elementRect.left + elementRect.width / 2;
         const containerCenter = containerRect.left + containerRect.width / 2;
         const diff = elementCenter - containerCenter;
 
-        // Przesuwamy o wyliczoną różnicę względem obecnego scrolla
         container.scrollTo({
           left: container.scrollLeft + diff,
           behavior: "smooth",

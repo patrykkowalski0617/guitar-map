@@ -24,16 +24,16 @@ const ColorProfileVisualizer = () => {
     tonic: (
       <>
         Tonics provide a sense of resolution. In the key of <span>{key}</span>,
-        the tonics are <span>{majorRootName}</span> Major and{" "}
-        <span>{minorRootName}</span> Minor chords. Color profile of{" "}
+        the tonics are <span>{majorRootName} Major</span> and{" "}
+        <span>{minorRootName} Minor</span> chords. Color profile of{" "}
         <span>{activeShapeName}</span> played over:
       </>
     ),
     subdominant: (
       <>
         Subdominants provide a sense of motion. In the key of <span>{key}</span>
-        , the subdominants are <span>{majorRootName}</span> Major and{" "}
-        <span>{minorRootName}</span> Minor chords. Color profile of{" "}
+        , the subdominants are <span>{majorRootName} Major</span> and{" "}
+        <span>{minorRootName} Minor</span> chords. Color profile of{" "}
         <span>{activeShapeName}</span> played over:
       </>
     ),
@@ -41,7 +41,7 @@ const ColorProfileVisualizer = () => {
       <>
         Dominant provides a sense of tension and wants to resolve to the Tonic.
         In the key of <span>{key.split("/")[0]}</span>, the dominant is{" "}
-        <span>{majorRootName}</span> Major chord. In the key of{" "}
+        <span>{majorRootName} Major</span> chord. In the key of{" "}
         <span>{key.split("/")[1]}</span> you should use Phrygian Dominant
         Context. Color profile of <span>{activeShapeName}</span> played over:
       </>
@@ -50,7 +50,7 @@ const ColorProfileVisualizer = () => {
       <>
         Phrygian Dominant provides a sense of tension and wants to resolve to
         the Tonic. In the key of <span>{key.split("/")[1]}</span>, the Phrygian
-        Dominant is <span>{majorRootName}</span> Major chord. In the key of{" "}
+        Dominant is <span>{majorRootName} Major</span> chord. In the key of{" "}
         <span>{key.split("/")[0]}</span> you should use Dominant Context. Color
         profile of <span>{activeShapeName}</span> played over:
       </>
