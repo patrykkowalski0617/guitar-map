@@ -23,4 +23,5 @@ const manageCAGED = (keyName, CAGED_shift) => {
 
   return result;
 };
+
 export default manageCAGED;

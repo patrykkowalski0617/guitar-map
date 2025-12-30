@@ -1,6 +1,6 @@
 import { useStore } from "../../store/useStore";
 import Selector from "./Selector";
-import { musicFunctionContextSelectorData } from "../../data/data";
+import { musicFunctionContextSelectorData } from "../../data";
 
 const ContextSelector = () => {
   const { activeMusicContext, setActiveMusicContextById } = useStore();

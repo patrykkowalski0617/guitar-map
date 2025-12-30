@@ -1,4 +1,4 @@
-export const setsShapes = [
+const setsShapes = [
   {
     id: "M",
     label: "Major",
@@ -806,3 +806,5 @@ export const setsShapes = [
     ],
   },
 ];
+
+export default setsShapes;

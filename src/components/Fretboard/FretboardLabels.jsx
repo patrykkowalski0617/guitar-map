@@ -1,4 +1,4 @@
-import { toRoman } from "../../utils/toRoman";
+import { toRoman } from "../../utils";
 import {
   CAGEDLetter,
   FretCount,

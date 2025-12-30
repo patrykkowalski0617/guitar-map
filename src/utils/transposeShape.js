@@ -1,4 +1,4 @@
-import { NOTES_FROM_C } from "../data/notes";
+import { NOTES_FROM_C } from "../data";
 
 const STRING_MAP = {
   E1: "E",
@@ -25,7 +25,7 @@ export const getAbsoluteSemitones = (point) => {
   return STRING_OFFSETS[sIdx] + fret;
 };
 
-export const transposeShape = (relativeShape, targetPoint) => {
+const transposeShape = (relativeShape, targetPoint) => {
   if (!relativeShape || relativeShape.length === 0 || !targetPoint) return [];
 
   const targetAbs = getAbsoluteSemitones(targetPoint);
@@ -55,3 +55,5 @@ export const transposeShape = (relativeShape, targetPoint) => {
     })
     .filter((p) => p !== null);
 };
+
+export default transposeShape;

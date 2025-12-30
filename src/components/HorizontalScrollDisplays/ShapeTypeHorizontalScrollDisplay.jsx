@@ -1,7 +1,6 @@
 import { useStore } from "../../store/useStore";
-import { setsShapes } from "../../data/setsShapes";
+import { setsShapes } from "../../data";
 import HorizontalScrollDisplay from "./HorizontalScrollDisplay";
-import { SubsectionTitle } from "../../parts";
 
 const ShapeTypeHorizontalScrollDisplay = () => {
   const activeChordId = useStore((state) => state.getActiveChordId());

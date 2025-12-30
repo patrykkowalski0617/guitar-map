@@ -1,6 +1,6 @@
-import { NOTES_FROM_C } from "../data/notes";
+import { NOTES_FROM_C } from "../data";
 
-export const getNotesFromNote = (startFormNote, howManyNotes = 12) => {
+const getNotesFromNote = (startFormNote, howManyNotes = 12) => {
   const startIndex = NOTES_FROM_C.indexOf(startFormNote);
 
   if (startIndex === -1) {
@@ -12,3 +12,5 @@ export const getNotesFromNote = (startFormNote, howManyNotes = 12) => {
     (_, i) => NOTES_FROM_C[(startIndex + i) % NOTES_FROM_C.length]
   );
 };
+
+export default getNotesFromNote;

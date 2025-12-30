@@ -1,8 +1,10 @@
 import { create } from "zustand";
-import { musicFunctionContextSelectorData } from "../data/data";
-import { enharmonicTransform, UNIFIED_MUSIC_KEYS } from "../data/notes";
-import { getNotesFromNote } from "../utils/getNotesFromNote";
-import { setsShapes } from "../data/setsShapes";
+import {
+  musicFunctionContextSelectorData,
+  setsShapes,
+  UNIFIED_MUSIC_KEYS,
+} from "../data";
+import { getNotesFromNote, enharmonicTransform } from "../utils";
 
 export const useStore = create((set, get) => ({
   tuneKey: UNIFIED_MUSIC_KEYS[0],

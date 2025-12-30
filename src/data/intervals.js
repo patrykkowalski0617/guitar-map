@@ -1,4 +1,4 @@
-export const intervals = {
+const intervals = {
   _1: 0,
   _m2: 1,
   _M2: 2,
@@ -50,3 +50,5 @@ export const {
   _m14,
   _M14,
 } = intervals;
+
+export default intervals;

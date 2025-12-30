@@ -1,5 +1,5 @@
-import { NOTES_FROM_C } from "../../data/notes";
-import { getNotesFromNote } from "../../utils/getNotesFromNote";
+import { NOTES_FROM_C } from "../../data";
+import { getNotesFromNote } from "../../utils";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
 
 const FretRow = ({

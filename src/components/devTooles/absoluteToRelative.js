@@ -1,4 +1,4 @@
-import { getAbsoluteSemitones, STRING_ORDER } from "../../utils/transposer";
+import { getAbsoluteSemitones, STRING_ORDER } from "../../utils/transposeShape";
 
 export const absoluteToRelative = (absolutePoints) => {
   if (!absolutePoints || absolutePoints.length === 0) return [];
