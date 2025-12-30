@@ -6,11 +6,35 @@ import {
   FretboardLabelsWrapper,
 } from "./parts";
 
+// --- WEWNĘTRZNY KOMPONENT DLA CZYSTOŚCI ---
+const InteractiveCAGEDLetter = ({
+  letter,
+  isLocked,
+  onClick,
+  onOver,
+  onLeave,
+}) => (
+  <CAGEDLetter
+    $isCAGED_hoverShapeLocked={isLocked}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick(letter);
+    }}
+    onMouseEnter={() => onOver(letter)}
+    onMouseLeave={onLeave}
+    style={{ cursor: "pointer" }}
+  >
+    {letter}
+  </CAGEDLetter>
+);
+
 const FretboardLabels = ({
   fretCounts,
   CAGED,
   handleCAGED_MouseOver,
   handleCAGED_MouseLeave,
+  handleCAGED_Click,
+  lockedCAGEDLetter,
 }) => {
   return (
     <FretboardLabelsWrapper>
@@ -24,14 +48,15 @@ const FretboardLabels = ({
             <FretCount
               key={`fret-count-${fIdx}`}
               $numOfCells={fretCounts.length}
-              onMouseLeave={handleCAGED_MouseLeave}
-              onMouseOver={() =>
-                cagedLetter ? handleCAGED_MouseOver(cagedLetter) : null
-              }
-              style={cagedLetter ? { cursor: "pointer" } : null}
             >
               {cagedLetter ? (
-                <CAGEDLetter>{cagedLetter}</CAGEDLetter>
+                <InteractiveCAGEDLetter
+                  letter={cagedLetter}
+                  isLocked={lockedCAGEDLetter === cagedLetter}
+                  onClick={handleCAGED_Click}
+                  onOver={handleCAGED_MouseOver}
+                  onLeave={handleCAGED_MouseLeave}
+                />
               ) : (
                 toRoman(fIdx)
               )}

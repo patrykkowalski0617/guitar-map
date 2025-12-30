@@ -80,6 +80,11 @@ export const CAGEDLetter = styled.div`
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.yellow};
   }
+  border: 1px solid
+    ${({ $isCAGED_hoverShapeLocked, theme }) =>
+      $isCAGED_hoverShapeLocked ? theme.colors.yellow : "initial"};
+  background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
+    $isCAGED_hoverShapeLocked ? theme.colors.green : theme.colors.bgLight};
 `;
 
 export const Note = styled.div`
