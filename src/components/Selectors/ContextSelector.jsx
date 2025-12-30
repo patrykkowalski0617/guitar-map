@@ -3,19 +3,19 @@ import Selector from "./Selector";
 import { musicFunctionContextSelectorData } from "../../data/data";
 
 const ContextSelector = () => {
-  const { activeMusicContext, setActiveMusicContextByName } = useStore();
+  const { activeMusicContext, setActiveMusicContextById } = useStore();
 
   const contextOptions = musicFunctionContextSelectorData.map((item) => ({
     label: item.FunctionContextName,
-    value: item.FunctionContextName, // value i label są takie same
+    value: item.id,
   }));
 
   return (
     <Selector
       label="Context"
       options={contextOptions}
-      value={activeMusicContext?.FunctionContextName}
-      onChange={setActiveMusicContextByName}
+      value={activeMusicContext?.id}
+      onChange={setActiveMusicContextById}
     />
   );
 };

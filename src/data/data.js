@@ -172,6 +172,7 @@ export const harmonicFunctionDescription = {
 
 export const musicFunctionContextSelectorData = [
   {
+    id: "tonics",
     FunctionContextName: "Tonics",
     harmonicFunctionDescription: harmonicFunctionDescription.RELEASE,
     majorRoot: _1,
@@ -371,6 +372,7 @@ export const musicFunctionContextSelectorData = [
     ],
   },
   {
+    id: "subdominants",
     FunctionContextName: "Subdominants",
     harmonicFunctionDescription: harmonicFunctionDescription.MOTION,
     majorRoot: _4,
@@ -542,6 +544,7 @@ export const musicFunctionContextSelectorData = [
     ],
   },
   {
+    id: "dominant",
     FunctionContextName: "Dominant",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _5,
@@ -624,6 +627,7 @@ export const musicFunctionContextSelectorData = [
     ],
   },
   {
+    id: "dominant-ph",
     FunctionContextName: "Phrygian Dominant",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _M3,

@@ -99,45 +99,11 @@ export const useStore = create((set, get) => ({
   setActiveShape: (shapeObject) => set({ activeShape: shapeObject }),
   setActiveShapeName: (name) => set({ activeShapeName: name }),
 
-  // --- STARE FUNKCJE (NAME/CHORD_ID) ---
-
-  setActiveShapeByName: (name) => {
-    const { activeMusicContext, getKeyNotes } = get();
-    const keyNotes = getKeyNotes();
-
-    const foundShape = activeMusicContext?.shapes?.find((shape) => {
-      const rootNote =
-        shape.rootSemitone !== undefined
-          ? keyNotes[shape.rootSemitone]
-          : undefined;
-
-      const formattedName = enharmonicTransform(
-        shape.getNotesSetName(rootNote)
-      );
-      return formattedName === name;
-    });
-
-    if (foundShape) {
-      get().resetShape();
-      set({ activeShape: foundShape });
-    }
-  },
-
-  setActiveChordId: (id) => {
-    const { activeMusicContext } = get();
-    const foundShape = activeMusicContext.shapes.find(
-      (s) => s.chordShapeId === id
-    );
-    if (foundShape) {
-      get().resetShape();
-      set({ activeShape: foundShape });
-    }
-  },
-
-  setActiveMusicContextByName: (name) => {
+  setActiveMusicContextById: (id) => {
     const newContext = musicFunctionContextSelectorData.find(
-      (item) => item.FunctionContextName === name
+      (item) => item.id === id
     );
+
     if (newContext) {
       get().resetShape();
       set({
@@ -147,15 +113,6 @@ export const useStore = create((set, get) => ({
     }
   },
 
-  // ================================================================
-  // NOWE FUNKCJE OPARTE NA UNIKALNYM ID
-  // ================================================================
-
-  /**
-   * NOWA: setActiveShapeById
-   * Docelowo zastępuje: setActiveShapeByName oraz setActiveChordId
-   * Szuka konkretnego kształtu w obecnym kontekście używając unikalnego pola 'id'.
-   */
   setActiveShapeById: (id) => {
     const { activeMusicContext } = get();
     if (!activeMusicContext) return;
@@ -168,11 +125,6 @@ export const useStore = create((set, get) => ({
     }
   },
 
-  /**
-   * NOWA: getActiveShapeId
-   * Pobiera unikalne ID aktualnie wybranego kształtu.
-   * Przydatne dla Selektora, aby wiedział, który przycisk podświetlić.
-   */
   getActiveShapeId: () => {
     return get().activeShape?.id || null;
   },
