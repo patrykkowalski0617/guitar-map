@@ -31,8 +31,8 @@ const ScrollContent = styled.div`
   width: max-content;
   margin: 0 auto;
   min-width: 100%;
-
   justify-content: center;
+
   &::before,
   &::after {
     content: "";
@@ -53,6 +53,22 @@ const ScrollFader = ({ children, activeValue }) => {
   };
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const handleWheel = (e) => {
+      if (!isScrollable) return;
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, [isScrollable]);
+
+  useEffect(() => {
     const timer = setTimeout(checkScroll, 0);
     window.addEventListener("resize", checkScroll);
     return () => {
@@ -67,20 +83,23 @@ const ScrollFader = ({ children, activeValue }) => {
       const activeElement = container?.querySelector('[data-active="true"]');
 
       if (container && activeElement) {
-        // Obliczamy pozycję: środek kontenera minus środek elementu
-        const elementOffset = activeElement.offsetLeft;
-        const elementWidth = activeElement.clientWidth;
-        const containerWidth = container.clientWidth;
+        // Pobieramy dokładne wymiary i pozycje w oknie (viewport)
+        const containerRect = container.getBoundingClientRect();
+        const elementRect = activeElement.getBoundingClientRect();
 
-        const scrollTo = elementOffset - containerWidth / 2 + elementWidth / 2;
+        // Obliczamy różnicę między środkiem elementu a środkiem kontenera
+        const elementCenter = elementRect.left + elementRect.width / 2;
+        const containerCenter = containerRect.left + containerRect.width / 2;
+        const diff = elementCenter - containerCenter;
 
+        // Przesuwamy o wyliczoną różnicę względem obecnego scrolla
         container.scrollTo({
-          left: scrollTo,
+          left: container.scrollLeft + diff,
           behavior: "smooth",
         });
       }
     }
-  }, [activeValue, isScrollable]);
+  }, [activeValue, isScrollable, children]);
 
   return (
     <FaderContainer ref={containerRef} $isScrollable={isScrollable}>
