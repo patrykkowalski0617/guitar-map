@@ -29,6 +29,7 @@ const FretRow = ({
         const isInShape = shape.includes(CAGED_noteId);
         const isInUserShape = userShape.includes(CAGED_noteId);
         const isInCAGED_hoverShape = CAGED_hoverShape.includes(CAGED_noteId);
+        const isActiveShapeRootNote = activeShapeRootNote === note;
 
         return (
           <FretCell
@@ -41,7 +42,7 @@ const FretRow = ({
               $isInCAGED_hoverShape={isInCAGED_hoverShape}
               className={`CAGED_noteId__${CAGED_noteId}`}
               onClick={() => handleNoteClick(note, CAGED_noteId)}
-              $isActiveShapeRootNote={activeShapeRootNote === note}
+              $isActiveShapeRootNote={isActiveShapeRootNote}
             >
               {note}
             </StyledNote>

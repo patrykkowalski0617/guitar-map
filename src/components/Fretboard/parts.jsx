@@ -59,14 +59,23 @@ const fretboardButtonStyles = css`
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSize.md};
   text-transform: uppercase;
-  background: ${({ $isInUserShape, theme }) =>
-    $isInUserShape ? theme.colors.green : theme.colors.bgLight};
-
+  background: ${({
+    $isInUserShape,
+    $isActiveShapeRootNote,
+    $isInShape,
+    theme,
+  }) => {
+    if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
+    if ($isInUserShape) return theme.colors.green;
+    return theme.colors.bgLight;
+  }};
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
+
   border: 1px solid
     ${({ theme, $isInShape }) =>
       $isInShape ? theme.colors.yellow : theme.colors.border};
+
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
   line-height: 0;
@@ -91,14 +100,17 @@ export const Note = styled.div`
   width: 48px;
   height: 31px;
   opacity: ${({ $isInShape, $isActiveShapeRootNote, $isInCAGED_hoverShape }) =>
-    $isInShape || $isActiveShapeRootNote
+    $isActiveShapeRootNote || $isInShape
       ? "1"
       : $isInCAGED_hoverShape
       ? "0.4"
       : "0.1"};
+
   cursor: ${({ $isActiveShapeRootNote }) =>
     $isActiveShapeRootNote ? "pointer" : "default"};
+
   ${fretboardButtonStyles}
+
   &:hover {
     border: 1px solid
       ${({ $isActiveShapeRootNote, theme }) =>

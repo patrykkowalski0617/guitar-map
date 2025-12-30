@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useStore } from "../../store/useStore";
 import manageCAGED from "../../utils/manageCAGED";
 import { FretboardContainer } from "./parts";
@@ -37,62 +37,111 @@ const Fretboard = () => {
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
+  const activeRootIds = useMemo(() => {
+    if (!activeShapeRootNote) return [];
+    const ids = [];
+    STRINGS_FIRST_NOTES.forEach((sName, sIdx) => {
+      const stringId = `${sName}${6 - sIdx}`;
+      const notesOnString = getNotesFromNote(sName, numberOfFrets);
+
+      notesOnString.forEach((noteName) => {
+        if (noteName === activeShapeRootNote) {
+          let index = NOTES_FROM_C.indexOf(noteName) - CAGED_shift;
+          if (index < 0) index += 12;
+          ids.push(`${stringId}_${NOTES_FROM_C[index]}`);
+        }
+      });
+    });
+    return ids;
+  }, [activeShapeRootNote, CAGED_shift]);
+
   const handleNoteClick = (note, CAGED_noteId) => {
     if (isDevMode) {
-      setUserShape((prevShape) =>
-        prevShape.includes(CAGED_noteId)
-          ? prevShape.filter((id) => id !== CAGED_noteId)
-          : [...prevShape, CAGED_noteId]
+      setUserShape((prev) =>
+        prev.includes(CAGED_noteId)
+          ? prev.filter((id) => id !== CAGED_noteId)
+          : [...prev, CAGED_noteId]
       );
     }
 
     if (activeShapeRootNote === note && activeChordVariants.length > 0) {
       const stringId = CAGED_noteId.split("_")[0];
-      let nextIndex = 0;
 
-      if (variantState.lastId === CAGED_noteId) {
-        nextIndex = (variantState.index + 1) % activeChordVariants.length;
-      }
-
-      let safetyCounter = 0;
-      let foundValidShape = null;
-      let finalIndex = nextIndex;
-
-      while (safetyCounter < activeChordVariants.length) {
-        const currentIndex =
-          (nextIndex + safetyCounter) % activeChordVariants.length;
-        const variant = activeChordVariants[currentIndex];
-
-        const isStringAllowed =
-          !variant.notAllowedOnStrings?.includes(stringId);
-
-        if (isStringAllowed) {
-          const transposed = transposeShape(variant.shape, CAGED_noteId);
-
+      const availableIndices = activeChordVariants
+        .map((v, idx) => {
+          const isAllowed = !v.notAllowedOnStrings?.includes(stringId);
+          const transposed = isAllowed
+            ? transposeShape(v.shape, CAGED_noteId)
+            : [];
           const matchesCAGED =
-            CAGED_hoverShape.length === 0 ||
-            transposed.every((noteId) => CAGED_hoverShape.includes(noteId));
+            transposed.length > 0 &&
+            (CAGED_hoverShape.length === 0 ||
+              transposed.every((id) => CAGED_hoverShape.includes(id)));
+          return matchesCAGED ? idx : null;
+        })
+        .filter((idx) => idx !== null);
 
-          if (matchesCAGED) {
-            foundValidShape = transposed;
-            finalIndex = currentIndex;
-            break;
-          }
+      let nextAction = null;
+
+      if (variantState.lastId !== CAGED_noteId) {
+        nextAction = availableIndices.length > 0 ? availableIndices[0] : "SUM";
+      } else {
+        const currentInAvailableIdx = availableIndices.indexOf(
+          variantState.index
+        );
+
+        if (
+          currentInAvailableIdx !== -1 &&
+          currentInAvailableIdx < availableIndices.length - 1
+        ) {
+          nextAction = availableIndices[currentInAvailableIdx + 1];
+        } else if (variantState.index === "SUM") {
+          nextAction =
+            availableIndices.length > 0 ? availableIndices[0] : "SUM";
+        } else {
+          nextAction = "SUM";
         }
-        safetyCounter++;
       }
 
-      if (foundValidShape) {
-        setShape(foundValidShape);
-        setVariantState({ lastId: CAGED_noteId, index: finalIndex });
+      const totalSteps = availableIndices.length + 1;
+      const currentStep =
+        nextAction === "SUM"
+          ? totalSteps
+          : availableIndices.indexOf(nextAction) + 1;
+
+      console.log(`Wariant: ${currentStep}/${totalSteps}`);
+
+      if (nextAction === "SUM") {
+        const combinedShapeSet = new Set();
+        activeRootIds.forEach((rootId) => {
+          const rStringId = rootId.split("_")[0];
+          const validVariant = activeChordVariants.find((v) => {
+            if (v.notAllowedOnStrings?.includes(rStringId)) return false;
+            const t = transposeShape(v.shape, rootId);
+            return (
+              t.length > 0 &&
+              (CAGED_hoverShape.length === 0 ||
+                t.every((id) => CAGED_hoverShape.includes(id)))
+            );
+          });
+
+          if (validVariant) {
+            transposeShape(validVariant.shape, rootId).forEach((id) =>
+              combinedShapeSet.add(id)
+            );
+          }
+        });
+
+        setShape(Array.from(combinedShapeSet));
+        setVariantState({ lastId: CAGED_noteId, index: "SUM" });
       } else {
-        console.warn(
-          `No valid variant found for string ${stringId} within the current CAGED shape.`
-        );
+        const variant = activeChordVariants[nextAction];
+        const transposed = transposeShape(variant.shape, CAGED_noteId);
+        setShape(transposed);
+        setVariantState({ lastId: CAGED_noteId, index: nextAction });
       }
     }
   };
-
   const handleCAGED_MouseOver = (cagedLetter) => {
     if (lockedCAGEDLetter) return;
     setVariantState({ lastId: null, index: 0 });
@@ -106,7 +155,6 @@ const Fretboard = () => {
 
   const handleCAGED_Click = (cagedLetter) => {
     setVariantState({ lastId: null, index: 0 });
-
     if (lockedCAGEDLetter === cagedLetter) {
       setLockedCAGEDLetter(null);
       setCAGED_hoverShape([]);
@@ -116,8 +164,6 @@ const Fretboard = () => {
     }
     setShape([]);
   };
-
-  const handleClearUserShape = () => setUserShape([]);
 
   return (
     <>
@@ -147,11 +193,10 @@ const Fretboard = () => {
           />
         </FretboardContainer>
       </ScrollFader>
-
       {isDevMode && (
         <DevTools
           userShape={userShape}
-          handleClearUserShape={handleClearUserShape}
+          handleClearUserShape={() => setUserShape([])}
         />
       )}
     </>

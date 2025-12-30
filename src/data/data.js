@@ -307,10 +307,10 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "tonics-root_1-shape_noAvoidNotes_1",
+        id: "tonics-root_1-shape_noAvoidNotes_T-S",
         getNotesSetName: () => 'Unified "no avoid notes"',
         rootSemitone: _1,
-        chordShapeId: "noAvoidNotes_1",
+        chordShapeId: "noAvoidNotes_T-S",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
@@ -500,10 +500,10 @@ export const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "subdominants-root_4-shape_noAvoidNotes_1",
+        id: "subdominants-root_4-shape_noAvoidNotes_T-S",
         getNotesSetName: () => 'Unified "no avoid notes"',
         rootSemitone: _4,
-        chordShapeId: "noAvoidNotes_1",
+        chordShapeId: "noAvoidNotes_T-S",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],

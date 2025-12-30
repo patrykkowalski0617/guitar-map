@@ -22,7 +22,7 @@ export const theme = {
   },
   borderRadius: { sm: "4px", md: "8px", lg: "12px", full: "500px" },
   shadows: { glow: "0 0 12px", panel: "0 4px 20px rgba(0, 0, 0, 0.4)" },
-  spacing: { xs: "4px", sm: "8px", md: "16px", lg: "32px", xl: "40px" },
+  spacing: { xs: "4px", sm: "8px", md: "16px", lg: "32px", xl: "45px" },
   breakpoints: { mobile: "576px", tablet: "768px", desktop: "1024px" },
   transitions: {
     default: "all 0.3s ease",

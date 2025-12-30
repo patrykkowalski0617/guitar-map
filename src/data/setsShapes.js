@@ -463,6 +463,61 @@ export const setsShapes = [
     ],
   },
   {
+    id: "noAvoidNotes_T-S",
+    label: 'Unified "no avoid notes"',
+    shapes: [
+      {
+        notAllowedOnStrings: [],
+        shape: [
+          [0, 0],
+          [0, 2],
+          [0, -8],
+          [1, 7],
+          [1, -3],
+          [2, 11],
+          [2, 12],
+        ],
+      },
+      {
+        notAllowedOnStrings: [],
+        shape: [
+          [0, 0],
+          [0, 2],
+          [1, 4],
+          [1, 7],
+          [2, 9],
+          [2, 11],
+          [2, 12],
+        ],
+      },
+      {
+        notAllowedOnStrings: ["A2"],
+        shape: [
+          [0, 0],
+          [1, 2],
+          [1, 4],
+          [2, 7],
+          [2, 9],
+          [2, 11],
+          [3, 12],
+        ],
+      },
+      {
+        notAllowedOnStrings: ["E1"],
+        shape: [
+          [0, 0],
+          [1, 2],
+          [1, 4],
+          [2, 7],
+          [2, 9],
+          [3, 11],
+          [3, 12],
+        ],
+      },
+    ],
+  },
+
+  {
     id: "ionian",
     label: "Ionian Scale",
     shapes: [
@@ -592,19 +647,6 @@ export const setsShapes = [
           [2, 9],
           [2, 10],
           [3, 12],
-        ],
-      },
-      {
-        notAllowedOnStrings: [],
-        shape: [
-          [0, 0],
-          [0, 2],
-          [0, 3],
-          [1, 5],
-          [1, 7],
-          [2, 9],
-          [2, 10],
-          [2, 12],
         ],
       },
     ],

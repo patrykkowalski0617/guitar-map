@@ -78,7 +78,7 @@ export const ToneDot = styled.div`
 export const Description = styled.div`
   opacity: 0.8;
   text-align: center;
-  max-width: 75%;
+  max-width: 95%;
   line-height: 1.5;
   margin: 0 auto 20px;
   > span {

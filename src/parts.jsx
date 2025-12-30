@@ -1,18 +1,14 @@
 import styled from "styled-components";
 
 export const AppWrapper = styled.div`
-  min-height: 100vh;
-  padding: 10px;
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing?.lg || "20px"};
+  padding: ${({ theme }) => theme.spacing.md};
 `;
 
 export const SectionContainer = styled.section`
   margin: 60px auto 0;
-  max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: ${({ theme }) => `50px ${theme.spacing.md} ${theme.spacing.sm}`};
@@ -20,7 +16,10 @@ export const SectionContainer = styled.section`
   box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}22`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   position: relative;
+  max-width: 1400px;
+  min-width: 0;
 `;
+
 export const SubSectionContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
@@ -76,21 +75,14 @@ export const RowWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  gap: ${({ theme }) => theme.spacing?.lg || "20px"};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    gap: ${({ theme }) => theme.spacing.xl};
     flex-direction: row;
     align-items: stretch;
     & > ${SectionContainer} {
-      flex: 1;
-      width: 0;
-      min-width: 50%;
-      max-width: none;
-      margin-left: 0;
-      margin-right: 0;
-      margin-top: 60px;
+      flex: 1 1 0;
     }
   }
 `;
