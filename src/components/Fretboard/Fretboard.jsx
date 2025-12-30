@@ -54,26 +54,42 @@ const Fretboard = () => {
         nextIndex = (variantState.index + 1) % activeChordVariants.length;
       }
 
-      let selectedVariant = activeChordVariants[nextIndex];
       let safetyCounter = 0;
+      let foundValidShape = null;
+      let finalIndex = nextIndex;
 
-      while (
-        selectedVariant.notAllowedOnStrings?.includes(stringId) &&
-        safetyCounter < activeChordVariants.length
-      ) {
-        nextIndex = (nextIndex + 1) % activeChordVariants.length;
-        selectedVariant = activeChordVariants[nextIndex];
+      while (safetyCounter < activeChordVariants.length) {
+        const currentIndex =
+          (nextIndex + safetyCounter) % activeChordVariants.length;
+        const variant = activeChordVariants[currentIndex];
+
+        const isStringAllowed =
+          !variant.notAllowedOnStrings?.includes(stringId);
+
+        if (isStringAllowed) {
+          const transposed = transposeShape(variant.shape, CAGED_noteId);
+
+          const matchesCAGED =
+            CAGED_hoverShape.length === 0 ||
+            transposed.every((noteId) => CAGED_hoverShape.includes(noteId));
+
+          if (matchesCAGED) {
+            foundValidShape = transposed;
+            finalIndex = currentIndex;
+            break;
+          }
+        }
         safetyCounter++;
       }
 
-      if (selectedVariant.notAllowedOnStrings?.includes(stringId)) {
-        console.warn(`No valid variant found for string: ${stringId}`);
-        return;
+      if (foundValidShape) {
+        setShape(foundValidShape);
+        setVariantState({ lastId: CAGED_noteId, index: finalIndex });
+      } else {
+        console.warn(
+          `No valid variant found for string ${stringId} within the current CAGED shape.`
+        );
       }
-
-      const newShape = transposeShape(selectedVariant.shape, CAGED_noteId);
-      setShape(newShape);
-      setVariantState({ lastId: CAGED_noteId, index: nextIndex });
     }
   };
 
@@ -98,6 +114,7 @@ const Fretboard = () => {
       setLockedCAGEDLetter(cagedLetter);
       setCAGED_hoverShape(CAGED_hoverShapes[cagedLetter]);
     }
+    setShape([]);
   };
 
   const handleClearUserShape = () => setUserShape([]);
