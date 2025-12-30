@@ -67,7 +67,7 @@ export const setsShapes = [
         ],
       },
       {
-        notAllowedOnStrings: [],
+        notAllowedOnStrings: ["E1"],
         shape: [
           [0, 0],
           [1, 4],

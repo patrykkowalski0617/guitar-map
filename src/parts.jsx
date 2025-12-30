@@ -8,7 +8,7 @@ export const AppWrapper = styled.div`
 `;
 
 export const SectionContainer = styled.section`
-  margin: ${({ theme }) => theme.spacing.lg} auto 0;
+  margin: 60px auto 0;
   max-width: 1200px;
   display: flex;
   flex-direction: column;

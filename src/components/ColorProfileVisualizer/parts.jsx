@@ -21,6 +21,8 @@ export const ProfileColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 200px;
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 export const DotsWrapper = styled.div`
@@ -28,6 +30,7 @@ export const DotsWrapper = styled.div`
   gap: ${({ theme }) => theme.spacing.sm};
   align-items: flex-end;
   height: 65px;
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 export const DotStack = styled.div`
   display: flex;
@@ -70,4 +73,12 @@ export const ToneDot = styled.div`
     width: ${({ theme }) => theme.sizes.dotXl};
     height: ${({ theme }) => theme.sizes.dotXl};
   }
+`;
+
+export const Description = styled.div`
+  opacity: 0.8;
+  text-align: center;
+  max-width: 75%;
+  line-height: 1.5;
+  margin: 0 auto 20px;
 `;

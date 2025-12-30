@@ -6,6 +6,7 @@ export const PreviewMainContainer = styled.div`
   gap: 30px;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.bg};
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 export const GroupTitle = styled.div`
@@ -25,6 +26,8 @@ export const LegendLabel = styled.div`
   opacity: 0.8;
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.fontSize.sm};
+  ${({ $isLegendLabel, theme }) =>
+    $isLegendLabel ? `color: ${theme.colors.green}; font-weight: bold` : ""}
 `;
 
 export const LegendItem = styled.div`
