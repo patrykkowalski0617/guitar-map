@@ -28,12 +28,10 @@ const Fretboard = () => {
   const [CAGED_hoverShape, setCAGED_hoverShape] = useState([]);
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
 
-  // Podstawowe dane muzyczne
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
-  // Root Ids (zostawiamy useMemo tutaj, bo zasila zarówno widok jak i hooka)
   const activeRootIds = useMemo(() => {
     if (!activeShapeRootNote) return [];
     const ids = [];
@@ -49,7 +47,6 @@ const Fretboard = () => {
     return ids;
   }, [activeShapeRootNote, CAGED_shift]);
 
-  // Użycie Hooka do logiki kliknięć
   const { handleNoteClick } = useFretboardLogic({
     activeShapeRootNote,
     activeChordVariants,
@@ -61,7 +58,6 @@ const Fretboard = () => {
     activeRootIds,
   });
 
-  // Logika CAGED
   const handleCAGED_Click = (letter) => {
     setVariantState({ lastId: null, index: 0 });
     const isLocking = lockedCAGEDLetter !== letter;

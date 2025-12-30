@@ -18,7 +18,6 @@ const useFretboardLogic = (props) => {
 
     const stringId = CAGED_noteId.split("_")[0];
 
-    // 1. Znajdź dostępne indeksy
     const availableIndices = activeChordVariants
       .map((v, idx) => {
         const isAllowed = !v.notAllowedOnStrings?.includes(stringId);
@@ -33,7 +32,6 @@ const useFretboardLogic = (props) => {
       })
       .filter((idx) => idx !== null);
 
-    // 2. Logika wyboru akcji (Wariant vs SUM)
     let nextAction = "SUM";
     if (variantState.lastId !== CAGED_noteId) {
       nextAction = availableIndices.length > 0 ? availableIndices[0] : "SUM";
@@ -51,7 +49,6 @@ const useFretboardLogic = (props) => {
       }
     }
 
-    // 3. Wykonanie akcji
     if (nextAction === "SUM") {
       const combinedShapeSet = new Set();
       activeRootIds.forEach((rootId) => {
