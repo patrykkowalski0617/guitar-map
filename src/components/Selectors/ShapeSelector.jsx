@@ -1,41 +1,42 @@
 import { useEffect } from "react";
 import { useStore } from "../../store/useStore";
 import Selector from "./Selector";
-import { enharmonicTransform } from "../../data/notes";
 
 const ShapeSelector = () => {
   const {
     activeMusicContext,
     activeShape,
     setActiveShape,
-    setActiveShapeByName,
-    getKeyNotes,
+    setActiveShapeById, // Nowa metoda
+    getActiveShapeId, // Nowy getter
+    formatShapeName, // Gotowy pomocnik ze store
   } = useStore();
 
-  const keyNotes = getKeyNotes();
-
-  const renderShapeName = (shape) => {
-    if (!shape) return "";
-    const rootNote =
-      shape.rootSemitone !== undefined
-        ? keyNotes[shape.rootSemitone]
-        : undefined;
-    return enharmonicTransform(shape.getNotesSetName(rootNote));
-  };
-
+  // Budujemy tablicę obiektów { label, value }, gdzie value to unikalne ID
   const shapeOptions =
-    activeMusicContext?.shapes?.map((shape) => renderShapeName(shape)) || [];
+    activeMusicContext?.shapes?.map((shape) => ({
+      label: formatShapeName(shape),
+      value: shape.id,
+    })) || [];
 
   useEffect(() => {
     if (activeMusicContext?.shapes?.length > 0) {
+      // Sprawdzamy ważność po ID, aby uniknąć pętli referencyjnych obiektów
       const isStillValid = activeMusicContext.shapes.some(
-        (s) => s === activeShape
+        (s) => s.id === activeShape?.id
       );
+
       if (!isStillValid) {
         setActiveShape(activeMusicContext.shapes[0]);
       }
     }
-  }, [activeMusicContext, activeShape, setActiveShape]);
+    // Reagujemy na zmianę kontekstu lub utratę ważności kształtu
+  }, [
+    activeMusicContext?.FunctionContextName,
+    activeShape?.id,
+    setActiveShape,
+    activeMusicContext.shapes,
+  ]);
 
   if (shapeOptions.length === 0) return null;
 
@@ -43,8 +44,10 @@ const ShapeSelector = () => {
     <Selector
       label="Set of notes"
       options={shapeOptions}
-      value={renderShapeName(activeShape)}
-      onChange={setActiveShapeByName}
+      // Przekazujemy unikalne ID jako aktualną wartość
+      value={getActiveShapeId()}
+      // Przekazujemy ID do funkcji zmieniającej stan
+      onChange={setActiveShapeById}
     />
   );
 };

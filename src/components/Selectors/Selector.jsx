@@ -11,12 +11,12 @@ const Selector = ({ label, options, value, onChange, isCompact }) => {
         <OptionsWrapper $isCompact={isCompact}>
           {options.map((option) => (
             <OptionButton
-              key={option}
-              $active={value === option}
-              data-active={value === option}
-              onClick={() => onChange(option)}
+              key={option.value}
+              $active={value === option.value}
+              data-active={value === option.value}
+              onClick={() => onChange(option.value)}
             >
-              {option}
+              {option.label}
             </OptionButton>
           ))}
         </OptionsWrapper>
