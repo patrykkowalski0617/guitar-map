@@ -80,7 +80,12 @@ export const useStore = create((set, get) => ({
     const chordGroup = setsShapes.find(
       (chord) => chord.id === activeShape.chordShapeId
     );
+    // Zwraca tablicę obiektów { notAllowedOnStrings, shape }
     return chordGroup ? chordGroup.shapes : [];
+  },
+
+  getActiveShapeId: () => {
+    return get().activeShape?.id || null;
   },
 
   // --- ACTIONS ---
@@ -123,9 +128,5 @@ export const useStore = create((set, get) => ({
       get().resetShape();
       set({ activeShape: foundShape });
     }
-  },
-
-  getActiveShapeId: () => {
-    return get().activeShape?.id || null;
   },
 }));
