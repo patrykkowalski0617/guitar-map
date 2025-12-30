@@ -19,7 +19,7 @@ export const SectionContainer = styled.section`
   position: relative;
 `;
 export const SubSectionContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 export const SectionTitle = styled.div`

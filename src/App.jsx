@@ -30,11 +30,11 @@ function App() {
           <SubSectionContainer>
             <ContextSelector />
           </SubSectionContainer>
-
           <SubSectionContainer>
             <ShapeSelector />
           </SubSectionContainer>
         </SectionContainer>
+
         <SectionContainer>
           <SectionTitle>
             <h2>Visualizer</h2>
@@ -46,6 +46,7 @@ function App() {
             <VisualizerLegend />
           </SubSectionContainer>
         </SectionContainer>
+
         <SectionContainer>
           <SectionTitle>
             <h2>Shape Library</h2>
