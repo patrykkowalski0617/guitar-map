@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const getIntervalColor = (interval, colors, $isAvoid) => {
   if ($isAvoid) return colors.red;
   if (interval === 1 || interval === 5) return colors.text;
@@ -6,6 +7,7 @@ const getIntervalColor = (interval, colors, $isAvoid) => {
   if (interval === 9) return colors.blue;
   return colors.violet;
 };
+
 export const VisualizerContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -33,16 +35,19 @@ export const DotStack = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
 `;
+
 export const IntervalNumber = styled.span`
   font-size: 0.65rem;
   font-weight: bold;
   color: ${({ $interval, theme, $isRaised, $isAvoid }) =>
-    $isRaised || $isAvoid
+    $isRaised
       ? getIntervalColor($interval, theme.colors, $isAvoid)
       : theme.colors.text};
   opacity: ${({ $isRaised }) => ($isRaised ? 1 : 0.5)};
   transition: ${({ theme }) => theme.transitions.default};
+  margin-top: 5px;
 `;
+
 export const ToneDot = styled.div`
   width: ${({ theme }) => theme.sizes.dot};
   height: ${({ theme }) => theme.sizes.dot};
