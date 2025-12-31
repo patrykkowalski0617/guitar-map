@@ -108,10 +108,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "tonics-root_1-shape_majorPent",
+        id: "tonics-root_1-shape_major_pent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _1,
-        chordShapeId: "majorPent",
+        chordShapeId: "major_pent",
         colorProfile: {
           major: {
             exposedTone: 1,
@@ -126,10 +126,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "tonics-root_M6-shape_minorPent",
+        id: "tonics-root_M6-shape_minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M6,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 13,
@@ -144,10 +144,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "tonics-root_M3-shape_minorPent",
+        id: "tonics-root_M3-shape_minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 3,
@@ -162,10 +162,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "tonics-root_1-shape_noAvoidNotes_T-S",
+        id: "tonics-root_1-shape_no_avoid_notes_t_s_major",
         getNotesSetName: () => 'Unified "no avoid notes"',
         rootSemitone: _1,
-        chordShapeId: "noAvoidNotes_T-S",
+        chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
@@ -304,10 +304,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "subdominants-root_4-shape_majorPent",
+        id: "subdominants-root_4-shape_major_pent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _4,
-        chordShapeId: "majorPent",
+        chordShapeId: "major_pent",
         colorProfile: {
           major: {
             exposedTone: 1,
@@ -321,10 +321,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "subdominants-root_M2-shape_minorPent",
+        id: "subdominants-root_M2-shape_minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M2,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 13,
@@ -338,10 +338,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "subdominants-root_M6-shape_minorPent",
+        id: "subdominants-root_M6-shape_minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M6,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 3,
@@ -355,10 +355,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "subdominants-root_4-shape_noAvoidNotes_T-S",
+        id: "subdominants-root_4-shape_no_avoid_notes_t_s_major",
         getNotesSetName: () => 'Unified "no avoid notes"',
         rootSemitone: _4,
-        chordShapeId: "noAvoidNotes_T-S",
+        chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
           major: {
             usedTones: [1, 3, 5, 7, 9, 13],
@@ -444,10 +444,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_5-shape-majorPent",
+        id: "dominant-root_5-shape-major_pent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _5,
-        chordShapeId: "majorPent",
+        chordShapeId: "major_pent",
         colorProfile: {
           major: {
             exposedTone: 1,
@@ -456,10 +456,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_M3-shape-minorPent",
+        id: "dominant-root_M3-shape-minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 13,
@@ -468,10 +468,10 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_5-shape-minorPent",
+        id: "dominant-root_5-shape-minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _5,
-        chordShapeId: "minorPent",
+        chordShapeId: "minor_pent",
         colorProfile: {
           major: {
             exposedTone: 1,
