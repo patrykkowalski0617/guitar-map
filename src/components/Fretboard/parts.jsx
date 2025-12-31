@@ -65,8 +65,8 @@ const fretboardButtonStyles = css`
     $isInShape,
     theme,
   }) => {
+    if ($isInUserShape) return theme.colors.red;
     if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
-    if ($isInUserShape) return theme.colors.green;
     return theme.colors.bgLight;
   }};
   box-shadow: ${({ theme, $isInShape }) =>
@@ -117,10 +117,14 @@ export const Note = styled.div`
     display: ${({ $variantLabel }) => ($variantLabel ? "flex" : "none")};
     position: absolute;
     top: -3px;
-    right: -23px;
-    color: ${({ theme }) => theme.colors.green};
+    right: -20px;
+    color: ${({ theme, $isError }) =>
+      $isError ? theme.colors.red || "#ff4444" : theme.colors.green};
     font-size: 17px;
     font-weight: bold;
+    text-align: center;
+    width: 20px;
+    height: 10px;
   }
 
   &:hover {

@@ -56,6 +56,8 @@ const Fretboard = () => {
     setVariantState,
     setShape,
     activeRootIds,
+    isDevMode,
+    setUserShape,
   });
 
   const handleCAGED_Click = (letter) => {

@@ -9,53 +9,55 @@ export const useFretboardLogic = (props) => {
     setVariantState,
     setShape,
     activeRootIds,
+    isDevMode,
+    setUserShape,
   } = props;
 
+  const checkAvailability = (variant, CAGED_noteId) => {
+    const stringId = CAGED_noteId.split("_")[0];
+    const isAllowed = !variant.notAllowedOnStrings?.includes(stringId);
+    const transposed = isAllowed
+      ? transposeShape(variant.shape, CAGED_noteId)
+      : [];
+    return (
+      transposed.length > 0 &&
+      (CAGED_hoverShape.length === 0 ||
+        transposed.every((id) => CAGED_hoverShape.includes(id)))
+    );
+  };
+
   const handleNoteClick = (note, CAGED_noteId) => {
+    // Dev Mode
+    if (isDevMode && setUserShape) {
+      setUserShape((prev) =>
+        prev.includes(CAGED_noteId)
+          ? prev.filter((id) => id !== CAGED_noteId)
+          : [...prev, CAGED_noteId]
+      );
+      if (activeShapeRootNote !== note) return;
+    }
+
     if (activeShapeRootNote !== note || activeChordVariants.length === 0)
       return;
 
-    const stringId = CAGED_noteId.split("_")[0];
+    const totalVariantsCount = activeChordVariants.length;
+    let nextVariantIdx;
 
-    const availableIndices = activeChordVariants
-      .map((v, idx) => {
-        const isAllowed = !v.notAllowedOnStrings?.includes(stringId);
-        const transposed = isAllowed
-          ? transposeShape(v.shape, CAGED_noteId)
-          : [];
-        const matchesCAGED =
-          transposed.length > 0 &&
-          (CAGED_hoverShape.length === 0 ||
-            transposed.every((id) => CAGED_hoverShape.includes(id)));
-        return matchesCAGED ? idx : null;
-      })
-      .filter((idx) => idx !== null);
+    const currentIdx = activeChordVariants.findIndex(
+      (v) => v.id === variantState.variantId
+    );
 
-    let nextAction = "SUM";
-    if (variantState.lastId !== CAGED_noteId) {
-      nextAction = availableIndices.length > 0 ? availableIndices[0] : "SUM";
+    if (
+      variantState.lastId !== CAGED_noteId ||
+      variantState.variantId === "SUM"
+    ) {
+      nextVariantIdx = 0;
     } else {
-      const currentInAvailableIdx = availableIndices.indexOf(
-        variantState.index
-      );
-      if (
-        currentInAvailableIdx !== -1 &&
-        currentInAvailableIdx < availableIndices.length - 1
-      ) {
-        nextAction = availableIndices[currentInAvailableIdx + 1];
-      } else if (variantState.index === "SUM") {
-        nextAction = availableIndices.length > 0 ? availableIndices[0] : "SUM";
-      }
+      nextVariantIdx = currentIdx + 1;
     }
 
-    const totalSteps = availableIndices.length + 1;
-    const currentStep =
-      nextAction === "SUM"
-        ? totalSteps
-        : availableIndices.indexOf(nextAction) + 1;
-    const variantLabel = `${currentStep}/${totalSteps}`;
-
-    if (nextAction === "SUM") {
+    // ALL
+    if (nextVariantIdx >= totalVariantsCount) {
       const combinedShapeSet = new Set();
       activeRootIds.forEach((rootId) => {
         const rStringId = rootId.split("_")[0];
@@ -73,19 +75,36 @@ export const useFretboardLogic = (props) => {
             combinedShapeSet.add(id)
           );
       });
+
       setShape(Array.from(combinedShapeSet));
       setVariantState({
         lastId: CAGED_noteId,
-        index: "SUM",
-        label: variantLabel,
+        variantId: "SUM",
+        label: "All",
+        isError: false,
       });
-    } else {
-      const variant = activeChordVariants[nextAction];
-      setShape(transposeShape(variant.shape, CAGED_noteId));
+      return;
+    }
+
+    const nextVariant = activeChordVariants[nextVariantIdx];
+    const isAvailable = checkAvailability(nextVariant, CAGED_noteId);
+    const label = `${nextVariantIdx + 1}/${totalVariantsCount}`;
+
+    if (isAvailable) {
+      setShape(transposeShape(nextVariant.shape, CAGED_noteId));
       setVariantState({
         lastId: CAGED_noteId,
-        index: nextAction,
-        label: variantLabel,
+        variantId: nextVariant.id,
+        label,
+        isError: false,
+      });
+    } else {
+      setVariantState({
+        ...variantState,
+        lastId: CAGED_noteId,
+        variantId: nextVariant.id,
+        label,
+        isError: true,
       });
     }
   };

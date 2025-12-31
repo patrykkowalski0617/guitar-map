@@ -1,10 +1,10 @@
 const setsShapes = [
   {
-    id: "M", // przechowuje informacje o id
+    id: "M",
     label: "Major",
     shapes: [
-      // orraz inforamje indexdanego shape
       {
+        id: "M_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -14,6 +14,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -23,6 +24,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -38,6 +40,7 @@ const setsShapes = [
     label: "Major 7th",
     shapes: [
       {
+        id: "M7_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -48,7 +51,8 @@ const setsShapes = [
         ],
       },
       {
-        notAllowedOnStrings: [],
+        id: "M7_1",
+        notAllowedOnStrings: ["E6"],
         shape: [
           [0, 0],
           [1, 4],
@@ -58,7 +62,8 @@ const setsShapes = [
         ],
       },
       {
-        notAllowedOnStrings: ["A2"],
+        id: "M7_2",
+        notAllowedOnStrings: ["A2", "E6"],
         shape: [
           [0, 0],
           [1, 4],
@@ -68,7 +73,8 @@ const setsShapes = [
         ],
       },
       {
-        notAllowedOnStrings: ["E1"],
+        id: "M7_3",
+        notAllowedOnStrings: ["E1", "E6"],
         shape: [
           [0, 0],
           [1, 4],
@@ -84,6 +90,7 @@ const setsShapes = [
     label: "Major add9",
     shapes: [
       {
+        id: "M_add9_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -94,6 +101,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M_add9_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -104,6 +112,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M_add9_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -120,6 +129,7 @@ const setsShapes = [
     label: "Major 9",
     shapes: [
       {
+        id: "M9_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -131,6 +141,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M9_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -142,6 +153,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "M9_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -159,6 +171,7 @@ const setsShapes = [
     label: "Dominant",
     shapes: [
       {
+        id: "dominant_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -169,6 +182,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dominant_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -179,6 +193,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dominant_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -195,6 +210,7 @@ const setsShapes = [
     label: "m7b5 (Half-dim)",
     shapes: [
       {
+        id: "m7b5_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -205,6 +221,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m7b5_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -221,6 +238,7 @@ const setsShapes = [
     label: "Diminished 7",
     shapes: [
       {
+        id: "dim7_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -231,6 +249,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dim7_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -241,6 +260,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dim7_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -257,6 +277,7 @@ const setsShapes = [
     label: "Minor",
     shapes: [
       {
+        id: "m_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -266,6 +287,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -275,6 +297,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -290,6 +313,7 @@ const setsShapes = [
     label: "Minor 7th",
     shapes: [
       {
+        id: "m7_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -300,6 +324,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m7_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -310,6 +335,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m7_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -326,6 +352,7 @@ const setsShapes = [
     label: "Minor add9",
     shapes: [
       {
+        id: "m_add9_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -336,6 +363,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m_add9_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -346,6 +374,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m_add9_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -362,6 +391,7 @@ const setsShapes = [
     label: "Minor 9",
     shapes: [
       {
+        id: "m9_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -373,6 +403,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m9_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -384,6 +415,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "m9_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -397,10 +429,11 @@ const setsShapes = [
     ],
   },
   {
-    id: "minorPent",
+    id: "minor_pent",
     label: "Minor Pentatonic",
     shapes: [
       {
+        id: "minor_pent_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -412,6 +445,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "minor_pent_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -423,6 +457,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "minor_pent_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -436,10 +471,11 @@ const setsShapes = [
     ],
   },
   {
-    id: "majorPent",
+    id: "major_pent",
     label: "Major Pentatonic",
     shapes: [
       {
+        id: "major_pent_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -451,6 +487,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "major_pent_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -464,10 +501,11 @@ const setsShapes = [
     ],
   },
   {
-    id: "noAvoidNotes_T-S",
+    id: "no_avoid_notes_t_s_major",
     label: 'Unified "no avoid notes"',
     shapes: [
       {
+        id: "no_avoid_notes_t_s_major_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -480,6 +518,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "no_avoid_notes_t_s_major_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -492,6 +531,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "no_avoid_notes_t_s_major_2",
         notAllowedOnStrings: ["A2"],
         shape: [
           [0, 0],
@@ -504,6 +544,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "no_avoid_notes_t_s_major_3",
         notAllowedOnStrings: ["E1"],
         shape: [
           [0, 0],
@@ -517,12 +558,12 @@ const setsShapes = [
       },
     ],
   },
-
   {
     id: "ionian",
     label: "Ionian Scale",
     shapes: [
       {
+        id: "ionian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -536,6 +577,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "ionian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -549,6 +591,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "ionian_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -568,6 +611,7 @@ const setsShapes = [
     label: "Aeolian Scale",
     shapes: [
       {
+        id: "aeolian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -581,6 +625,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "aeolian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -594,6 +639,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "aeolian_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -613,6 +659,7 @@ const setsShapes = [
     label: "Dorian Scale",
     shapes: [
       {
+        id: "dorian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -626,6 +673,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dorian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -638,6 +686,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "dorian_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -657,6 +706,7 @@ const setsShapes = [
     label: "Lydian Scale",
     shapes: [
       {
+        id: "lydian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -670,6 +720,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "lydian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -683,6 +734,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "lydian_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -702,6 +754,7 @@ const setsShapes = [
     label: "Mixolydian Scale",
     shapes: [
       {
+        id: "mixolydian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -715,6 +768,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "mixolydian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -734,6 +788,7 @@ const setsShapes = [
     label: "Phrygian Scale",
     shapes: [
       {
+        id: "phrygian_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -747,6 +802,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "phrygian_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -762,10 +818,11 @@ const setsShapes = [
     ],
   },
   {
-    id: "phrygianDominant",
+    id: "phrygian_dominant",
     label: "Phrygian Dominant",
     shapes: [
       {
+        id: "phrygian_dominant_0",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -779,6 +836,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "phrygian_dominant_1",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],
@@ -792,6 +850,7 @@ const setsShapes = [
         ],
       },
       {
+        id: "phrygian_dominant_2",
         notAllowedOnStrings: [],
         shape: [
           [0, 0],

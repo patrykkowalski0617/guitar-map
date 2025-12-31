@@ -136,6 +136,7 @@ const CAGED_shapes = {
     "E6_D#",
     "E6_E",
     "E6_F",
+    "D3_E",
   ],
 };
 

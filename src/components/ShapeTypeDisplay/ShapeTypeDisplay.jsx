@@ -10,11 +10,14 @@ const ShapeTypeDisplay = ({ opacityOff }) => {
   const items = setsShapes
     .filter((set) => set.id && set.label)
     .map((set) => {
-      const learnedShapes = userProgress[set.id] || [];
+      const learnedShapeIds = userProgress[set.id] || [];
       const totalShapes = set.shapes?.length || 0;
 
-      const progressValue =
-        totalShapes > 0 ? learnedShapes.length / totalShapes : 0;
+      const learnedCount = set.shapes.filter((s) =>
+        learnedShapeIds.includes(s.id)
+      ).length;
+
+      const progressValue = totalShapes > 0 ? learnedCount / totalShapes : 0;
 
       return {
         id: set.id,
@@ -33,7 +36,8 @@ const ShapeTypeDisplay = ({ opacityOff }) => {
           $color={item.color}
           $opacityOff={opacityOff}
           data-active={activeChordId === item.id}
-          $progress={showUserProgress ? item.$progress : 0}
+          $progress={item.$progress}
+          $showUserProgress={showUserProgress}
         >
           {item.label}
         </Label>

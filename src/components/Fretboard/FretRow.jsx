@@ -44,6 +44,7 @@ const FretRow = ({
               $isInCAGED_hoverShape={isInCAGED_hoverShape}
               $isActiveShapeRootNote={isActiveShapeRootNote}
               $variantLabel={isLastClicked ? variantState.label : null}
+              $isError={isLastClicked ? variantState.isError : false}
               onClick={() => handleNoteClick(note, CAGED_noteId)}
             >
               {note}
