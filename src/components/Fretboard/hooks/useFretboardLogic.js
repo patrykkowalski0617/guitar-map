@@ -1,10 +1,9 @@
 import { transposeShape } from "../../../utils";
 
-const useFretboardLogic = (props) => {
+export const useFretboardLogic = (props) => {
   const {
     activeShapeRootNote,
     activeChordVariants,
-    CAGED_shift,
     CAGED_hoverShape,
     variantState,
     setVariantState,
@@ -49,6 +48,13 @@ const useFretboardLogic = (props) => {
       }
     }
 
+    const totalSteps = availableIndices.length + 1;
+    const currentStep =
+      nextAction === "SUM"
+        ? totalSteps
+        : availableIndices.indexOf(nextAction) + 1;
+    const variantLabel = `${currentStep}/${totalSteps}`;
+
     if (nextAction === "SUM") {
       const combinedShapeSet = new Set();
       activeRootIds.forEach((rootId) => {
@@ -68,11 +74,19 @@ const useFretboardLogic = (props) => {
           );
       });
       setShape(Array.from(combinedShapeSet));
-      setVariantState({ lastId: CAGED_noteId, index: "SUM" });
+      setVariantState({
+        lastId: CAGED_noteId,
+        index: "SUM",
+        label: variantLabel,
+      });
     } else {
       const variant = activeChordVariants[nextAction];
       setShape(transposeShape(variant.shape, CAGED_noteId));
-      setVariantState({ lastId: CAGED_noteId, index: nextAction });
+      setVariantState({
+        lastId: CAGED_noteId,
+        index: nextAction,
+        label: variantLabel,
+      });
     }
   };
 

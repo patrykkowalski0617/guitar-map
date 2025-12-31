@@ -5,3 +5,4 @@ export { default as intervals } from "./intervals";
 export { default as musicFunctionContextSelectorData } from "./musicFunctionContextSelectorData";
 export { default as NOTES_FROM_C } from "./NOTES_FROM_C";
 export { default as UNIFIED_MUSIC_KEYS } from "./UNIFIED_MUSIC_KEYS";
+export { default as userProgress } from "./userProgress";

@@ -12,6 +12,7 @@ const FretRow = ({
   CAGED_hoverShape,
   userShape,
   activeShapeRootNote,
+  variantState,
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
@@ -30,6 +31,7 @@ const FretRow = ({
         const isInUserShape = userShape.includes(CAGED_noteId);
         const isInCAGED_hoverShape = CAGED_hoverShape.includes(CAGED_noteId);
         const isActiveShapeRootNote = activeShapeRootNote === note;
+        const isLastClicked = variantState?.lastId === CAGED_noteId;
 
         return (
           <FretCell
@@ -40,9 +42,9 @@ const FretRow = ({
               $isInShape={isInShape}
               $isInUserShape={isInUserShape}
               $isInCAGED_hoverShape={isInCAGED_hoverShape}
-              className={`CAGED_noteId__${CAGED_noteId}`}
-              onClick={() => handleNoteClick(note, CAGED_noteId)}
               $isActiveShapeRootNote={isActiveShapeRootNote}
+              $variantLabel={isLastClicked ? variantState.label : null}
+              onClick={() => handleNoteClick(note, CAGED_noteId)}
             >
               {note}
             </StyledNote>

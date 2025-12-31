@@ -26,6 +26,6 @@ export const theme = {
   breakpoints: { mobile: "576px", tablet: "768px", desktop: "1024px" },
   transitions: {
     default: "all 0.3s ease",
-    bounce: "all 1s cubic-bezier(0.17, 0.67, 0.3, 1.1)",
+    bounce: "all 0.6s linear",
   },
 };

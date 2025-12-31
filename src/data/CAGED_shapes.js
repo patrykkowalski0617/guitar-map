@@ -138,4 +138,5 @@ const CAGED_shapes = {
     "E6_F",
   ],
 };
+
 export default CAGED_shapes;

@@ -59,11 +59,23 @@ const Fretboard = () => {
   });
 
   const handleCAGED_Click = (letter) => {
-    setVariantState({ lastId: null, index: 0 });
+    setVariantState({ lastId: null, index: 0, label: "" });
     const isLocking = lockedCAGEDLetter !== letter;
     setLockedCAGEDLetter(isLocking ? letter : null);
     setCAGED_hoverShape(isLocking ? CAGED_shapes[letter] : []);
     setShape([]);
+  };
+
+  const handleCAGED_MouseOver = (letter) => {
+    if (!lockedCAGEDLetter) {
+      setCAGED_hoverShape(CAGED_shapes[letter]);
+    }
+  };
+
+  const handleCAGED_MouseLeave = () => {
+    if (!lockedCAGEDLetter) {
+      setCAGED_hoverShape([]);
+    }
   };
 
   return (
@@ -82,19 +94,15 @@ const Fretboard = () => {
               CAGED_hoverShape={CAGED_hoverShape}
               userShape={userShape}
               activeShapeRootNote={activeShapeRootNote}
-              setUserShape={isDevMode ? setUserShape : null}
+              variantState={variantState}
             />
           ))}
           <FretboardLabels
             fretCounts={getNotesFromNote("E", numberOfFrets).fill(null)}
             CAGED={manageCAGED(tuneKey.majorNote, CAGED_shift)}
-            handleCAGED_MouseOver={(l) =>
-              !lockedCAGEDLetter && setCAGED_hoverShape(CAGED_shapes[l])
-            }
-            handleCAGED_MouseLeave={() =>
-              !lockedCAGEDLetter && setCAGED_hoverShape([])
-            }
             handleCAGED_Click={handleCAGED_Click}
+            handleCAGED_MouseOver={handleCAGED_MouseOver}
+            handleCAGED_MouseLeave={handleCAGED_MouseLeave}
             lockedCAGEDLetter={lockedCAGEDLetter}
           />
         </FretboardContainer>

@@ -1,8 +1,9 @@
 const setsShapes = [
   {
-    id: "M",
+    id: "M", // przechowuje informacje o id
     label: "Major",
     shapes: [
+      // orraz inforamje indexdanego shape
       {
         notAllowedOnStrings: [],
         shape: [
@@ -154,7 +155,7 @@ const setsShapes = [
     ],
   },
   {
-    id: "Dominant",
+    id: "dominant",
     label: "Dominant",
     shapes: [
       {

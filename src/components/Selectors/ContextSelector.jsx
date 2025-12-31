@@ -12,7 +12,7 @@ const ContextSelector = () => {
 
   return (
     <Selector
-      label="Context"
+      label="Function Context"
       options={contextOptions}
       value={activeMusicContext?.id}
       onChange={setActiveMusicContextById}

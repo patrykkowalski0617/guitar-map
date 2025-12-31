@@ -17,10 +17,10 @@ const InteractiveCAGEDLetter = ({
     $isCAGED_hoverShapeLocked={isLocked}
     onClick={(e) => {
       e.stopPropagation();
-      onClick(letter);
+      onClick?.(letter);
     }}
-    onMouseEnter={() => onOver(letter)}
-    onMouseLeave={onLeave}
+    onMouseEnter={() => onOver?.(letter)}
+    onMouseLeave={() => onLeave?.()}
     style={{ cursor: "pointer" }}
   >
     {letter}

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const FretboardContainer = styled.div`
-  max-width: 100vw;
+  width: 100%;
   user-select: none;
   &::-webkit-scrollbar {
     height: 8px;
@@ -99,6 +99,7 @@ export const CAGEDLetter = styled.div`
 export const Note = styled.div`
   width: 48px;
   height: 31px;
+  position: relative;
   opacity: ${({ $isInShape, $isActiveShapeRootNote, $isInCAGED_hoverShape }) =>
     $isActiveShapeRootNote || $isInShape
       ? "1"
@@ -110,6 +111,17 @@ export const Note = styled.div`
     $isActiveShapeRootNote ? "pointer" : "default"};
 
   ${fretboardButtonStyles}
+
+  &::after {
+    content: "${({ $variantLabel }) => $variantLabel || ""}";
+    display: ${({ $variantLabel }) => ($variantLabel ? "flex" : "none")};
+    position: absolute;
+    top: -3px;
+    right: -23px;
+    color: ${({ theme }) => theme.colors.green};
+    font-size: 17px;
+    font-weight: bold;
+  }
 
   &:hover {
     border: 1px solid
