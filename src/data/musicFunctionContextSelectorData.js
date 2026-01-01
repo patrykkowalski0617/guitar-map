@@ -410,7 +410,7 @@ const musicFunctionContextSelectorData = [
         id: "dominant-root_5-shape-Dominant",
         getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _5,
-        chordShapeId: "Dominant",
+        chordShapeId: "dominant",
         colorProfile: {
           major: {
             exposedTone: 1,
@@ -493,7 +493,7 @@ const musicFunctionContextSelectorData = [
         id: "dominantPh-root_M3-shape-Dominant",
         getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _M3,
-        chordShapeId: "Dominant",
+        chordShapeId: "dominant",
         colorProfile: {
           major: {
             exposedTone: 1,
@@ -517,7 +517,7 @@ const musicFunctionContextSelectorData = [
         id: "dominantPh-root_M3-shape-phrygianDominant",
         getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant`,
         rootSemitone: _M3,
-        chordShapeId: "phrygianDominant",
+        chordShapeId: "phrygian_dominant",
         colorProfile: {
           major: {
             exposedTone: 1,
