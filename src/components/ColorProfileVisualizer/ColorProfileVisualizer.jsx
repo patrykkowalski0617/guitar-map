@@ -17,52 +17,52 @@ const ColorProfileVisualizer = () => {
   const majorRootName = getNoteNameByOffset(activeMusicContext.majorRoot);
   const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
 
-  const activeContextName = activeMusicContext.FunctionContextName;
+  const id = activeMusicContext.id;
   const key = tuneKey.label;
 
   const descriptions = {
     tonic: (
       <>
-        Tonics provide a sense of resolution. In the key of <span>{key}</span>,
-        they are <span>{majorRootName}</span> Major and{" "}
+        In the key of <span>{key}</span>, a sense of resolution may be provided
+        by the <span>{majorRootName}</span> Major and{" "}
         <span>{minorRootName}</span> Minor chords.{" "}
-        <span>{activeShapeName}</span> expose following colors of:
+        <span>{activeShapeName}</span> will expose the following colors of each:
       </>
     ),
     subdominant: (
       <>
-        Subdominants provide a sense of motion. In the key of <span>{key}</span>
-        , they are <span>{majorRootName}</span> Major and{" "}
-        <span>{minorRootName}</span> Minor chords.{" "}
-        <span>{activeShapeName}</span> expose following colors of:
+        In the key of <span>{key}</span>, a sense of motion may be provided by
+        the <span>{majorRootName}</span> Major and <span>{minorRootName}</span>{" "}
+        Minor chords. <span>{activeShapeName}</span> will expose the following
+        colors of each:
       </>
     ),
     dominant: (
       <>
-        Dominants provide a sense of tension and wants to resolve to the Major
-        Tonic. In the key of <span>{key.split("/")[0]}</span>, the dominant is{" "}
+        In the key of <span>{key}</span>, a sense of tension to{" "}
+        <span>{key.split("/")[0]} Major</span> chord may be provided by the{" "}
         <span>{majorRootName}</span> Major chord. <span>{activeShapeName}</span>{" "}
-        expose following colors of:
+        will expose the following colors of it:
       </>
     ),
     phDominant: (
       <>
-        Dominants provides a sense of tension and wants to resolve to the Minor
-        Tonic. In the key of <span>{key.split("/")[1]}</span>, the Phrygian
-        Dominant is <span>{majorRootName}</span> Major chord.{" "}
-        <span>{activeShapeName}</span> expose following colors of:
+        In the key of <span>{key}</span>, a sense of tension to{" "}
+        <span>{key.split("/")[1].replace("m", "")} Minor</span> chord may be
+        provided by the <span>{majorRootName}</span> Major chord.{" "}
+        <span>{activeShapeName}</span> will expose the following colors of it:
       </>
     ),
   };
 
   const description =
-    activeContextName === "Tonics"
+    id === "tonics"
       ? descriptions.tonic
-      : activeContextName === "Subdominants"
+      : id === "subdominants"
       ? descriptions.subdominant
-      : activeContextName === "Dominant"
+      : id === "dominant"
       ? descriptions.dominant
-      : activeContextName === "Phrygian Dominant"
+      : id === "dominant-ph"
       ? descriptions.phDominant
       : "";
   return (

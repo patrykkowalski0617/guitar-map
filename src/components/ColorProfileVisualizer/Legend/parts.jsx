@@ -21,11 +21,12 @@ export const GroupTitle = styled.div`
 
 export const LegendLabel = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  margin-left: ${({ theme }) => theme.spacing.md};
+  margin-left: ${({ theme }) => theme.spacing.sm};
   white-space: nowrap;
   opacity: 0.8;
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.fontSize.sm};
+  line-height: 1;
   ${({ $isLegendLabel, theme }) =>
     $isLegendLabel ? `color: ${theme.colors.green}; font-weight: bold` : ""}
 `;

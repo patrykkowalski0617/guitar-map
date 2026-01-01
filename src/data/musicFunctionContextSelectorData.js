@@ -30,7 +30,7 @@ import { harmonicFunctionDescription } from ".";
 const musicFunctionContextSelectorData = [
   {
     id: "tonics",
-    FunctionContextName: "Tonics",
+    FunctionContextName: "Realese",
     harmonicFunctionDescription: harmonicFunctionDescription.RELEASE,
     majorRoot: _1,
     minorRoot: _M6,
@@ -230,7 +230,7 @@ const musicFunctionContextSelectorData = [
   },
   {
     id: "subdominants",
-    FunctionContextName: "Subdominants",
+    FunctionContextName: "Motion",
     harmonicFunctionDescription: harmonicFunctionDescription.MOTION,
     majorRoot: _4,
     minorRoot: _M2,
@@ -402,7 +402,7 @@ const musicFunctionContextSelectorData = [
   },
   {
     id: "dominant",
-    FunctionContextName: "Dominant",
+    FunctionContextName: "Tension to Major",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _5,
     shapes: [
@@ -485,7 +485,7 @@ const musicFunctionContextSelectorData = [
   },
   {
     id: "dominant-ph",
-    FunctionContextName: "Phrygian Dominant",
+    FunctionContextName: "Tension to minor",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _M3,
     shapes: [

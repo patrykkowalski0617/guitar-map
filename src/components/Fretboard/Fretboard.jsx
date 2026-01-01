@@ -25,12 +25,18 @@ const Fretboard = () => {
   } = useStore();
 
   const [userShape, setUserShape] = useState([]);
-  const [CAGED_hoverShape, setCAGED_hoverShape] = useState([]);
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
+  const [mouseOverLetter, setMouseOverLetter] = useState(null);
 
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
+
+  const activeLetter = lockedCAGEDLetter || mouseOverLetter;
+
+  const currentCAGED_hoverShape = useMemo(() => {
+    return activeLetter ? CAGED_shapes[activeLetter] || [] : [];
+  }, [activeLetter]);
 
   const activeRootIds = useMemo(() => {
     if (!activeShapeRootNote) return [];
@@ -50,34 +56,28 @@ const Fretboard = () => {
   const { handleNoteClick } = useFretboardLogic({
     activeShapeRootNote,
     activeChordVariants,
-    CAGED_shift,
-    CAGED_hoverShape,
     variantState,
     setVariantState,
     setShape,
     activeRootIds,
     isDevMode,
     setUserShape,
+    setLockedCAGEDLetter,
   });
 
   const handleCAGED_Click = (letter) => {
-    setVariantState({ lastId: null, index: 0, label: "" });
+    setVariantState({ lastId: null, variantId: null });
     const isLocking = lockedCAGEDLetter !== letter;
     setLockedCAGEDLetter(isLocking ? letter : null);
-    setCAGED_hoverShape(isLocking ? CAGED_shapes[letter] : []);
     setShape([]);
   };
 
   const handleCAGED_MouseOver = (letter) => {
-    if (!lockedCAGEDLetter) {
-      setCAGED_hoverShape(CAGED_shapes[letter]);
-    }
+    if (!lockedCAGEDLetter) setMouseOverLetter(letter);
   };
 
   const handleCAGED_MouseLeave = () => {
-    if (!lockedCAGEDLetter) {
-      setCAGED_hoverShape([]);
-    }
+    setMouseOverLetter(null);
   };
 
   return (
@@ -93,7 +93,7 @@ const Fretboard = () => {
               CAGED_shift={CAGED_shift}
               handleNoteClick={handleNoteClick}
               shape={shape}
-              CAGED_hoverShape={CAGED_hoverShape}
+              CAGED_hoverShape={currentCAGED_hoverShape}
               userShape={userShape}
               activeShapeRootNote={activeShapeRootNote}
               variantState={variantState}

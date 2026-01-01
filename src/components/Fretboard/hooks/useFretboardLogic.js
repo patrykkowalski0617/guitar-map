@@ -4,30 +4,16 @@ export const useFretboardLogic = (props) => {
   const {
     activeShapeRootNote,
     activeChordVariants,
-    CAGED_hoverShape,
     variantState,
     setVariantState,
     setShape,
     activeRootIds,
     isDevMode,
     setUserShape,
+    setLockedCAGEDLetter,
   } = props;
 
-  const checkAvailability = (variant, CAGED_noteId) => {
-    const stringId = CAGED_noteId.split("_")[0];
-    const isAllowed = !variant.notAllowedOnStrings?.includes(stringId);
-    const transposed = isAllowed
-      ? transposeShape(variant.shape, CAGED_noteId)
-      : [];
-    return (
-      transposed.length > 0 &&
-      (CAGED_hoverShape.length === 0 ||
-        transposed.every((id) => CAGED_hoverShape.includes(id)))
-    );
-  };
-
   const handleNoteClick = (note, CAGED_noteId) => {
-    // Dev Mode
     if (isDevMode && setUserShape) {
       setUserShape((prev) =>
         prev.includes(CAGED_noteId)
@@ -40,73 +26,62 @@ export const useFretboardLogic = (props) => {
     if (activeShapeRootNote !== note || activeChordVariants.length === 0)
       return;
 
+    const stringId = CAGED_noteId.split("_")[0];
     const totalVariantsCount = activeChordVariants.length;
-    let nextVariantIdx;
 
     const currentIdx = activeChordVariants.findIndex(
       (v) => v.id === variantState.variantId
     );
 
-    if (
-      variantState.lastId !== CAGED_noteId ||
-      variantState.variantId === "SUM"
-    ) {
-      nextVariantIdx = 0;
-    } else {
-      nextVariantIdx = currentIdx + 1;
+    let nextIdx =
+      variantState.lastId !== CAGED_noteId || variantState.variantId === "SUM"
+        ? 0
+        : currentIdx + 1;
+
+    let foundVariant = null;
+    let attempts = 0;
+
+    while (attempts < totalVariantsCount && nextIdx < totalVariantsCount) {
+      const candidate = activeChordVariants[nextIdx];
+
+      if (candidate.targetString === stringId) {
+        foundVariant = candidate;
+        break;
+      }
+      nextIdx++;
+      attempts++;
     }
 
-    // ALL
-    if (nextVariantIdx >= totalVariantsCount) {
-      const combinedShapeSet = new Set();
-      activeRootIds.forEach((rootId) => {
-        const rStringId = rootId.split("_")[0];
-        const validVariant = activeChordVariants.find((v) => {
-          if (v.notAllowedOnStrings?.includes(rStringId)) return false;
-          const t = transposeShape(v.shape, rootId);
-          return (
-            t.length > 0 &&
-            (CAGED_hoverShape.length === 0 ||
-              t.every((id) => CAGED_hoverShape.includes(id)))
-          );
-        });
-        if (validVariant)
-          transposeShape(validVariant.shape, rootId).forEach((id) =>
-            combinedShapeSet.add(id)
-          );
-      });
+    if (foundVariant) {
+      if (foundVariant.targetCAGED && setLockedCAGEDLetter) {
+        setLockedCAGEDLetter(foundVariant.targetCAGED);
+      }
 
-      setShape(Array.from(combinedShapeSet));
+      setShape(transposeShape(foundVariant.shape, CAGED_noteId));
       setVariantState({
         lastId: CAGED_noteId,
-        variantId: "SUM",
-        label: "All",
-        isError: false,
+        variantId: foundVariant.id,
       });
       return;
     }
 
-    const nextVariant = activeChordVariants[nextVariantIdx];
-    const isAvailable = checkAvailability(nextVariant, CAGED_noteId);
-    const label = `${nextVariantIdx + 1}/${totalVariantsCount}`;
+    if (setLockedCAGEDLetter) setLockedCAGEDLetter(null);
 
-    if (isAvailable) {
-      setShape(transposeShape(nextVariant.shape, CAGED_noteId));
-      setVariantState({
-        lastId: CAGED_noteId,
-        variantId: nextVariant.id,
-        label,
-        isError: false,
+    const combinedShapeSet = new Set();
+    activeRootIds.forEach((rootId) => {
+      const rStringId = rootId.split("_")[0];
+      const validVariants = activeChordVariants.filter(
+        (v) => v.targetString === rStringId
+      );
+
+      validVariants.forEach((v) => {
+        const t = transposeShape(v.shape, rootId);
+        t.forEach((id) => combinedShapeSet.add(id));
       });
-    } else {
-      setVariantState({
-        ...variantState,
-        lastId: CAGED_noteId,
-        variantId: nextVariant.id,
-        label,
-        isError: true,
-      });
-    }
+    });
+
+    setShape(Array.from(combinedShapeSet));
+    setVariantState({ lastId: CAGED_noteId, variantId: "SUM" });
   };
 
   return { handleNoteClick };

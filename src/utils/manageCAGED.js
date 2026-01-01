@@ -1,9 +1,11 @@
 const manageCAGED = (keyName, CAGED_shift) => {
   const CAGED_base = {
+    B: [7, 20],
     C: [8, 20],
     A: [5, 17],
     G: [3, 15],
     E: [0, 12],
+    F: [1, 13],
     D: [10, 22],
   };
 
