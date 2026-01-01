@@ -25,7 +25,7 @@ const ColorProfileVisualizer = () => {
       <>
         Tonics provide a sense of resolution. In the key of <span>{key}</span>,
         they are <span>{majorRootName}</span> Major and{" "}
-        <span>{minorRootName}</span> Minor chords.
+        <span>{minorRootName}</span> Minor chords.{" "}
         <span>{activeShapeName}</span> expose following colors of:
       </>
     ),
@@ -33,7 +33,7 @@ const ColorProfileVisualizer = () => {
       <>
         Subdominants provide a sense of motion. In the key of <span>{key}</span>
         , they are <span>{majorRootName}</span> Major and{" "}
-        <span>{minorRootName}</span> Minor chords.
+        <span>{minorRootName}</span> Minor chords.{" "}
         <span>{activeShapeName}</span> expose following colors of:
       </>
     ),
@@ -49,7 +49,7 @@ const ColorProfileVisualizer = () => {
       <>
         Dominants provides a sense of tension and wants to resolve to the Minor
         Tonic. In the key of <span>{key.split("/")[1]}</span>, the Phrygian
-        Dominant is <span>{majorRootName}</span> Major chord.
+        Dominant is <span>{majorRootName}</span> Major chord.{" "}
         <span>{activeShapeName}</span> expose following colors of:
       </>
     ),
