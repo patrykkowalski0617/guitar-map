@@ -53,6 +53,8 @@ export const useFretboardLogic = (props) => {
     }
 
     if (foundVariant) {
+      console.log(foundVariant.id);
+
       if (foundVariant.targetCAGED && setLockedCAGEDLetter) {
         setLockedCAGEDLetter(foundVariant.targetCAGED);
       }
