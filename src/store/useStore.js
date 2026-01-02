@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import {
   musicFunctionContextSelectorData,
+  NOTES_FROM_C,
   setsShapes,
   UNIFIED_MUSIC_KEYS,
 } from "../data";
@@ -127,5 +128,75 @@ export const useStore = create((set, get) => ({
       get().resetShape();
       set({ activeShape: foundShape });
     }
+  },
+  seqConfig: {
+    interval: 500,
+    isRunning: false,
+    activeSeqId: null,
+    triggerNoteId: null,
+    activePattern: "linear",
+  },
+  setSeqConfig: (update) =>
+    set((state) => ({
+      seqConfig: { ...state.seqConfig, ...update },
+    })),
+  setActiveSeqId: (id) =>
+    set((state) => ({
+      seqConfig: { ...state.seqConfig, activeSeqId: id },
+    })),
+
+  getNotesByIntervals: (rootOffset, intervals) => {
+    if (rootOffset === undefined || !intervals) return [];
+
+    const doubledNotes = [...NOTES_FROM_C, ...NOTES_FROM_C];
+
+    return intervals.map((interval) => {
+      const finalIndex = (rootOffset + interval) % NOTES_FROM_C.length;
+      return doubledNotes[finalIndex];
+    });
+  },
+
+  getContextNotes: () => {
+    const { activeMusicContext } = get();
+    if (!activeMusicContext) return { majorRoot: null, minorRoot: null };
+
+    const majorNotes =
+      activeMusicContext.majorRoot !== undefined &&
+      activeMusicContext.majorIntervals
+        ? get().getNotesByIntervals(
+            activeMusicContext.majorRoot,
+            activeMusicContext.majorIntervals
+          )
+        : null;
+
+    const minorNotes =
+      activeMusicContext.minorRoot !== undefined &&
+      activeMusicContext.minorIntervals
+        ? get().getNotesByIntervals(
+            activeMusicContext.minorRoot,
+            activeMusicContext.minorIntervals
+          )
+        : null;
+
+    return {
+      majorRoot: majorNotes,
+      minorRoot: minorNotes,
+    };
+  },
+
+  getShapeNotes: () => {
+    const { activeShape } = get();
+    if (!activeShape) return [];
+
+    const chordGroup = setsShapes.find(
+      (g) => g.id === activeShape.chordShapeId
+    );
+    if (!chordGroup) return [];
+
+    const rootOffset =
+      activeShape.rootSemitone !== undefined ? activeShape.rootSemitone : 0;
+    const intervals = chordGroup.intervals;
+
+    return get().getNotesByIntervals(rootOffset, intervals);
   },
 }));

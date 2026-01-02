@@ -59,16 +59,6 @@ const fretboardButtonStyles = css`
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSize.md};
   text-transform: uppercase;
-  background: ${({
-    $isInUserShape,
-    $isActiveShapeRootNote,
-    $isInShape,
-    theme,
-  }) => {
-    if ($isInUserShape) return theme.colors.red;
-    if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
-    return theme.colors.bgLight;
-  }};
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
 
@@ -112,24 +102,24 @@ export const Note = styled.div`
 
   ${fretboardButtonStyles}
 
-  &::after {
-    content: "${({ $variantLabel }) => $variantLabel || ""}";
-    display: ${({ $variantLabel }) => ($variantLabel ? "flex" : "none")};
-    position: absolute;
-    top: -3px;
-    right: -20px;
-    color: ${({ theme, $isError }) =>
-      $isError ? theme.colors.red || "#ff4444" : theme.colors.green};
-    font-size: 17px;
-    font-weight: bold;
-    text-align: center;
-    width: 20px;
-    height: 10px;
-  }
-
   &:hover {
     border: 1px solid
       ${({ $isActiveShapeRootNote, theme }) =>
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }
+
+  outline: ${({ theme, $isActiveSeq }) =>
+    $isActiveSeq ? `3px solid ${theme.colors.red}` : "none"};
+  outline-offset: 2px;
+  z-index: ${({ $isActiveSeq }) => ($isActiveSeq ? "10" : "1")};
+  background: ${({
+    theme,
+    $isInUserShape,
+    $isActiveShapeRootNote,
+    $isInShape,
+  }) => {
+    if ($isInUserShape) return theme.colors.red;
+    if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
+    return theme.colors.bgLight;
+  }};
 `;

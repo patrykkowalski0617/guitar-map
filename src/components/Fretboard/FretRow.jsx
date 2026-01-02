@@ -1,3 +1,4 @@
+import { useStore } from "../../store/useStore";
 import { NOTES_FROM_C } from "../../data";
 import { getNotesFromNote } from "../../utils";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
@@ -17,6 +18,8 @@ const FretRow = ({
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
 
+  const activeSeqId = useStore((state) => state.seqConfig.activeSeqId);
+
   return (
     <StringRow>
       {fretCells.map((note, fIdx) => {
@@ -33,6 +36,8 @@ const FretRow = ({
         const isActiveShapeRootNote = activeShapeRootNote === note;
         const isLastClicked = variantState?.lastId === CAGED_noteId;
 
+        const isActiveSeq = activeSeqId === CAGED_noteId;
+
         return (
           <FretCell
             $numOfCells={fretCells.length}
@@ -45,6 +50,7 @@ const FretRow = ({
               $isActiveShapeRootNote={isActiveShapeRootNote}
               $variantLabel={isLastClicked ? variantState.label : null}
               $isError={isLastClicked ? variantState.isError : false}
+              $isActiveSeq={isActiveSeq}
               onClick={() => handleNoteClick(note, CAGED_noteId)}
             >
               {note}

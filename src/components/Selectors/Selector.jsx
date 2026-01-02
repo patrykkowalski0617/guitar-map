@@ -1,6 +1,6 @@
-import { SubsectionTitle } from "../../parts";
+import { Button, SubsectionTitle } from "../../parts";
 import ScrollFader from "../ScrollFader/ScrollFader";
-import { Container, OptionsWrapper, OptionButton } from "./parts";
+import { Container, OptionsWrapper } from "./parts";
 
 const Selector = ({ label, options, value, onChange, isCompact }) => {
   return (
@@ -10,14 +10,14 @@ const Selector = ({ label, options, value, onChange, isCompact }) => {
       <ScrollFader activeValue={value}>
         <OptionsWrapper $isCompact={isCompact}>
           {options.map((option) => (
-            <OptionButton
+            <Button
               key={option.value}
               $active={value === option.value}
               data-active={value === option.value}
               onClick={() => onChange(option.value)}
             >
               {option.label}
-            </OptionButton>
+            </Button>
           ))}
         </OptionsWrapper>
       </ScrollFader>

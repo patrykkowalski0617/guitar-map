@@ -29,8 +29,8 @@ export const SectionTitle = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: -15px;
-  height: 35px;
+  top: -20px;
+  height: 40px;
   width: 260px;
   display: flex;
   align-items: center;
@@ -84,5 +84,32 @@ export const RowWrapper = styled.div`
     & > ${SectionContainer} {
       flex: 1 1 0;
     }
+  }
+`;
+
+export const Button = styled.button`
+  white-space: nowrap;
+  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 37px;
+  line-height: 1%;
+  border: 1px solid
+    ${({ theme, $active }) =>
+      $active ? `${theme.colors.yellow}66` : theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.yellow : theme.colors.text};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  transition: ${({ theme }) => theme.transitions.default};
+  box-shadow: ${({ theme, $active }) =>
+    $active ? `0 0 15px ${theme.colors.yellow}22` : "none"};
+  &:hover {
+    border-color: ${({ theme, $active }) =>
+      $active ? theme.colors.yellow : `${theme.colors.text}33`};
+    box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.text}22`};
   }
 `;

@@ -1,5 +1,6 @@
 import { useStore } from "../../store/useStore";
 import ProfileRow from "./ProfileRow";
+import { useSoundEngine } from "./hooks/useSoundEngine";
 import * as S from "./parts";
 
 const ColorProfileVisualizer = () => {
@@ -9,7 +10,34 @@ const ColorProfileVisualizer = () => {
     getNoteNameByOffset,
     getActiveShapeName,
     tuneKey,
+    //
+    getNotesByIntervals,
+    getContextNotes,
+    getShapeNotes,
   } = useStore();
+  console.log({
+    getNotesByIntervals: getNotesByIntervals(),
+    getContextNotes: getContextNotes(),
+    getShapeNotes: getShapeNotes(),
+  });
+
+  const VisualizerItem = ({ noteName }) => {
+    const { playNote, stopNote } = useSoundEngine();
+
+    return (
+      <div
+        onMouseEnter={() => playNote(noteName, 4)}
+        onMouseLeave={() => stopNote(noteName, 4)}
+        style={{
+          padding: "20px",
+          border: "1px solid #ccc",
+          cursor: "pointer",
+        }}
+      >
+        Najechanie myszą zagra: {noteName}
+      </div>
+    );
+  };
 
   if (!activeShape?.colorProfile || !activeMusicContext) return null;
 
@@ -24,7 +52,7 @@ const ColorProfileVisualizer = () => {
     tonic: (
       <>
         In the key of <span>{key}</span>, a sense of resolution may be provided
-        by the <span>{majorRootName}</span> Major and{" "}
+        by the <span>{majorRootName}</span> Major or{" "}
         <span>{minorRootName}</span> Minor chords.{" "}
         <span>{activeShapeName}</span> will expose the following colors of each:
       </>
@@ -32,7 +60,7 @@ const ColorProfileVisualizer = () => {
     subdominant: (
       <>
         In the key of <span>{key}</span>, a sense of motion may be provided by
-        the <span>{majorRootName}</span> Major and <span>{minorRootName}</span>{" "}
+        the <span>{majorRootName}</span> Major or <span>{minorRootName}</span>{" "}
         Minor chords. <span>{activeShapeName}</span> will expose the following
         colors of each:
       </>
@@ -67,6 +95,7 @@ const ColorProfileVisualizer = () => {
       : "";
   return (
     <>
+      {/* <VisualizerItem noteName="C" /> */}
       <S.Description>{description}</S.Description>
       <S.VisualizerContainer>
         <ProfileRow

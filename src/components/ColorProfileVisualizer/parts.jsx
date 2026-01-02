@@ -40,7 +40,7 @@ export const DotStack = styled.div`
 `;
 
 export const IntervalNumber = styled.span`
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: bold;
   color: ${({ $interval, theme, $isRaised, $isAvoid }) =>
     $isRaised

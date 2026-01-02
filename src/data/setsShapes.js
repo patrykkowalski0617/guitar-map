@@ -1,63 +1,14 @@
+import { _1, _5, _m3, _M3, _M6, _m7, _M7, _m9, _M9, _T } from "./intervals";
+
 const setsShapes = [
   {
-    id: "M",
-    label: "Major",
-    shapes: [
-      {
-        id: "M_0",
-        targetString: [],
-        targetCAGED: "",
-        shape: [
-          [0, 0],
-          [0, 4],
-          [1, 7],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M_1",
-        targetString: [],
-        targetCAGED: "",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, 7],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M_2",
-        targetString: [],
-        targetCAGED: "",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [2, 7],
-          [3, 12],
-        ],
-      },
-    ],
-  },
-  {
     id: "M7",
-    label: "Major 7th",
+    label: "XM7",
+    intervals: [_1, _M3, _5, _M7],
     shapes: [
       {
         id: "M7_1",
         targetString: "E1",
-        targetCAGED: "C",
-        shape: [
-          [0, 0],
-          [0, 4],
-          [1, 7],
-          [2, 11],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M7_2",
-        targetString: "E1",
-        targetCAGED: "C",
         shape: [
           [0, 0],
           [0, 4],
@@ -72,21 +23,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_4",
+        id: "M7_2",
         targetString: "E1",
-        targetCAGED: "B",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, 7],
-          [2, 11],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M7_5",
-        targetString: "E1",
-        targetCAGED: "B",
         shape: [
           [0, 0],
           [1, 4],
@@ -100,21 +38,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_6",
+        id: "M7_3",
         targetString: "E1",
-        targetCAGED: "A",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [2, 7],
-          [2, 11],
-          [3, 12],
-        ],
-      },
-      {
-        id: "M7_7",
-        targetString: "E1",
-        targetCAGED: "A",
         shape: [
           [0, 0],
           [1, 4],
@@ -128,21 +53,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_3",
+        id: "M7_4",
         targetString: "A2",
-        targetCAGED: "G",
-        shape: [
-          [0, 0],
-          [0, 4],
-          [1, 7],
-          [2, 11],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M7_3a",
-        targetString: "A2",
-        targetCAGED: "G",
         shape: [
           [0, 0],
           [0, 4],
@@ -155,21 +67,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_8",
+        id: "M7_5",
         targetString: "A2",
-        targetCAGED: "F",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, 7],
-          [2, 11],
-          [2, 12],
-        ],
-      },
-      {
-        id: "M7_9",
-        targetString: "A2",
-        targetCAGED: "F",
         shape: [
           [0, 0],
           [1, 4],
@@ -181,21 +80,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_10",
+        id: "M7_6",
         targetString: "A2",
-        targetCAGED: "E",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [2, 7],
-          [3, 11],
-          [3, 12],
-        ],
-      },
-      {
-        id: "M7_11",
-        targetString: "A2",
-        targetCAGED: "E",
         shape: [
           [0, 0],
           [1, 4],
@@ -207,21 +93,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_12",
+        id: "M7_7",
         targetString: "D3",
-        targetCAGED: "D",
-        shape: [
-          [0, 0],
-          [0, -8],
-          [1, -5],
-          [2, -1],
-          [2, 0],
-        ],
-      },
-      {
-        id: "M7_13",
-        targetString: "D3",
-        targetCAGED: "D",
         shape: [
           [0, 0],
           [0, -8],
@@ -232,22 +105,8 @@ const setsShapes = [
         ],
       },
       {
-        id: "M7_14",
+        id: "M7_8",
         targetString: "D3",
-        targetCAGED: "C",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, -5],
-          [2, -1],
-          [3, 12],
-        ],
-      },
-
-      {
-        id: "M7_15",
-        targetString: "D3",
-        targetCAGED: "C",
         shape: [
           [0, 0],
           [1, 4],
@@ -261,67 +120,126 @@ const setsShapes = [
   },
   {
     id: "M_add9",
-    label: "Major add9",
+    label: "XM(add9)",
+    intervals: [_1, _M3, _5, _M9],
     shapes: [
       {
-        id: "M_add9_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "M_add9_1",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 2],
-          [0, 4],
+          [0, -8],
           [1, 7],
           [2, 12],
+          [2, 2],
+          [3, 16],
+          [3, 7],
+          [5, 24],
+          [5, 26],
+          [5, 16],
         ],
       },
       {
-        id: "M_add9_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "M_add9_2",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 2],
           [1, 4],
           [1, 7],
           [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+          [5, 24],
+          [5, 26],
         ],
       },
       {
-        id: "M_add9_2",
-        targetString: [],
-        targetCAGED: "",
+        id: "M_add9_3",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 2],
           [1, 4],
           [2, 7],
           [3, 12],
+          [3, 14],
+          [4, 16],
+          [4, 19],
+          [5, 24],
+        ],
+      },
+      {
+        id: "M_add9_4",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 2],
+          [0, 4],
+          [1, 7],
+          [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+        ],
+      },
+      {
+        id: "M_add9_5",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 2],
+          [1, 4],
+          [1, 7],
+          [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+        ],
+      },
+      {
+        id: "M_add9_6",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 2],
+          [1, 4],
+          [2, 7],
+          [3, 12],
+          [3, 14],
+          [4, 16],
+          [4, 19],
         ],
       },
     ],
   },
   {
     id: "M9",
-    label: "Major 9",
+    label: "XM9",
+    intervals: [_1, _M3, _5, _M7, _M9],
     shapes: [
       {
-        id: "M9_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "M9_1",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 2],
-          [0, 4],
+          [0, -8],
           [1, 7],
           [2, 11],
           [2, 12],
+          [2, 2],
+          [3, 16],
+          [4, 19],
+          [4, 11],
+          [5, 24],
         ],
       },
       {
-        id: "M9_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "M9_2",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 2],
@@ -329,12 +247,16 @@ const setsShapes = [
           [1, 7],
           [2, 11],
           [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+          [5, 23],
+          [5, 24],
         ],
       },
       {
-        id: "M9_2",
-        targetString: [],
-        targetCAGED: "",
+        id: "M9_3",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 2],
@@ -342,72 +264,325 @@ const setsShapes = [
           [2, 7],
           [2, 11],
           [3, 12],
+          [3, 14],
+          [4, 16],
+          [4, 19],
+          [5, 23],
+          [5, 24],
+        ],
+      },
+      {
+        id: "M9_4",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 2],
+          [0, 4],
+          [1, 7],
+          [2, 11],
+          [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+          [4, 23],
+        ],
+      },
+      {
+        id: "M9_5",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 2],
+          [1, 4],
+          [1, 7],
+          [2, 11],
+          [2, 12],
+          [3, 14],
+          [3, 16],
+          [4, 19],
+        ],
+      },
+      {
+        id: "M9_6",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 2],
+          [1, 4],
+          [2, 7],
+          [3, 11],
+          [3, 12],
+          [3, 14],
+          [4, 16],
+          [4, 19],
+        ],
+      },
+      {
+        id: "M9_7",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [0, -10],
+          [0, -8],
+          [1, -5],
+          [2, -1],
+          [2, 0],
+          [3, 14],
+          [3, 4],
+        ],
+      },
+      {
+        id: "M9_8",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [0, -10],
+          [1, 4],
+          [1, -5],
+          [2, -1],
+          [3, 12],
+          [3, 14],
+          [3, 4],
+        ],
+      },
+      {
+        id: "M9_9",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 2],
+          [1, 4],
+          [2, 7],
+          [3, 11],
+          [3, 12],
+          [3, 14],
         ],
       },
     ],
   },
   {
     id: "dominant",
-    label: "Dominant",
+    label: "X7",
+    intervals: [_1, _M3, _5, _m7],
     shapes: [
       {
-        id: "dominant_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "dominant_1",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [0, -8],
+          [1, 7],
+          [2, 10],
+          [2, 12],
+          [3, 16],
+          [4, 19],
+          [4, 22],
+          [5, 24],
+          [5, 16],
+        ],
+      },
+      {
+        id: "dominant_2",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [1, 4],
+          [1, 7],
+          [2, 10],
+          [2, 12],
+          [3, 16],
+          [4, 19],
+          [4, 22],
+          [5, 24],
+          [5, 16],
+        ],
+      },
+      {
+        id: "dominant_3",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [1, 4],
+          [2, 7],
+          [2, 10],
+          [3, 12],
+          [4, 16],
+          [4, 19],
+          [5, 22],
+          [5, 24],
+        ],
+      },
+      {
+        id: "dominant_4",
+        targetString: "A2",
         shape: [
           [0, 0],
           [0, 4],
           [1, 7],
           [2, 10],
           [2, 12],
+          [3, 16],
+          [4, 19],
+          [4, 22],
         ],
       },
       {
-        id: "dominant_1",
-        targetString: ["D3"],
-        targetCAGED: "",
+        id: "dominant_5",
+        targetString: "A2",
         shape: [
           [0, 0],
           [1, 4],
           [1, 7],
           [2, 10],
           [2, 12],
+          [3, 16],
+          [4, 19],
         ],
       },
       {
-        id: "dominant_2",
-        targetString: ["E1", "A2"],
-        targetCAGED: "",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, 7],
-          [2, 10],
-          [3, 12],
-        ],
-      },
-      {
-        id: "dominant_3",
-        targetString: [],
-        targetCAGED: "",
+        id: "dominant_6",
+        targetString: "A2",
         shape: [
           [0, 0],
           [1, 4],
           [2, 7],
           [2, 10],
           [3, 12],
+          [4, 16],
+          [4, 19],
+        ],
+      },
+      {
+        id: "dominant_7",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [0, -8],
+          [1, -5],
+          [2, 10],
+          [2, 0],
+          [3, 4],
+        ],
+      },
+      {
+        id: "dominant_8",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 4],
+          [1, -5],
+          [2, 10],
+          [2, 0],
+          [3, 4],
+        ],
+      },
+      {
+        id: "dominant_9",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 4],
+          [2, 7],
+          [2, 10],
+          [3, 12],
+          [3, 4],
         ],
       },
     ],
   },
   {
     id: "m7b5",
-    label: "m7b5 (Half-dim)",
+    label: "Xm7b5",
+    intervals: [_1, _m3, _T, _m7],
     shapes: [
       {
-        id: "m7b5_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "m7b5_1",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [0, 3],
+          [1, 6],
+          [2, 10],
+          [2, 12],
+          [3, 15],
+          [3, 18],
+          [4, 22],
+          [5, 24],
+          [5, 27],
+        ],
+      },
+      {
+        id: "m7b5_2",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [1, 6],
+          [2, 10],
+          [3, 12],
+          [3, 15],
+          [4, 18],
+          [5, 22],
+          [5, 24],
+        ],
+      },
+      {
+        id: "m7b5_3",
+        targetString: "E1",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 6],
+          [2, 10],
+          [3, 12],
+          [3, 15],
+          [4, 18],
+          [5, 22],
+        ],
+      },
+      {
+        id: "m7b5_4",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 3],
+          [1, 6],
+          [2, 10],
+          [2, 12],
+          [3, 15],
+          [3, 18],
+          [4, 22],
+        ],
+      },
+      {
+        id: "m7b5_5",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [1, 6],
+          [2, 10],
+          [3, 12],
+          [3, 15],
+          [4, 18],
+        ],
+      },
+      {
+        id: "m7b5_6",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 18],
+          [3, 22],
+          [3, 12],
+          [4, 27],
+          [4, 18],
+        ],
+      },
+      {
+        id: "m7b5_7",
+        targetString: "D3",
         shape: [
           [0, 0],
           [0, 3],
@@ -417,107 +592,149 @@ const setsShapes = [
         ],
       },
       {
-        id: "m7b5_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "m7b5_8",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [1, 6],
+          [2, 10],
+        ],
+      },
+      {
+        id: "m7b5_9",
+        targetString: "D3",
         shape: [
           [0, 0],
           [1, 3],
           [2, 6],
           [2, 10],
-          [3, 15],
         ],
       },
     ],
   },
   {
     id: "dim7",
-    label: "Diminished 7",
+    label: "Xdim7",
+    intervals: [_1, _m3, _T, _M6],
     shapes: [
       {
-        id: "dim7_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_1",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 3],
           [1, 6],
           [1, 9],
           [2, 12],
+          [3, 15],
+          [3, 18],
+          [4, 21],
+          [5, 24],
+          [5, 27],
         ],
       },
       {
-        id: "dim7_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_2",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 3],
           [1, 6],
           [2, 9],
           [2, 12],
+          [3, 15],
+          [4, 17],
+          [4, 21],
+          [5, 24],
         ],
       },
       {
-        id: "dim7_2",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_3",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 3],
           [2, 6],
           [2, 9],
           [3, 12],
+          [4, 15],
+          [4, 18],
+          [5, 21],
         ],
       },
       {
-        id: "dim7_3",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_4",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 3],
+          [1, 6],
+          [1, 9],
+          [2, 12],
+          [3, 15],
+          [3, 18],
+          [4, 21],
+        ],
+      },
+      {
+        id: "dim7_5",
+        targetString: "A2",
         shape: [
           [0, 0],
           [1, 3],
           [1, 6],
           [2, 9],
           [3, 12],
-        ],
-      },
-    ],
-  },
-  {
-    id: "m",
-    label: "Minor",
-    shapes: [
-      {
-        id: "m_0",
-        targetString: [],
-        targetCAGED: "",
-        shape: [
-          [0, 0],
-          [0, 3],
-          [1, 7],
-          [2, 12],
+          [3, 15],
+          [4, 18],
         ],
       },
       {
-        id: "m_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_6",
+        targetString: "A2",
         shape: [
           [0, 0],
           [1, 3],
-          [1, 7],
-          [2, 12],
+          [2, 18],
+          [2, 9],
+          [3, 12],
+          [4, 27],
+          [4, 18],
         ],
       },
       {
-        id: "m_2",
-        targetString: [],
-        targetCAGED: "",
+        id: "dim7_7",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [0, -9],
+          [1, 6],
+          [2, 9],
+          [2, 0],
+          [3, 15],
+        ],
+      },
+      {
+        id: "dim7_8",
+        targetString: "D3",
         shape: [
           [0, 0],
           [1, 3],
-          [2, 7],
+          [1, 6],
+          [2, 9],
+          [3, 12],
+          [3, 15],
+        ],
+      },
+      {
+        id: "dim7_9",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 6],
+          [2, 9],
           [3, 12],
         ],
       },
@@ -525,41 +742,127 @@ const setsShapes = [
   },
   {
     id: "m7",
-    label: "Minor 7th",
+    label: "Xm7",
+    intervals: [_1, _m3, _5, _m7],
     shapes: [
       {
-        id: "m7_0",
-        targetString: [],
-        targetCAGED: "",
+        id: "m7_1",
+        targetString: "E1",
         shape: [
           [0, 0],
           [0, 3],
           [1, 7],
           [2, 10],
           [2, 12],
+          [3, 15],
+          [4, 19],
+          [4, 22],
+          [5, 24],
+          [5, 27],
         ],
       },
       {
-        id: "m7_1",
-        targetString: [],
-        targetCAGED: "",
+        id: "m7_2",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 3],
           [1, 7],
           [2, 10],
           [2, 12],
+          [3, 15],
+          [4, 19],
+          [5, 22],
+          [5, 24],
         ],
       },
       {
-        id: "m7_2",
-        targetString: [],
-        targetCAGED: "",
+        id: "m7_3",
+        targetString: "E1",
         shape: [
           [0, 0],
           [1, 3],
           [2, 7],
           [2, 10],
+          [3, 12],
+          [3, 15],
+          [4, 19],
+          [5, 22],
+          [5, 24],
+        ],
+      },
+      {
+        id: "m7_4",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [0, 3],
+          [1, 7],
+          [2, 10],
+          [2, 12],
+          [3, 15],
+          [4, 19],
+          [4, 22],
+        ],
+      },
+      {
+        id: "m7_5",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [1, 7],
+          [2, 10],
+          [2, 12],
+          [3, 15],
+          [4, 19],
+        ],
+      },
+      {
+        id: "m7_6",
+        targetString: "A2",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 7],
+          [2, 10],
+          [3, 12],
+          [4, 15],
+          [4, 19],
+        ],
+      },
+      {
+        id: "m7_7",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [0, 3],
+          [1, 7],
+          [2, 10],
+          [2, 12],
+          [3, 15],
+        ],
+      },
+      {
+        id: "m7_8",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 7],
+          [2, 10],
+          [3, 12],
+          [3, 15],
+        ],
+      },
+      {
+        id: "m7_9",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 3],
+          [2, 7],
+          [3, 22],
           [3, 12],
         ],
       },
@@ -567,12 +870,12 @@ const setsShapes = [
   },
   {
     id: "m_add9",
-    label: "Minor add9",
+    label: "Xm(add9)",
+    intervals: [_1, _m3, _5, _m9],
     shapes: [
       {
         id: "m_add9_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -583,8 +886,7 @@ const setsShapes = [
       },
       {
         id: "m_add9_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -595,8 +897,7 @@ const setsShapes = [
       },
       {
         id: "m_add9_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -609,12 +910,12 @@ const setsShapes = [
   },
   {
     id: "m9",
-    label: "Minor 9",
+    label: "Xm9",
+    intervals: [_1, _m3, _5, _m7, _m9],
     shapes: [
       {
         id: "m9_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -626,8 +927,7 @@ const setsShapes = [
       },
       {
         id: "m9_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -639,8 +939,7 @@ const setsShapes = [
       },
       {
         id: "m9_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -655,11 +954,11 @@ const setsShapes = [
   {
     id: "minor_pent",
     label: "Minor Pentatonic",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "minor_pent_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 3],
@@ -671,8 +970,7 @@ const setsShapes = [
       },
       {
         id: "minor_pent_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 3],
@@ -684,8 +982,7 @@ const setsShapes = [
       },
       {
         id: "minor_pent_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 3],
@@ -700,11 +997,11 @@ const setsShapes = [
   {
     id: "major_pent",
     label: "Major Pentatonic",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "major_pent_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -716,8 +1013,7 @@ const setsShapes = [
       },
       {
         id: "major_pent_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -731,12 +1027,12 @@ const setsShapes = [
   },
   {
     id: "no_avoid_notes_t_s_major",
-    label: 'Unified "no avoid notes"',
+    label: '"No avoid notes"',
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "no_avoid_notes_t_s_major_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -749,8 +1045,7 @@ const setsShapes = [
       },
       {
         id: "no_avoid_notes_t_s_major_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -764,7 +1059,6 @@ const setsShapes = [
       {
         id: "no_avoid_notes_t_s_major_2",
         targetString: ["A2"],
-        targetCAGED: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -778,7 +1072,6 @@ const setsShapes = [
       {
         id: "no_avoid_notes_t_s_major_3",
         targetString: ["E1"],
-        targetCAGED: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -794,11 +1087,11 @@ const setsShapes = [
   {
     id: "ionian",
     label: "Ionian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "ionian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -812,8 +1105,7 @@ const setsShapes = [
       },
       {
         id: "ionian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -827,8 +1119,7 @@ const setsShapes = [
       },
       {
         id: "ionian_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -845,11 +1136,11 @@ const setsShapes = [
   {
     id: "aeolian",
     label: "Aeolian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "aeolian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -863,8 +1154,7 @@ const setsShapes = [
       },
       {
         id: "aeolian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -878,8 +1168,7 @@ const setsShapes = [
       },
       {
         id: "aeolian_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -896,11 +1185,11 @@ const setsShapes = [
   {
     id: "dorian",
     label: "Dorian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "dorian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -914,8 +1203,7 @@ const setsShapes = [
       },
       {
         id: "dorian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -928,8 +1216,7 @@ const setsShapes = [
       },
       {
         id: "dorian_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 2],
@@ -946,11 +1233,11 @@ const setsShapes = [
   {
     id: "lydian",
     label: "Lydian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "lydian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -964,8 +1251,7 @@ const setsShapes = [
       },
       {
         id: "lydian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -979,8 +1265,7 @@ const setsShapes = [
       },
       {
         id: "lydian_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 14],
@@ -997,11 +1282,11 @@ const setsShapes = [
   {
     id: "mixolydian",
     label: "Mixolydian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "mixolydian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -1015,8 +1300,7 @@ const setsShapes = [
       },
       {
         id: "mixolydian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 2],
@@ -1033,11 +1317,11 @@ const setsShapes = [
   {
     id: "phrygian",
     label: "Phrygian Scale",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "phrygian_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 1],
@@ -1051,8 +1335,7 @@ const setsShapes = [
       },
       {
         id: "phrygian_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 1],
@@ -1069,11 +1352,11 @@ const setsShapes = [
   {
     id: "phrygian_dominant",
     label: "Phrygian Dominant",
+    intervals: [_1, _M3],
     shapes: [
       {
         id: "phrygian_dominant_0",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 1],
@@ -1087,8 +1370,7 @@ const setsShapes = [
       },
       {
         id: "phrygian_dominant_1",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [0, 1],
@@ -1102,8 +1384,7 @@ const setsShapes = [
       },
       {
         id: "phrygian_dominant_2",
-        targetString: [],
-        targetCAGED: "",
+        targetString: "",
         shape: [
           [0, 0],
           [1, 13],

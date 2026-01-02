@@ -33,7 +33,9 @@ const musicFunctionContextSelectorData = [
     FunctionContextName: "Realese",
     harmonicFunctionDescription: harmonicFunctionDescription.RELEASE,
     majorRoot: _1,
+    majorIntervals: [_1, _M3, _5],
     minorRoot: _M6,
+    minorIntervals: [_1, _m3, _5],
     shapes: [
       {
         id: "tonics-root_1-shape_M7",
@@ -108,6 +110,24 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_M9",
+        getNotesSetName: (rootNote) => `${rootNote}M9`,
+        rootSemitone: _1,
+        chordShapeId: "M9",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 7, 9],
+            avoidNotes: [11],
+          },
+          minor: {
+            exposedTone: 3,
+            usedTones: [3, 5, 7, 9, 11],
+            avoidNotes: [13],
+          },
+        },
+      },
+      {
         id: "tonics-root_1-shape_major_pent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _1,
@@ -163,7 +183,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "tonics-root_1-shape_no_avoid_notes_t_s_major",
-        getNotesSetName: () => 'Unified "no avoid notes"',
+        getNotesSetName: () => '"No avoid notes"',
         rootSemitone: _1,
         chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
@@ -179,7 +199,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "tonics-root_1-shape_ionian",
-        getNotesSetName: (rootNote) => `${rootNote} Ionian`,
+        getNotesSetName: (rootNote) => `${rootNote} Ionian Scale`,
         rootSemitone: _1,
         chordShapeId: "ionian",
         colorProfile: {
@@ -197,7 +217,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "tonics-root_M6-shape_aeolian",
-        getNotesSetName: (rootNote) => `${rootNote} Aeolian`,
+        getNotesSetName: (rootNote) => `${rootNote} Aeolian Scale`,
         rootSemitone: _M6,
         chordShapeId: "aeolian",
         colorProfile: {
@@ -215,7 +235,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "tonics-root_M6-shape_dorian",
-        getNotesSetName: (rootNote) => `${rootNote} Dorian`,
+        getNotesSetName: (rootNote) => `${rootNote} Dorian Scale`,
         rootSemitone: _M6,
         chordShapeId: "dorian",
         colorProfile: {
@@ -233,7 +253,9 @@ const musicFunctionContextSelectorData = [
     FunctionContextName: "Motion",
     harmonicFunctionDescription: harmonicFunctionDescription.MOTION,
     majorRoot: _4,
+    majorIntervals: [_1, _M3, _5],
     minorRoot: _M2,
+    minorIntervals: [_1, _m3, _5],
     shapes: [
       {
         id: "subdominants-root_4-shape_M7",
@@ -356,7 +378,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "subdominants-root_4-shape_no_avoid_notes_t_s_major",
-        getNotesSetName: () => 'Unified "no avoid notes"',
+        getNotesSetName: () => '"No avoid notes"',
         rootSemitone: _4,
         chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
@@ -371,7 +393,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "subdominants-root_4-shape_lydian",
-        getNotesSetName: (rootNote) => `${rootNote} Lydian`,
+        getNotesSetName: (rootNote) => `${rootNote} Lydian Scale`,
         rootSemitone: _4,
         chordShapeId: "lydian",
         colorProfile: {
@@ -388,7 +410,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "subdominants-root_M2-shape_dorian",
-        getNotesSetName: (rootNote) => `${rootNote} Dorian`,
+        getNotesSetName: (rootNote) => `${rootNote} Dorian Scale`,
         rootSemitone: _M2,
         chordShapeId: "dorian",
         colorProfile: {
@@ -405,6 +427,7 @@ const musicFunctionContextSelectorData = [
     FunctionContextName: "Tension to Major",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _5,
+    majorIntervals: [_1, _M3, _5],
     shapes: [
       {
         id: "dominant-root_5-shape-Dominant",
@@ -432,7 +455,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "dominant-root_5-shape-mixolydian",
-        getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
+        getNotesSetName: (rootNote) => `${rootNote} Mixolydian Scale`,
         rootSemitone: _5,
         chordShapeId: "mixolydian",
         colorProfile: {
@@ -488,6 +511,7 @@ const musicFunctionContextSelectorData = [
     FunctionContextName: "Tension to minor",
     harmonicFunctionDescription: harmonicFunctionDescription.TENSION,
     majorRoot: _M3,
+    majorIntervals: [_1, _M3, _5],
     shapes: [
       {
         id: "dominantPh-root_M3-shape-Dominant",
@@ -515,7 +539,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "dominantPh-root_M3-shape-phrygianDominant",
-        getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant`,
+        getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant Scale`,
         rootSemitone: _M3,
         chordShapeId: "phrygian_dominant",
         colorProfile: {
@@ -528,7 +552,7 @@ const musicFunctionContextSelectorData = [
       },
       {
         id: "dominantPh-root_M3-shape-mixolydian",
-        getNotesSetName: (rootNote) => `${rootNote} Mixolydian`,
+        getNotesSetName: (rootNote) => `${rootNote} Mixolydian Scale`,
         rootSemitone: _M3,
         chordShapeId: "mixolydian",
         colorProfile: {

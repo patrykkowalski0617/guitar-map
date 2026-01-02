@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const PreviewMainContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 30px;
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.bg};
   margin-top: ${({ theme }) => theme.spacing.md};
@@ -36,5 +35,5 @@ export const LegendItem = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-left: ${({ theme }) => theme.spacing.md};
+  margin-left: ${({ theme }) => theme.spacing.lg};
 `;

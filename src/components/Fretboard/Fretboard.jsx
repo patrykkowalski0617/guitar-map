@@ -9,6 +9,7 @@ import DevTools from "../devTooles/DevTools";
 import ScrollFader from "../ScrollFader/ScrollFader";
 import { CAGED_shapes, NOTES_FROM_C } from "../../data";
 import useFretboardLogic from "./hooks/useFretboardLogic";
+import { useSequencer } from "../SequencerSettings/hooks/useSequencer";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -22,6 +23,7 @@ const Fretboard = () => {
     setShape,
     variantState,
     setVariantState,
+    seqConfig,
   } = useStore();
 
   const [userShape, setUserShape] = useState([]);
@@ -32,11 +34,23 @@ const Fretboard = () => {
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
-  const activeLetter = lockedCAGEDLetter || mouseOverLetter;
+  const currentSeqConfig = seqConfig || {
+    isRunning: false,
+    interval: 300,
+    activePattern: "linear",
+  };
+  useSequencer(shape, currentSeqConfig);
 
-  const currentCAGED_hoverShape = useMemo(() => {
-    return activeLetter ? CAGED_shapes[activeLetter] || [] : [];
-  }, [activeLetter]);
+  const combinedCAGEDShape = useMemo(() => {
+    const lockedNotes = lockedCAGEDLetter
+      ? CAGED_shapes[lockedCAGEDLetter] || []
+      : [];
+    const hoverNotes = mouseOverLetter
+      ? CAGED_shapes[mouseOverLetter] || []
+      : [];
+
+    return [...new Set([...lockedNotes, ...hoverNotes])];
+  }, [lockedCAGEDLetter, mouseOverLetter]);
 
   const activeRootIds = useMemo(() => {
     if (!activeShapeRootNote) return [];
@@ -63,6 +77,7 @@ const Fretboard = () => {
     isDevMode,
     setUserShape,
     setLockedCAGEDLetter,
+    lockedCAGEDLetter,
   });
 
   const handleCAGED_Click = (letter) => {
@@ -73,7 +88,7 @@ const Fretboard = () => {
   };
 
   const handleCAGED_MouseOver = (letter) => {
-    if (!lockedCAGEDLetter) setMouseOverLetter(letter);
+    setMouseOverLetter(letter);
   };
 
   const handleCAGED_MouseLeave = () => {
@@ -93,7 +108,7 @@ const Fretboard = () => {
               CAGED_shift={CAGED_shift}
               handleNoteClick={handleNoteClick}
               shape={shape}
-              CAGED_hoverShape={currentCAGED_hoverShape}
+              CAGED_hoverShape={combinedCAGEDShape}
               userShape={userShape}
               activeShapeRootNote={activeShapeRootNote}
               variantState={variantState}
@@ -118,5 +133,4 @@ const Fretboard = () => {
     </>
   );
 };
-
 export default Fretboard;
