@@ -15,7 +15,6 @@ import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorPro
 import ShapeTypeDisplay from "./components/ShapeTypeDisplay/ShapeTypeDisplay";
 import GlobalStyle from "./GlobalStyle";
 import VisualizerLegend from "./components/ColorProfileVisualizer/Legend/VisualizerLegend";
-import SequencerSettings from "./components/SequencerSettings/SequencerSettings";
 
 function App() {
   return (
@@ -55,7 +54,6 @@ function App() {
           <SectionTitle>
             <h2>Shape Library</h2>
           </SectionTitle>
-          <SequencerSettings />
           <SubSectionContainer>
             <ShapeTypeDisplay />
           </SubSectionContainer>

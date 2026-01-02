@@ -60,9 +60,9 @@ const fretboardButtonStyles = css`
   font-size: ${({ theme }) => theme.fontSize.md};
   text-transform: uppercase;
   box-shadow: ${({ theme, $isInShape }) =>
-    $isInShape ? `0 0 10px ${theme.colors.yellow}22` : "none"};
+    $isInShape ? `0 0 10px ${theme.colors.yellow}66` : "none"};
 
-  border: 1px solid
+  border: 2px solid
     ${({ theme, $isInShape }) =>
       $isInShape ? theme.colors.yellow : theme.colors.border};
 
@@ -90,8 +90,15 @@ export const Note = styled.div`
   width: 48px;
   height: 31px;
   position: relative;
-  opacity: ${({ $isInShape, $isActiveShapeRootNote, $isInCAGED_hoverShape }) =>
-    $isActiveShapeRootNote || $isInShape
+
+  /* Nuta jest widoczna (opacity 1) jeśli: jest w aktualnym shape, jest rootem lub jest ZABLOKOWANA w zamrożonym kształcie */
+  opacity: ${({
+    $isInShape,
+    $isActiveShapeRootNote,
+    $isInCAGED_hoverShape,
+    $isShapeLocked,
+  }) =>
+    $isActiveShapeRootNote || $isInShape || $isShapeLocked
       ? "1"
       : $isInCAGED_hoverShape
       ? "0.4"
@@ -108,10 +115,21 @@ export const Note = styled.div`
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }
 
-  outline: ${({ theme, $isActiveSeq }) =>
-    $isActiveSeq ? `3px solid ${theme.colors.red}` : "none"};
+  /* CZERWONY OUTLINE dla sekwencera LUB zablokowanego kształtu */
+  outline: ${({ theme, $isShapeLocked }) =>
+    $isShapeLocked ? `3px solid ${theme.colors.red}` : "none"};
+  outline: ${({ theme, $isActiveSeq, $isShapeLocked }) =>
+    $isActiveSeq
+      ? `4px solid ${theme.colors.red}`
+      : $isShapeLocked
+      ? `2px solid ${theme.colors.violet}ee`
+      : "none"};
   outline-offset: 2px;
-  z-index: ${({ $isActiveSeq }) => ($isActiveSeq ? "10" : "1")};
+
+  /* Wyższy z-index dla sekwencera, by nadpisywał wizualnie zwykły lock */
+  z-index: ${({ $isActiveSeq, $isShapeLocked }) =>
+    $isActiveSeq || $isShapeLocked ? "10" : "1"};
+
   background: ${({
     theme,
     $isInUserShape,

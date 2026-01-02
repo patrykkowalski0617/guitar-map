@@ -18,6 +18,9 @@ const ShapeTypeDisplay = ({ opacityOff }) => {
 
   return (
     <ScrollFader activeValue={activeChordId}>
+      <Label $isLegendLabel $opacityOff>
+        All available shapes:
+      </Label>
       {items.map((item) => (
         <Label
           key={item.id}

@@ -27,7 +27,9 @@ export const LegendLabel = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   line-height: 1;
   ${({ $isLegendLabel, theme }) =>
-    $isLegendLabel ? `color: ${theme.colors.green}; font-weight: bold` : ""}
+    $isLegendLabel ? `color: ${theme.colors.blue}; font-weight: bold;` : ""}
+  opacity: ${({ $isActive, $opacityOff }) =>
+    $opacityOff || $isActive ? 1 : 0.5};
 `;
 
 export const LegendItem = styled.div`

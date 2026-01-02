@@ -9,7 +9,17 @@ import DevTools from "../devTooles/DevTools";
 import ScrollFader from "../ScrollFader/ScrollFader";
 import { CAGED_shapes, NOTES_FROM_C } from "../../data";
 import useFretboardLogic from "./hooks/useFretboardLogic";
-import { useSequencer } from "../SequencerSettings/hooks/useSequencer";
+import { useSequencer } from "../FretboardHeader/hooks/useSequencer";
+import styled from "styled-components";
+import { SequencerButton } from "../FretboardHeader/parts";
+import FretboardHeader from "../FretboardHeader/FretboardHeader";
+
+const ControlsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 0 10px;
+`;
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -29,6 +39,7 @@ const Fretboard = () => {
   const [userShape, setUserShape] = useState([]);
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
   const [mouseOverLetter, setMouseOverLetter] = useState(null);
+  const [lockedShape, setLockedShape] = useState([]);
 
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const activeChordVariants = getActiveChordVariants();
@@ -79,8 +90,21 @@ const Fretboard = () => {
     setMouseOverLetter(null);
   };
 
+  const toggleLockShape = () => {
+    if (lockedShape.length > 0) {
+      setLockedShape([]);
+    } else {
+      setLockedShape([...shape]);
+    }
+  };
+
   return (
     <>
+      <FretboardHeader
+        lockedCAGEDLetter={lockedCAGEDLetter}
+        lockedShape={lockedShape}
+        toggleLockShape={toggleLockShape}
+      />
       <ScrollFader>
         <FretboardContainer>
           {STRINGS_FIRST_NOTES.map((string, sIdx) => (
@@ -96,6 +120,7 @@ const Fretboard = () => {
               userShape={userShape}
               activeShapeRootNote={activeShapeRootNote}
               variantState={variantState}
+              lockedShape={lockedShape}
             />
           ))}
           <FretboardLabels
@@ -108,6 +133,7 @@ const Fretboard = () => {
           />
         </FretboardContainer>
       </ScrollFader>
+
       {isDevMode && (
         <DevTools
           userShape={userShape}

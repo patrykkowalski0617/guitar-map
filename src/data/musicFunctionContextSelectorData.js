@@ -538,6 +538,19 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "dominantPh-root_M3-shape-7b9",
+        getNotesSetName: (rootNote) => `${rootNote}7b9`,
+        rootSemitone: _M3,
+        chordShapeId: "7b9",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [1, 3, 5, 7, 9],
+            alteredTones: [9],
+          },
+        },
+      },
+      {
         id: "dominantPh-root_M3-shape-phrygianDominant",
         getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant Scale`,
         rootSemitone: _M3,

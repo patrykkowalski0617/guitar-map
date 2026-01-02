@@ -25,7 +25,9 @@ const VisualizerLegend = () => {
     <ScrollFader>
       <S.PreviewMainContainer>
         <S.LegendItem>
-          <S.LegendLabel $isLegendLabel={true}>Legend:</S.LegendLabel>
+          <S.LegendLabel $isLegendLabel $opacityOff>
+            Legend:
+          </S.LegendLabel>
         </S.LegendItem>
         {legendGroups.map(({ interval, profile, label }) => {
           const isAltered =

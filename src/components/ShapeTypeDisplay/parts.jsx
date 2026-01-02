@@ -22,7 +22,8 @@ export const Label = styled.div`
     const shadowColor = $color || theme.colors.text;
     return `0 0 10px ${shadowColor}66`;
   }};
-
   opacity: ${({ $isActive, $opacityOff }) =>
     $opacityOff || $isActive ? 1 : 0.5};
+  ${({ $isLegendLabel, theme }) =>
+    $isLegendLabel ? `color: ${theme.colors.blue}; font-weight: bold` : ""}
 `;

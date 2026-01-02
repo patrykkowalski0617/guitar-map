@@ -55,11 +55,11 @@ export const SubsectionTitle = styled.h3`
   text-align: center;
   background-color: ${({ theme }) => theme.colors.bg};
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
-  margin: 0 0 ${({ theme }) => theme.spacing.sm};
+  margin: 0 0 ${({ theme }) => theme.spacing.md};
   line-height: 1;
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => `${theme.colors.blue}99`};
+  color: ${({ theme }) => `${theme.colors.blue}`};
 `;
 
 export const Label = styled.div`

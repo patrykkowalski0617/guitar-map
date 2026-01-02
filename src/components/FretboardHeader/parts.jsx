@@ -8,8 +8,6 @@ export const SettingsContainer = styled.div`
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.bg};
-  padding: 0 20px;
-  width: fit-content;
 `;
 
 export const SettingGroup = styled.div`
@@ -30,6 +28,7 @@ export const RangeWrapper = styled.div`
 export const SequencerLabel = styled(Label)`
   font-size: 0.7rem;
   text-align: left;
+  white-space: nowrap;
   span {
     color: ${({ theme }) => theme.colors.yellow};
     float: right;
@@ -59,15 +58,17 @@ export const StyledSelect = styled.select`
       $active ? theme.colors.yellow : `${theme.colors.text}33`};
     box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.text}22`};
   }
-
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+  option {
+    padding-right: 10px;
+  }
 `;
 
 export const StyledRange = styled.input`
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 6px;
   background: ${({ theme }) => theme.colors.bgLight};
@@ -81,7 +82,7 @@ export const StyledRange = styled.input`
   }
 
   &::-webkit-slider-thumb {
-    -webkit-appearance: none;
+    appearance: none;
     width: 18px;
     height: 18px;
     background: ${({ theme }) => theme.colors.yellow};
@@ -91,7 +92,8 @@ export const StyledRange = styled.input`
 `;
 
 export const SequencerButton = styled(Button)`
-  width: 140px;
-  opacity: ${({ $isLocked }) => ($isLocked ? 0.7 : 1)};
-  cursor: ${({ $isLocked }) => ($isLocked ? "not-allowed" : "pointer")};
+  width: 150px;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  white-space: nowrap;
 `;

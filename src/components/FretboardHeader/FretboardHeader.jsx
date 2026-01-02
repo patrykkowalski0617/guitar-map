@@ -10,11 +10,14 @@ import {
   StyledSelect,
   RangeWrapper,
   SequencerButton,
-  StyledSubsectionTitle,
 } from "./parts";
 import ScrollFader from "../ScrollFader/ScrollFader";
 
-const SequencerSettings = ({ lockedCAGEDLetter }) => {
+const FretboardHeader = ({
+  lockedCAGEDLetter,
+  lockedShape,
+  toggleLockShape,
+}) => {
   const seqConfig = useStore((state) => state.seqConfig);
   const setSeqConfig = useStore((state) => state.setSeqConfig);
   const shape = useStore((state) => state.shape);
@@ -25,6 +28,8 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
   const patternKeys = Object.keys(SEQUENCER_PATTERNS);
   const isRunning = seqConfig?.isRunning || false;
   const isLocked = !shape || shape.length === 0 || lockedCAGEDLetter === null;
+
+  const isFrozen = lockedShape && lockedShape.length > 0;
 
   useEffect(() => {
     if (isRunning) {
@@ -56,9 +61,8 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
     <ScrollFader>
       <SubSectionContainer>
         <SettingsContainer>
-          <StyledSubsectionTitle>Learn Sequences:</StyledSubsectionTitle>
           <SettingGroup>
-            <SequencerLabel>Pattern</SequencerLabel>
+            <SequencerLabel>Seq Pattern</SequencerLabel>
             <StyledSelect
               value={seqConfig?.activePattern || "linear"}
               onChange={handlePatternChange}
@@ -72,7 +76,7 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
           </SettingGroup>
 
           <SettingGroup>
-            <SequencerLabel>Direction</SequencerLabel>
+            <SequencerLabel>Seq Direction</SequencerLabel>
             <SequencerButton
               $active={seqConfig?.isBackward}
               onClick={toggleDirection}
@@ -84,7 +88,7 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
 
           <SettingGroup>
             <SequencerLabel>
-              Tempo <span>{displayBpm} BPM</span>
+              Seq Tempo <span>{displayBpm} BPM</span>
             </SequencerLabel>
             <RangeWrapper>
               <StyledRange
@@ -99,6 +103,7 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
           </SettingGroup>
 
           <SettingGroup>
+            <SequencerLabel>Sequencer</SequencerLabel>
             <SequencerButton
               $active={isRunning}
               $isLocked={isLocked}
@@ -108,10 +113,21 @@ const SequencerSettings = ({ lockedCAGEDLetter }) => {
               {isLocked ? "SELECT SHAPE" : isRunning ? "STOP" : "START SEQ"}
             </SequencerButton>
           </SettingGroup>
+
+          <SettingGroup>
+            <SequencerLabel>Shape Lock</SequencerLabel>
+            <SequencerButton
+              $active={isFrozen}
+              onClick={toggleLockShape}
+              disabled={!isFrozen && shape.length === 0}
+            >
+              {isFrozen ? "FREEZE OFF" : "FREEZE SHAPE"}
+            </SequencerButton>
+          </SettingGroup>
         </SettingsContainer>
       </SubSectionContainer>
     </ScrollFader>
   );
 };
 
-export default SequencerSettings;
+export default FretboardHeader;

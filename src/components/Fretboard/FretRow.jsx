@@ -14,10 +14,10 @@ const FretRow = ({
   userShape,
   activeShapeRootNote,
   variantState,
+  lockedShape,
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
-
   const activeSeqId = useStore((state) => state.seqConfig.activeSeqId);
 
   return (
@@ -35,8 +35,10 @@ const FretRow = ({
         const isInCAGED_hoverShape = CAGED_hoverShape.includes(CAGED_noteId);
         const isActiveShapeRootNote = activeShapeRootNote === note;
         const isLastClicked = variantState?.lastId === CAGED_noteId;
-
         const isActiveSeq = activeSeqId === CAGED_noteId;
+
+        // Sprawdzenie czy nuta jest w zamrożonej tablicy
+        const isLockedNote = lockedShape.includes(CAGED_noteId);
 
         return (
           <FretCell
@@ -51,6 +53,7 @@ const FretRow = ({
               $variantLabel={isLastClicked ? variantState.label : null}
               $isError={isLastClicked ? variantState.isError : false}
               $isActiveSeq={isActiveSeq}
+              $isShapeLocked={isLockedNote}
               onClick={() => handleNoteClick(note, CAGED_noteId)}
             >
               {note}
