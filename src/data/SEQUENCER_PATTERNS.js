@@ -7,8 +7,16 @@ export const SEQUENCER_PATTERNS = {
     steps: [1, 3, 2, 4],
     offset: 2,
   },
+  fourths: {
+    steps: [1, 4, 2, 5],
+    offset: 2,
+  },
   triplets: {
     steps: [1, 2, 3],
+    offset: 1,
+  },
+  quadruplets: {
+    steps: [1, 2, 3, 4],
     offset: 1,
   },
   skipOne: {
