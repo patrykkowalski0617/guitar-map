@@ -52,28 +52,12 @@ const Fretboard = () => {
     return [...new Set([...lockedNotes, ...hoverNotes])];
   }, [lockedCAGEDLetter, mouseOverLetter]);
 
-  const activeRootIds = useMemo(() => {
-    if (!activeShapeRootNote) return [];
-    const ids = [];
-    STRINGS_FIRST_NOTES.forEach((sName, sIdx) => {
-      const stringId = `${sName}${6 - sIdx}`;
-      getNotesFromNote(sName, numberOfFrets).forEach((noteName) => {
-        if (noteName === activeShapeRootNote) {
-          let index = (NOTES_FROM_C.indexOf(noteName) - CAGED_shift + 12) % 12;
-          ids.push(`${stringId}_${NOTES_FROM_C[index]}`);
-        }
-      });
-    });
-    return ids;
-  }, [activeShapeRootNote, CAGED_shift]);
-
   const { handleNoteClick } = useFretboardLogic({
     activeShapeRootNote,
     activeChordVariants,
     variantState,
     setVariantState,
     setShape,
-    activeRootIds,
     isDevMode,
     setUserShape,
     setLockedCAGEDLetter,

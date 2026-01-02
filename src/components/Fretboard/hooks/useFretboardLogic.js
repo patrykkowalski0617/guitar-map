@@ -8,7 +8,6 @@ export const useFretboardLogic = (props) => {
     variantState,
     setVariantState,
     setShape,
-    activeRootIds,
     isDevMode,
     setUserShape,
     setLockedCAGEDLetter,
@@ -22,9 +21,7 @@ export const useFretboardLogic = (props) => {
 
     for (const letter of letters) {
       const pattern = CAGED_shapes[letter] || [];
-
       const matches = shapeIds.every((id) => pattern.includes(id));
-
       if (matches) return letter;
     }
     return null;
@@ -91,26 +88,11 @@ export const useFretboardLogic = (props) => {
         lastId: CAGED_noteId,
         variantId: foundVariant.id,
       });
-      return;
+    } else {
+      if (setLockedCAGEDLetter) setLockedCAGEDLetter(null);
+      setShape([]);
+      setVariantState({ lastId: CAGED_noteId, variantId: null });
     }
-
-    if (setLockedCAGEDLetter) setLockedCAGEDLetter(null);
-
-    const combinedShapeSet = new Set();
-    activeRootIds.forEach((rootId) => {
-      const rStringId = rootId.split("_")[0];
-      const validVariants = activeChordVariants.filter(
-        (v) => v.targetString === rStringId
-      );
-
-      validVariants.forEach((v) => {
-        const t = transposeShape(v.shape, rootId);
-        t.forEach((id) => combinedShapeSet.add(id));
-      });
-    });
-
-    setShape(Array.from(combinedShapeSet));
-    setVariantState({ lastId: CAGED_noteId, variantId: "SUM" });
   };
 
   return { handleNoteClick };

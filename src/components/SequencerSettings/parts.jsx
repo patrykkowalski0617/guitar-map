@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../parts";
+import { Button, Label, SubsectionTitle } from "../../parts";
 
 export const SettingsContainer = styled.div`
   display: flex;
@@ -27,20 +27,19 @@ export const RangeWrapper = styled.div`
   width: 100%;
 `;
 
-export const Label = styled.label`
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.6;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  white-space: nowrap;
-
+export const SequencerLabel = styled(Label)`
+  font-size: 0.7rem;
+  text-align: left;
   span {
     color: ${({ theme }) => theme.colors.yellow};
     float: right;
     margin-left: 10px;
   }
+`;
+
+export const StyledSubsectionTitle = styled(SubsectionTitle)`
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 export const StyledSelect = styled.select`
@@ -92,7 +91,7 @@ export const StyledRange = styled.input`
 `;
 
 export const SequencerButton = styled(Button)`
-  width: 130px;
+  width: 140px;
   opacity: ${({ $isLocked }) => ($isLocked ? 0.7 : 1)};
   cursor: ${({ $isLocked }) => ($isLocked ? "not-allowed" : "pointer")};
 `;

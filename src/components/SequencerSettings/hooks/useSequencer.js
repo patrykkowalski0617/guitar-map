@@ -11,14 +11,16 @@ export const useSequencer = (shape, seqConfig) => {
 
   useEffect(() => {
     currentShapeRef.current = shape;
+
     patternIdxRef.current = 0;
     baseOffsetRef.current = 0;
-  }, [shape]);
+  }, [shape, seqConfig?.isBackward, seqConfig?.activePattern]);
 
   useEffect(() => {
     const getSortedShape = (inputShape) => {
       if (!inputShape || inputShape.length === 0) return [];
-      return [...inputShape].sort((a, b) => {
+
+      let sorted = [...inputShape].sort((a, b) => {
         const [strPartA, noteA] = a.split("_");
         const [strPartB, noteB] = b.split("_");
         const sNumA = parseInt(strPartA.replace(/\D/g, ""));
@@ -30,6 +32,12 @@ export const useSequencer = (shape, seqConfig) => {
         const distBackward = (idxA - idxB + 12) % 12;
         return distForward < distBackward ? -1 : 1;
       });
+
+      if (seqConfig?.isBackward) {
+        return sorted.reverse();
+      }
+
+      return sorted;
     };
 
     if (timerRef.current) clearInterval(timerRef.current);
@@ -96,6 +104,7 @@ export const useSequencer = (shape, seqConfig) => {
     seqConfig?.isRunning,
     seqConfig?.interval,
     seqConfig?.activePattern,
+    seqConfig?.isBackward,
     shape.length,
     setActiveSeqId,
   ]);
