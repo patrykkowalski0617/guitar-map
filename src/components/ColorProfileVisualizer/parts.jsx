@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button, Label } from "../../parts";
 
 const getIntervalColor = (interval, colors, $isAvoid) => {
   if ($isAvoid) return colors.red;
@@ -14,8 +15,9 @@ export const VisualizerContainer = styled.div`
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.colors.bg};
   justify-content: space-evenly;
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
+  width: 100%;
 `;
 export const ProfileColumn = styled.div`
   display: flex;
@@ -25,9 +27,17 @@ export const ProfileColumn = styled.div`
   margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
+export const ProfileRowWrapper = styled.div`
+  min-width: 300px;
+  ${Button} {
+    margin: ${({ theme }) => theme.spacing.md} auto
+      ${({ theme }) => theme.spacing.md};
+  }
+`;
+
 export const DotsWrapper = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: 10px;
   align-items: flex-end;
   height: 65px;
   margin-top: ${({ theme }) => theme.spacing.md};
@@ -52,8 +62,8 @@ export const IntervalNumber = styled.span`
 `;
 
 export const ToneDot = styled.div`
-  width: ${({ theme }) => theme.sizes.dot};
-  height: ${({ theme }) => theme.sizes.dot};
+  width: 25px;
+  height: 25px;
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   background-color: ${({ $interval, theme, $isAvoid }) =>
     getIntervalColor($interval, theme.colors, $isAvoid)};
@@ -70,9 +80,11 @@ export const ToneDot = styled.div`
     return `${theme.shadows.glow} ${color}`;
   }};
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: ${({ theme }) => theme.sizes.dotXl};
-    height: ${({ theme }) => theme.sizes.dotXl};
+    width: 27px;
+    height: 27px;
   }
+  cursor: ${({ $isRaised, $legendRender }) =>
+    $isRaised && !$legendRender ? "pointer" : "default"};
 `;
 
 export const Description = styled.div`
@@ -81,6 +93,13 @@ export const Description = styled.div`
   max-width: 95%;
   line-height: 1.5;
   margin: 0 auto 20px;
+  > span {
+    color: ${({ theme }) => theme.colors.yellow};
+  }
+`;
+
+export const VisLabel = styled(Label)`
+  margin-bottom: ${({ theme }) => theme.spacing.md};
   > span {
     color: ${({ theme }) => theme.colors.yellow};
   }

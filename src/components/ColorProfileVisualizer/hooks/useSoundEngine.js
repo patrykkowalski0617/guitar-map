@@ -3,16 +3,14 @@ import { NOTES_FROM_C } from "../../../data";
 
 const createFrequencyMap = () => {
   const map = {};
-  // Częstotliwości bazowe dla oktawy 4 (środkowe C to ok. 261.63Hz)
   const baseFreqs = [
     261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392.0, 415.3, 440.0,
     466.16, 493.88,
   ];
-
   NOTES_FROM_C.forEach((name, i) => {
-    map[`${name}3`] = baseFreqs[i] / 2; // Oktawa 3
-    map[`${name}4`] = baseFreqs[i]; // Oktawa 4
-    map[`${name}5`] = baseFreqs[i] * 2; // Oktawa 5
+    map[`${name}3`] = baseFreqs[i];
+    map[`${name}4`] = baseFreqs[i];
+    map[`${name}5`] = baseFreqs[i];
   });
   return map;
 };
@@ -21,70 +19,125 @@ const FREQUENCIES = createFrequencyMap();
 
 export const useSoundEngine = () => {
   const audioCtx = useRef(null);
-  const oscillators = useRef({}); // Przechowuje grające oscylatory
+  const oscillators = useRef({});
+  const masterGain = useRef(null);
 
   const initAudio = () => {
     if (!audioCtx.current) {
       audioCtx.current = new (window.AudioContext ||
         window.webkitAudioContext)();
+      masterGain.current = audioCtx.current.createGain();
+      masterGain.current.gain.setValueAtTime(0.5, audioCtx.current.currentTime);
+      masterGain.current.connect(audioCtx.current.destination);
     }
-    if (audioCtx.current.state === "suspended") audioCtx.current.resume();
   };
 
-  const playNote = (noteName, octave = 4) => {
+  const playNote = (noteName, octave = 4, isDark = false) => {
     initAudio();
-    const noteKey = `${noteName}${octave}`;
+    if (audioCtx.current.state === "suspended") return;
 
-    // Jeśli ta nuta już gra, nie odpalamy jej drugi raz
-    if (oscillators.current[noteKey]) return;
+    const role = isDark ? "pad" : "lead";
+    const noteKey = `${noteName}${octave}_${role}`;
+    const now = audioCtx.current.currentTime;
 
-    const freq = FREQUENCIES[noteKey];
+    if (oscillators.current[noteKey]) {
+      const old = oscillators.current[noteKey];
+      try {
+        old.gainNode.gain.cancelScheduledValues(now);
+        old.osc.stop();
+        old.osc.disconnect();
+      } catch (e) {}
+      delete oscillators.current[noteKey];
+    }
+
+    const freq = FREQUENCIES[`${noteName}${octave}`];
     if (!freq) return;
 
-    const now = audioCtx.current.currentTime;
     const osc = audioCtx.current.createOscillator();
     const gainNode = audioCtx.current.createGain();
     const filter = audioCtx.current.createBiquadFilter();
 
-    osc.type = "triangle";
+    osc.type = isDark ? "sine" : "triangle";
     osc.frequency.setValueAtTime(freq, now);
+
+    osc.detune.setValueAtTime(Math.random() * 6 - 3, now);
+
     filter.type = "lowpass";
-    filter.frequency.setValueAtTime(1200, now);
+    filter.frequency.setValueAtTime(isDark ? 400 : 1200, now);
+    filter.Q.setValueAtTime(1, now);
 
     gainNode.gain.setValueAtTime(0, now);
-    gainNode.gain.linearRampToValueAtTime(0.2, now + 0.05); // Krótki attack
+    const targetGain = isDark ? 0.04 : 0.08;
+    gainNode.gain.linearRampToValueAtTime(targetGain, now + 0.05);
 
     osc.connect(filter);
     filter.connect(gainNode);
-    gainNode.connect(audioCtx.current.destination);
+    gainNode.connect(masterGain.current);
 
-    osc.start();
-
-    // Zapisujemy referencję, żeby móc ją potem zatrzymać
-    oscillators.current[noteKey] = { osc, gainNode };
+    osc.start(now);
+    oscillators.current[noteKey] = { osc, gainNode, isStopping: false };
   };
 
-  const stopNote = (noteName, octave = 4) => {
-    const noteKey = `${noteName}${octave}`;
+  const stopNote = (noteName, octave = 4, isDark = false) => {
+    const role = isDark ? "pad" : "lead";
+    const noteKey = `${noteName}${octave}_${role}`;
     const activeData = oscillators.current[noteKey];
 
-    if (activeData) {
-      const { osc, gainNode } = activeData;
+    if (activeData && !activeData.isStopping) {
+      activeData.isStopping = true;
       const now = audioCtx.current.currentTime;
-
-      // Miękkie wyciszenie (release), żeby nie było kliknięcia
-      gainNode.gain.cancelScheduledValues(now);
-      gainNode.gain.setValueAtTime(gainNode.gain.value, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+      activeData.gainNode.gain.cancelScheduledValues(now);
+      activeData.gainNode.gain.setValueAtTime(
+        activeData.gainNode.gain.value,
+        now
+      );
+      activeData.gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
 
       setTimeout(() => {
-        osc.stop();
-        osc.disconnect();
+        if (oscillators.current[noteKey] === activeData) {
+          try {
+            activeData.osc.stop();
+            activeData.osc.disconnect();
+            delete oscillators.current[noteKey];
+          } catch (e) {}
+        }
       }, 350);
-
-      delete oscillators.current[noteKey];
     }
   };
 
-  return { playNote, stopNote };
+  const stopAllNotes = () => {
+    const now = audioCtx.current?.currentTime || 0;
+    Object.keys(oscillators.current).forEach((key) => {
+      const activeData = oscillators.current[key];
+      if (activeData && !activeData.isStopping) {
+        activeData.isStopping = true;
+        activeData.gainNode.gain.cancelScheduledValues(now);
+        activeData.gainNode.gain.exponentialRampToValueAtTime(
+          0.0001,
+          now + 0.2
+        );
+
+        setTimeout(() => {
+          if (oscillators.current[key] === activeData) {
+            try {
+              activeData.osc.stop();
+              activeData.osc.disconnect();
+              delete oscillators.current[key];
+            } catch (e) {}
+          }
+        }, 250);
+      }
+    });
+  };
+
+  return {
+    playNote,
+    stopNote,
+    stopAllNotes,
+    unlockAudio: async () => {
+      initAudio();
+      if (audioCtx.current.state === "suspended")
+        await audioCtx.current.resume();
+    },
+  };
 };

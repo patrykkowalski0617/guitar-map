@@ -1,5 +1,5 @@
 import { transposeShape } from "../../../utils";
-import { CAGED_shapes } from "../../../data"; // Musimy mieć dostęp do wzorców
+import { CAGED_shapes } from "../../../data";
 
 export const useFretboardLogic = (props) => {
   const {
@@ -15,16 +15,14 @@ export const useFretboardLogic = (props) => {
     lockedCAGEDLetter,
   } = props;
 
-  // Funkcja pomocnicza: znajduje literę CAGED, która pasuje do tablicy ID nut
   const detectCAGEDLetter = (shapeIds) => {
     if (!shapeIds || shapeIds.length === 0) return null;
 
-    // Sprawdzamy po kolei: C, A, G, E, D
     const letters = ["C", "B", "A", "G", "F", "E", "D"];
 
     for (const letter of letters) {
       const pattern = CAGED_shapes[letter] || [];
-      // Sprawdzamy czy każda nuta z shapeIds zawiera się we wzorcu danej litery
+
       const matches = shapeIds.every((id) => pattern.includes(id));
 
       if (matches) return letter;
@@ -51,7 +49,6 @@ export const useFretboardLogic = (props) => {
 
     let foundVariant = null;
 
-    // 1. Próba znalezienia wariantu pasującego do aktualnie zablokowanej litery
     if (isNewNote && lockedCAGEDLetter) {
       foundVariant = activeChordVariants.find(
         (v) =>
@@ -61,7 +58,6 @@ export const useFretboardLogic = (props) => {
       );
     }
 
-    // 2. Standardowa iteracja po wariantach (jeśli nie znaleziono pasującego do locka)
     if (!foundVariant) {
       const currentIdx = activeChordVariants.findIndex(
         (v) => v.id === variantState.variantId
@@ -85,7 +81,6 @@ export const useFretboardLogic = (props) => {
     if (foundVariant) {
       const newShape = transposeShape(foundVariant.shape, CAGED_noteId);
 
-      // LOGIKA "DOMYŚLANIA SIĘ" LITERY CAGED
       if (setLockedCAGEDLetter) {
         const detectedLetter = detectCAGEDLetter(newShape);
         setLockedCAGEDLetter(detectedLetter);
@@ -99,7 +94,6 @@ export const useFretboardLogic = (props) => {
       return;
     }
 
-    // Jeśli nic nie pasuje (kliknięcie w roota bez wariantów lub fallback na SUM)
     if (setLockedCAGEDLetter) setLockedCAGEDLetter(null);
 
     const combinedShapeSet = new Set();

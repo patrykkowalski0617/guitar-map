@@ -11,8 +11,6 @@ export const theme = {
     border: "#ffffff1a",
   },
   sizes: {
-    dot: "20px",
-    dotXl: "25px",
     fretboardHeight: "35px",
   },
   fontSize: {

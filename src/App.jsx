@@ -42,14 +42,15 @@ function App() {
             <SectionTitle>
               <h2>Visualizer</h2>
             </SectionTitle>
-            <SubSectionContainer>
-              <ColorProfileVisualizer />
-            </SubSectionContainer>
+
+            <ColorProfileVisualizer />
+
             <SubSectionContainer>
               <VisualizerLegend />
             </SubSectionContainer>
           </SectionContainer>
         </RowWrapper>
+
         <SectionContainer>
           <SectionTitle>
             <h2>Shape Library</h2>

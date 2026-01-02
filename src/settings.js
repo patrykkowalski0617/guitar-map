@@ -1,2 +1,2 @@
-export const isDevMode = true;
+export const isDevMode = false;
 export const showUserProgress = false;

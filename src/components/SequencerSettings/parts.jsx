@@ -9,6 +9,7 @@ export const SettingsContainer = styled.div`
   gap: ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.bg};
   padding: 0 20px;
+  width: fit-content;
 `;
 
 export const SettingGroup = styled.div`
@@ -91,6 +92,7 @@ export const StyledRange = styled.input`
 `;
 
 export const SequencerButton = styled(Button)`
+  width: 130px;
   opacity: ${({ $isLocked }) => ($isLocked ? 0.7 : 1)};
   cursor: ${({ $isLocked }) => ($isLocked ? "not-allowed" : "pointer")};
 `;
