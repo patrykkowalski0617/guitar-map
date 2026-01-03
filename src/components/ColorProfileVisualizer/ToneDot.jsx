@@ -1,19 +1,6 @@
 import * as S from "./parts";
 
-const ToneDot = ({
-  interval,
-  profile,
-  legendRender,
-  isRowActive,
-  noteName,
-  engine,
-}) => {
-  const { playNote, stopNote } = engine || {};
-
-  if (!engine && !legendRender) {
-    console.warn(`Missing engine for ToneDot at interval: ${interval}`);
-  }
-
+const ToneDot = ({ interval, profile, legendRender, isActive }) => {
   const isExposed = profile?.exposedTone === interval;
   const isUsed = profile?.usedTones?.includes(interval);
   const isAvoid = profile?.avoidNotes?.includes(interval);
@@ -24,20 +11,8 @@ const ToneDot = ({
   else if (isUsed || isAltered) offset = -18;
   const isRaised = offset !== 0;
 
-  const handleMouseEnter = () => {
-    if (isRowActive && isRaised && noteName && playNote) {
-      playNote(noteName, 4, false);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (isRowActive && isRaised && noteName && stopNote) {
-      stopNote(noteName, 4, false);
-    }
-  };
-
   return (
-    <S.DotStack onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <S.DotStack>
       <S.ToneDot
         $interval={interval}
         $offset={offset}
@@ -46,6 +21,7 @@ const ToneDot = ({
         $isAvoid={isAvoid}
         $isAltered={isAltered}
         $legendRender={legendRender}
+        $isPlaying={isActive}
       />
       {!legendRender && (
         <S.IntervalNumber

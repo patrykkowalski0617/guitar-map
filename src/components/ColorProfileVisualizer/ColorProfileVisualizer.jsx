@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { Button } from "../../parts";
 import { useStore } from "../../store/useStore";
-import ProfileRow from "./ProfileRow";
 import { useSoundEngine } from "./hooks/useSoundEngine";
-import * as S from "./parts";
+import { useVisualizerSequence } from "./hooks/useVisualizerSequence";
+import ProfileRow from "./ProfileRow";
 import Description from "./Description";
+import * as S from "./parts";
 
 const ColorProfileVisualizer = () => {
   const store = useStore();
   const engine = useSoundEngine();
-  const [activeChordType, setActiveChordType] = useState(null);
+
+  const { activeChordType, activeInterval, playSequence, stopSequence } =
+    useVisualizerSequence(engine);
 
   const {
     activeShape,
@@ -20,27 +21,26 @@ const ColorProfileVisualizer = () => {
     getShapeNotes,
   } = store;
 
+  if (!activeShape?.colorProfile || !activeMusicContext) return null;
+
   const activeShapeName = getActiveShapeName();
   const majorRootName = getNoteNameByOffset(activeMusicContext.majorRoot);
   const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
   const shapeNotes = getShapeNotes();
   const contextNotes = getContextNotes();
 
-  if (!store.activeShape?.colorProfile || !store.activeMusicContext)
-    return null;
-
-  const handleToggleChord = async (type) => {
-    await engine.unlockAudio();
+  const handleToggle = (type) => {
     if (activeChordType === type) {
-      engine.stopAllNotes();
-      setActiveChordType(null);
-      return;
+      stopSequence();
+    } else {
+      const chordNotes =
+        type === "major" ? contextNotes.majorRoot : contextNotes.minorRoot;
+      const profile =
+        type === "major"
+          ? activeShape.colorProfile.major
+          : activeShape.colorProfile.minor;
+      playSequence(type, chordNotes, profile, shapeNotes);
     }
-    engine.stopAllNotes();
-    setActiveChordType(type);
-    const notes =
-      type === "major" ? contextNotes.majorRoot : contextNotes.minorRoot;
-    if (notes) notes.forEach((n) => engine.playNote(n, 4, true));
   };
 
   return (
@@ -52,44 +52,35 @@ const ColorProfileVisualizer = () => {
           activeShapeName={activeShapeName}
         />
       </S.Description>
+
       <S.VisualizerContainer>
         <S.ProfileRowWrapper>
           <ProfileRow
-            label={majorRootName + " Major"}
+            label={`${majorRootName} Major`}
             profile={activeShape.colorProfile.major}
             shapeNotes={shapeNotes}
             activeShapeName={activeShapeName}
             isRowActive={activeChordType === "major"}
+            activeInterval={activeChordType === "major" ? activeInterval : null}
             engine={engine}
+            onToggle={() => handleToggle("major")}
           />
-          <Button
-            $active={activeChordType === "major"}
-            onClick={() => handleToggleChord("major")}
-          >
-            {activeChordType === "major"
-              ? `Stop`
-              : `Play ${majorRootName} Major`}
-          </Button>
         </S.ProfileRowWrapper>
 
         {activeShape.colorProfile.minor && (
           <S.ProfileRowWrapper>
             <ProfileRow
-              label={minorRootName + " Minor"}
+              label={`${minorRootName} Minor`}
               profile={activeShape.colorProfile.minor}
               shapeNotes={shapeNotes}
               activeShapeName={activeShapeName}
               isRowActive={activeChordType === "minor"}
+              activeInterval={
+                activeChordType === "minor" ? activeInterval : null
+              }
               engine={engine}
+              onToggle={() => handleToggle("minor")}
             />
-            <Button
-              $active={activeChordType === "minor"}
-              onClick={() => handleToggleChord("minor")}
-            >
-              {activeChordType === "minor"
-                ? `Stop`
-                : `Play ${minorRootName} Minor`}
-            </Button>
           </S.ProfileRowWrapper>
         )}
       </S.VisualizerContainer>

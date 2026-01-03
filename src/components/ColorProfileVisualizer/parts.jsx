@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Button, Label } from "../../parts";
+import styled, { css, keyframes } from "styled-components";
+import { Button } from "../../parts";
 
 const getIntervalColor = (interval, colors, $isAvoid) => {
   if ($isAvoid) return colors.red;
@@ -30,8 +30,12 @@ export const ProfileColumn = styled.div`
 export const ProfileRowWrapper = styled.div`
   min-width: 300px;
   ${Button} {
+    min-width: 230px;
     margin: ${({ theme }) => theme.spacing.md} auto
       ${({ theme }) => theme.spacing.md};
+    > span {
+      color: ${({ theme }) => theme.colors.yellow};
+    }
   }
 `;
 
@@ -83,8 +87,34 @@ export const ToneDot = styled.div`
     width: 27px;
     height: 27px;
   }
-  cursor: ${({ $isRaised, $legendRender }) =>
-    $isRaised && !$legendRender ? "pointer" : "default"};
+
+  ${({ $isPlaying, $offset, $isAltered, $legendRender }) =>
+    $isPlaying &&
+    css`
+      transition: transform 0.1s ease, box-shadow 0.05s ease;
+
+      animation: ${keyframes`
+        0% { transform: translateY(${
+          $legendRender ? 0 : $offset / 2
+        }px) rotate(${$isAltered ? 45 : 0}deg); }
+        25% { transform: translateY(${
+          $legendRender ? 0 : $offset / 2
+        }px) rotate(${$isAltered ? 40 : -5}deg); }
+        50% { transform: translateY(${
+          $legendRender ? 0 : $offset / 2
+        }px) rotate(${$isAltered ? 50 : 5}deg); }
+        75% { transform: translateY(${
+          $legendRender ? 0 : $offset / 2
+        }px) rotate(${$isAltered ? 42 : -3}deg); }
+        100% { transform: translateY(${
+          $legendRender ? 0 : $offset / 2
+        }px) rotate(${$isAltered ? 45 : 0}deg); }
+      `} 0.15s infinite;
+      border-color: ${({ theme }) => theme.colors.white};
+      box-shadow: 0 0 15px ${({ theme }) => theme.colors.yellow};
+      z-index: 10;
+      pointer-events: none;
+    `}
 `;
 
 export const Description = styled.div`
@@ -93,13 +123,6 @@ export const Description = styled.div`
   max-width: 95%;
   line-height: 1.5;
   margin: 0 auto 20px;
-  > span {
-    color: ${({ theme }) => theme.colors.yellow};
-  }
-`;
-
-export const VisLabel = styled(Label)`
-  margin-bottom: ${({ theme }) => theme.spacing.md};
   > span {
     color: ${({ theme }) => theme.colors.yellow};
   }
