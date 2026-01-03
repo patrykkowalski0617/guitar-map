@@ -128,6 +128,24 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
+        id: "tonics-root_1-shape_m_add9",
+        getNotesSetName: (rootNote) => `${rootNote}m(add9)`,
+        rootSemitone: _M6,
+        chordShapeId: "m_add9",
+        colorProfile: {
+          major: {
+            exposedTone: 13,
+            usedTones: [1, 3, 7, 13],
+            avoidNotes: [11],
+          },
+          minor: {
+            exposedTone: 3,
+            usedTones: [1, 3, 5, 9],
+            avoidNotes: [13],
+          },
+        },
+      },
+      {
         id: "tonics-root_1-shape_major_pent",
         getNotesSetName: (rootNote) => `${rootNote} Major pentatonic`,
         rootSemitone: _1,

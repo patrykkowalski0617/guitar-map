@@ -48,6 +48,7 @@ export const useVisualizerSequence = (engine) => {
     if (chordNotes) chordNotes.forEach((n) => engine.playNote(n, 4, true));
 
     const voicedNotes = getVoicedNotes(shapeNotes, 4);
+    console.log(chordNotes, shapeNotes);
 
     const INTERVALS = [1, 3, 5, 7, 9, 11, 13];
     const baseTones = INTERVALS.filter(

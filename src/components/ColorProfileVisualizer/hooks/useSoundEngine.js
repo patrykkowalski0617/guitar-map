@@ -66,7 +66,8 @@ export const useSoundEngine = () => {
       old.gainNode.gain.setTargetAtTime(0, now, 0.02);
       try {
         old.oscs.forEach((o) => o.stop(now + 0.1));
-      } catch (e) {}
+        // eslint-disable-next-line no-empty
+      } catch {}
     }
 
     const freq = FREQUENCIES[`${noteName}${octave}`];
@@ -132,7 +133,8 @@ export const useSoundEngine = () => {
           if (oscillators.current[noteKey] === activeData) {
             delete oscillators.current[noteKey];
           }
-        } catch (e) {}
+          // eslint-disable-next-line no-empty
+        } catch {}
       }, releaseTime * 1000 + 100);
     }
   };
@@ -147,7 +149,8 @@ export const useSoundEngine = () => {
         activeData.gainNode.gain.cancelScheduledValues(now);
         activeData.gainNode.gain.linearRampToValueAtTime(0, now + 0.05);
         activeData.oscs.forEach((o) => o.stop(now + 0.1));
-      } catch (e) {}
+        // eslint-disable-next-line no-empty
+      } catch {}
     });
 
     oscillators.current = {};
