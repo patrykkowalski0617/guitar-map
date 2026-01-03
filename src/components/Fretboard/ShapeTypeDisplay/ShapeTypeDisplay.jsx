@@ -37,7 +37,7 @@ const ShapeTypeDisplay = ({ opacityOff }) => {
             totalVariants > 0 ? completedVariants / totalVariants : 0,
         };
       });
-  }, [isProgressMode]);
+  }, []);
 
   return (
     <ScrollFader activeValue={activeChordId}>
