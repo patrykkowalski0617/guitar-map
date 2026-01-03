@@ -1,7 +1,24 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { NOTES_FROM_C } from "../../../data";
 
 const STEP_DURATION = 700;
 const START_DELAY = 700;
+
+const getVoicedNotes = (notes, startOctave = 4) => {
+  let octave = startOctave;
+  let lastIndex = null;
+
+  return notes.map((note) => {
+    const index = NOTES_FROM_C.indexOf(note);
+
+    if (lastIndex !== null && index <= lastIndex) {
+      octave += 1;
+    }
+
+    lastIndex = index;
+    return { note, octave };
+  });
+};
 
 export const useVisualizerSequence = (engine) => {
   const [activeChordType, setActiveChordType] = useState(null);
@@ -17,8 +34,10 @@ export const useVisualizerSequence = (engine) => {
   }, [engine]);
 
   useEffect(() => {
-    return () => stopSequence();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      timersRef.current.forEach(clearTimeout);
+      timersRef.current = [];
+    };
   }, []);
 
   const playSequence = async (type, chordNotes, profile, shapeNotes) => {
@@ -27,6 +46,8 @@ export const useVisualizerSequence = (engine) => {
     setActiveChordType(type);
 
     if (chordNotes) chordNotes.forEach((n) => engine.playNote(n, 4, true));
+
+    const voicedNotes = getVoicedNotes(shapeNotes, 4);
 
     const INTERVALS = [1, 3, 5, 7, 9, 11, 13];
     const baseTones = INTERVALS.filter(
@@ -38,7 +59,7 @@ export const useVisualizerSequence = (engine) => {
 
     const sequenceData = baseTones.map((interval, index) => ({
       interval,
-      note: shapeNotes[index],
+      noteData: voicedNotes[index],
     }));
 
     const fullSequence = [
@@ -50,10 +71,12 @@ export const useVisualizerSequence = (engine) => {
       const timer = setTimeout(() => {
         setActiveInterval(step.interval);
 
-        if (step.note) {
-          engine.playNote(step.note, 4, false);
+        if (step.noteData) {
+          engine.playNote(step.noteData.note, step.noteData.octave, false);
+
           setTimeout(
-            () => engine.stopNote(step.note, 4, false),
+            () =>
+              engine.stopNote(step.noteData.note, step.noteData.octave, false),
             STEP_DURATION - 100
           );
         }
