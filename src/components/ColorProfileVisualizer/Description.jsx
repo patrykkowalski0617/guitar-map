@@ -1,6 +1,6 @@
-import { useStore } from "../../../store/useStore";
+import { useStore } from "../../store/useStore";
 
-const useDescription = (majorRootName, minorRootName, activeShapeName) => {
+const Description = ({ majorRootName, minorRootName, activeShapeName }) => {
   const { activeMusicContext, tuneKey } = useStore();
 
   const key = tuneKey.label;
@@ -48,18 +48,19 @@ const useDescription = (majorRootName, minorRootName, activeShapeName) => {
     ),
   };
 
-  const description =
-    id === "tonics"
-      ? descriptions.tonic
-      : id === "subdominants"
-      ? descriptions.subdominant
-      : id === "dominant"
-      ? descriptions.dominant
-      : id === "dominant-ph"
-      ? descriptions.phDominant
-      : "";
-
-  return description;
+  return (
+    <>
+      {id === "tonics"
+        ? descriptions.tonic
+        : id === "subdominants"
+        ? descriptions.subdominant
+        : id === "dominant"
+        ? descriptions.dominant
+        : id === "dominant-ph"
+        ? descriptions.phDominant
+        : ""}
+    </>
+  );
 };
 
-export default useDescription;
+export default Description;

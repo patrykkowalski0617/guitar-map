@@ -1,23 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "../../parts";
 import { useStore } from "../../store/useStore";
 import ProfileRow from "./ProfileRow";
 import { useSoundEngine } from "./hooks/useSoundEngine";
 import * as S from "./parts";
-import useDescription from "./hooks/useDescription";
+import Description from "./Description";
 
 const ColorProfileVisualizer = () => {
   const store = useStore();
   const engine = useSoundEngine();
   const [activeChordType, setActiveChordType] = useState(null);
-  const description = useDescription(
-    majorRootName,
-    minorRootName,
-    activeShapeName
-  );
-
-  if (!store.activeShape?.colorProfile || !store.activeMusicContext)
-    return null;
 
   const {
     activeShape,
@@ -33,6 +25,9 @@ const ColorProfileVisualizer = () => {
   const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
   const shapeNotes = getShapeNotes();
   const contextNotes = getContextNotes();
+
+  if (!store.activeShape?.colorProfile || !store.activeMusicContext)
+    return null;
 
   const handleToggleChord = async (type) => {
     await engine.unlockAudio();
@@ -50,7 +45,13 @@ const ColorProfileVisualizer = () => {
 
   return (
     <>
-      <S.Description>{description}</S.Description>
+      <S.Description>
+        <Description
+          majorRootName={majorRootName}
+          minorRootName={minorRootName}
+          activeShapeName={activeShapeName}
+        />
+      </S.Description>
       <S.VisualizerContainer>
         <S.ProfileRowWrapper>
           <ProfileRow
