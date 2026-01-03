@@ -16,9 +16,12 @@ const ProfileRow = ({
 }) => {
   const raisedIntervals = INTERVALS.filter((interval) => {
     return (
+      // Sprawdzamy exposedTone (zakładam, że to prosta liczba)
       profile?.exposedTone === interval ||
-      profile?.usedTones?.includes(interval) ||
-      profile?.alteredTones?.includes(interval)
+      // Szukamy w tablicy tablic usedTones
+      profile?.usedTones?.some((t) => t[0] === interval) ||
+      // Szukamy w tablicy tablic alteredTones (jeśli mają tę samą strukturę)
+      profile?.alteredTones?.some((t) => t[0] === interval)
     );
   });
 

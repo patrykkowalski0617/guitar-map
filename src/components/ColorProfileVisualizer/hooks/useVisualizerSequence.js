@@ -3,22 +3,7 @@ import { NOTES_FROM_C } from "../../../data";
 
 const STEP_DURATION = 700;
 const START_DELAY = 700;
-
-const getVoicedNotes = (notes, startOctave = 4) => {
-  let octave = startOctave;
-  let lastIndex = null;
-
-  return notes.map((note) => {
-    const index = NOTES_FROM_C.indexOf(note);
-
-    if (lastIndex !== null && index <= lastIndex) {
-      octave += 1;
-    }
-
-    lastIndex = index;
-    return { note, octave };
-  });
-};
+const DOUBLE_NOTES = [...NOTES_FROM_C, ...NOTES_FROM_C];
 
 export const useVisualizerSequence = (engine) => {
   const [activeChordType, setActiveChordType] = useState(null);
@@ -40,46 +25,83 @@ export const useVisualizerSequence = (engine) => {
     };
   }, []);
 
-  const playSequence = async (type, chordNotes, profile, shapeNotes) => {
+  const playSequence = async (
+    type,
+    chordNotes,
+    profile,
+    shapeNotes,
+    tuneKey
+  ) => {
     await engine.unlockAudio();
     stopSequence();
     setActiveChordType(type);
 
-    if (chordNotes) chordNotes.forEach((n) => engine.playNote(n, 4, true));
+    const rootNote = tuneKey.majorNote;
+    const rootIndex = NOTES_FROM_C.indexOf(rootNote);
 
-    const voicedNotes = getVoicedNotes(shapeNotes, 4);
-    console.log(chordNotes, shapeNotes);
-
-    const INTERVALS = [1, 3, 5, 7, 9, 11, 13];
-    const baseTones = INTERVALS.filter(
-      (int) =>
-        profile?.exposedTone === int ||
-        profile?.usedTones?.includes(int) ||
-        profile?.alteredTones?.includes(int)
+    // --- LOG DANYCH AKORDU ---
+    console.group(`🎸 SEQUENCE START: ${rootNote} ${type.toUpperCase()}`);
+    console.log(`Root Note: ${rootNote} (Index: ${rootIndex})`);
+    console.log(`Chord Pad Notes:`, chordNotes);
+    console.table(
+      profile?.usedTones?.map((t) => ({
+        Interval: t[0],
+        Semitones: t[1],
+        Resulting_Note: DOUBLE_NOTES[rootIndex + t[1]],
+      }))
     );
+    console.groupEnd();
 
-    const sequenceData = baseTones.map((interval, index) => ({
-      interval,
-      noteData: voicedNotes[index],
-    }));
+    // 1. Graj akord tła (Pad)
+    if (chordNotes) {
+      chordNotes.forEach((n) => engine.playNote(n, 4, true));
+    }
 
+    // 2. Budowa sekwencji na podstawie usedTones
+    const sequenceData = (profile?.usedTones || []).map((t) => {
+      const interval = t[0];
+      const semitones = t[1];
+      const totalSteps = rootIndex + semitones;
+
+      return {
+        interval,
+        note: DOUBLE_NOTES[totalSteps],
+        octave: 4 + Math.floor(totalSteps / 12),
+        semitones,
+      };
+    });
+
+    if (sequenceData.length === 0) return;
+
+    // 3. Ruch góra -> dół
     const fullSequence = [
       ...sequenceData,
       ...[...sequenceData].reverse().slice(1),
     ];
 
+    // 4. Harmonogram odtwarzania
     fullSequence.forEach((step, index) => {
       const timer = setTimeout(() => {
         setActiveInterval(step.interval);
 
-        if (step.noteData) {
-          engine.playNote(step.noteData.note, step.noteData.octave, false);
+        if (step.note) {
+          // --- LOG POJEDYNCZEJ NUTY ---
+          console.log(
+            `%c[STEP ${index + 1}] %c${step.note}${step.octave} %c(Int: ${
+              step.interval
+            }, +${step.semitones}st)`,
+            "color: #888",
+            "color: #2196F3; font-weight: bold",
+            "color: #e67e22"
+          );
 
-          setTimeout(
-            () =>
-              engine.stopNote(step.noteData.note, step.noteData.octave, false),
+          engine.playNote(step.note, step.octave, false);
+
+          const stopTimer = setTimeout(
+            () => engine.stopNote(step.note, step.octave, false),
             STEP_DURATION - 100
           );
+          timersRef.current.push(stopTimer);
         }
 
         if (index === fullSequence.length - 1) {

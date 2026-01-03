@@ -45,12 +45,22 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7],
+            usedTones: [
+              [1, _1],
+              [3, _M3],
+              [5, _5],
+              [7, _M7],
+            ],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [
+              [3, _M3],
+              [5, _5],
+              [7, _M7],
+              [9, _M9],
+            ],
             avoidNotes: [13],
           },
         },
@@ -63,12 +73,17 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [
+              [3, _M3],
+              [5, _5],
+              [7, _M7],
+              [9, _M9],
+            ],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [5, 7, 9, 11],
+            usedTones: [[5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -81,12 +96,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 13],
+            usedTones: [[1], [3], [5], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7],
+            usedTones: [[1], [3], [5], [7]],
             avoidNotes: [13],
           },
         },
@@ -99,12 +114,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 9],
+            usedTones: [[1], [3], [5], [9]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 11],
+            usedTones: [[3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -117,12 +132,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9],
+            usedTones: [[1], [3], [5], [7], [9]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9, 11],
+            usedTones: [[3], [5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -135,12 +150,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 7, 13],
+            usedTones: [[1], [3], [7], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 3, 5, 9],
+            usedTones: [[1], [3], [5], [9]],
             avoidNotes: [13],
           },
         },
@@ -153,12 +168,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 3, 5, 7, 11],
+            usedTones: [[1], [3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -171,12 +186,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 11],
+            usedTones: [[1], [3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -189,12 +204,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [5, 7, 9, 13],
+            usedTones: [[5], [7], [9], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [1, 5, 7, 9, 11],
+            usedTones: [[1], [5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -206,11 +221,11 @@ const musicFunctionContextSelectorData = [
         chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
           major: {
-            usedTones: [1, 3, 5, 7, 9, 13],
+            usedTones: [[1], [3], [5], [7], [9], [13]],
             avoidNotes: [11],
           },
           minor: {
-            usedTones: [1, 3, 5, 7, 9, 11],
+            usedTones: [[1], [3], [5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -223,12 +238,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [13],
           },
         },
@@ -241,12 +256,12 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [11],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [13],
           },
         },
@@ -259,7 +274,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 11, 13],
+            usedTones: [[3], [5], [7], [9], [11], [13]],
             alteredTones: [13],
           },
         },
@@ -283,11 +298,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7],
+            usedTones: [[1], [3], [5], [7]],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [[3], [5], [7], [9]],
             avoidNotes: [13],
           },
         },
@@ -300,11 +315,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [[3], [5], [7], [9]],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [5, 7, 9, 11],
+            usedTones: [[5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -317,11 +332,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 13],
+            usedTones: [[1], [3], [5], [13]],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7],
+            usedTones: [[1], [3], [5], [7]],
             avoidNotes: [13],
           },
         },
@@ -334,11 +349,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 9],
+            usedTones: [[1], [3], [5], [9]],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 11],
+            usedTones: [[3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -351,11 +366,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 3, 5, 7, 11],
+            usedTones: [[1], [3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -368,11 +383,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
           },
           minor: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 11],
+            usedTones: [[1], [3], [5], [7], [11]],
             avoidNotes: [13],
           },
         },
@@ -385,11 +400,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [5, 7, 9, 13],
+            usedTones: [[5], [7], [9], [13]],
           },
           minor: {
             exposedTone: 5,
-            usedTones: [1, 5, 7, 9, 11],
+            usedTones: [[1], [5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -401,10 +416,10 @@ const musicFunctionContextSelectorData = [
         chordShapeId: "no_avoid_notes_t_s_major",
         colorProfile: {
           major: {
-            usedTones: [1, 3, 5, 7, 9, 13],
+            usedTones: [[1], [3], [5], [7], [9], [13]],
           },
           minor: {
-            usedTones: [1, 3, 5, 7, 9, 11],
+            usedTones: [[1], [3], [5], [7], [9], [11]],
             avoidNotes: [13],
           },
         },
@@ -417,11 +432,11 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
           },
           minor: {
             exposedTone: 3,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [13],
           },
         },
@@ -434,7 +449,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           minor: {
             exposedTone: 1,
-            usedTones: [3, 5, 7, 9, 11, 13],
+            usedTones: [[3], [5], [7], [9], [11], [13]],
           },
         },
       },
@@ -455,7 +470,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7],
+            usedTones: [[1], [3], [5], [7]],
           },
         },
       },
@@ -467,7 +482,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [[3], [5], [7], [9]],
           },
         },
       },
@@ -479,7 +494,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [11],
           },
         },
@@ -492,7 +507,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
           },
         },
       },
@@ -504,7 +519,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 13,
-            usedTones: [1, 3, 5, 9, 13],
+            usedTones: [[1], [3], [5], [9], [13]],
           },
         },
       },
@@ -516,7 +531,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 5, 7, 9, 11],
+            usedTones: [[1], [5], [7], [9], [11]],
             avoidNotes: [11],
             alteredTones: [9],
           },
@@ -551,7 +566,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 3,
-            usedTones: [3, 5, 7, 9],
+            usedTones: [[3], [5], [7], [9]],
           },
         },
       },
@@ -563,7 +578,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9],
+            usedTones: [[1], [3], [5], [7], [9]],
             alteredTones: [9],
           },
         },
@@ -576,7 +591,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [11],
           },
         },
@@ -589,7 +604,7 @@ const musicFunctionContextSelectorData = [
         colorProfile: {
           major: {
             exposedTone: 1,
-            usedTones: [1, 3, 5, 7, 9, 11, 13],
+            usedTones: [[1], [3], [5], [7], [9], [11], [13]],
             avoidNotes: [11],
           },
         },

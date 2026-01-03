@@ -19,6 +19,7 @@ const ColorProfileVisualizer = () => {
     getActiveShapeName,
     getContextNotes,
     getShapeNotes,
+    tuneKey,
   } = store;
 
   if (!activeShape?.colorProfile || !activeMusicContext) return null;
@@ -39,7 +40,7 @@ const ColorProfileVisualizer = () => {
         type === "major"
           ? activeShape.colorProfile.major
           : activeShape.colorProfile.minor;
-      playSequence(type, chordNotes, profile, shapeNotes);
+      playSequence(type, chordNotes, profile, shapeNotes, tuneKey);
     }
   };
 

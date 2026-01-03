@@ -2,7 +2,7 @@ import * as S from "./parts";
 
 const ToneDot = ({ interval, profile, legendRender, isActive }) => {
   const isExposed = profile?.exposedTone === interval;
-  const isUsed = profile?.usedTones?.includes(interval);
+  const isUsed = profile?.usedTones?.some((t) => t[0] === interval);
   const isAvoid = profile?.avoidNotes?.includes(interval);
   const isAltered = profile?.alteredTones?.includes(interval);
 
