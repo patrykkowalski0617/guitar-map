@@ -1,5 +1,6 @@
 const userProgress = {
-  M7: ["M7_0", "M7_2"],
+  M7: [],
+  m7: [],
 };
 
 export default userProgress;

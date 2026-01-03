@@ -15,7 +15,6 @@ export const Label = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   white-space: nowrap;
   transition: ${({ theme }) => theme.transitions.default};
-  text-transform: uppercase;
   position: relative;
   text-shadow: ${({ $isActive, $color, theme }) => {
     if (!$isActive) return "none";
@@ -26,4 +25,16 @@ export const Label = styled.div`
     $opacityOff || $isActive ? 1 : 0.5};
   ${({ $isLegendLabel, theme }) =>
     $isLegendLabel ? `color: ${theme.colors.blue}; font-weight: bold` : ""}
+  color: ${({ theme, $color, $progressRatio }) => {
+    const baseColor = $color || theme.colors.text;
+    const targetColor = "red";
+
+    if (!$progressRatio || $progressRatio === 0) return baseColor;
+
+    return `color-mix(in srgb, ${targetColor} ${
+      $progressRatio * 100
+    }%, ${baseColor})`;
+  }};
+
+  transition: color 0.3s ease;
 `;

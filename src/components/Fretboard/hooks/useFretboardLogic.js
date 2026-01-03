@@ -8,7 +8,6 @@ export const useFretboardLogic = (props) => {
     variantState,
     setVariantState,
     setShape,
-    isDevMode,
     setUserShape,
     setLockedCAGEDLetter,
     lockedCAGEDLetter,
@@ -28,7 +27,7 @@ export const useFretboardLogic = (props) => {
   };
 
   const handleNoteClick = (note, CAGED_noteId) => {
-    if (isDevMode && setUserShape) {
+    if (setUserShape) {
       setUserShape((prev) =>
         prev.includes(CAGED_noteId)
           ? prev.filter((id) => id !== CAGED_noteId)

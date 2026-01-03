@@ -91,7 +91,6 @@ export const Note = styled.div`
   height: 31px;
   position: relative;
 
-  /* Nuta jest widoczna (opacity 1) jeśli: jest w aktualnym shape, jest rootem lub jest ZABLOKOWANA w zamrożonym kształcie */
   opacity: ${({
     $isInShape,
     $isActiveShapeRootNote,
@@ -115,9 +114,6 @@ export const Note = styled.div`
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }
 
-  /* CZERWONY OUTLINE dla sekwencera LUB zablokowanego kształtu */
-  outline: ${({ theme, $isShapeLocked }) =>
-    $isShapeLocked ? `3px solid ${theme.colors.red}` : "none"};
   outline: ${({ theme, $isActiveSeq, $isShapeLocked }) =>
     $isActiveSeq
       ? `4px solid ${theme.colors.red}`
@@ -125,8 +121,6 @@ export const Note = styled.div`
       ? `2px solid ${theme.colors.violet}ee`
       : "none"};
   outline-offset: 2px;
-
-  /* Wyższy z-index dla sekwencera, by nadpisywał wizualnie zwykły lock */
   z-index: ${({ $isActiveSeq, $isShapeLocked }) =>
     $isActiveSeq || $isShapeLocked ? "10" : "1"};
 
@@ -135,9 +129,15 @@ export const Note = styled.div`
     $isInUserShape,
     $isActiveShapeRootNote,
     $isInShape,
+    $isSaved,
   }) => {
+    if ($isSaved && $isInShape) return theme.colors.yellow;
     if ($isInUserShape) return theme.colors.red;
     if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
     return theme.colors.bgLight;
+  }};
+
+  color: ${({ theme, $isInShape, $isSaved }) => {
+    if ($isSaved && $isInShape) return theme.colors.bg;
   }};
 `;

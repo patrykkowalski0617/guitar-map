@@ -63,14 +63,6 @@ export const useSequencer = (shape, seqConfig) => {
 
         const activeId = sorted[finalIndex];
 
-        console.log(
-          `Step: patternIdx ${
-            patternIdxRef.current
-          } | val ${stepValue} | base ${
-            baseOffsetRef.current
-          } | finalIdx ${finalIndex} | Note: ${activeId?.split("_")[1]}`
-        );
-
         setActiveSeqId(activeId);
 
         const isLastNoteOfShape = finalIndex === sorted.length - 1;

@@ -199,4 +199,9 @@ export const useStore = create((set, get) => ({
 
     return get().getNotesByIntervals(rootOffset, intervals);
   },
+  isProgressMode: false,
+  toggleProgressMode: () =>
+    set((state) => ({ isProgressMode: !state.isProgressMode })),
+  isDevMode: false,
+  toggleDevMode: () => set((state) => ({ isDevMode: !state.isDevMode })),
 }));

@@ -3,23 +3,14 @@ import { useStore } from "../../store/useStore";
 import { FretboardContainer } from "./parts";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
-import { isDevMode } from "../../settings";
 import { getNotesFromNote, manageCAGED } from "../../utils";
 import DevTools from "../devTooles/DevTools";
 import ScrollFader from "../ScrollFader/ScrollFader";
 import { CAGED_shapes, NOTES_FROM_C } from "../../data";
 import useFretboardLogic from "./hooks/useFretboardLogic";
 import { useSequencer } from "../FretboardHeader/hooks/useSequencer";
-import styled from "styled-components";
-import { SequencerButton } from "../FretboardHeader/parts";
 import FretboardHeader from "../FretboardHeader/FretboardHeader";
-
-const ControlsWrapper = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  padding: 0 10px;
-`;
+import userProgress from "../../data/userProgress";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
 const numberOfFrets = 16;
@@ -34,8 +25,11 @@ const Fretboard = () => {
     variantState,
     setVariantState,
     seqConfig,
+    isProgressMode,
+    isDevMode,
   } = useStore();
 
+  const activeChordId = useStore((state) => state.getActiveChordId());
   const [userShape, setUserShape] = useState([]);
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
   const [mouseOverLetter, setMouseOverLetter] = useState(null);
@@ -44,6 +38,11 @@ const Fretboard = () => {
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
+
+  const isCurrentShapeSaved = useMemo(() => {
+    if (!isProgressMode || !variantState?.variantId) return false;
+    return (userProgress[activeChordId] || []).includes(variantState.variantId);
+  }, [variantState.variantId, isProgressMode, activeChordId]);
 
   const currentSeqConfig = seqConfig || {
     isRunning: false,
@@ -117,10 +116,11 @@ const Fretboard = () => {
               handleNoteClick={handleNoteClick}
               shape={shape}
               CAGED_hoverShape={combinedCAGEDShape}
-              userShape={userShape}
+              userShape={isDevMode ? userShape : []}
               activeShapeRootNote={activeShapeRootNote}
               variantState={variantState}
               lockedShape={lockedShape}
+              isCurrentShapeSaved={isCurrentShapeSaved}
             />
           ))}
           <FretboardLabels
@@ -134,12 +134,10 @@ const Fretboard = () => {
         </FretboardContainer>
       </ScrollFader>
 
-      {isDevMode && (
-        <DevTools
-          userShape={userShape}
-          handleClearUserShape={() => setUserShape([])}
-        />
-      )}
+      <DevTools
+        userShape={userShape}
+        handleClearUserShape={() => setUserShape([])}
+      />
     </>
   );
 };

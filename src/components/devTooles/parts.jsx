@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DevToolsTitle = styled.div`
   text-align: center;
-  margin: 50px 0 10px;
+  margin: 30px 0 10px;
 `;
 
 export const Container = styled.div`
@@ -10,8 +10,8 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
 `;
+
 export const StyledButton = styled.button`
   padding: 8px 16px;
   border: none;
@@ -19,5 +19,5 @@ export const StyledButton = styled.button`
   cursor: pointer;
   font-size: 14px;
   display: block;
-  margin: 10px;
+  margin: 0 10px;
 `;

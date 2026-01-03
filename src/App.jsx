@@ -12,11 +12,14 @@ import {
 } from "./parts";
 import ShapeSelector from "./components/Selectors/ShapeSelector";
 import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
-import ShapeTypeDisplay from "./components/ShapeTypeDisplay/ShapeTypeDisplay";
 import GlobalStyle from "./GlobalStyle";
 import VisualizerLegend from "./components/ColorProfileVisualizer/Legend/VisualizerLegend";
+import { useStore } from "./store/useStore";
+import ShapeTypeDisplay from "./components/Fretboard/ShapeTypeDisplay/ShapeTypeDisplay";
 
 function App() {
+  const isProgressMode = useStore((state) => state.isProgressMode);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -37,17 +40,17 @@ function App() {
             </SubSectionContainer>
           </SectionContainer>
 
-          <SectionContainer>
-            <SectionTitle>
-              <h2>Visualizer</h2>
-            </SectionTitle>
-
-            <ColorProfileVisualizer />
-
-            <SubSectionContainer>
-              <VisualizerLegend />
-            </SubSectionContainer>
-          </SectionContainer>
+          {!isProgressMode && (
+            <SectionContainer>
+              <SectionTitle>
+                <h2>Visualizer</h2>
+              </SectionTitle>
+              <ColorProfileVisualizer />
+              <SubSectionContainer>
+                <VisualizerLegend />
+              </SubSectionContainer>
+            </SectionContainer>
+          )}
         </RowWrapper>
 
         <SectionContainer>
