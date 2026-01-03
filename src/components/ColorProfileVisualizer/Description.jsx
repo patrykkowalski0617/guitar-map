@@ -11,7 +11,7 @@ const Description = ({ majorRootName, minorRootName, activeShapeName }) => {
       <>
         In the key of <span>{key}</span>, a sense of resolution may be provided
         by the <span>{majorRootName}&nbsp;Major</span> or{" "}
-        <span>{minorRootName}&nbsp;Minor</span> chords.{" "}
+        <span>{minorRootName}&nbsp;Minor</span> chord.{" "}
         <span>{activeShapeName} Set</span> will expose the following colors of
         each:
       </>
@@ -21,7 +21,7 @@ const Description = ({ majorRootName, minorRootName, activeShapeName }) => {
       <>
         In the key of <span>{key}</span>, a sense of motion may be provided by
         the <span>{majorRootName}&nbsp;Major</span> or{" "}
-        <span>{minorRootName}&nbsp;Minor</span> chords.{" "}
+        <span>{minorRootName}&nbsp;Minor</span> chord.{" "}
         <span>{activeShapeName} Set</span> will expose the following colors of
         each:
       </>

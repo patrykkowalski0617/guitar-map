@@ -50,7 +50,7 @@ const ProfileRow = ({
           "Stop"
         ) : (
           <>
-            Play&nbsp;<span>{activeShapeName}</span>&nbsp;Set over&nbsp;
+            Play&nbsp;<span>{activeShapeName}&nbsp;Set&nbsp;</span> over&nbsp;
             <span>{label}</span>
           </>
         )}
