@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const STEP_DURATION = 700;
 const START_DELAY = 700;
@@ -8,13 +8,13 @@ export const useVisualizerSequence = (engine) => {
   const [activeInterval, setActiveInterval] = useState(null);
   const timersRef = useRef([]);
 
-  const stopSequence = () => {
+  const stopSequence = useCallback(() => {
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
     engine.stopAllNotes();
     setActiveChordType(null);
     setActiveInterval(null);
-  };
+  }, [engine]);
 
   useEffect(() => {
     return () => stopSequence();

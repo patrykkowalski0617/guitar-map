@@ -83,12 +83,21 @@ export const ToneDot = styled.div`
     const color = getIntervalColor($interval, theme.colors, $isAvoid);
     return `${theme.shadows.glow} ${color}`;
   }};
+
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 27px;
     height: 27px;
   }
 
-  ${({ $isPlaying, $offset, $isAltered, $legendRender }) =>
+  ${({
+    $isPlaying,
+    $offset,
+    $isAltered,
+    $legendRender,
+    $interval,
+    theme,
+    $isAvoid,
+  }) =>
     $isPlaying &&
     css`
       transition: transform 0.1s ease, box-shadow 0.05s ease;
@@ -110,8 +119,10 @@ export const ToneDot = styled.div`
           $legendRender ? 0 : $offset / 2
         }px) rotate(${$isAltered ? 45 : 0}deg); }
       `} 0.15s infinite;
+
       border-color: ${({ theme }) => theme.colors.white};
-      box-shadow: 0 0 15px ${({ theme }) => theme.colors.yellow};
+      box-shadow: 0 0 15px
+        ${getIntervalColor($interval, theme.colors, $isAvoid)};
       z-index: 10;
       pointer-events: none;
     `}
