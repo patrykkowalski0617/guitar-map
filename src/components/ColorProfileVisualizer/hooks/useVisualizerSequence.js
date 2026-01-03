@@ -18,6 +18,7 @@ export const useVisualizerSequence = (engine) => {
 
   useEffect(() => {
     return () => stopSequence();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const playSequence = async (type, chordNotes, profile, shapeNotes) => {
