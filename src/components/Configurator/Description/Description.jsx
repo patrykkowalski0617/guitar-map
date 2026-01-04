@@ -18,24 +18,27 @@ const Description = () => {
 
   if (!activeShape?.colorProfile || !activeMusicContext) return null;
 
-  const shapeType = getActiveChordGroup().type;
+  const shapeType = getActiveChordGroup?.()?.type || "unknown";
+
+  const safeTransform = (offset) => {
+    const noteName = getNoteNameByOffset(offset);
+    return noteName ? enharmonicTransform(noteName) : "";
+  };
 
   const profiles = [
     {
       data: activeShape.colorProfile.major,
-      root: enharmonicTransform(
-        getNoteNameByOffset(activeMusicContext.majorRoot)
-      ),
+      root: safeTransform(activeMusicContext.majorRoot),
       type: "Major",
     },
     {
       data: activeShape.colorProfile.minor,
-      root: enharmonicTransform(
-        getNoteNameByOffset(activeMusicContext.minorRoot)
-      ),
+      root: safeTransform(activeMusicContext.minorRoot),
       type: "Minor",
     },
   ].filter((p) => p.data);
+
+  if (profiles.length === 0) return null;
 
   const getIntervalState = (profile, interval) => {
     const check = (arr) =>
@@ -92,9 +95,9 @@ const Description = () => {
     <>
       <SubsectionTitle>Description</SubsectionTitle>
       <DescriptionText
-        majorRootName={enharmonicTransform(profiles[0].root)}
-        minorRootName={enharmonicTransform(profiles[1]?.root)}
-        activeShapeName={enharmonicTransform(getActiveShapeName())}
+        majorRootName={profiles[0]?.root || ""}
+        minorRootName={profiles[1]?.root || ""}
+        activeShapeName={enharmonicTransform(getActiveShapeName() || "")}
         fullProfileJSX={combinedJSX}
         shapeType={shapeType}
       />
