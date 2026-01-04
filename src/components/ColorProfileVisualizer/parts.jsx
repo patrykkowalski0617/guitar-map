@@ -84,11 +84,6 @@ export const ToneDot = styled.div`
     return `${theme.shadows.glow} ${color}`;
   }};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 27px;
-    height: 27px;
-  }
-
   ${({
     $isPlaying,
     $offset,

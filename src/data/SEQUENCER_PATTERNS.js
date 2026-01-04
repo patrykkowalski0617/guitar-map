@@ -19,10 +19,6 @@ export const SEQUENCER_PATTERNS = {
     steps: [1, 2, 3, 4],
     offset: 1,
   },
-  skipOne: {
-    steps: [1, 3, 5],
-    offset: 1,
-  },
 };
 
 export default SEQUENCER_PATTERNS;

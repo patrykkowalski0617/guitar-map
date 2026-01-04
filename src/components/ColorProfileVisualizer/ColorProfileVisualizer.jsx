@@ -40,7 +40,7 @@ const ColorProfileVisualizer = () => {
         type === "major"
           ? activeShape.colorProfile.major
           : activeShape.colorProfile.minor;
-      playSequence(type, chordNotes, profile, shapeNotes, tuneKey);
+      playSequence(type, chordNotes, profile, activeShape.rootSemitone);
     }
   };
 

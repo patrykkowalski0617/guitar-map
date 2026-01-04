@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { getNotesFromNote } from "../../../utils";
 import { NOTES_FROM_C } from "../../../data";
 
 const STEP_DURATION = 700;
 const START_DELAY = 700;
-const DOUBLE_NOTES = [...NOTES_FROM_C, ...NOTES_FROM_C];
 
 export const useVisualizerSequence = (engine) => {
   const [activeChordType, setActiveChordType] = useState(null);
@@ -25,19 +25,15 @@ export const useVisualizerSequence = (engine) => {
     };
   }, []);
 
-  const playSequence = async (
-    type,
-    chordNotes,
-    profile,
-    shapeNotes,
-    tuneKey
-  ) => {
+  const playSequence = async (type, chordNotes, profile, rootSemitone) => {
     await engine.unlockAudio();
     stopSequence();
     setActiveChordType(type);
+    const rootNote = [...NOTES_FROM_C, ...NOTES_FROM_C][rootSemitone];
+    console.log(rootNote);
 
-    const rootNote = tuneKey.majorNote;
-    const rootIndex = NOTES_FROM_C.indexOf(rootNote);
+    const DOUBLE_NOTES = getNotesFromNote(rootNote, 24);
+    const rootIndex = DOUBLE_NOTES.indexOf(rootNote);
 
     // --- LOG DANYCH AKORDU ---
     console.group(`🎸 SEQUENCE START: ${rootNote} ${type.toUpperCase()}`);
