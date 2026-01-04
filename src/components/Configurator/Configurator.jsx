@@ -3,21 +3,12 @@ import {
   SectionTitle,
   SubSectionContainer,
 } from "../../parts";
-import { useStore } from "../../store/useStore";
-import Description from "../ColorProfileVisualizer/Description";
-import { Description as DescriptionParts } from "../ColorProfileVisualizer/parts";
 import ContextSelector from "./ContextSelector";
+import Description from "./Description/Description";
 import KeySelector from "./KeySelector";
 import ShapeSelector from "./ShapeSelector";
 
 const Configurator = () => {
-  const { activeMusicContext, getNoteNameByOffset, getActiveShapeName } =
-    useStore();
-
-  const activeShapeName = getActiveShapeName();
-  const majorRootName = getNoteNameByOffset(activeMusicContext.majorRoot);
-  const minorRootName = getNoteNameByOffset(activeMusicContext.minorRoot);
-
   return (
     <>
       <SectionContainer>
@@ -34,13 +25,7 @@ const Configurator = () => {
           <ShapeSelector />
         </SubSectionContainer>
         <SubSectionContainer>
-          <DescriptionParts>
-            <Description
-              majorRootName={majorRootName}
-              minorRootName={minorRootName}
-              activeShapeName={activeShapeName}
-            />
-          </DescriptionParts>
+          <Description />
         </SubSectionContainer>
       </SectionContainer>
     </>

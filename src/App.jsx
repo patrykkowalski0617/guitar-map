@@ -1,6 +1,4 @@
 import Fretboard from "./components/Fretboard/Fretboard";
-import KeySelector from "./components/Configurator/KeySelector";
-import ContextSelector from "./components/Configurator/ContextSelector";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import {
@@ -16,6 +14,7 @@ import VisualizerLegend from "./components/ColorProfileVisualizer/Legend/Visuali
 import { useStore } from "./store/useStore";
 import ShapeTypeDisplay from "./components/Fretboard/ShapeTypeDisplay/ShapeTypeDisplay";
 import Configurator from "./components/Configurator/Configurator";
+import RobustTimer from "./components/Timer/Timer";
 
 function App() {
   const isProgressMode = useStore((state) => state.isProgressMode);
@@ -23,21 +22,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      {isProgressMode && <RobustTimer />}
       <AppWrapper>
         <RowWrapper>
           <Configurator />
 
-          {/* {!isProgressMode && (
-            <SectionContainer>
-              <SectionTitle>
-                <h2>Visualizer</h2>
-              </SectionTitle>
-              <ColorProfileVisualizer />
-              <SubSectionContainer>
-                <VisualizerLegend />
-              </SubSectionContainer>
-            </SectionContainer>
-          )} */}
+          {/* <SectionContainer>
+            <SectionTitle>
+              <h2>Visualizer</h2>
+            </SectionTitle>
+            <ColorProfileVisualizer />
+            <SubSectionContainer>
+              <VisualizerLegend />
+            </SubSectionContainer>
+          </SectionContainer> */}
         </RowWrapper>
 
         <SectionContainer>

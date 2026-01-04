@@ -12,6 +12,7 @@ import {
   SequencerButton,
 } from "./parts";
 import ScrollFader from "../ScrollFader/ScrollFader";
+import RobustTimer from "../Timer/Timer";
 
 const FretboardHeader = ({
   lockedCAGEDLetter,
