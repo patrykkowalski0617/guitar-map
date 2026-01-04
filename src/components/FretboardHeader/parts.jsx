@@ -93,7 +93,5 @@ export const StyledRange = styled.input`
 
 export const SequencerButton = styled(Button)`
   width: 150px;
-  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   white-space: nowrap;
 `;

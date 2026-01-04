@@ -52,7 +52,6 @@ export const SectionTitle = styled.div`
 
 export const SubsectionTitle = styled.h3`
   text-transform: uppercase;
-  text-align: center;
   background-color: ${({ theme }) => theme.colors.bg};
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
   margin: 0 0 ${({ theme }) => theme.spacing.md};
@@ -112,4 +111,6 @@ export const Button = styled.button`
       $active ? theme.colors.yellow : `${theme.colors.text}33`};
     box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.text}22`};
   }
+  opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;

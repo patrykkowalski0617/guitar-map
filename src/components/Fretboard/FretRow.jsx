@@ -20,6 +20,7 @@ const FretRow = ({
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
   const activeSeqId = useStore((state) => state.seqConfig.activeSeqId);
+  const { isDevMode } = useStore();
 
   return (
     <StringRow>
@@ -47,7 +48,7 @@ const FretRow = ({
             <StyledNote
               $isInShape={isInShape}
               $isInUserShape={isInUserShape}
-              $isInCAGED_hoverShape={isInCAGED_hoverShape}
+              $isInCAGED_hoverShape={isDevMode && isInCAGED_hoverShape}
               $isActiveShapeRootNote={isActiveShapeRootNote}
               $variantLabel={isLastClicked ? variantState.label : null}
               $isError={isLastClicked ? variantState.isError : false}

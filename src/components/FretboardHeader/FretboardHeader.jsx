@@ -116,13 +116,13 @@ const FretboardHeader = ({
           </SettingGroup>
 
           <SettingGroup>
-            <SequencerLabel>Shape Lock</SequencerLabel>
+            {/* <SequencerLabel>Shape Lock</SequencerLabel> */}
             <SequencerButton
               $active={isFrozen}
               onClick={toggleLockShape}
               disabled={!isFrozen && shape.length === 0}
             >
-              {isFrozen ? "FREEZE OFF" : "FREEZE SHAPE"}
+              {isFrozen ? "UNLOCK SHAPE" : "LOCK SHAPE"}
             </SequencerButton>
           </SettingGroup>
         </SettingsContainer>

@@ -24,7 +24,7 @@ const RobustTimer = ({ alarmSrc }) => {
   const handleAlarmRef = useRef(null);
   const inputRef = useRef(null);
   const scrollIntervalRef = useRef(null);
-  const originalTitleRef = useRef(document.title); // Zapamiętuje tytuł karty
+  const originalTitleRef = useRef(document.title);
 
   useEffect(() => {
     if ("Notification" in window && Notification.permission === "default") {
@@ -33,9 +33,7 @@ const RobustTimer = ({ alarmSrc }) => {
   }, []);
 
   const startTitleScroll = useCallback(() => {
-    // Zapamiętaj aktualny tytuł zanim zaczniesz przewijać
     originalTitleRef.current = document.title;
-
     let titleText = " >>> KONIEC CZASU! <<<    ";
     scrollIntervalRef.current = setInterval(() => {
       titleText = titleText.substring(1) + titleText.substring(0, 1);
@@ -48,7 +46,6 @@ const RobustTimer = ({ alarmSrc }) => {
       clearInterval(scrollIntervalRef.current);
       scrollIntervalRef.current = null;
     }
-    // Przywróć oryginalny tytuł strony
     document.title = originalTitleRef.current;
   }, []);
 
@@ -99,16 +96,16 @@ const RobustTimer = ({ alarmSrc }) => {
 
     if ("Notification" in window && Notification.permission === "granted") {
       new Notification("KONIEC CZASU!", {
-        body: "Twoja sesja dobiegła końca. Kliknij STOP, aby przygotować timer.",
+        body: `Kliknij STOP, aby przygotować ${nextMode} min.`,
         tag: "timer-alarm",
         requireInteraction: true,
       });
     }
-  }, [startTitleScroll]);
+  }, [nextMode, startTitleScroll]);
 
   const startTimer = useCallback(() => {
     setIsAlarming(false);
-    stopTitleScroll(); // Na wypadek gdyby użytkownik kliknął start w trakcie alarmu
+    stopTitleScroll();
     if (audioRef.current) audioRef.current.load();
 
     const parts = inputValue.split(":");
@@ -214,7 +211,7 @@ const RobustTimer = ({ alarmSrc }) => {
               width: "100%",
             }}
           >
-            STOP
+            STOP ({nextMode}m)
           </button>
         ) : (
           <>
@@ -244,7 +241,7 @@ const RobustTimer = ({ alarmSrc }) => {
                 flex: 1,
               }}
             >
-              Reset
+              Reset ({nextMode}m)
             </button>
           </>
         )}

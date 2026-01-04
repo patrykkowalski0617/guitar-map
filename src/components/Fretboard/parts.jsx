@@ -61,11 +61,9 @@ const fretboardButtonStyles = css`
   text-transform: uppercase;
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 10px ${theme.colors.yellow}66` : "none"};
-
   border: 2px solid
     ${({ theme, $isInShape }) =>
       $isInShape ? theme.colors.yellow : theme.colors.border};
-
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
   line-height: 0;
@@ -74,14 +72,14 @@ const fretboardButtonStyles = css`
 export const CAGEDLetter = styled.div`
   width: 31px;
   height: 31px;
-  cursor: pointer;
-  ${fretboardButtonStyles}
-  &:hover {
+  /* cursor: pointer; 
+   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.yellow};
-  }
+    } */
+  ${fretboardButtonStyles}
   border: 1px solid
     ${({ $isCAGED_hoverShapeLocked, theme }) =>
-      $isCAGED_hoverShapeLocked ? theme.colors.yellow : "initial"};
+    $isCAGED_hoverShapeLocked ? theme.colors.yellow : "initial"};
   background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
     $isCAGED_hoverShapeLocked ? theme.colors.green : theme.colors.bgLight};
 `;
@@ -133,7 +131,7 @@ export const Note = styled.div`
   }) => {
     if ($isSaved && $isInShape) return theme.colors.yellow;
     if ($isInUserShape) return theme.colors.red;
-    if ($isActiveShapeRootNote && $isInShape) return theme.colors.green;
+    if ($isActiveShapeRootNote) return theme.colors.green;
     return theme.colors.bgLight;
   }};
 

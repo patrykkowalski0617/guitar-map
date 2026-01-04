@@ -21,7 +21,6 @@ const InteractiveCAGEDLetter = ({
     }}
     onMouseEnter={() => onOver?.(letter)}
     onMouseLeave={() => onLeave?.()}
-    style={{ cursor: "pointer" }}
   >
     {letter}
   </CAGEDLetter>

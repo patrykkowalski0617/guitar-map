@@ -75,6 +75,7 @@ const Fretboard = () => {
   });
 
   const handleCAGED_Click = (letter) => {
+    if (!isDevMode) return;
     setVariantState({ lastId: null, variantId: null });
     const isLocking = lockedCAGEDLetter !== letter;
     setLockedCAGEDLetter(isLocking ? letter : null);
