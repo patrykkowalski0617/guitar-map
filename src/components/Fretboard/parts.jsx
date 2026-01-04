@@ -37,6 +37,7 @@ export const FretCell = styled.div`
 
   &:first-child {
     border-left: 4px solid ${({ theme }) => theme.colors.border};
+    min-width: 46px;
   }
 `;
 
@@ -109,7 +110,7 @@ export const Note = styled.div`
   ${fretboardButtonStyles}
 
   &:hover {
-    border: 1px solid
+    border: 2px solid
       ${({ $isActiveShapeRootNote, theme }) =>
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }

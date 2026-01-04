@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Label, SubsectionTitle } from "../../parts";
+import { Button, SubsectionTitle } from "../../parts";
 
 export const SettingsContainer = styled.div`
   display: flex;
