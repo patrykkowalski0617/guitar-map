@@ -184,6 +184,7 @@ const CAGED_shapes = {
     "G4_F#",
     "E1_G#",
     "E6_G#",
+    "G4_B",
   ],
   D: [
     "E1_D",

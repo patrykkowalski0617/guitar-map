@@ -36,8 +36,8 @@ const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
           handleClearDevModeShape={handleClearDevModeShape}
         />
         <CopyFullSetDevModeShapeButton
-          devModeShape={devModeShape} // Używasz nazwy z góry komponentu
-          handleClearDevModeShape={handleClearDevModeShape} // j.w.
+          devModeShape={devModeShape}
+          handleClearDevModeShape={handleClearDevModeShape}
         />
         <CopyVariantIdButton />
       </Container>

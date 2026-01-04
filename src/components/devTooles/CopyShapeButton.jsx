@@ -13,16 +13,19 @@ const CopyShapeButton = ({
     if (!devModeShape || devModeShape.length === 0) return;
 
     const dataToCopy = transform ? transform(devModeShape) : devModeShape;
-    const formattedArray = JSON.stringify(dataToCopy, null, 2);
+
+    const formattedOutput = dataToCopy
+      .map((point) => `  ${JSON.stringify(point)}`)
+      .join(",\n");
 
     try {
-      await navigator.clipboard.writeText(formattedArray);
+      await navigator.clipboard.writeText(formattedOutput);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      handleClearDevModeShape();
     } catch (err) {
       console.error("Error:", err);
     }
-    handleClearDevModeShape();
   };
 
   return (

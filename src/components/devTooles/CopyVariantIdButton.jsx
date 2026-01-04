@@ -10,7 +10,7 @@ const CopyVariantIdButton = () => {
     if (!variantId) return;
 
     try {
-      await navigator.clipboard.writeText(`,"${variantId}"`);
+      await navigator.clipboard.writeText(`"${variantId}"`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
