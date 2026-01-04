@@ -44,7 +44,7 @@ export const DescriptionText = ({
         chord. <br />
         Function of it is called "Dominant".
         <br />
-        <S.MarkedText>{activeShapeName}</S.MarkedText> Set will expose{" "}
+        <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
       </>
     ),

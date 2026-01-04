@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AppWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 50px`};
 `;
 
 export const SectionContainer = styled.section`
