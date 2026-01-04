@@ -13,7 +13,6 @@ export const SectionContainer = styled.section`
   flex-direction: column;
   padding: ${({ theme }) => `50px ${theme.spacing.md} ${theme.spacing.sm}`};
   border: 1px solid ${({ theme }) => theme.colors.blue}44;
-  box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}55`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   position: relative;
   max-width: 1400px;
@@ -35,7 +34,6 @@ export const SectionTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}55`};
   border: 1px solid ${({ theme }) => theme.colors.blue}44;
   background-color: ${({ theme }) => theme.colors.bg};
   border-radius: ${({ theme }) => theme.borderRadius.md};

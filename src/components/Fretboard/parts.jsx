@@ -23,7 +23,6 @@ export const StringRow = styled.div`
 const Fret = css`
   max-width: 300px;
   width: calc(100% / ${({ $numOfCells }) => $numOfCells});
-  min-width: 60px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -75,13 +74,20 @@ export const CAGEDLetter = styled.div`
   ${fretboardButtonStyles}
   border: 1px solid
     ${({ $isCAGED_hoverShapeLocked, theme }) =>
-    $isCAGED_hoverShapeLocked ? theme.colors.yellow : "initial"};
+    $isCAGED_hoverShapeLocked ? theme.colors.yellow : theme.colors.bg};
   background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
-    $isCAGED_hoverShapeLocked ? theme.colors.green : theme.colors.bgLight};
+    $isCAGED_hoverShapeLocked ? theme.colors.green : theme.colors.bg};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
 `;
 
 export const Note = styled.div`
-  width: 48px;
+  width: 33px;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 48px;
+  }
   height: 31px;
   position: relative;
 

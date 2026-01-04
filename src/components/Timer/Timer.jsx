@@ -30,10 +30,12 @@ const RobustTimer = ({ alarmSrc }) => {
     if ("Notification" in window && Notification.permission === "default") {
       Notification.requestPermission();
     }
+    // Zapisz tytuł przy starcie komponentu
+    originalTitleRef.current = document.title;
   }, []);
 
   const startTitleScroll = useCallback(() => {
-    originalTitleRef.current = document.title;
+    stopTitleScroll(); // Czyścimy ewentualny poprzedni interwał
     let titleText = " >>> KONIEC CZASU! <<<    ";
     scrollIntervalRef.current = setInterval(() => {
       titleText = titleText.substring(1) + titleText.substring(0, 1);
@@ -48,6 +50,17 @@ const RobustTimer = ({ alarmSrc }) => {
     }
     document.title = originalTitleRef.current;
   }, []);
+
+  // Aktualizacja tytułu w trakcie odliczania
+  useEffect(() => {
+    if (isActive && !isAlarming) {
+      const mins = Math.floor(secondsLeft / 60)
+        .toString()
+        .padStart(2, "0");
+      const secs = (secondsLeft % 60).toString().padStart(2, "0");
+      document.title = `${mins}:${secs} | ${originalTitleRef.current}`;
+    }
+  }, [secondsLeft, isActive, isAlarming]);
 
   const handleInputChange = (e) => {
     let val = e.target.value.replace(/\D/g, "");
@@ -73,6 +86,7 @@ const RobustTimer = ({ alarmSrc }) => {
   const resetToNextValue = useCallback(() => {
     stopTimer();
     setIsAlarming(false);
+    stopTitleScroll();
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -81,7 +95,7 @@ const RobustTimer = ({ alarmSrc }) => {
     setSecondsLeft(timeToSet * 60);
     setInputValue(`${timeToSet.toString().padStart(2, "0")}:00`);
     setNextMode(timeToSet === 45 ? 15 : 45);
-  }, [nextMode, stopTimer]);
+  }, [nextMode, stopTimer, stopTitleScroll]);
 
   const handleAlarm = useCallback(() => {
     setIsActive(false);
