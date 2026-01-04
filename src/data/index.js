@@ -6,4 +6,3 @@ export { default as musicFunctionContextSelectorData } from "./musicFunctionCont
 export { default as NOTES_FROM_C } from "./NOTES_FROM_C";
 export { default as UNIFIED_MUSIC_KEYS } from "./UNIFIED_MUSIC_KEYS";
 export { default as userProgress } from "./userProgress";
-export { default as SEQUENCER_PATTERNS } from "./SEQUENCER_PATTERNS";

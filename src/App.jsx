@@ -8,9 +8,7 @@ import {
   SectionTitle,
   SubSectionContainer,
 } from "./parts";
-import ColorProfileVisualizer from "./components/ColorProfileVisualizer/ColorProfileVisualizer";
 import GlobalStyle from "./GlobalStyle";
-import VisualizerLegend from "./components/ColorProfileVisualizer/Legend/VisualizerLegend";
 import { useStore } from "./store/useStore";
 import ShapeTypeDisplay from "./components/Fretboard/ShapeTypeDisplay/ShapeTypeDisplay";
 import Configurator from "./components/Configurator/Configurator";
@@ -26,16 +24,6 @@ function App() {
       <AppWrapper>
         <RowWrapper>
           <Configurator />
-
-          {/* <SectionContainer>
-            <SectionTitle>
-              <h2>Visualizer</h2>
-            </SectionTitle>
-            <ColorProfileVisualizer />
-            <SubSectionContainer>
-              <VisualizerLegend />
-            </SubSectionContainer>
-          </SectionContainer> */}
         </RowWrapper>
 
         <SectionContainer>

@@ -19,7 +19,6 @@ const FretRow = ({
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
-  const activeSeqId = useStore((state) => state.seqConfig.activeSeqId);
   const { isDevMode } = useStore();
 
   return (
@@ -37,7 +36,6 @@ const FretRow = ({
         const isInCAGED_hoverShape = CAGED_hoverShape.includes(CAGED_noteId);
         const isActiveShapeRootNote = activeShapeRootNote === note;
         const isLastClicked = variantState?.lastId === CAGED_noteId;
-        const isActiveSeq = activeSeqId === CAGED_noteId;
         const isLockedNote = lockedShape.includes(CAGED_noteId);
 
         return (
@@ -52,7 +50,6 @@ const FretRow = ({
               $isActiveShapeRootNote={isActiveShapeRootNote}
               $variantLabel={isLastClicked ? variantState.label : null}
               $isError={isLastClicked ? variantState.isError : false}
-              $isActiveSeq={isActiveSeq}
               $isShapeLocked={isLockedNote}
               $isSaved={isCurrentShapeSaved}
               onClick={() => handleNoteClick(note, CAGED_noteId)}

@@ -129,21 +129,6 @@ export const useStore = create((set, get) => ({
       set({ activeShape: foundShape });
     }
   },
-  seqConfig: {
-    interval: 500,
-    isRunning: false,
-    activeSeqId: null,
-    triggerNoteId: null,
-    activePattern: "linear",
-  },
-  setSeqConfig: (update) =>
-    set((state) => ({
-      seqConfig: { ...state.seqConfig, ...update },
-    })),
-  setActiveSeqId: (id) =>
-    set((state) => ({
-      seqConfig: { ...state.seqConfig, activeSeqId: id },
-    })),
 
   getNotesByIntervals: (rootOffset, intervals) => {
     if (rootOffset === undefined || !intervals) return [];

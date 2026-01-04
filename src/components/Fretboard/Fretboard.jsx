@@ -8,7 +8,6 @@ import DevTools from "../devTooles/DevTools";
 import ScrollFader from "../ScrollFader/ScrollFader";
 import { CAGED_shapes, NOTES_FROM_C } from "../../data";
 import useFretboardLogic from "./hooks/useFretboardLogic";
-import { useSequencer } from "../FretboardHeader/hooks/useSequencer";
 import FretboardHeader from "../FretboardHeader/FretboardHeader";
 import userProgress from "../../data/userProgress";
 
@@ -24,7 +23,7 @@ const Fretboard = () => {
     setShape,
     variantState,
     setVariantState,
-    seqConfig,
+
     isProgressMode,
     isDevMode,
   } = useStore();
@@ -43,13 +42,6 @@ const Fretboard = () => {
     if (!isProgressMode || !variantState?.variantId) return false;
     return (userProgress[activeChordId] || []).includes(variantState.variantId);
   }, [variantState.variantId, isProgressMode, activeChordId]);
-
-  const currentSeqConfig = seqConfig || {
-    isRunning: false,
-    interval: 300,
-    activePattern: "linear",
-  };
-  useSequencer(shape, currentSeqConfig);
 
   const combinedCAGEDShape = useMemo(() => {
     const lockedNotes = lockedCAGEDLetter

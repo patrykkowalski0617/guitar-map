@@ -72,10 +72,6 @@ const fretboardButtonStyles = css`
 export const CAGEDLetter = styled.div`
   width: 31px;
   height: 31px;
-  /* cursor: pointer; 
-   &:hover {
-    border: 1px solid ${({ theme }) => theme.colors.yellow};
-    } */
   ${fretboardButtonStyles}
   border: 1px solid
     ${({ $isCAGED_hoverShapeLocked, theme }) =>
@@ -112,15 +108,9 @@ export const Note = styled.div`
         $isActiveShapeRootNote ? theme.colors.yellow : theme.colors.border};
   }
 
-  outline: ${({ theme, $isActiveSeq, $isShapeLocked }) =>
-    $isActiveSeq
-      ? `4px solid ${theme.colors.red}`
-      : $isShapeLocked
-      ? `2px solid ${theme.colors.violet}ee`
-      : "none"};
+  outline: ${({ theme, $isShapeLocked }) =>
+    $isShapeLocked ? `2px solid ${theme.colors.violet}ee` : "none"};
   outline-offset: 2px;
-  z-index: ${({ $isActiveSeq, $isShapeLocked }) =>
-    $isActiveSeq || $isShapeLocked ? "10" : "1"};
 
   background: ${({
     theme,
