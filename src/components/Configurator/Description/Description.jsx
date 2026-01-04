@@ -1,5 +1,6 @@
 import { SubsectionTitle } from "../../../parts";
 import { useStore } from "../../../store/useStore";
+import { enharmonicTransform } from "../../../utils";
 import { DescriptionText } from "./DescriptionText";
 import * as S from "./parts";
 
@@ -22,12 +23,16 @@ const Description = () => {
   const profiles = [
     {
       data: activeShape.colorProfile.major,
-      root: getNoteNameByOffset(activeMusicContext.majorRoot),
+      root: enharmonicTransform(
+        getNoteNameByOffset(activeMusicContext.majorRoot)
+      ),
       type: "Major",
     },
     {
       data: activeShape.colorProfile.minor,
-      root: getNoteNameByOffset(activeMusicContext.minorRoot),
+      root: enharmonicTransform(
+        getNoteNameByOffset(activeMusicContext.minorRoot)
+      ),
       type: "Minor",
     },
   ].filter((p) => p.data);
@@ -87,9 +92,9 @@ const Description = () => {
     <>
       <SubsectionTitle>Description</SubsectionTitle>
       <DescriptionText
-        majorRootName={profiles[0].root}
-        minorRootName={profiles[1]?.root}
-        activeShapeName={getActiveShapeName()}
+        majorRootName={enharmonicTransform(profiles[0].root)}
+        minorRootName={enharmonicTransform(profiles[1]?.root)}
+        activeShapeName={enharmonicTransform(getActiveShapeName())}
         fullProfileJSX={combinedJSX}
         shapeType={shapeType}
       />
