@@ -18,7 +18,7 @@ export const DescriptionText = ({
         may be provided by the{" "}
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> or{" "}
         <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
-        Function of those are called "Tonic".
+        The function of these chords is called "Tonic".
         <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
@@ -30,7 +30,7 @@ export const DescriptionText = ({
         be provided by the{" "}
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> or{" "}
         <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
-        Function of those are called "Subdominant".
+        The function of these chords is called "Subdominant".
         <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
@@ -42,7 +42,7 @@ export const DescriptionText = ({
         <S.MarkedText>{key.split("/")[0]} Major</S.MarkedText> Tonic may be
         provided by the <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText>{" "}
         chord. <br />
-        Function of it is called "Dominant".
+        The function of this chord is called "Dominant".
         <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
@@ -54,7 +54,7 @@ export const DescriptionText = ({
         <S.MarkedText>{key.split("/")[1]?.replace("m", "")} Minor</S.MarkedText>{" "}
         Tonic may be provided by the{" "}
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> chord. <br />
-        Function of it is called "Dominant".
+        The function of this chord is called "Dominant".
         <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
