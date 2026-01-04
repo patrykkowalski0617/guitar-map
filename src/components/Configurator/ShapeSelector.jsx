@@ -39,10 +39,10 @@ const ShapeSelector = () => {
 
   return (
     <Selector
-      label="Set of notes in context"
       options={shapeOptions}
       value={getActiveShapeId()}
       onChange={setActiveShapeById}
+      title={"Set of notes in context"}
     />
   );
 };

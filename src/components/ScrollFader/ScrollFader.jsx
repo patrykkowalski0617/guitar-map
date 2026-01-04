@@ -1,6 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 
+const MainWrapper = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row;
+  }
+`;
+
+const Title = styled.h2`
+  text-transform: uppercase;
+  background-color: ${({ theme }) => theme.colors.bg};
+  line-height: 1;
+  letter-spacing: 1px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => `${theme.colors.blue}`};
+  white-space: nowrap;
+  height: 100%;
+  margin: 0 0 ${({ theme }) => theme.spacing.sm};
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding-left: ${({ theme }) => `${theme.spacing.lg}`};
+    margin: 0;
+  }
+`;
+
 const FaderContainer = styled.div`
   overflow-x: auto;
   padding-top: 20px;
@@ -33,6 +60,11 @@ const ScrollContent = styled.div`
   min-width: 100%;
   justify-content: center;
 
+  @media (max-width: 768px) {
+    margin: 0;
+    justify-content: flex-start;
+  }
+
   &::before,
   &::after {
     content: "";
@@ -41,7 +73,7 @@ const ScrollContent = styled.div`
   }
 `;
 
-const ScrollFader = ({ children, activeValue }) => {
+const ScrollFader = ({ children, activeValue, title }) => {
   const containerRef = useRef(null);
   const [isScrollable, setIsScrollable] = useState(false);
 
@@ -99,9 +131,12 @@ const ScrollFader = ({ children, activeValue }) => {
   }, [activeValue, isScrollable, children]);
 
   return (
-    <FaderContainer ref={containerRef} $isScrollable={isScrollable}>
-      <ScrollContent>{children}</ScrollContent>
-    </FaderContainer>
+    <MainWrapper>
+      {title && <Title>{title}</Title>}
+      <FaderContainer ref={containerRef} $isScrollable={isScrollable}>
+        <ScrollContent>{children}</ScrollContent>
+      </FaderContainer>
+    </MainWrapper>
   );
 };
 

@@ -19,11 +19,11 @@ const KeySelector = () => {
 
   return (
     <Selector
-      label="Unified Keys"
       options={keyOptions}
       value={tuneKey?.label}
       onChange={handleKeyChange}
       isCompact={true}
+      title={"Unified Keys"}
     />
   );
 };

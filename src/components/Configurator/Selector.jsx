@@ -1,13 +1,11 @@
-import { Button, SubsectionTitle } from "../../parts";
+import { Button } from "../../parts";
 import ScrollFader from "../ScrollFader/ScrollFader";
 import { Container, OptionsWrapper } from "./parts";
 
-const Selector = ({ label, options, value, onChange, isCompact }) => {
+const Selector = ({ options, value, onChange, isCompact, title }) => {
   return (
     <Container>
-      {label && <SubsectionTitle>{label}</SubsectionTitle>}
-
-      <ScrollFader activeValue={value}>
+      <ScrollFader activeValue={value} title={title}>
         <OptionsWrapper $isCompact={isCompact}>
           {options.map((option) => (
             <Button

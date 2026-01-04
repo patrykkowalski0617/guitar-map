@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 export const DescriptionText = styled.div`
   opacity: 0.8;
-  text-align: center;
-  max-width: 95%;
   line-height: 1.5;
   margin: 0 auto 20px;
+  text-align: center;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 80%;
+    text-align: left;
+    margin: 0 0 0 ${({ theme }) => theme.spacing.lg};
+  }
 `;
 
 export const MarkedText = styled.span`

@@ -17,8 +17,9 @@ export const DescriptionText = ({
         In the key of <S.MarkedText>{key}</S.MarkedText>, a sense of resolution
         may be provided by the{" "}
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> or{" "}
-        <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. Function
-        of those is called "Tonic".{" "}
+        <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
+        Function of those are called "Tonic".
+        <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
       </>
@@ -28,8 +29,9 @@ export const DescriptionText = ({
         In the key of <S.MarkedText>{key}</S.MarkedText>, a sense of motion may
         be provided by the{" "}
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> or{" "}
-        <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. Function
-        of those is called "Subdominant".{" "}
+        <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
+        Function of those are called "Subdominant".
+        <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
       </>
@@ -39,7 +41,9 @@ export const DescriptionText = ({
         In the key of <S.MarkedText>{key}</S.MarkedText>, a sense of tension to{" "}
         <S.MarkedText>{key.split("/")[0]} Major</S.MarkedText> Tonic may be
         provided by the <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText>{" "}
-        chord. Function of it is called "Dominant".{" "}
+        chord. <br />
+        Function of it is called "Dominant".
+        <br />
         <S.MarkedText>{activeShapeName}</S.MarkedText> Set will expose{" "}
         {fullProfileJSX}.
       </>
@@ -49,8 +53,9 @@ export const DescriptionText = ({
         In the key of <S.MarkedText>{key}</S.MarkedText>, a sense of tension to{" "}
         <S.MarkedText>{key.split("/")[1]?.replace("m", "")} Minor</S.MarkedText>{" "}
         Tonic may be provided by the{" "}
-        <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> chord. Function
-        of it is called "Dominant".{" "}
+        <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> chord. <br />
+        Function of it is called "Dominant".
+        <br />
         <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
         {fullProfileJSX}.
       </>

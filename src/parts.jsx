@@ -16,7 +16,7 @@ export const SectionContainer = styled.section`
   box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.blue}55`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   position: relative;
-  max-width: 1500px;
+  max-width: 1400px;
   min-width: 0;
 `;
 
@@ -59,6 +59,10 @@ export const SubsectionTitle = styled.h3`
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => `${theme.colors.blue}`};
+  text-align: center;
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    text-align: left;
+  }
 `;
 
 export const Label = styled.div`
@@ -74,7 +78,7 @@ export const RowWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1400px;
   margin: 0 auto;
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     gap: ${({ theme }) => theme.spacing.xl};

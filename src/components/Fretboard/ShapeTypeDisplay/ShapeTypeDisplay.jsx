@@ -40,11 +40,7 @@ const ShapeTypeDisplay = ({ opacityOff }) => {
   }, []);
 
   return (
-    <ScrollFader activeValue={activeChordId}>
-      <Label $isLegendLabel $opacityOff>
-        {!isProgressMode && "All available shapes:"}
-      </Label>
-
+    <ScrollFader activeValue={activeChordId} title="All available shapes">
       {items.map((item) => {
         const isActive = activeChordId === item.id;
 
