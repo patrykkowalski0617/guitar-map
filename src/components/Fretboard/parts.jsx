@@ -114,13 +114,13 @@ export const Note = styled.div`
 
   background: ${({
     theme,
-    $isInUserShape,
+    $isInDevModeShape,
     $isActiveShapeRootNote,
     $isInShape,
     $isSaved,
   }) => {
     if ($isSaved && $isInShape) return theme.colors.yellow;
-    if ($isInUserShape) return theme.colors.red;
+    if ($isInDevModeShape) return theme.colors.red;
     if ($isActiveShapeRootNote) return theme.colors.green;
     return theme.colors.bgLight;
   }};

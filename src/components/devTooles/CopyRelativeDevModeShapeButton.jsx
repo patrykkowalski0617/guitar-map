@@ -1,12 +1,12 @@
 import CopyShapeButton from "./CopyShapeButton";
 import { absoluteToRelative } from "./absoluteToRelative";
 
-const CopyRelativeUserShapeButton = (props) => (
+const CopyRelativeDevModeShapeButton = (props) => (
   <CopyShapeButton
     {...props}
-    label="Copy Relative User Shape"
+    label="Copy Relative Shape"
     transform={absoluteToRelative}
   />
 );
 
-export default CopyRelativeUserShapeButton;
+export default CopyRelativeDevModeShapeButton;

@@ -2,17 +2,17 @@ import { useState } from "react";
 import { StyledButton } from "./parts";
 
 const CopyShapeButton = ({
-  userShape,
-  handleClearUserShape,
+  devModeShape,
+  handleClearDevModeShape,
   label,
   transform,
 }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    if (!userShape || userShape.length === 0) return;
+    if (!devModeShape || devModeShape.length === 0) return;
 
-    const dataToCopy = transform ? transform(userShape) : userShape;
+    const dataToCopy = transform ? transform(devModeShape) : devModeShape;
     const formattedArray = JSON.stringify(dataToCopy, null, 2);
 
     try {
@@ -22,7 +22,7 @@ const CopyShapeButton = ({
     } catch (err) {
       console.error("Error:", err);
     }
-    handleClearUserShape();
+    handleClearDevModeShape();
   };
 
   return (

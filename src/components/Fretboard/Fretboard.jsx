@@ -23,13 +23,12 @@ const Fretboard = () => {
     setShape,
     variantState,
     setVariantState,
-
     isProgressMode,
     isDevMode,
   } = useStore();
 
   const activeChordId = useStore((state) => state.getActiveChordId());
-  const [userShape, setUserShape] = useState([]);
+  const [devModeShape, setDevModeShape] = useState([]);
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
   const [mouseOverLetter, setMouseOverLetter] = useState(null);
   const [lockedShape, setLockedShape] = useState([]);
@@ -61,7 +60,7 @@ const Fretboard = () => {
     setVariantState,
     setShape,
     isDevMode,
-    setUserShape,
+    setDevModeShape,
     setLockedCAGEDLetter,
     lockedCAGEDLetter,
   });
@@ -109,7 +108,7 @@ const Fretboard = () => {
               handleNoteClick={handleNoteClick}
               shape={shape}
               CAGED_hoverShape={combinedCAGEDShape}
-              userShape={isDevMode ? userShape : []}
+              devModeShape={isDevMode ? devModeShape : []}
               activeShapeRootNote={activeShapeRootNote}
               variantState={variantState}
               lockedShape={lockedShape}
@@ -128,8 +127,8 @@ const Fretboard = () => {
       </ScrollFader>
 
       <DevTools
-        userShape={userShape}
-        handleClearUserShape={() => setUserShape([])}
+        devModeShape={devModeShape}
+        handleClearDevModeShape={() => setDevModeShape([])}
       />
     </>
   );

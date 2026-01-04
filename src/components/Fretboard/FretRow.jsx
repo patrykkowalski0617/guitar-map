@@ -11,7 +11,7 @@ const FretRow = ({
   handleNoteClick,
   shape,
   CAGED_hoverShape,
-  userShape,
+  devModeShape,
   activeShapeRootNote,
   variantState,
   lockedShape,
@@ -32,7 +32,7 @@ const FretRow = ({
 
         const CAGED_noteId = get_CAGED_noteId();
         const isInShape = shape.includes(CAGED_noteId);
-        const isInUserShape = userShape.includes(CAGED_noteId);
+        const isInDevModeShape = devModeShape.includes(CAGED_noteId);
         const isInCAGED_hoverShape = CAGED_hoverShape.includes(CAGED_noteId);
         const isActiveShapeRootNote = activeShapeRootNote === note;
         const isLastClicked = variantState?.lastId === CAGED_noteId;
@@ -45,7 +45,7 @@ const FretRow = ({
           >
             <StyledNote
               $isInShape={isInShape}
-              $isInUserShape={isInUserShape}
+              $isInDevModeShape={isInDevModeShape}
               $isInCAGED_hoverShape={isDevMode && isInCAGED_hoverShape}
               $isActiveShapeRootNote={isActiveShapeRootNote}
               $variantLabel={isLastClicked ? variantState.label : null}

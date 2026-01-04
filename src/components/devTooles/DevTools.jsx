@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useStore } from "../../store/useStore";
-import CopyAbsoluteUserShapeButton from "./CopyAbsoluteUserShapeButton";
-import CopyRelativeUserShapeButton from "./CopyRelativeUserShapeButton";
+import CopyAbsoluteDevModeShapeButton from "./CopyAbsoluteDevModeShapeButton";
+import CopyRelativeDevModeShapeButton from "./CopyRelativeDevModeShapeButton";
 import CopyVariantIdButton from "./CopyVariantIdButton";
 import { Container, DevToolsTitle } from "./parts";
 
-const DevTools = ({ userShape, handleClearUserShape }) => {
+const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
   const isDevMode = useStore((state) => state.isDevMode);
   const toggleDevMode = useStore((state) => state.toggleDevMode);
 
@@ -24,15 +24,15 @@ const DevTools = ({ userShape, handleClearUserShape }) => {
 
   return (
     <>
-      <DevToolsTitle>DevTools (Visible)</DevToolsTitle>
+      <DevToolsTitle>DevTools</DevToolsTitle>
       <Container>
-        <CopyAbsoluteUserShapeButton
-          userShape={userShape}
-          handleClearUserShape={handleClearUserShape}
+        <CopyAbsoluteDevModeShapeButton
+          devModeShape={devModeShape}
+          handleClearDevModeShape={handleClearDevModeShape}
         />
-        <CopyRelativeUserShapeButton
-          userShape={userShape}
-          handleClearUserShape={handleClearUserShape}
+        <CopyRelativeDevModeShapeButton
+          devModeShape={devModeShape}
+          handleClearDevModeShape={handleClearDevModeShape}
         />
         <CopyVariantIdButton />
       </Container>
