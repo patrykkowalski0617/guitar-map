@@ -14,7 +14,7 @@ const RandomChallengeButton = () => {
   const store = useStore();
 
   const handleRandomize = () => {
-    console.group("🚀 KROK: KEY + 2 DIFFERENT DESCRIPTIONS");
+    console.group("🚀 KROK: KEY + 2 DIFFERENT DESCRIPTIONS + SHAPES");
 
     const randomKey =
       UNIFIED_MUSIC_KEYS[Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)];
@@ -35,24 +35,29 @@ const RandomChallengeButton = () => {
         Math.floor(Math.random() * differentDescContexts.length)
       ];
 
-    store.setActiveMusicContextById(ctx1.id);
+    const shape1 = ctx1.shapes[Math.floor(Math.random() * ctx1.shapes.length)];
+    const shape2 = ctx2.shapes[Math.floor(Math.random() * ctx2.shapes.length)];
 
-    const rootNote = useStore.getState().getActiveShapeRootNote();
+    store.setActiveMusicContextById(ctx1.id);
+    store.setActiveMusicContextById(ctx2.id);
 
     console.log("Wylosowany klucz:", randomKey.label);
     console.log(
       "Context 1:",
       ctx1.id,
       "| Desc:",
-      ctx1.harmonicFunctionDescription
+      ctx1.harmonicFunctionDescription,
+      "| Shape 1:",
+      shape1
     );
     console.log(
       "Context 2:",
       ctx2.id,
       "| Desc:",
-      ctx2.harmonicFunctionDescription
+      ctx2.harmonicFunctionDescription,
+      "| Shape 2:",
+      shape2
     );
-    console.log("Root odczytany ze Store:", rootNote);
 
     console.groupEnd();
   };
