@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DescriptionWrapper = styled.div`
+export const DescriptionText = styled.div`
   opacity: 0.8;
   text-align: center;
   max-width: 95%;
