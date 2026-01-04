@@ -30,12 +30,12 @@ const RobustTimer = ({ alarmSrc }) => {
     if ("Notification" in window && Notification.permission === "default") {
       Notification.requestPermission();
     }
-    // Zapisz tytuł przy starcie komponentu
+
     originalTitleRef.current = document.title;
   }, []);
 
   const startTitleScroll = useCallback(() => {
-    stopTitleScroll(); // Czyścimy ewentualny poprzedni interwał
+    stopTitleScroll();
     let titleText = " >>> KONIEC CZASU! <<<    ";
     scrollIntervalRef.current = setInterval(() => {
       titleText = titleText.substring(1) + titleText.substring(0, 1);
@@ -51,7 +51,6 @@ const RobustTimer = ({ alarmSrc }) => {
     document.title = originalTitleRef.current;
   }, []);
 
-  // Aktualizacja tytułu w trakcie odliczania
   useEffect(() => {
     if (isActive && !isAlarming) {
       const mins = Math.floor(secondsLeft / 60)

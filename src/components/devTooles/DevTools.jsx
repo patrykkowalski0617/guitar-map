@@ -4,6 +4,7 @@ import CopyAbsoluteDevModeShapeButton from "./CopyAbsoluteDevModeShapeButton";
 import CopyRelativeDevModeShapeButton from "./CopyRelativeDevModeShapeButton";
 import CopyVariantIdButton from "./CopyVariantIdButton";
 import { Container, DevToolsTitle } from "./parts";
+import CopyFullSetDevModeShapeButton from "./CopyFullSetDevModeShapeButton";
 
 const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
   const isDevMode = useStore((state) => state.isDevMode);
@@ -33,6 +34,10 @@ const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
         <CopyRelativeDevModeShapeButton
           devModeShape={devModeShape}
           handleClearDevModeShape={handleClearDevModeShape}
+        />
+        <CopyFullSetDevModeShapeButton
+          devModeShape={devModeShape} // Używasz nazwy z góry komponentu
+          handleClearDevModeShape={handleClearDevModeShape} // j.w.
         />
         <CopyVariantIdButton />
       </Container>
