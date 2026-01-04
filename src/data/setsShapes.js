@@ -4,6 +4,7 @@ const setsShapes = [
   {
     id: "M7",
     label: "XM7",
+    type: "Arpegio",
     intervals: [_1, _M3, _5, _M7],
     shapes: [
       {
@@ -121,6 +122,7 @@ const setsShapes = [
   {
     id: "M_add9",
     label: "XM(add9)",
+    type: "Arpegio",
     intervals: [_1, _M3, _5, _M9],
     shapes: [
       {
@@ -218,6 +220,7 @@ const setsShapes = [
   {
     id: "M9",
     label: "XM9",
+    type: "Arpegio",
     intervals: [_1, _M3, _5, _M7, _M9],
     shapes: [
       {
@@ -363,6 +366,7 @@ const setsShapes = [
   {
     id: "dominant",
     label: "X7",
+    type: "Arpegio",
     intervals: [_1, _M3, _5, _m7],
     shapes: [
       {
@@ -493,6 +497,7 @@ const setsShapes = [
   {
     id: "7b9",
     label: "X7b9",
+    type: "Arpegio",
     intervals: [_1, _M3, _5, _m7, _m9],
     shapes: [
       {
@@ -615,6 +620,7 @@ const setsShapes = [
   {
     id: "m7b5",
     label: "Xm7b5",
+    type: "Arpegio",
     intervals: [_1, _m3, _T, _m7],
     shapes: [
       {
@@ -738,6 +744,7 @@ const setsShapes = [
   {
     id: "dim7",
     label: "Xdim7",
+    type: "Arpegio",
     intervals: [_1, _m3, _T, _M6],
     shapes: [
       {
@@ -865,6 +872,7 @@ const setsShapes = [
   {
     id: "m7",
     label: "Xm7",
+    type: "Arpegio",
     intervals: [_1, _m3, _5, _m7],
     shapes: [
       {
@@ -993,6 +1001,7 @@ const setsShapes = [
   {
     id: "m_add9",
     label: "Xm(add9)",
+    type: "Arpegio",
     intervals: [_1, _m3, _5, _M9],
     shapes: [
       {
@@ -1195,6 +1204,7 @@ const setsShapes = [
   {
     id: "m9",
     label: "Xm9",
+    type: "Arpegio",
     intervals: [_1, _m3, _5, _m7, _m9],
     shapes: [
       {
@@ -1238,6 +1248,7 @@ const setsShapes = [
   {
     id: "minor_pent",
     label: "Minor Pentatonic",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1281,6 +1292,7 @@ const setsShapes = [
   {
     id: "major_pent",
     label: "Major Pentatonic",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1312,6 +1324,7 @@ const setsShapes = [
   {
     id: "no_avoid_notes_t_s_major",
     label: '"No avoid notes"',
+    type: "Set",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1370,7 +1383,8 @@ const setsShapes = [
   },
   {
     id: "ionian",
-    label: "Ionian Scale",
+    label: "Ionian ",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1419,7 +1433,8 @@ const setsShapes = [
   },
   {
     id: "aeolian",
-    label: "Aeolian Scale",
+    label: "Aeolian",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1468,7 +1483,8 @@ const setsShapes = [
   },
   {
     id: "dorian",
-    label: "Dorian Scale",
+    label: "Dorian",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1516,7 +1532,8 @@ const setsShapes = [
   },
   {
     id: "lydian",
-    label: "Lydian Scale",
+    label: "Lydian",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1565,7 +1582,8 @@ const setsShapes = [
   },
   {
     id: "mixolydian",
-    label: "Mixolydian Scale",
+    label: "Mixolydian",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1600,7 +1618,8 @@ const setsShapes = [
   },
   {
     id: "phrygian",
-    label: "Phrygian Scale",
+    label: "Phrygian",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {
@@ -1636,6 +1655,7 @@ const setsShapes = [
   {
     id: "phrygian_dominant",
     label: "Phrygian Dominant",
+    type: "Scale",
     intervals: [_1, _M3],
     shapes: [
       {

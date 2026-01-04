@@ -6,6 +6,7 @@ export const DescriptionText = ({
   minorRootName,
   activeShapeName,
   fullProfileJSX,
+  shapeType,
 }) => {
   const { activeMusicContext, tuneKey } = useStore();
   const key = tuneKey.label;
@@ -20,8 +21,10 @@ export const DescriptionText = ({
         <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
         The function of these chords is called "Tonic".
         <br />
-        <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
-        {fullProfileJSX}.
+        <S.MarkedText>
+          {activeShapeName} {shapeType}
+        </S.MarkedText>{" "}
+        will expose {fullProfileJSX}.
       </>
     ),
     subdominant: (
@@ -32,8 +35,10 @@ export const DescriptionText = ({
         <S.MarkedText>{minorRootName}&nbsp;Minor</S.MarkedText> chord. <br />
         The function of these chords is called "Subdominant".
         <br />
-        <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
-        {fullProfileJSX}.
+        <S.MarkedText>
+          {activeShapeName} {shapeType}
+        </S.MarkedText>{" "}
+        will expose {fullProfileJSX}.
       </>
     ),
     dominant: (

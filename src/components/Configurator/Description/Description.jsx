@@ -12,9 +12,12 @@ const Description = () => {
     activeMusicContext,
     getNoteNameByOffset,
     getActiveShapeName,
+    getActiveChordGroup,
   } = store;
 
   if (!activeShape?.colorProfile || !activeMusicContext) return null;
+
+  const shapeType = getActiveChordGroup().type;
 
   const profiles = [
     {
@@ -88,6 +91,7 @@ const Description = () => {
         minorRootName={profiles[1]?.root}
         activeShapeName={getActiveShapeName()}
         fullProfileJSX={combinedJSX}
+        shapeType={shapeType}
       />
     </>
   );
