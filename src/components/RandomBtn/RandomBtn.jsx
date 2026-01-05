@@ -29,41 +29,43 @@ const RandomChallengeButton = () => {
       (ctx) =>
         ctx.harmonicFunctionDescription !== ctx1.harmonicFunctionDescription
     );
-
-    const ctx2 =
-      differentDescContexts[
-        Math.floor(Math.random() * differentDescContexts.length)
-      ];
+    store.setActiveMusicContextById(ctx1.id);
 
     const shape1 = ctx1.shapes[Math.floor(Math.random() * ctx1.shapes.length)];
-    const shape2 = ctx2.shapes[Math.floor(Math.random() * ctx2.shapes.length)];
 
-    store.setActiveMusicContextById(ctx1.id);
-    store.setActiveMusicContextById(ctx2.id);
+    setTimeout(() => {
+      const ctx2 =
+        differentDescContexts[
+          Math.floor(Math.random() * differentDescContexts.length)
+        ];
+      store.setActiveMusicContextById(ctx2.id);
+      const shape2 =
+        ctx2.shapes[Math.floor(Math.random() * ctx2.shapes.length)];
 
-    console.log("Wylosowany klucz:", randomKey.label);
-    console.log(
-      "Context 1:",
-      ctx1.id,
-      "| Desc:",
-      ctx1.harmonicFunctionDescription,
-      "| Shape 1:",
-      shape1
-    );
-    console.log(
-      "Context 2:",
-      ctx2.id,
-      "| Desc:",
-      ctx2.harmonicFunctionDescription,
-      "| Shape 2:",
-      shape2
-    );
+      console.log("Wylosowany klucz:", randomKey.label);
+      console.log(
+        "Context 1:",
+        ctx1.id,
+        "| Desc:",
+        ctx1.harmonicFunctionDescription,
+        "| Shape 1:",
+        shape1
+      );
+      console.log(
+        "Context 2:",
+        ctx2.id,
+        "| Desc:",
+        ctx2.harmonicFunctionDescription,
+        "| Shape 2:",
+        shape2
+      );
 
-    console.groupEnd();
+      console.groupEnd();
+    }, 1000);
   };
 
   return (
-    <StyledRandomBtn onClick={handleRandomize}>
+    <StyledRandomBtn onClick={handleRandomize} style={{ height: "200px" }}>
       Losuj Klucz i Contexty
     </StyledRandomBtn>
   );
