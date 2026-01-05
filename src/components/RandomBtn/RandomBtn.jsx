@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { getNotesFromNote } from "../../utils";
 import useFretboardLogic from "../Fretboard/hooks/useFretboardLogic";
 import { useRef, useEffect } from "react";
+import { HeaderButton } from "../FretboardHeader/parts";
 
 const StyledRandomBtn = styled.button`
   padding: 10px 20px;
@@ -106,7 +107,7 @@ const RandomChallengeButton = () => {
           );
           for (let i = 0; i < extraClicks; i++) {
             // Czekamy na rerender Reacta po każdym kliku
-            await new Promise((r) => setTimeout(r, 150));
+            await new Promise((r) => setTimeout(r, 350));
             logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
           }
         }
@@ -120,7 +121,7 @@ const RandomChallengeButton = () => {
           notes: final.shape?.length,
         });
         console.groupEnd();
-      }, 200);
+      }, 2000);
     } else {
       console.error("❌ BŁĄD: Brak danych do kliknięcia");
       console.groupEnd();
@@ -139,21 +140,17 @@ const RandomChallengeButton = () => {
       musicFunctionContextSelectorData[
         Math.floor(Math.random() * musicFunctionContextSelectorData.length)
       ];
-    const ctx2 = musicFunctionContextSelectorData.find((c) => c.id !== ctx1.id);
+    // const ctx2 = musicFunctionContextSelectorData.find((c) => c.id !== ctx1.id);
 
     // Wykonujemy kroki sekwencyjnie
     await executeChallengeStep(1, ctx1, true);
 
-    setTimeout(async () => {
-      await executeChallengeStep(2, ctx2, false);
-    }, 1200);
+    // setTimeout(async () => {
+    //   await executeChallengeStep(2, ctx2, false);
+    // }, 1200);
   };
 
-  return (
-    <StyledRandomBtn onClick={handleRandomize} style={{ height: "50px" }}>
-      START: LOSUJ WYZWANIE
-    </StyledRandomBtn>
-  );
+  return <HeaderButton onClick={handleRandomize}>Random shape</HeaderButton>;
 };
 
 export default RandomChallengeButton;

@@ -49,8 +49,10 @@ export const DescriptionText = ({
         chord. <br />
         The function of this chord is called "Dominant".
         <br />
-        <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
-        {fullProfileJSX}.
+        <S.MarkedText>
+          {activeShapeName} {shapeType}
+        </S.MarkedText>{" "}
+        will expose {fullProfileJSX}.
       </>
     ),
     phDominant: (
@@ -61,8 +63,10 @@ export const DescriptionText = ({
         <S.MarkedText>{majorRootName}&nbsp;Major</S.MarkedText> chord. <br />
         The function of this chord is called "Dominant".
         <br />
-        <S.MarkedText>{activeShapeName} Set</S.MarkedText> will expose{" "}
-        {fullProfileJSX}.
+        <S.MarkedText>
+          {activeShapeName} {shapeType}
+        </S.MarkedText>{" "}
+        will expose {fullProfileJSX}.
       </>
     ),
   };

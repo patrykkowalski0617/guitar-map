@@ -478,7 +478,7 @@ const musicFunctionContextSelectorData = [
     majorIntervals: [_1, _M3, _5],
     shapes: [
       {
-        id: "dominant-root_5-shape-Dominant",
+        id: "dominant-root_5-shape-dominant",
         getNotesSetName: (rootNote) => `${rootNote}7`,
         rootSemitone: _5,
         chordShapeId: "dominant",
@@ -490,7 +490,7 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_M7-shape-m7b5",
+        id: "dominant-root_5-shape-m7b5",
         getNotesSetName: (rootNote) => `${rootNote}m7b5`,
         rootSemitone: _M7,
         chordShapeId: "m7b5",
@@ -498,6 +498,19 @@ const musicFunctionContextSelectorData = [
           major: {
             exposedTone: 3,
             usedTones: [[3], [5], [7], [9]],
+          },
+        },
+      },
+      {
+        id: "dominant-root_5-shape-dim7",
+        getNotesSetName: (rootNote) => `${rootNote}dim7`,
+        rootSemitone: _M7,
+        chordShapeId: "dim7",
+        colorProfile: {
+          major: {
+            exposedTone: 3,
+            usedTones: [[3], [5], [7], [9]],
+            alteredTones: [9],
           },
         },
       },
@@ -527,7 +540,7 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_M3-shape-minor_pent",
+        id: "dominant-root_5-shape-minor_pent",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _M3,
         chordShapeId: "minor_pent",
@@ -539,7 +552,7 @@ const musicFunctionContextSelectorData = [
         },
       },
       {
-        id: "dominant-root_5-shape-minor_pent",
+        id: "dominant-root_5-shape-minor_pent-2",
         getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
         rootSemitone: _5,
         chordShapeId: "minor_pent",

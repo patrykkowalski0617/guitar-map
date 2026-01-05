@@ -26,6 +26,7 @@ const FretboardHeader = ({
             {isFrozen ? "UNLOCK SHAPE" : "LOCK SHAPE"}
           </HeaderButton>
         </SettingGroup>
+
         <SettingGroup>
           <RandomChallengeButton
             setLockedShape={setLockedShape}
