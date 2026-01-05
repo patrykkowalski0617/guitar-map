@@ -107,8 +107,10 @@ export const Note = styled.div`
 
   &:hover {
     border: 3px solid
-      ${({ $isActiveShapeRootNote, theme }) =>
-        $isActiveShapeRootNote ? theme.colors.text : theme.colors.border};
+      ${({ $isActiveShapeRootNote, $isInShape, theme }) =>
+        $isInShape || $isActiveShapeRootNote
+          ? theme.colors.text
+          : theme.colors.border};
   }
 
   outline: ${({ theme, $isShapeLocked }) =>
