@@ -11,10 +11,10 @@ export const MainWrapper = styled.div`
 `;
 
 export const DescriptionText = styled.div`
-  opacity: 0.8;
   line-height: 1.5;
   margin: 0 auto 20px;
   text-align: center;
+  color: ${({ theme }) => `${theme.colors.text}99`};
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 85%;
     text-align: left;
@@ -24,7 +24,7 @@ export const DescriptionText = styled.div`
 
 export const MarkedText = styled.span`
   font-weight: bold;
-  filter: brightness(50) contrast(50);
+  color: ${({ theme }) => `${theme.colors.text}`};
 `;
 
 export const IntervalNumber = styled.span`

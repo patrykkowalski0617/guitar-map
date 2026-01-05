@@ -2,71 +2,78 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import alarm1 from "../../../public/alarm1.mp3";
 
-// --- STYLED COMPONENTS ---
-
-const TimerContainer = styled.div`
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  max-width: 300px;
-  position: fixed;
-  z-index: 9;
-  right: 35px;
-  top: 10px;
-  background: #121212dd;
-  color: white;
-`;
+// --- STYLED COMPONENTS (bez zmian) ---
 
 const InputWrapper = styled.div`
-  margin-bottom: 5px;
+  margin-bottom: ${(props) => props.theme.spacing.xs};
 `;
 
 const TimerInput = styled.input`
-  font-size: 2rem;
+  font-size: ${(props) => props.theme.fontSize.lg};
   text-align: center;
   width: 100%;
   border: none;
   background: transparent;
-  color: ${(props) => (props.$isAlarming ? "#ff4444" : "white")};
+  color: ${(props) =>
+    props.$isAlarming ? props.theme.colors.alert : props.theme.colors.text};
   font-family: monospace;
   outline: none;
   cursor: ${(props) => (props.disabled ? "default" : "text")};
+  transform: rotate(90deg) translate(65%, 35px);
+  transition: 0.5s;
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 5px;
 `;
 
-const BaseButton = styled.button`
-  padding: 10px;
-  color: white;
-  border: none;
-  border-radius: 4px;
+const UnifiedButton = styled.button`
+  width: 100%;
+  padding: 8px 2px;
+  color: ${(props) => props.theme.colors.text};
+  background-color: ${({ theme }) => `${theme.colors.contrast}44`};
+  border: 1px solid ${(props) => props.theme.colors.border};
+  border-radius: ${(props) => props.theme.borderRadius.sm};
   cursor: pointer;
   font-weight: bold;
-  transition: opacity 0.2s;
+  font-size: 0.75rem;
+  transition: ${(props) => props.theme.transitions.default};
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.5s;
+  opacity: 0;
   &:hover {
-    opacity: 0.9;
+    background-color: ${({ theme }) => theme.colors.alert};
   }
 `;
 
-const StopButton = styled(BaseButton)`
-  background-color: #ff4444;
-  width: 100%;
-`;
-
-const ActionButton = styled(BaseButton)`
-  background-color: ${(props) =>
-    props.$variant === "pause" ? "#ffcc00" : "#4CAF50"};
-  flex: 1;
-`;
-
-const ResetButton = styled(BaseButton)`
-  background-color: #f44336;
-  flex: 1;
+const TimerContainer = styled.div`
+  padding: ${(props) => props.theme.spacing.sm};
+  text-align: center;
+  border: 1px solid ${(props) => props.theme.colors.border};
+  border-radius: ${(props) => props.theme.borderRadius.md};
+  width: 120px;
+  position: fixed;
+  z-index: 9;
+  right: -75px;
+  top: 50vh;
+  transform: translateY(-50%);
+  background: ${(props) => props.theme.colors.bgLight}dd;
+  color: ${(props) => props.theme.colors.text};
+  box-shadow: ${(props) => props.theme.shadows.panel};
+  transition: 0.5s;
+  &:hover {
+    right: 5px;
+    ${UnifiedButton} {
+      opacity: 1;
+    }
+    ${TimerInput} {
+      transform: rotate(0deg) translate(0, 0);
+      font-size: ${(props) => props.theme.fontSize.md};
+    }
+  }
 `;
 
 // --- LOGIKA KOMPONENTU ---
@@ -86,8 +93,14 @@ const RobustTimer = ({ alarmSrc }) => {
   const [secondsLeft, setSecondsLeft] = useState(45 * 60);
   const [isActive, setIsActive] = useState(false);
   const [isAlarming, setIsAlarming] = useState(false);
-  const [inputValue, setInputValue] = useState("45:00");
+  // Zostawiamy stan tylko dla manualnej edycji
+  const [manualInputValue, setManualInputValue] = useState(null);
   const [nextMode, setNextMode] = useState(15);
+
+  const [counter, setCounter] = useState(() => {
+    const saved = localStorage.getItem("timer_counter");
+    return saved ? parseInt(saved, 10) : 0;
+  });
 
   const workerRef = useRef(null);
   const audioRef = useRef(null);
@@ -95,6 +108,24 @@ const RobustTimer = ({ alarmSrc }) => {
   const inputRef = useRef(null);
   const scrollIntervalRef = useRef(null);
   const originalTitleRef = useRef("");
+
+  // --- OBLICZANIE WARTOŚCI WYŚWIETLANEJ (Derived State) ---
+  const formatTime = (totalSeconds) => {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
+  // Jeśli timer działa, bierzemy czas z odliczania. Jeśli nie, bierzemy to co wpisał użytkownik.
+  const displayValue = isActive
+    ? formatTime(secondsLeft)
+    : manualInputValue ?? formatTime(secondsLeft);
+
+  useEffect(() => {
+    localStorage.setItem("timer_counter", counter);
+  }, [counter]);
 
   useEffect(() => {
     if ("Notification" in window && Notification.permission === "default") {
@@ -120,26 +151,13 @@ const RobustTimer = ({ alarmSrc }) => {
     }, 150);
   }, [stopTitleScroll]);
 
-  // 1. Aktualizacja tytułu karty (browser tab title)
   useEffect(() => {
     if (isActive && !isAlarming) {
-      const mins = Math.floor(secondsLeft / 60)
-        .toString()
-        .padStart(2, "0");
-      const secs = (secondsLeft % 60).toString().padStart(2, "0");
-      document.title = `${mins}:${secs} | ${originalTitleRef.current}`;
+      document.title = `${formatTime(secondsLeft)} | ${
+        originalTitleRef.current
+      }`;
     }
   }, [secondsLeft, isActive, isAlarming]);
-
-  // 2. PRZYWRÓCONE: Aktualizacja pola input w trakcie odliczania
-  useEffect(() => {
-    if (!isActive) return;
-    const mins = Math.floor(secondsLeft / 60);
-    const secs = secondsLeft % 60;
-    setInputValue(
-      `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
-    );
-  }, [secondsLeft, isActive]);
 
   const handleInputChange = (e) => {
     let val = e.target.value.replace(/\D/g, "");
@@ -148,10 +166,8 @@ const RobustTimer = ({ alarmSrc }) => {
     if (val.length >= 3) {
       formatted =
         val.slice(0, val.length - 2) + ":" + val.slice(val.length - 2);
-    } else if (val.length > 0) {
-      formatted = val;
     }
-    setInputValue(formatted);
+    setManualInputValue(formatted);
   };
 
   const stopTimer = useCallback(() => {
@@ -170,7 +186,7 @@ const RobustTimer = ({ alarmSrc }) => {
     }
     const timeToSet = nextMode;
     setSecondsLeft(timeToSet * 60);
-    setInputValue(`${timeToSet.toString().padStart(2, "0")}:00`);
+    setManualInputValue(null); // Czyścimy manualny wpis
     setNextMode(timeToSet === 45 ? 15 : 45);
   }, [nextMode, stopTimer, stopTitleScroll]);
 
@@ -178,13 +194,10 @@ const RobustTimer = ({ alarmSrc }) => {
     setIsActive(false);
     if (workerRef.current) workerRef.current.postMessage("STOP");
     setIsAlarming(true);
-
     if (audioRef.current) {
       audioRef.current.play().catch((e) => console.error("Audio error:", e));
     }
-
     startTitleScroll();
-
     if ("Notification" in window && Notification.permission === "granted") {
       new Notification("KONIEC CZASU!", {
         body: `Kliknij STOP, aby przygotować ${nextMode} min.`,
@@ -199,7 +212,8 @@ const RobustTimer = ({ alarmSrc }) => {
     stopTitleScroll();
     if (audioRef.current) audioRef.current.load();
 
-    const parts = inputValue.split(":");
+    // Używamy displayValue do ustalenia czasu startowego
+    const parts = displayValue.split(":");
     let totalSec =
       parts.length === 2
         ? (parseInt(parts[0], 10) || 0) * 60 + (parseInt(parts[1], 10) || 0)
@@ -209,13 +223,10 @@ const RobustTimer = ({ alarmSrc }) => {
     if (inputRef.current) inputRef.current.blur();
 
     setSecondsLeft(totalSec);
+    setManualInputValue(null); // Powrót do synchronizacji z sekundami
     setIsActive(true);
     workerRef.current.postMessage("START");
-  }, [inputValue, stopTitleScroll]);
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !isActive && !isAlarming) startTimer();
-  };
+  }, [displayValue, stopTitleScroll]);
 
   useEffect(() => {
     handleAlarmRef.current = handleAlarm;
@@ -240,36 +251,39 @@ const RobustTimer = ({ alarmSrc }) => {
   return (
     <TimerContainer>
       <audio ref={audioRef} src={alarmSrc || alarm1} preload="auto" loop />
-
       <InputWrapper>
         <TimerInput
           ref={inputRef}
           type="text"
-          value={inputValue}
+          value={displayValue}
           onChange={handleInputChange}
           onFocus={(e) => e.target.select()}
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) =>
+            e.key === "Enter" && !isActive && !isAlarming && startTimer()
+          }
           disabled={isActive || isAlarming}
           $isAlarming={isAlarming}
         />
       </InputWrapper>
-
       <ButtonGroup>
         {isAlarming ? (
-          <StopButton onClick={resetToNextValue}>STOP ({nextMode}m)</StopButton>
+          <UnifiedButton $isAlert onClick={resetToNextValue}>
+            STOP ({nextMode}m)
+          </UnifiedButton>
         ) : (
           <>
-            <ActionButton
-              onClick={isActive ? stopTimer : startTimer}
-              $variant={isActive ? "pause" : "start"}
-            >
+            <UnifiedButton onClick={isActive ? stopTimer : startTimer}>
               {isActive ? "Pause" : "Start"}
-            </ActionButton>
-            <ResetButton onClick={resetToNextValue}>
+            </UnifiedButton>
+            <UnifiedButton onClick={resetToNextValue}>
               Reset ({nextMode}m)
-            </ResetButton>
+            </UnifiedButton>
           </>
         )}
+        <UnifiedButton onClick={() => setCounter((c) => c + 1)}>
+          C: {counter}
+        </UnifiedButton>
+        <UnifiedButton onClick={() => setCounter(0)}>C-Reset</UnifiedButton>
       </ButtonGroup>
     </TimerContainer>
   );

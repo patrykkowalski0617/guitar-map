@@ -59,7 +59,7 @@ const fretboardButtonStyles = css`
   text-transform: uppercase;
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 5px ${theme.colors.text}66` : "none"};
-  border: 2px solid
+  border: 3px solid
     ${({ theme, $isInShape }) =>
       $isInShape ? theme.colors.text : theme.colors.border};
   color: ${({ theme }) => theme.colors.text};
@@ -106,13 +106,13 @@ export const Note = styled.div`
   ${fretboardButtonStyles}
 
   &:hover {
-    border: 2px solid
+    border: 3px solid
       ${({ $isActiveShapeRootNote, theme }) =>
         $isActiveShapeRootNote ? theme.colors.text : theme.colors.border};
   }
 
   outline: ${({ theme, $isShapeLocked }) =>
-    $isShapeLocked ? `2px solid ${theme.colors.markerBg}` : "none"};
+    $isShapeLocked ? `4px solid ${theme.colors.contrast}` : "none"};
   outline-offset: 2px;
 
   background: ${({
@@ -124,7 +124,7 @@ export const Note = styled.div`
   }) => {
     if ($isSaved && $isInShape) return theme.colors.alert;
     if ($isInDevModeShape) return theme.colors.alert;
-    if ($isActiveShapeRootNote) return theme.colors.bgLight;
+    if ($isActiveShapeRootNote) return `${theme.colors.markerBg}30`;
     return theme.colors.bgLight;
   }};
 

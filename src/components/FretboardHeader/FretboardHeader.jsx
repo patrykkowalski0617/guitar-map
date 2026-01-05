@@ -1,6 +1,6 @@
 import { useStore } from "../../store/useStore";
-import { Button, SubSectionContainer } from "../../parts";
-import { SettingGroup, SettingsContainer } from "./parts";
+import { SubSectionContainer } from "../../parts";
+import { HeaderButton, SettingGroup, SettingsContainer } from "./parts";
 import RandomChallengeButton from "../RandomBtn/RandomBtn";
 
 const FretboardHeader = ({
@@ -18,17 +18,18 @@ const FretboardHeader = ({
     <SubSectionContainer>
       <SettingsContainer>
         <SettingGroup>
-          <Button
+          <HeaderButton
             $active={isFrozen}
             onClick={toggleLockShape}
             disabled={!isFrozen && shape.length === 0}
           >
-            {isFrozen ? "UNLOCK SHAPE" : "LOCK SHAPE"}
-          </Button>
+            {isFrozen ? "Unlock Shape" : "Lock Shape"}
+          </HeaderButton>
         </SettingGroup>
 
         <SettingGroup>
           <RandomChallengeButton
+            active
             setLockedShape={setLockedShape}
             setLockedCAGEDLetter={setLockedCAGEDLetter}
             handleNoteClick={handleNoteClick}

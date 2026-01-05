@@ -6,11 +6,42 @@ import {
 } from "../../data";
 import { getNotesFromNote } from "../../utils";
 import useFretboardLogic from "../Fretboard/hooks/useFretboardLogic";
-import { useRef, useEffect } from "react";
-import { Button } from "../../parts";
+import { useRef, useEffect, useState } from "react";
+import styled, { keyframes, css } from "styled-components";
+import { HeaderButton } from "../FretboardHeader/parts";
+
+const pulse = (color) => keyframes`
+  0% {
+    border-color: ${color}99;
+    box-shadow: 0 0 0px ${color}00;
+  }
+  50% {
+    border-color: ${color};
+    box-shadow: 0 0 10px 2px ${color}; 
+  }
+  100% {
+    border-color: ${color}99;
+    box-shadow: 0 0 0px ${color}00;
+  }
+`;
+
+const StyledButton = styled(HeaderButton)`
+  animation: ${({ theme }) => pulse(theme.colors.alert)} 1s forwards ease-in-out;
+  ${({ $isRandomizing, theme }) =>
+    $isRandomizing &&
+    css`
+      pointer-events: none;
+      color: ${theme.colors.text} !important;
+      animation: ${pulse(theme.colors.alert)} 1s infinite ease-in-out !important;
+      &:hover {
+        box-shadow: none !important;
+      }
+    `}
+`;
 
 const RandomChallengeButton = () => {
   const store = useStore();
+  const [isProcessing, setIsProcessing] = useState(false);
   const logicRef = useRef(null);
 
   const fretboardLogic = useFretboardLogic({
@@ -54,62 +85,72 @@ const RandomChallengeButton = () => {
   };
 
   const handleRandomize = async () => {
+    setIsProcessing(true);
     const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-    // 1. Losowanie Key
-    const randomKey =
-      UNIFIED_MUSIC_KEYS[Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)];
-    store.setTuneKey(randomKey);
+    try {
+      const randomKey =
+        UNIFIED_MUSIC_KEYS[
+          Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)
+        ];
+      store.setTuneKey(randomKey);
 
-    await delay(800); // Czekamy po losowaniu tonacji
+      await delay(800);
 
-    // 2. Losowanie Context
-    const ctx =
-      musicFunctionContextSelectorData[
-        Math.floor(Math.random() * musicFunctionContextSelectorData.length)
-      ];
-    store.setActiveMusicContextById(ctx.id);
+      const ctx =
+        musicFunctionContextSelectorData[
+          Math.floor(Math.random() * musicFunctionContextSelectorData.length)
+        ];
+      store.setActiveMusicContextById(ctx.id);
 
-    await delay(800); // Czekamy po wyborze kontekstu
+      await delay(800);
 
-    // 3. Losowanie Shape
-    const shapes = ctx.shapes;
-    const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-    store.setActiveShape(randomShape);
+      const shapes = ctx.shapes;
+      const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+      store.setActiveShape(randomShape);
 
-    await delay(800); // Czekamy, aż Store przeliczy warianty i UI się odświeży
+      await delay(800);
 
-    // 4. Przygotowanie do wariantów
-    const freshState = useStore.getState();
-    const freshVariants = freshState.getActiveChordVariants();
-    const roots = getAvailableRootIds();
+      const freshState = useStore.getState();
+      const freshVariants = freshState.getActiveChordVariants();
+      const roots = getAvailableRootIds();
 
-    if (roots.length > 0 && freshVariants.length > 0) {
-      const target = roots[Math.floor(Math.random() * roots.length)];
-      const stringId = target.CAGED_noteId.split("_")[0];
-      const variantsOnString = freshVariants.filter(
-        (v) => v.targetString === stringId
-      );
+      if (roots.length > 0 && freshVariants.length > 0) {
+        const target = roots[Math.floor(Math.random() * roots.length)];
+        const stringId = target.CAGED_noteId.split("_")[0];
+        const variantsOnString = freshVariants.filter(
+          (v) => v.targetString === stringId
+        );
 
-      // Pierwszy klik (bazowy wariant)
-      logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
+        logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
 
-      // 5. Losowanie Wariantów (z Twoim efektem hamowania)
-      if (variantsOnString.length > 1) {
-        const extraClicks = Math.floor(Math.random() * variantsOnString.length);
-        if (extraClicks > 0) {
-          let baseDelay = 400;
-          for (let i = 0; i < extraClicks; i++) {
-            const incrementalDelay = baseDelay + i * 400;
-            await delay(incrementalDelay);
-            logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
+        if (variantsOnString.length > 1) {
+          const extraClicks = Math.floor(
+            Math.random() * variantsOnString.length
+          );
+          if (extraClicks > 0) {
+            let baseDelay = 400;
+            for (let i = 0; i < extraClicks; i++) {
+              const incrementalDelay = baseDelay + i * 400;
+              await delay(incrementalDelay);
+              logicRef.current.handleNoteClick(
+                target.note,
+                target.CAGED_noteId
+              );
+            }
           }
         }
       }
+    } finally {
+      setIsProcessing(false);
     }
   };
 
-  return <Button onClick={handleRandomize}>Random shape</Button>;
+  return (
+    <StyledButton $isRandomizing={isProcessing} onClick={handleRandomize}>
+      {isProcessing ? "Randomizing..." : "Get random shape"}
+    </StyledButton>
+  );
 };
 
 export default RandomChallengeButton;

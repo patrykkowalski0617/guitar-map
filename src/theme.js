@@ -3,7 +3,7 @@ export const theme = {
     bg: "#000",
     bgLight: "#141414",
     text: "#eeeeee",
-    contrast: "#1f3ce0",
+    contrast: "#006aff",
     alert: "#b74277ff",
     markerBg: "#079dca",
     border: "#283f46",
