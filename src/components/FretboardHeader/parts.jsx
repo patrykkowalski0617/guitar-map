@@ -6,7 +6,7 @@ export const SettingsContainer = styled.div`
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing.lg};
+  gap: ${({ theme }) => theme.spacing.md};
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 
