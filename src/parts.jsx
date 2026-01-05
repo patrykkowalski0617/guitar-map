@@ -56,7 +56,7 @@ export const SubsectionTitle = styled.h3`
   line-height: 1;
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => `${theme.colors.text}`};
+  color: ${({ theme }) => `${theme.colors.text}99`};
   text-align: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     text-align: left;
@@ -70,22 +70,6 @@ export const Label = styled.div`
   margin-top: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.8;
-`;
-
-export const RowWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    gap: ${({ theme }) => theme.spacing.xl};
-    flex-direction: row;
-    align-items: stretch;
-    & > ${SectionContainer} {
-      flex: 1 1 0;
-    }
-  }
 `;
 
 export const Button = styled.button`

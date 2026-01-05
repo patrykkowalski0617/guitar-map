@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
+import { SubsectionTitle } from "../../parts";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -12,16 +13,12 @@ const MainWrapper = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled(SubsectionTitle)`
   text-transform: uppercase;
   background-color: ${({ theme }) => theme.colors.bg};
   line-height: 1;
-  letter-spacing: 1px;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => `${theme.colors.text}`};
-  white-space: nowrap;
-  height: 100%;
   margin: 0 0 ${({ theme }) => theme.spacing.sm};
+  white-space: nowrap;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-left: ${({ theme }) => `${theme.spacing.lg}`};
     margin: 0;
