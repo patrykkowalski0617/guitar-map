@@ -32,7 +32,6 @@ const Fretboard = () => {
   const [lockedCAGEDLetter, setLockedCAGEDLetter] = useState(null);
   const [mouseOverLetter, setMouseOverLetter] = useState(null);
   const [lockedShape, setLockedShape] = useState([]);
-  console.log(shape, lockedShape);
 
   const CAGED_shift = NOTES_FROM_C.indexOf(tuneKey.majorNote);
   const activeChordVariants = getActiveChordVariants();
