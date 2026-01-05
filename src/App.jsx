@@ -3,14 +3,12 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import {
   AppWrapper,
-  RowWrapper,
   SectionContainer,
   SectionTitle,
   SubSectionContainer,
 } from "./parts";
 import GlobalStyle from "./GlobalStyle";
 import { useStore } from "./store/useStore";
-import ShapeTypeDisplay from "./components/Fretboard/ShapeTypeDisplay/ShapeTypeDisplay";
 import Configurator from "./components/Configurator/Configurator";
 import RobustTimer from "./components/Timer/Timer";
 
@@ -22,17 +20,12 @@ function App() {
       <GlobalStyle />
       {isProgressMode && <RobustTimer />}
       <AppWrapper>
-        <RowWrapper>
-          <Configurator />
-        </RowWrapper>
-
         <SectionContainer>
           <SectionTitle>
             <h2>Shape Library</h2>
           </SectionTitle>
-          <SubSectionContainer>
-            <ShapeTypeDisplay />
-          </SubSectionContainer>
+          <Configurator />
+
           <SubSectionContainer>
             <Fretboard />
           </SubSectionContainer>

@@ -22,8 +22,3 @@ export const StyledSubsectionTitle = styled(SubsectionTitle)`
   padding-left: 0;
   padding-right: 0;
 `;
-
-export const HeaderButton = styled(Button)`
-  width: 150px;
-  white-space: nowrap;
-`;

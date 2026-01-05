@@ -24,7 +24,7 @@ export const Label = styled.div`
   opacity: ${({ $isActive, $opacityOff }) =>
     $opacityOff || $isActive ? 1 : 0.5};
   ${({ $isLegendLabel, theme }) =>
-    $isLegendLabel ? `color: ${theme.colors.blue}; font-weight: bold` : ""}
+    $isLegendLabel ? `color: ${theme.colors.text}; font-weight: bold` : ""}
   color: ${({ theme, $color, $progressRatio }) => {
     const baseColor = $color || theme.colors.text;
     const targetColor = "red";

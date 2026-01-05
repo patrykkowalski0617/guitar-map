@@ -7,7 +7,7 @@ import {
 import { getNotesFromNote } from "../../utils";
 import useFretboardLogic from "../Fretboard/hooks/useFretboardLogic";
 import { useRef, useEffect } from "react";
-import { HeaderButton } from "../FretboardHeader/parts";
+import { Button } from "../../parts";
 
 const RandomChallengeButton = () => {
   const store = useStore();
@@ -53,14 +53,33 @@ const RandomChallengeButton = () => {
     return availableIds;
   };
 
-  const executeChallengeStep = async (contextData) => {
-    store.setActiveMusicContextById(contextData.id);
-    const shapes = contextData.shapes;
+  const handleRandomize = async () => {
+    const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    // 1. Losowanie Key
+    const randomKey =
+      UNIFIED_MUSIC_KEYS[Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)];
+    store.setTuneKey(randomKey);
+
+    await delay(800); // Czekamy po losowaniu tonacji
+
+    // 2. Losowanie Context
+    const ctx =
+      musicFunctionContextSelectorData[
+        Math.floor(Math.random() * musicFunctionContextSelectorData.length)
+      ];
+    store.setActiveMusicContextById(ctx.id);
+
+    await delay(800); // Czekamy po wyborze kontekstu
+
+    // 3. Losowanie Shape
+    const shapes = ctx.shapes;
     const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
     store.setActiveShape(randomShape);
 
-    await new Promise((r) => setTimeout(r, 150));
+    await delay(800); // Czekamy, aż Store przeliczy warianty i UI się odświeży
 
+    // 4. Przygotowanie do wariantów
     const freshState = useStore.getState();
     const freshVariants = freshState.getActiveChordVariants();
     const roots = getAvailableRootIds();
@@ -72,13 +91,17 @@ const RandomChallengeButton = () => {
         (v) => v.targetString === stringId
       );
 
+      // Pierwszy klik (bazowy wariant)
       logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
 
+      // 5. Losowanie Wariantów (z Twoim efektem hamowania)
       if (variantsOnString.length > 1) {
         const extraClicks = Math.floor(Math.random() * variantsOnString.length);
         if (extraClicks > 0) {
+          let baseDelay = 400;
           for (let i = 0; i < extraClicks; i++) {
-            await new Promise((r) => setTimeout(r, 350));
+            const incrementalDelay = baseDelay + i * 400;
+            await delay(incrementalDelay);
             logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
           }
         }
@@ -86,20 +109,7 @@ const RandomChallengeButton = () => {
     }
   };
 
-  const handleRandomize = async () => {
-    const randomKey =
-      UNIFIED_MUSIC_KEYS[Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)];
-    store.setTuneKey(randomKey);
-
-    const ctx1 =
-      musicFunctionContextSelectorData[
-        Math.floor(Math.random() * musicFunctionContextSelectorData.length)
-      ];
-
-    await executeChallengeStep(ctx1);
-  };
-
-  return <HeaderButton onClick={handleRandomize}>Random shape</HeaderButton>;
+  return <Button onClick={handleRandomize}>Random shape</Button>;
 };
 
 export default RandomChallengeButton;

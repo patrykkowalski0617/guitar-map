@@ -1,17 +1,12 @@
 export const theme = {
   colors: {
-    bg: "#121212",
-    bgLight: "#2b2b2bff",
-    text: "#e2e2e2",
-    yellow: "#ffb703",
-    blue: "#4a90e2",
-    violet: "#9d4edd",
-    red: "#e63946",
-    green: "#2a9d8f",
-    border: "#ffffff1a",
-  },
-  sizes: {
-    fretboardHeight: "35px",
+    bg: "#000",
+    bgLight: "#141414",
+    text: "#eeeeee",
+    contrast: "#1f3ce0",
+    alert: "#b74277ff",
+    markerBg: "#079dca",
+    border: "#283f46",
   },
   fontSize: {
     sm: "0.9rem",

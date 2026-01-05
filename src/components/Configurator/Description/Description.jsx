@@ -92,7 +92,7 @@ const Description = () => {
   ));
 
   return (
-    <>
+    <S.MainWrapper>
       <SubsectionTitle>Description</SubsectionTitle>
       <DescriptionText
         majorRootName={profiles[0]?.root || ""}
@@ -101,7 +101,7 @@ const Description = () => {
         fullProfileJSX={combinedJSX}
         shapeType={shapeType}
       />
-    </>
+    </S.MainWrapper>
   );
 };
 

@@ -18,7 +18,7 @@ const Title = styled.h2`
   line-height: 1;
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => `${theme.colors.blue}`};
+  color: ${({ theme }) => `${theme.colors.text}`};
   white-space: nowrap;
   height: 100%;
   margin: 0 0 ${({ theme }) => theme.spacing.sm};

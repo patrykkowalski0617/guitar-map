@@ -12,7 +12,7 @@ export const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   padding: ${({ theme }) => `50px ${theme.spacing.md} ${theme.spacing.sm}`};
-  border: 1px solid ${({ theme }) => theme.colors.blue}44;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   position: relative;
   max-width: 1400px;
@@ -34,7 +34,7 @@ export const SectionTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${({ theme }) => theme.colors.blue}44;
+  border: 1px solid ${({ theme }) => theme.colors.border};
   background-color: ${({ theme }) => theme.colors.bg};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
@@ -43,7 +43,7 @@ export const SectionTitle = styled.div`
     margin: 0;
     letter-spacing: 2px;
     font-size: 22px;
-    color: ${({ theme }) => `${theme.colors.blue}dd`};
+    color: ${({ theme }) => `${theme.colors.text}dd`};
     white-space: nowrap;
   }
 `;
@@ -56,7 +56,7 @@ export const SubsectionTitle = styled.h3`
   line-height: 1;
   letter-spacing: 1px;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: ${({ theme }) => `${theme.colors.blue}`};
+  color: ${({ theme }) => `${theme.colors.text}`};
   text-align: center;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     text-align: left;
@@ -91,27 +91,24 @@ export const RowWrapper = styled.div`
 export const Button = styled.button`
   white-space: nowrap;
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 37px;
-  line-height: 1%;
+  line-height: 1;
+  text-align: center;
   border: 1px solid
     ${({ theme, $active }) =>
-      $active ? `${theme.colors.yellow}66` : theme.colors.border};
+      $active ? `${theme.colors.border}` : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme, $active }) =>
-    $active ? theme.colors.yellow : theme.colors.text};
+    $active ? theme.colors.text : `${theme.colors.text}99`};
   font-size: ${({ theme }) => theme.fontSize.sm};
   transition: ${({ theme }) => theme.transitions.default};
   box-shadow: ${({ theme, $active }) =>
-    $active ? `0 0 15px ${theme.colors.yellow}22` : "none"};
+    $active ? `0 0 10px ${theme.colors.border}` : "none"};
   &:hover {
     border-color: ${({ theme, $active }) =>
-      $active ? theme.colors.yellow : `${theme.colors.text}33`};
-    box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.text}22`};
+      $active ? theme.colors.text : `${theme.colors.border}`};
+    box-shadow: ${({ theme }) => `0 0 10px ${theme.colors.border}`};
   }
   opacity: ${({ disabled }) => (disabled ? 0.3 : 1)};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
