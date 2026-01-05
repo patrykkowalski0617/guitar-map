@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const AppWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 50px`};
+  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 20px`};
 `;
 
 export const SectionContainer = styled.section`
-  margin: 60px auto 0;
+  margin: 30px auto 0;
   width: 100%;
   display: flex;
   flex-direction: column;

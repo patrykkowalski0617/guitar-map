@@ -5,6 +5,8 @@ import CopyRelativeDevModeShapeButton from "./CopyRelativeDevModeShapeButton";
 import CopyVariantIdButton from "./CopyVariantIdButton";
 import { Container, DevToolsTitle } from "./parts";
 import CopyFullSetDevModeShapeButton from "./CopyFullSetDevModeShapeButton";
+import SecureDataHandler from "./SecureDataHandler";
+import EncryptorTool from "./EncryptorTool";
 
 const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
   const isDevMode = useStore((state) => state.isDevMode);
@@ -40,6 +42,8 @@ const DevTools = ({ devModeShape, handleClearDevModeShape }) => {
           handleClearDevModeShape={handleClearDevModeShape}
         />
         <CopyVariantIdButton />
+        <SecureDataHandler />
+        {EncryptorTool && <EncryptorTool />}
       </Container>
     </>
   );

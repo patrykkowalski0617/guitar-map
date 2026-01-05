@@ -40,12 +40,6 @@ export const FretCell = styled.div`
   }
 `;
 
-export const FretCount = styled.div`
-  ${Fret}
-  user-select: none;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 export const FretboardLabelsWrapper = styled.div`
   margin-top: ${({ theme }) => theme.spacing.sm};
 `;
@@ -61,25 +55,28 @@ const fretboardButtonStyles = css`
     $isInShape ? `0 0 5px ${theme.colors.text}66` : "none"};
   border: 3px solid
     ${({ theme, $isInShape }) =>
-      $isInShape ? theme.colors.text : theme.colors.border};
+      $isInShape ? `${theme.colors.text}66` : theme.colors.border};
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
-  line-height: 0;
   height: 27px;
 `;
 
+export const FretCount = styled.div`
+  ${Fret}
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  user-select: none;
+  height: 27px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
 export const CAGEDLetter = styled.div`
-  width: 28px;
   ${fretboardButtonStyles}
+  width: 28px;
   border: 1px solid
     ${({ $isCAGED_hoverShapeLocked, theme }) =>
-    $isCAGED_hoverShapeLocked ? theme.colors.text : theme.colors.bg};
+      $isCAGED_hoverShapeLocked ? theme.colors.text : theme.colors.bg};
   background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
     $isCAGED_hoverShapeLocked ? theme.colors.bg : theme.colors.bg};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
 `;
 
 export const Note = styled.div`
@@ -102,14 +99,13 @@ export const Note = styled.div`
 
   cursor: ${({ $isActiveShapeRootNote }) =>
     $isActiveShapeRootNote ? "pointer" : "default"};
-
   ${fretboardButtonStyles}
 
   &:hover {
     border: 3px solid
       ${({ $isActiveShapeRootNote, $isInShape, theme }) =>
         $isInShape || $isActiveShapeRootNote
-          ? theme.colors.text
+          ? `${theme.colors.text}66`
           : theme.colors.border};
   }
 

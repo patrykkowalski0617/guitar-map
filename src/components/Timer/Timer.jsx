@@ -19,7 +19,7 @@ const TimerInput = styled.input`
   font-family: monospace;
   outline: none;
   cursor: ${(props) => (props.disabled ? "default" : "text")};
-  transform: rotate(90deg) translate(65%, 35px);
+  transform: rotate(90deg) translate(73%, 35px);
   transition: 0.5s;
 `;
 

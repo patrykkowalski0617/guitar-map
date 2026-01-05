@@ -15,8 +15,10 @@ export const DescriptionText = styled.div`
   margin: 0 auto 20px;
   text-align: center;
   color: ${({ theme }) => `${theme.colors.text}99`};
+  min-height: 120px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 85%;
+    min-height: 135px;
     text-align: left;
     margin: 0 0 0 ${({ theme }) => theme.spacing.lg};
   }
