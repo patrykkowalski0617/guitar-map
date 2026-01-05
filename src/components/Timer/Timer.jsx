@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import alarm1 from "../../../public/alarm1.mp3";
-
-// --- STYLED COMPONENTS (bez zmian) ---
+import Motiv from "./Motiv";
+import { useVaultStore } from "../devTooles/useVaultStore";
 
 const InputWrapper = styled.div`
   margin-bottom: ${(props) => props.theme.spacing.xs};
@@ -76,8 +76,6 @@ const TimerContainer = styled.div`
   }
 `;
 
-// --- LOGIKA KOMPONENTU ---
-
 const workerCode = `
   let timer = null;
   self.onmessage = (e) => {
@@ -93,7 +91,7 @@ const RobustTimer = ({ alarmSrc }) => {
   const [secondsLeft, setSecondsLeft] = useState(45 * 60);
   const [isActive, setIsActive] = useState(false);
   const [isAlarming, setIsAlarming] = useState(false);
-  // Zostawiamy stan tylko dla manualnej edycji
+
   const [manualInputValue, setManualInputValue] = useState(null);
   const [nextMode, setNextMode] = useState(15);
 
@@ -108,8 +106,8 @@ const RobustTimer = ({ alarmSrc }) => {
   const inputRef = useRef(null);
   const scrollIntervalRef = useRef(null);
   const originalTitleRef = useRef("");
-
-  // --- OBLICZANIE WARTOŚCI WYŚWIETLANEJ (Derived State) ---
+  const { getRandomSentence } = useVaultStore();
+  const [text, setText] = useState("");
   const formatTime = (totalSeconds) => {
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
@@ -118,7 +116,6 @@ const RobustTimer = ({ alarmSrc }) => {
       .padStart(2, "0")}`;
   };
 
-  // Jeśli timer działa, bierzemy czas z odliczania. Jeśli nie, bierzemy to co wpisał użytkownik.
   const displayValue = isActive
     ? formatTime(secondsLeft)
     : manualInputValue ?? formatTime(secondsLeft);
@@ -186,7 +183,7 @@ const RobustTimer = ({ alarmSrc }) => {
     }
     const timeToSet = nextMode;
     setSecondsLeft(timeToSet * 60);
-    setManualInputValue(null); // Czyścimy manualny wpis
+    setManualInputValue(null);
     setNextMode(timeToSet === 45 ? 15 : 45);
   }, [nextMode, stopTimer, stopTitleScroll]);
 
@@ -212,7 +209,6 @@ const RobustTimer = ({ alarmSrc }) => {
     stopTitleScroll();
     if (audioRef.current) audioRef.current.load();
 
-    // Używamy displayValue do ustalenia czasu startowego
     const parts = displayValue.split(":");
     let totalSec =
       parts.length === 2
@@ -223,7 +219,7 @@ const RobustTimer = ({ alarmSrc }) => {
     if (inputRef.current) inputRef.current.blur();
 
     setSecondsLeft(totalSec);
-    setManualInputValue(null); // Powrót do synchronizacji z sekundami
+    setManualInputValue(null);
     setIsActive(true);
     workerRef.current.postMessage("START");
   }, [displayValue, stopTitleScroll]);
@@ -249,43 +245,52 @@ const RobustTimer = ({ alarmSrc }) => {
   }, []);
 
   return (
-    <TimerContainer>
-      <audio ref={audioRef} src={alarmSrc || alarm1} preload="auto" loop />
-      <InputWrapper>
-        <TimerInput
-          ref={inputRef}
-          type="text"
-          value={displayValue}
-          onChange={handleInputChange}
-          onFocus={(e) => e.target.select()}
-          onKeyDown={(e) =>
-            e.key === "Enter" && !isActive && !isAlarming && startTimer()
-          }
-          disabled={isActive || isAlarming}
-          $isAlarming={isAlarming}
-        />
-      </InputWrapper>
-      <ButtonGroup>
-        {isAlarming ? (
-          <UnifiedButton $isAlert onClick={resetToNextValue}>
-            STOP ({nextMode}m)
+    <>
+      <Motiv text={text} />
+      <TimerContainer>
+        <audio ref={audioRef} src={alarmSrc || alarm1} preload="auto" loop />
+        <InputWrapper>
+          <TimerInput
+            ref={inputRef}
+            type="text"
+            value={displayValue}
+            onChange={handleInputChange}
+            onFocus={(e) => e.target.select()}
+            onKeyDown={(e) =>
+              e.key === "Enter" && !isActive && !isAlarming && startTimer()
+            }
+            disabled={isActive || isAlarming}
+            $isAlarming={isAlarming}
+          />
+        </InputWrapper>
+        <ButtonGroup>
+          {isAlarming ? (
+            <UnifiedButton $isAlert onClick={resetToNextValue}>
+              STOP ({nextMode}m)
+            </UnifiedButton>
+          ) : (
+            <>
+              <UnifiedButton onClick={isActive ? stopTimer : startTimer}>
+                {isActive ? "Pause" : "Start"}
+              </UnifiedButton>
+              <UnifiedButton onClick={resetToNextValue}>
+                Reset ({nextMode}m)
+              </UnifiedButton>
+            </>
+          )}
+          <UnifiedButton
+            onClick={() => {
+              setText(getRandomSentence());
+
+              setCounter((c) => c + 1);
+            }}
+          >
+            C: {counter}
           </UnifiedButton>
-        ) : (
-          <>
-            <UnifiedButton onClick={isActive ? stopTimer : startTimer}>
-              {isActive ? "Pause" : "Start"}
-            </UnifiedButton>
-            <UnifiedButton onClick={resetToNextValue}>
-              Reset ({nextMode}m)
-            </UnifiedButton>
-          </>
-        )}
-        <UnifiedButton onClick={() => setCounter((c) => c + 1)}>
-          C: {counter}
-        </UnifiedButton>
-        <UnifiedButton onClick={() => setCounter(0)}>C-Reset</UnifiedButton>
-      </ButtonGroup>
-    </TimerContainer>
+          <UnifiedButton onClick={() => setCounter(0)}>C-Reset</UnifiedButton>
+        </ButtonGroup>
+      </TimerContainer>
+    </>
   );
 };
 

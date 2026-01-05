@@ -16,11 +16,14 @@ export const DescriptionText = styled.div`
   text-align: center;
   color: ${({ theme }) => `${theme.colors.text}99`};
   min-height: 120px;
+  min-width: unset;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: 85%;
+    min-width: 500px;
     min-height: 135px;
     text-align: left;
     margin: 0 0 0 ${({ theme }) => theme.spacing.lg};
+    padding-right: ${({ theme }) => theme.spacing.lg};
   }
 `;
 

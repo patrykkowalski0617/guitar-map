@@ -58,7 +58,7 @@ const fretboardButtonStyles = css`
       $isInShape ? `${theme.colors.text}66` : theme.colors.border};
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
-  height: 27px;
+  height: 29px;
 `;
 
 export const FretCount = styled.div`

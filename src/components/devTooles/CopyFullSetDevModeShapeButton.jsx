@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useStore } from "../../store/useStore";
-import { StyledButton } from "./parts";
 import { absoluteToRelative } from "./absoluteToRelative";
+import { Button } from "../../parts";
 
 const CopyFullSetDevModeShapeButton = ({
   devModeShape,
@@ -50,9 +50,9 @@ const CopyFullSetDevModeShapeButton = ({
   };
 
   return (
-    <StyledButton onClick={handleCopy} $variant="dev">
+    <Button onClick={handleCopy} $variant="dev">
       {copied ? "Full Set Copied!" : "Copy Full Set (All Strings)"}
-    </StyledButton>
+    </Button>
   );
 };
 

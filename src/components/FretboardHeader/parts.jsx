@@ -24,5 +24,5 @@ export const StyledSubsectionTitle = styled(SubsectionTitle)`
 `;
 
 export const HeaderButton = styled(Button)`
-  color: ${({ theme }) => `${theme.colors.text}ee`};
+  color: ${({ theme }) => `${theme.colors.text}cc`};
 `;

@@ -1,6 +1,6 @@
 import { useStore } from "../../store/useStore";
 import { useState } from "react";
-import { StyledButton } from "./parts";
+import { Button } from "../../parts";
 
 const CopyVariantIdButton = () => {
   const [copied, setCopied] = useState(false);
@@ -19,9 +19,9 @@ const CopyVariantIdButton = () => {
   };
 
   return (
-    <StyledButton onClick={handleCopy} disabled={!variantId}>
+    <Button onClick={handleCopy}>
       {copied ? "Copied!" : `Copy ID: ${variantId || "None"}`}
-    </StyledButton>
+    </Button>
   );
 };
 

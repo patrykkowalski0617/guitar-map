@@ -25,5 +25,6 @@ dist-ssr
 
 
 todo.txt
-src\data\userProgress.js
-src\components\devTooles\EncryptorTool.jsx
+EncryptorTool.jsx
+SecureVault.jsx
+useVaultStore.js

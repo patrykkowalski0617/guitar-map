@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledButton } from "./parts";
+import { Button } from "../../parts";
 
 const CopyShapeButton = ({
   devModeShape,
@@ -28,11 +28,7 @@ const CopyShapeButton = ({
     }
   };
 
-  return (
-    <StyledButton onClick={handleCopy}>
-      {copied ? "Copied!" : label}
-    </StyledButton>
-  );
+  return <Button onClick={handleCopy}>{copied ? "Copied!" : label}</Button>;
 };
 
 export default CopyShapeButton;

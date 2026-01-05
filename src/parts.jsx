@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const AppWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
-  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 20px`};
+  padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 10px`};
 `;
 
 export const SectionContainer = styled.section`
-  margin: 30px auto 0;
+  margin: 25px auto 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: ${({ theme }) => `50px ${theme.spacing.md} ${theme.spacing.sm}`};
+  padding: ${({ theme }) => `50px ${theme.spacing.md} 0`};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   position: relative;
