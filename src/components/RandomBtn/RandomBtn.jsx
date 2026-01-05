@@ -4,23 +4,13 @@ import {
   UNIFIED_MUSIC_KEYS,
   musicFunctionContextSelectorData,
 } from "../../data";
-import styled from "styled-components";
 import { getNotesFromNote } from "../../utils";
 import useFretboardLogic from "../Fretboard/hooks/useFretboardLogic";
 import { useRef, useEffect } from "react";
 import { HeaderButton } from "../FretboardHeader/parts";
 
-const StyledRandomBtn = styled.button`
-  padding: 10px 20px;
-  color: black;
-  cursor: pointer;
-`;
-
 const RandomChallengeButton = () => {
   const store = useStore();
-
-  // Używamy referencji, aby bot zawsze miał dostęp do najświeższej logiki
-  // nawet wewnątrz starych cykli setTimeout/async
   const logicRef = useRef(null);
 
   const fretboardLogic = useFretboardLogic({
@@ -33,7 +23,6 @@ const RandomChallengeButton = () => {
     lockedCAGEDLetter: store.lockedCAGEDLetter,
   });
 
-  // Aktualizujemy referencję przy każdym renderze
   useEffect(() => {
     logicRef.current = fretboardLogic;
   });
@@ -64,20 +53,12 @@ const RandomChallengeButton = () => {
     return availableIds;
   };
 
-  const executeChallengeStep = async (
-    stepNumber,
-    contextData,
-    isFirstStep = false
-  ) => {
-    console.group(`🚀 KROK ${stepNumber}`);
-
-    // 1. Ustawienie kontekstu
+  const executeChallengeStep = async (contextData) => {
     store.setActiveMusicContextById(contextData.id);
     const shapes = contextData.shapes;
     const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
     store.setActiveShape(randomShape);
 
-    // Czekamy na przeliczenie wariantów w Store
     await new Promise((r) => setTimeout(r, 150));
 
     const freshState = useStore.getState();
@@ -91,47 +72,21 @@ const RandomChallengeButton = () => {
         (v) => v.targetString === stringId
       );
 
-      console.log(
-        `🎯 Target: ${target.CAGED_noteId} | Dostępnych wariantów: ${variantsOnString.length}`
-      );
-
-      // PIERWSZY KLIK - używamy referencji, która zawsze jest świeża
       logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
 
-      // JEŚLI KROK 1: Przełączamy warianty
-      if (isFirstStep && variantsOnString.length > 1) {
+      if (variantsOnString.length > 1) {
         const extraClicks = Math.floor(Math.random() * variantsOnString.length);
         if (extraClicks > 0) {
-          console.log(
-            `🎲 Przełączam warianty: dodatkowe ${extraClicks} kliknięcia...`
-          );
           for (let i = 0; i < extraClicks; i++) {
-            // Czekamy na rerender Reacta po każdym kliku
             await new Promise((r) => setTimeout(r, 350));
             logicRef.current.handleNoteClick(target.note, target.CAGED_noteId);
           }
         }
       }
-
-      // Weryfikacja
-      setTimeout(() => {
-        const final = useStore.getState();
-        console.log(`✅ Wynik K${stepNumber}:`, {
-          variant: final.variantState?.variantId,
-          notes: final.shape?.length,
-        });
-        console.groupEnd();
-      }, 2000);
-    } else {
-      console.error("❌ BŁĄD: Brak danych do kliknięcia");
-      console.groupEnd();
     }
   };
 
   const handleRandomize = async () => {
-    console.clear();
-    console.log("💎 START SESJI BOTA");
-
     const randomKey =
       UNIFIED_MUSIC_KEYS[Math.floor(Math.random() * UNIFIED_MUSIC_KEYS.length)];
     store.setTuneKey(randomKey);
@@ -140,14 +95,8 @@ const RandomChallengeButton = () => {
       musicFunctionContextSelectorData[
         Math.floor(Math.random() * musicFunctionContextSelectorData.length)
       ];
-    // const ctx2 = musicFunctionContextSelectorData.find((c) => c.id !== ctx1.id);
 
-    // Wykonujemy kroki sekwencyjnie
-    await executeChallengeStep(1, ctx1, true);
-
-    // setTimeout(async () => {
-    //   await executeChallengeStep(2, ctx2, false);
-    // }, 1200);
+    await executeChallengeStep(ctx1);
   };
 
   return <HeaderButton onClick={handleRandomize}>Random shape</HeaderButton>;
