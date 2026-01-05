@@ -37,6 +37,14 @@ const Fretboard = () => {
   const activeChordVariants = getActiveChordVariants();
   const activeShapeRootNote = getActiveShapeRootNote();
 
+  // --- 🔍 LOG SPRAWDZAJĄCY BOTA ---
+  console.log("📺 [FRETBOARD RENDER]:", {
+    vId: variantState?.variantId || "BRAK",
+    lastNote: variantState?.lastId || "NONE",
+    notes: shape?.length || 0,
+    caged: lockedCAGEDLetter || "NULL",
+  });
+
   const isCurrentShapeSaved = useMemo(() => {
     if (!isProgressMode || !variantState?.variantId) return false;
     return (userProgress[activeChordId] || []).includes(variantState.variantId);
