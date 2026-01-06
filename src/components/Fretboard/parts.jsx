@@ -97,7 +97,6 @@ export const Note = styled.div`
   ${fretboardButtonStyles}
   width: 33px;
   position: relative;
-  border: 1px solid ${({ theme }) => theme.colors.border};
   outline-offset: 2px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -114,8 +113,9 @@ export const Note = styled.div`
     $isInCAGED_hoverShape,
   }) => {
     // --- KROK 1: USTALAMY OPACITY (ALFA) ---
-    // Zgodnie z tabelą: stany aktywne = 1, hover = 0.4, reszta = 0.2 (poprawione z 0.12 na 0.2 wg Twojej bazy)
-    let currentAlpha = 0.2;
+    // Baza to 0.12 (zgodnie z tabelką CSV), stany aktywne 1, hover 0.4
+    let currentAlpha = 0.12;
+
     if (
       $isInDevModeShape ||
       $isInShape ||
@@ -124,13 +124,13 @@ export const Note = styled.div`
     ) {
       currentAlpha = 1;
     } else if ($isInCAGED_hoverShape) {
-      currentAlpha = 0.4;
+      currentAlpha = 0.3;
     }
-    // Zauważ: isShapeLocked ma "taki jak inny stan", więc nie zmienia currentAlpha!
 
-    // --- KROK 2: USTALAMY KOLORY BAZOWE (Hierarchia z tabeli) ---
+    // --- KROK 2: USTALAMY KOLORY BAZOWE ---
     let bgColor = theme.colors.bgLight;
     let textColor = theme.colors.text;
+    let borderColor = theme.colors.border; // Wyciągamy border do zmiennej
     let shadow = "none";
     let cursor = "default";
 
@@ -142,7 +142,6 @@ export const Note = styled.div`
       textColor = theme.colors.bg;
       shadow = `0 0 0 2px ${theme.colors.bg}`;
     } else if ($isActiveShapeRootNote) {
-      // W tabeli markerBg ma już alfę 44, więc nie nakładamy addAlpha
       bgColor = `${theme.colors.markerBg}44`;
       cursor = "pointer";
       shadow = `0 0 0 2px ${theme.colors.bg}`;
@@ -150,16 +149,23 @@ export const Note = styled.div`
       shadow = `0 0 0 2px ${theme.colors.bg}`;
     }
 
-    // --- KROK 3: MODYFIKATOR LOCKED (TYLKO OUTLINE) ---
-    // Zawsze 100% widoczności, niezależnie od stanu opacity tła
+    // --- KROK 3: MODYFIKATOR LOCKED ---
     const outline = $isShapeLocked
       ? `3px solid ${theme.colors.contrast}`
       : "none";
 
     return css`
+      /* Background i Color z alfą */
       background: ${addAlpha(bgColor, currentAlpha)};
       color: ${addAlpha(textColor, currentAlpha)};
+
+      /* BORDER z alfą - teraz będzie przygasał razem z resztą */
+      border: 1px solid ${addAlpha(borderColor, currentAlpha)};
+
+      /* OUTLINE - zawsze 100% (nie używa addAlpha), bo to osobna warstwa */
       outline: ${outline};
+
+      /* Reszta */
       box-shadow: ${shadow !== "none"
         ? addAlpha(shadow, currentAlpha)
         : "none"};
