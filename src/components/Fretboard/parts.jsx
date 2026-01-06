@@ -53,14 +53,6 @@ const fretboardButtonStyles = css`
   text-transform: uppercase;
   box-shadow: ${({ theme, $isInShape }) =>
     $isInShape ? `0 0 5px ${theme.colors.text}66` : "none"};
-  border: 3px solid
-    ${({ theme, $isInShape }) =>
-      $isInShape ? `${theme.colors.text}66` : theme.colors.border};
-
-  ${({ theme, $isInShape, $isActiveShapeRootNote }) =>
-    !$isInShape && $isActiveShapeRootNote
-      ? `border: 3px solid ${theme.colors.text}00`
-      : ""};
   color: ${({ theme }) => theme.colors.text};
   transition: ${({ theme }) => theme.transitions.default};
   height: 29px;
@@ -85,53 +77,14 @@ export const CAGEDLetter = styled.div`
 `;
 
 export const Note = styled.div`
+  ${fretboardButtonStyles}
   width: 33px;
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 48px;
   }
-  position: relative;
-  opacity: ${({
-    $isInShape,
-    $isActiveShapeRootNote,
-    $isInCAGED_hoverShape,
-    $isShapeLocked,
-  }) =>
-    $isActiveShapeRootNote || $isInShape || $isShapeLocked
-      ? "1"
-      : $isInCAGED_hoverShape
-      ? "0.4"
-      : "0.12"};
-
-  cursor: ${({ $isActiveShapeRootNote }) =>
-    $isActiveShapeRootNote ? "pointer" : "default"};
-  ${fretboardButtonStyles}
-
-  &:hover {
-    border: 3px solid
-      ${({ $isActiveShapeRootNote, $isInShape, theme }) =>
-        $isInShape || $isActiveShapeRootNote
-          ? `${theme.colors.text}66`
-          : theme.colors.border};
-  }
-
-  outline: ${({ theme, $isShapeLocked }) =>
-    $isShapeLocked ? `4px solid ${theme.colors.contrast}` : "none"};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   outline-offset: 2px;
-
-  background: ${({
-    theme,
-    $isInDevModeShape,
-    $isActiveShapeRootNote,
-    $isInShape,
-    $isSaved,
-  }) => {
-    if ($isSaved && $isInShape) return theme.colors.alert;
-    if ($isInDevModeShape) return theme.colors.alert;
-    if ($isActiveShapeRootNote) return `${theme.colors.markerBg}30`;
-    return theme.colors.bgLight;
-  }};
-
-  color: ${({ theme, $isInShape, $isSaved }) => {
-    if ($isSaved && $isInShape) return theme.colors.bg;
-  }};
+  background: ${({ theme }) => theme.colors.bgLight};
+  color: ${({ theme }) => theme.colors.text};
+  opacity: 0.2;
 `;
