@@ -2,7 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import alarm1 from "../../../public/alarm1.mp3";
 import Motiv from "./Motiv";
-import { useVaultStore } from "../devTooles/useVaultStore";
+
+let useVaultStore;
+try {
+  const storeModule = await import("../devTooles/useVaultStore");
+  useVaultStore = storeModule.useVaultStore;
+} catch (e) {
+  useVaultStore = () => ({
+    getRandomSentence: () => "Trening czyni mistrza!",
+  });
+}
 
 const InputWrapper = styled.div`
   margin-bottom: ${(props) => props.theme.spacing.xs};
@@ -39,10 +48,9 @@ const UnifiedButton = styled.button`
   cursor: pointer;
   font-weight: bold;
   font-size: 0.75rem;
-  transition: ${(props) => props.theme.transitions.default};
+  transition: 0.5s;
   white-space: nowrap;
   overflow: hidden;
-  transition: 0.5s;
   opacity: 0;
   &:hover {
     background-color: ${({ theme }) => theme.colors.alert};
@@ -106,8 +114,12 @@ const RobustTimer = ({ alarmSrc }) => {
   const inputRef = useRef(null);
   const scrollIntervalRef = useRef(null);
   const originalTitleRef = useRef("");
-  const { getRandomSentence = () => "" } = useVaultStore() || {};
+
+  const { getRandomSentence } = useVaultStore() || {
+    getRandomSentence: () => "",
+  };
   const [text, setText] = useState("");
+
   const formatTime = (totalSeconds) => {
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
@@ -125,7 +137,11 @@ const RobustTimer = ({ alarmSrc }) => {
   }, [counter]);
 
   useEffect(() => {
-    if ("Notification" in window && Notification.permission === "default") {
+    if (
+      typeof window !== "undefined" &&
+      "Notification" in window &&
+      Notification.permission === "default"
+    ) {
       Notification.requestPermission();
     }
     originalTitleRef.current = document.title || "Timer";
@@ -221,7 +237,7 @@ const RobustTimer = ({ alarmSrc }) => {
     setSecondsLeft(totalSec);
     setManualInputValue(null);
     setIsActive(true);
-    workerRef.current.postMessage("START");
+    if (workerRef.current) workerRef.current.postMessage("START");
   }, [displayValue, stopTitleScroll]);
 
   useEffect(() => {
@@ -241,7 +257,10 @@ const RobustTimer = ({ alarmSrc }) => {
         return prev - 1;
       });
     };
-    return () => worker.terminate();
+    return () => {
+      worker.terminate();
+      URL.revokeObjectURL(worker.objectURL);
+    };
   }, []);
 
   return (
@@ -265,7 +284,7 @@ const RobustTimer = ({ alarmSrc }) => {
         </InputWrapper>
         <ButtonGroup>
           {isAlarming ? (
-            <UnifiedButton $isAlert onClick={resetToNextValue}>
+            <UnifiedButton onClick={resetToNextValue}>
               STOP ({nextMode}m)
             </UnifiedButton>
           ) : (
@@ -280,8 +299,9 @@ const RobustTimer = ({ alarmSrc }) => {
           )}
           <UnifiedButton
             onClick={() => {
-              setText(getRandomSentence());
-
+              if (typeof getRandomSentence === "function") {
+                setText(getRandomSentence());
+              }
               setCounter((c) => c + 1);
             }}
           >

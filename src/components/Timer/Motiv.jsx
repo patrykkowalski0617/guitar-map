@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Button } from "../../parts";
 
-// --- KATALOG 10 UNIKALNYCH SCENARIUSZY ANIMACJI ---
 const animations = [
   // 1. Hyper-Warp
   keyframes`0% { transform: perspective(1000px) translateZ(-1500px) rotateY(90deg); opacity: 0; } 100% { transform: perspective(1000px) translateZ(0) rotateY(0); opacity: 1; }`,
@@ -26,7 +25,6 @@ const animations = [
   keyframes`0% { transform: rotateX(90deg) scale(0.5); opacity: 0; } 100% { transform: rotateX(0) scale(1); opacity: 1; }`,
 ];
 
-// --- HELPER DO GENEROWANIA LOSOWOŚCI (POZA KOMPONENTEM) ---
 const generateCyberConfig = (colors) => ({
   animIndex: Math.floor(Math.random() * animations.length),
   color: colors[Math.floor(Math.random() * colors.length)],
