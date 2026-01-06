@@ -8,12 +8,12 @@ import {
   SubSectionContainer,
 } from "./parts";
 import GlobalStyle from "./GlobalStyle";
-import { useStore } from "./store/useStore";
+import { useDevStore } from "./store/useDevStore";
 import Configurator from "./components/Configurator/Configurator";
 import RobustTimer from "./components/Timer/Timer";
 
 function App() {
-  const isProgressMode = useStore((state) => state.isProgressMode);
+  const isProgressMode = useDevStore((state) => state.isProgressMode);
 
   return (
     <ThemeProvider theme={theme}>

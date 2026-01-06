@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useStore } from "../../../store/useStore";
+import { useDevStore } from "../../../store/useDevStore";
 import { setsShapes } from "../../../data";
 import userProgress from "../../../data/userProgress";
 import ScrollFader from "../../ScrollFader/ScrollFader";
@@ -7,7 +8,7 @@ import { Label } from "./parts";
 
 const ShapeTypeDisplay = ({ opacityOff }) => {
   const activeChordId = useStore((state) => state.getActiveChordId());
-  const isProgressMode = useStore((state) => state.isProgressMode);
+  const isProgressMode = useDevStore((state) => state.isProgressMode);
   const toggleProgressMode = useStore((state) => state.toggleProgressMode);
 
   useEffect(() => {

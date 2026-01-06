@@ -637,6 +637,19 @@ const musicFunctionContextSelectorData = [
           },
         },
       },
+      {
+        id: "tonics-root_M6-shape_minor_pent",
+        getNotesSetName: (rootNote) => `${rootNote} minor pentatonic`,
+        rootSemitone: _M3,
+        chordShapeId: "minor_pent",
+        colorProfile: {
+          major: {
+            exposedTone: 1,
+            usedTones: [[1], [5], [7], [9], [11]],
+            alteredTones: [9],
+          },
+        },
+      },
     ],
   },
 ];

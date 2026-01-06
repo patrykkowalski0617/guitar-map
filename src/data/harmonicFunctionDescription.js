@@ -1,7 +1,7 @@
 const harmonicFunctionDescription = {
-  RELEASE: "Release",
-  MOTION: "Motion",
-  TENSION: "Tension",
+  RELEASE: "RELEASE",
+  MOTION: "MOTION",
+  TENSION: "TENSION",
 };
 
 export default harmonicFunctionDescription;

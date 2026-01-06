@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { useStore } from "../../store/useStore";
+import { useDevStore } from "../../store/useDevStore";
 import { FretboardContainer } from "./parts";
 import FretRow from "./FretRow";
 import FretboardLabels from "./FretboardLabels";
@@ -23,9 +24,8 @@ const Fretboard = () => {
     setShape,
     variantState,
     setVariantState,
-    isProgressMode,
-    isDevMode,
   } = useStore();
+  const { isProgressMode, isDevMode } = useDevStore();
 
   const activeChordId = useStore((state) => state.getActiveChordId());
   const [devModeShape, setDevModeShape] = useState([]);
