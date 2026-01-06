@@ -64,15 +64,6 @@ export const SubsectionTitle = styled.h3`
   }
 `;
 
-export const Label = styled.div`
-  text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  text-transform: uppercase;
-  margin-top: ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
-`;
-
 export const Button = styled.button`
   white-space: nowrap;
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
