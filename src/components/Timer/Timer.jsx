@@ -106,7 +106,7 @@ const RobustTimer = ({ alarmSrc }) => {
   const inputRef = useRef(null);
   const scrollIntervalRef = useRef(null);
   const originalTitleRef = useRef("");
-  const { getRandomSentence } = useVaultStore();
+  const { getRandomSentence = () => "" } = useVaultStore() || {};
   const [text, setText] = useState("");
   const formatTime = (totalSeconds) => {
     const mins = Math.floor(totalSeconds / 60);
