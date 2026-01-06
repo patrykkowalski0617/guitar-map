@@ -4,6 +4,7 @@ export const AppWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   color: ${({ theme }) => theme.colors.text};
   padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.md} 10px`};
+  min-height: 100vh;
 `;
 
 export const SectionContainer = styled.section`
