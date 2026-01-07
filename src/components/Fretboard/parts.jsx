@@ -35,9 +35,54 @@ export const FretCount = styled.div`
   ${Fret}
   font-size: ${({ theme }) => theme.fontSize.sm};
   user-select: none;
-  height: 27px;
   color: ${({ theme }) => theme.colors.text};
   width: 100%;
+  opacity: 0.5;
+  margin-top: 10px;
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: -13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: ${({ theme }) => theme.colors.text};
+    pointer-events: none;
+  }
+
+  ${({ $dotType }) => {
+    if ($dotType === "single") {
+      return css`
+        &::before {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &::after {
+          display: none;
+        }
+      `;
+    }
+    if ($dotType === "double") {
+      return css`
+        &::before {
+          left: 50%;
+          transform: translateX(-140%);
+        }
+        &::after {
+          left: 50%;
+          transform: translateX(40%);
+        }
+      `;
+    }
+    return css`
+      &::before,
+      &::after {
+        display: none;
+      }
+    `;
+  }}
 `;
 
 export const FretboardLabelsWrapper = styled.div`
@@ -61,10 +106,15 @@ const fretboardButtonStyles = css`
 
 export const CAGEDLetter = styled.div`
   ${fretboardButtonStyles}
-  width: 28px;
+  width: 25px;
+  height: 10px;
+  border-radius: unset;
+  font-size: ${({ theme }) => theme.fontSize.xs};
   border: 1px solid
     ${({ $isCAGED_hoverShapeLocked, theme }) =>
       $isCAGED_hoverShapeLocked ? theme.colors.text : theme.colors.bg};
+  border-bottom: none;
+  border-top: none;
   background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
     $isCAGED_hoverShapeLocked ? theme.colors.bg : theme.colors.bg};
 `;

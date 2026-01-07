@@ -64,7 +64,7 @@ const TimerContainer = styled.div`
   border-radius: ${({ theme }) =>
     `${theme.borderRadius.md} 0 0 ${theme.borderRadius.md}`};
   width: 120px;
-  min-height: 192px;
+  height: 204px;
   position: fixed;
   z-index: 9;
   right: -75px;

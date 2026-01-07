@@ -5,10 +5,11 @@ export const theme = {
     text: "#eeeeee",
     contrast: "#003f98",
     alert: "#b74277ff",
-    markerBg: "#477888",
-    border: "#283f46",
+    markerBg: "#397f97",
+    border: "#32616f",
   },
   fontSize: {
+    xs: "0.7rem",
     sm: "0.9rem",
     md: "1rem",
     lg: "1.50rem",

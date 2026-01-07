@@ -1,4 +1,3 @@
-import { toRomanNumber } from "../../utils";
 import {
   CAGEDLetter,
   FretCount,
@@ -41,23 +40,22 @@ const FretboardLabels = ({
           const cagedLetter = Object.keys(CAGED).find((key) =>
             CAGED[key].includes(fIdx)
           );
+          const isOneDot = [3, 5, 7, 9, 15, 17, 19, 21].includes(fIdx);
+          const isTwoDots = [12, 24].includes(fIdx);
 
           return (
             <FretCount
               key={`fret-count-${fIdx}`}
               $numOfCells={fretCounts.length}
+              $dotType={isTwoDots ? "double" : isOneDot ? "single" : "none"}
             >
-              {cagedLetter ? (
-                <InteractiveCAGEDLetter
-                  letter={cagedLetter}
-                  isLocked={lockedCAGEDLetter === cagedLetter}
-                  onClick={handleCAGED_Click}
-                  onOver={handleCAGED_MouseOver}
-                  onLeave={handleCAGED_MouseLeave}
-                />
-              ) : (
-                toRomanNumber(fIdx)
-              )}
+              <InteractiveCAGEDLetter
+                letter={cagedLetter}
+                isLocked={lockedCAGEDLetter === cagedLetter}
+                onClick={handleCAGED_Click}
+                onOver={handleCAGED_MouseOver}
+                onLeave={handleCAGED_MouseLeave}
+              />
             </FretCount>
           );
         })}
