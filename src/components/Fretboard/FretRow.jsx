@@ -1,4 +1,4 @@
-import { useStore } from "../../store/useStore";
+import { useDevStore } from "../../store/useDevStore";
 import { NOTES_FROM_C } from "../../data";
 import { getNotesFromNote } from "../../utils";
 import { FretCell, StringRow, Note as StyledNote } from "./parts";
@@ -19,7 +19,7 @@ const FretRow = ({
 }) => {
   const stringId = `${string}${6 - sIdx}`;
   const fretCells = getNotesFromNote(string, numberOfFrets);
-  const { isDevMode } = useStore();
+  const { isDevMode } = useDevStore();
 
   return (
     <StringRow>

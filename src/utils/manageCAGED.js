@@ -1,4 +1,4 @@
-const manageCAGED = (keyName, CAGED_shift) => {
+const manageCAGED = (CAGED_shift) => {
   const CAGED_base = {
     B: [7, 20],
     C: [8, 20],

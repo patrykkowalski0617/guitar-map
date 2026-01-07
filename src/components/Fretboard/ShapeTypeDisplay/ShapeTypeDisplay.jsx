@@ -9,7 +9,7 @@ import { Label } from "./parts";
 const ShapeTypeDisplay = ({ opacityOff }) => {
   const activeChordId = useStore((state) => state.getActiveChordId());
   const isProgressMode = useDevStore((state) => state.isProgressMode);
-  const toggleProgressMode = useStore((state) => state.toggleProgressMode);
+  const toggleProgressMode = useDevStore((state) => state.toggleProgressMode);
 
   useEffect(() => {
     const handleKeyPress = (e) => {

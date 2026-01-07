@@ -1,4 +1,4 @@
-const toRoman = (num) => {
+const toRomanNumber = (num) => {
   if (num <= 0) return "";
 
   const romanMap = {
@@ -29,4 +29,4 @@ const toRoman = (num) => {
   return result;
 };
 
-export default toRoman;
+export default toRomanNumber;

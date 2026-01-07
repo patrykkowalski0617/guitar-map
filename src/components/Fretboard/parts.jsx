@@ -1,27 +1,20 @@
 import styled, { css } from "styled-components";
 
 export const FretboardContainer = styled.div`
-  width: 100%;
   user-select: none;
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.bg};
-  }
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.bgLight};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-  }
+  width: 100%;
 `;
 
 export const StringRow = styled.div`
   display: flex;
   flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  width: 100%;
 `;
 
 const Fret = css`
-  max-width: 300px;
+  max-width: 80px;
   width: calc(100% / ${({ $numOfCells }) => $numOfCells});
   height: 100%;
   display: flex;
@@ -33,15 +26,23 @@ const Fret = css`
 export const FretCell = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colors.border};
   ${Fret}
-
   &:first-child {
     border-left: 4px solid ${({ theme }) => theme.colors.border};
-    min-width: 46px;
   }
+`;
+
+export const FretCount = styled.div`
+  ${Fret}
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  user-select: none;
+  height: 27px;
+  color: ${({ theme }) => theme.colors.text};
+  width: 100%;
 `;
 
 export const FretboardLabelsWrapper = styled.div`
   margin-top: ${({ theme }) => theme.spacing.sm};
+  width: 100%;
 `;
 
 const fretboardButtonStyles = css`
@@ -58,14 +59,6 @@ const fretboardButtonStyles = css`
   height: 29px;
 `;
 
-export const FretCount = styled.div`
-  ${Fret}
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  user-select: none;
-  height: 27px;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 export const CAGEDLetter = styled.div`
   ${fretboardButtonStyles}
   width: 28px;
@@ -75,14 +68,6 @@ export const CAGEDLetter = styled.div`
   background: ${({ $isCAGED_hoverShapeLocked, theme }) =>
     $isCAGED_hoverShapeLocked ? theme.colors.bg : theme.colors.bg};
 `;
-
-const withAlpha = (hexColor, alpha) => {
-  // alpha od 0 do 1, zamieniamy na HEX 00-FF
-  const hexAlpha = Math.round(alpha * 255)
-    .toString(16)
-    .padStart(2, "0");
-  return `${hexColor}${hexAlpha}`;
-};
 
 const addAlpha = (color, opacity) => {
   // Jeśli kolor ma już alfę (np. markerBg z tabeli), lub nie jest hexem, zwracamy jak jest
@@ -113,7 +98,6 @@ export const Note = styled.div`
     $isInCAGED_hoverShape,
   }) => {
     // --- KROK 1: USTALAMY OPACITY (ALFA) ---
-    // Baza to 0.12 (zgodnie z tabelką CSV), stany aktywne 1, hover 0.4
     let currentAlpha = 0.12;
 
     if (
@@ -124,13 +108,13 @@ export const Note = styled.div`
     ) {
       currentAlpha = 1;
     } else if ($isInCAGED_hoverShape) {
-      currentAlpha = 0.3;
+      currentAlpha = 0.4;
     }
 
     // --- KROK 2: USTALAMY KOLORY BAZOWE ---
     let bgColor = theme.colors.bgLight;
     let textColor = theme.colors.text;
-    let borderColor = theme.colors.border; // Wyciągamy border do zmiennej
+    let borderColor = theme.colors.border;
     let shadow = "none";
     let cursor = "default";
 
@@ -142,9 +126,17 @@ export const Note = styled.div`
       textColor = theme.colors.bg;
       shadow = `0 0 0 2px ${theme.colors.bg}`;
     } else if ($isActiveShapeRootNote) {
-      bgColor = `${theme.colors.markerBg}44`;
       cursor = "pointer";
       shadow = `0 0 0 2px ${theme.colors.bg}`;
+
+      // NOWA LOGIKA DLA ROOT:
+      if ($isInShape) {
+        // Root wewnątrz kształtu - mocniejszy, wyraźny kolor
+        bgColor = `${theme.colors.markerBg}aa`;
+      } else {
+        // Root poza kształtem - Twoja pierwotna alfa 44 (jaśniejszy)
+        bgColor = `${theme.colors.markerBg}22`;
+      }
     } else if ($isInShape) {
       shadow = `0 0 0 2px ${theme.colors.bg}`;
     }
@@ -155,17 +147,12 @@ export const Note = styled.div`
       : "none";
 
     return css`
-      /* Background i Color z alfą */
-      background: ${addAlpha(bgColor, currentAlpha)};
+      background: ${bgColor.length > 7
+        ? bgColor
+        : addAlpha(bgColor, currentAlpha)};
       color: ${addAlpha(textColor, currentAlpha)};
-
-      /* BORDER z alfą - teraz będzie przygasał razem z resztą */
       border: 1px solid ${addAlpha(borderColor, currentAlpha)};
-
-      /* OUTLINE - zawsze 100% (nie używa addAlpha), bo to osobna warstwa */
       outline: ${outline};
-
-      /* Reszta */
       box-shadow: ${shadow !== "none"
         ? addAlpha(shadow, currentAlpha)
         : "none"};

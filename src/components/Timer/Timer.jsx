@@ -61,8 +61,10 @@ const TimerContainer = styled.div`
   padding: ${(props) => props.theme.spacing.sm};
   text-align: center;
   border: 1px solid ${(props) => props.theme.colors.border};
-  border-radius: ${(props) => props.theme.borderRadius.md};
+  border-radius: ${({ theme }) =>
+    `${theme.borderRadius.md} 0 0 ${theme.borderRadius.md}`};
   width: 120px;
+  min-height: 192px;
   position: fixed;
   z-index: 9;
   right: -75px;
@@ -73,13 +75,12 @@ const TimerContainer = styled.div`
   box-shadow: ${(props) => props.theme.shadows.panel};
   transition: 0.5s;
   &:hover {
-    right: 5px;
+    right: 0px;
     ${UnifiedButton} {
       opacity: 1;
     }
     ${TimerInput} {
       transform: rotate(0deg) translate(0, 0);
-      font-size: ${(props) => props.theme.fontSize.md};
     }
   }
 `;
@@ -305,9 +306,11 @@ const RobustTimer = ({ alarmSrc }) => {
               setCounter((c) => c + 1);
             }}
           >
-            C: {counter}
+            Count: {counter}
           </UnifiedButton>
-          <UnifiedButton onClick={() => setCounter(0)}>C-Reset</UnifiedButton>
+          <UnifiedButton onClick={() => setCounter(0)}>
+            Count: Reset
+          </UnifiedButton>
         </ButtonGroup>
       </TimerContainer>
     </>

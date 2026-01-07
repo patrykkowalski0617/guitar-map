@@ -1,4 +1,4 @@
-import { toRoman } from "../../utils";
+import { toRomanNumber } from "../../utils";
 import {
   CAGEDLetter,
   FretCount,
@@ -56,7 +56,7 @@ const FretboardLabels = ({
                   onLeave={handleCAGED_MouseLeave}
                 />
               ) : (
-                toRoman(fIdx)
+                toRomanNumber(fIdx)
               )}
             </FretCount>
           );

@@ -18,11 +18,6 @@ export const SettingGroup = styled.div`
   max-width: 180px;
 `;
 
-export const StyledSubsectionTitle = styled(SubsectionTitle)`
-  padding-left: 0;
-  padding-right: 0;
-`;
-
 export const HeaderButton = styled(Button)`
   color: ${({ theme }) => `${theme.colors.text}cc`};
 `;

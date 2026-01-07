@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const DisplayContainer = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: ${({ theme }) => theme.spacing.sm};
-  margin: 0 auto;
-  width: max-content;
-  max-width: 100%;
-`;
-
 export const Label = styled.div`
   margin: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: ${({ $color, theme }) => $color || theme.colors.text};

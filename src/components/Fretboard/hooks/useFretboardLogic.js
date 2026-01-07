@@ -1,7 +1,7 @@
 import { transposeShape } from "../../../utils";
 import { CAGED_shapes } from "../../../data";
 
-export const useFretboardLogic = (props) => {
+const useFretboardLogic = (props) => {
   const {
     activeShapeRootNote,
     activeChordVariants,
@@ -35,9 +35,6 @@ export const useFretboardLogic = (props) => {
       );
       if (activeShapeRootNote !== note) return;
     }
-
-    // if (activeShapeRootNote !== note || activeChordVariants.length === 0)
-    //   return;
 
     const stringId = CAGED_noteId.split("_")[0];
     const totalVariantsCount = activeChordVariants.length;
@@ -96,5 +93,4 @@ export const useFretboardLogic = (props) => {
 
   return { handleNoteClick };
 };
-
 export default useFretboardLogic;

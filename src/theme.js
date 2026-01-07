@@ -1,11 +1,11 @@
 export const theme = {
   colors: {
-    bg: "#000",
-    bgLight: "#141414",
+    bg: "#000000",
+    bgLight: "#353535",
     text: "#eeeeee",
-    contrast: "#006aff",
+    contrast: "#003f98",
     alert: "#b74277ff",
-    markerBg: "#079dca",
+    markerBg: "#477888",
     border: "#283f46",
   },
   fontSize: {

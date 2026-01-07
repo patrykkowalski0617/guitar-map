@@ -1,5 +1,4 @@
-import { setsShapes } from "../data";
-import { userProgress } from "../data";
+import { setsShapes, userProgress } from "../data";
 
 export const getProgressData = () => {
   return setsShapes.map((set) => {

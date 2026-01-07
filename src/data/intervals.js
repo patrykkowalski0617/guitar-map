@@ -50,5 +50,3 @@ export const {
   _m14,
   _M14,
 } = intervals;
-
-export default intervals;
