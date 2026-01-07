@@ -27,7 +27,7 @@ export const FretCell = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colors.border};
   ${Fret}
   &:first-child {
-    border-left: 4px solid ${({ theme }) => theme.colors.border};
+    border-right: 4px solid ${({ theme }) => theme.colors.border};
   }
 `;
 
