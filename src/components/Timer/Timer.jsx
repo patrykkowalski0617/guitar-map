@@ -97,7 +97,7 @@ const workerCode = `
 `;
 
 const RobustTimer = ({ alarmSrc }) => {
-  const [secondsLeft, setSecondsLeft] = useState(45 * 60);
+  const [secondsLeft, setSecondsLeft] = useState(40 * 60);
   const [isActive, setIsActive] = useState(false);
   const [isAlarming, setIsAlarming] = useState(false);
 
@@ -201,7 +201,7 @@ const RobustTimer = ({ alarmSrc }) => {
     const timeToSet = nextMode;
     setSecondsLeft(timeToSet * 60);
     setManualInputValue(null);
-    setNextMode(timeToSet === 45 ? 15 : 45);
+    setNextMode(timeToSet === 40 ? 15 : 40);
   }, [nextMode, stopTimer, stopTitleScroll]);
 
   const handleAlarm = useCallback(() => {
