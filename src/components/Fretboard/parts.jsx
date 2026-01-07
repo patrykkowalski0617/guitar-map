@@ -29,6 +29,9 @@ export const FretCell = styled.div`
   &:first-child {
     border-right: 4px solid ${({ theme }) => theme.colors.border};
   }
+  &:last-child {
+    border: none;
+  }
 `;
 
 export const FretCount = styled.div`
