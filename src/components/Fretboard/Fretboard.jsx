@@ -13,7 +13,7 @@ import FretboardHeader from "../FretboardHeader/FretboardHeader";
 import userProgress from "../../data/userProgress";
 
 const STRINGS_FIRST_NOTES = ["E", "B", "G", "D", "A", "E"];
-const numberOfFrets = 12;
+const numberOfFrets = 16;
 
 const Fretboard = () => {
   const {
