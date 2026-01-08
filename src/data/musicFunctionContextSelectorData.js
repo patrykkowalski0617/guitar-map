@@ -65,62 +65,62 @@ const musicFunctionContextSelectorData = [
           },
         },
       },
-      {
-        id: "tonics-root_M3-shape_m7",
-        getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M3,
-        chordShapeId: "m7",
-        colorProfile: {
-          major: {
-            exposedTone: 3,
-            usedTones: [
-              [3, _1],
-              [5, _m3],
-              [7, _5],
-              [9, _m7],
-            ],
-            avoidNotes: [11],
-          },
-          minor: {
-            exposedTone: 5,
-            usedTones: [
-              [5, _1],
-              [7, _m3],
-              [9, _5],
-              [11, _m7],
-            ],
-            avoidNotes: [13],
-          },
-        },
-      },
-      {
-        id: "tonics-root_M6-shape_m7",
-        getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M6,
-        chordShapeId: "m7",
-        colorProfile: {
-          major: {
-            exposedTone: 13,
-            usedTones: [
-              [1, _m3],
-              [3, _5],
-              [5, _m7],
-              [13, _1],
-            ],
-            avoidNotes: [11],
-          },
-          minor: {
-            exposedTone: 1,
-            usedTones: [
-              [1, _m3],
-              [3, _5],
-              [5, _m7],
-              [7, _1],
-            ],
-            avoidNotes: [13],
-          },
-        },
-      },
+      // {
+      //   id: "tonics-root_M3-shape_m7",
+      //   getNotesSetName: (rootNote) => `${rootNote}m7`,
+      //   rootSemitone: _M3,
+      //   chordShapeId: "m7",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 3,
+      //       usedTones: [
+      //         [3, _1],
+      //         [5, _m3],
+      //         [7, _5],
+      //         [9, _m7],
+      //       ],
+      //       avoidNotes: [11],
+      //     },
+      //     minor: {
+      //       exposedTone: 5,
+      //       usedTones: [
+      //         [5, _1],
+      //         [7, _m3],
+      //         [9, _5],
+      //         [11, _m7],
+      //       ],
+      //       avoidNotes: [13],
+      //     },
+      //   },
+      // },
+      // {
+      //   id: "tonics-root_M6-shape_m7",
+      //   getNotesSetName: (rootNote) => `${rootNote}m7`,
+      //   rootSemitone: _M6,
+      //   chordShapeId: "m7",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 13,
+      //       usedTones: [
+      //         [1, _m3],
+      //         [3, _5],
+      //         [5, _m7],
+      //         [13, _1],
+      //       ],
+      //       avoidNotes: [11],
+      //     },
+      //     minor: {
+      //       exposedTone: 1,
+      //       usedTones: [
+      //         [1, _m3],
+      //         [3, _5],
+      //         [5, _m7],
+      //         [7, _1],
+      //       ],
+      //       avoidNotes: [13],
+      //     },
+      //   },
+      // },
       // {
       //   id: "tonics-root_1-shape_M_add9",
       //   getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
@@ -322,40 +322,40 @@ const musicFunctionContextSelectorData = [
           },
         },
       },
-      {
-        id: "subdominants-root_M6-shape_m7",
-        getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M6,
-        chordShapeId: "m7",
-        colorProfile: {
-          major: {
-            exposedTone: 3,
-            usedTones: [[3], [5], [7], [9]],
-          },
-          minor: {
-            exposedTone: 5,
-            usedTones: [[5], [7], [9], [11]],
-            avoidNotes: [13],
-          },
-        },
-      },
-      {
-        id: "subdominants-root_M2-shape_m7",
-        getNotesSetName: (rootNote) => `${rootNote}m7`,
-        rootSemitone: _M2,
-        chordShapeId: "m7",
-        colorProfile: {
-          major: {
-            exposedTone: 13,
-            usedTones: [[1], [3], [5], [13]],
-          },
-          minor: {
-            exposedTone: 1,
-            usedTones: [[1], [3], [5], [7]],
-            avoidNotes: [13],
-          },
-        },
-      },
+      // {
+      //   id: "subdominants-root_M6-shape_m7",
+      //   getNotesSetName: (rootNote) => `${rootNote}m7`,
+      //   rootSemitone: _M6,
+      //   chordShapeId: "m7",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 3,
+      //       usedTones: [[3], [5], [7], [9]],
+      //     },
+      //     minor: {
+      //       exposedTone: 5,
+      //       usedTones: [[5], [7], [9], [11]],
+      //       avoidNotes: [13],
+      //     },
+      //   },
+      // },
+      // {
+      //   id: "subdominants-root_M2-shape_m7",
+      //   getNotesSetName: (rootNote) => `${rootNote}m7`,
+      //   rootSemitone: _M2,
+      //   chordShapeId: "m7",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 13,
+      //       usedTones: [[1], [3], [5], [13]],
+      //     },
+      //     minor: {
+      //       exposedTone: 1,
+      //       usedTones: [[1], [3], [5], [7]],
+      //       avoidNotes: [13],
+      //     },
+      //   },
+      // },
       // {
       //   id: "subdominants-root_4-shape_M_add9",
       //   getNotesSetName: (rootNote) => `${rootNote}M(add9)`,
@@ -489,31 +489,31 @@ const musicFunctionContextSelectorData = [
           },
         },
       },
-      {
-        id: "dominant-root_5-shape-m7b5",
-        getNotesSetName: (rootNote) => `${rootNote}m7b5`,
-        rootSemitone: _M7,
-        chordShapeId: "m7b5",
-        colorProfile: {
-          major: {
-            exposedTone: 3,
-            usedTones: [[3], [5], [7], [9]],
-          },
-        },
-      },
-      {
-        id: "dominant-root_5-shape-dim7",
-        getNotesSetName: (rootNote) => `${rootNote}dim7`,
-        rootSemitone: _M7,
-        chordShapeId: "dim7",
-        colorProfile: {
-          major: {
-            exposedTone: 3,
-            usedTones: [[3], [5], [7], [9]],
-            alteredTones: [9],
-          },
-        },
-      },
+      // {
+      //   id: "dominant-root_5-shape-m7b5",
+      //   getNotesSetName: (rootNote) => `${rootNote}m7b5`,
+      //   rootSemitone: _M7,
+      //   chordShapeId: "m7b5",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 3,
+      //       usedTones: [[3], [5], [7], [9]],
+      //     },
+      //   },
+      // },
+      // {
+      //   id: "dominant-root_5-shape-dim7",
+      //   getNotesSetName: (rootNote) => `${rootNote}dim7`,
+      //   rootSemitone: _M7,
+      //   chordShapeId: "dim7",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 3,
+      //       usedTones: [[3], [5], [7], [9]],
+      //       alteredTones: [9],
+      //     },
+      //   },
+      // },
       // {
       //   id: "dominant-root_5-shape-mixolydian",
       //   getNotesSetName: (rootNote) => `${rootNote} Mixolydian Scale`,
@@ -574,18 +574,18 @@ const musicFunctionContextSelectorData = [
     majorRoot: _M3,
     majorIntervals: [_1, _M3, _5],
     shapes: [
-      {
-        id: "dominantPh-root_M3-shape-Dominant",
-        getNotesSetName: (rootNote) => `${rootNote}7`,
-        rootSemitone: _M3,
-        chordShapeId: "dominant",
-        colorProfile: {
-          major: {
-            exposedTone: 1,
-            usedTones: [3, 5, 7],
-          },
-        },
-      },
+      // {
+      //   id: "dominantPh-root_M3-shape-Dominant",
+      //   getNotesSetName: (rootNote) => `${rootNote}7`,
+      //   rootSemitone: _M3,
+      //   chordShapeId: "dominant",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 1,
+      //       usedTones: [3, 5, 7],
+      //     },
+      //   },
+      // },
       {
         id: "dominantPh-root_M7-shape-dim7",
         getNotesSetName: (rootNote) => `${rootNote}dim7`,
@@ -598,19 +598,19 @@ const musicFunctionContextSelectorData = [
           },
         },
       },
-      {
-        id: "dominantPh-root_M3-shape-7b9",
-        getNotesSetName: (rootNote) => `${rootNote}7b9`,
-        rootSemitone: _M3,
-        chordShapeId: "7b9",
-        colorProfile: {
-          major: {
-            exposedTone: 1,
-            usedTones: [[1], [3], [5], [7], [9]],
-            alteredTones: [9],
-          },
-        },
-      },
+      // {
+      //   id: "dominantPh-root_M3-shape-7b9",
+      //   getNotesSetName: (rootNote) => `${rootNote}7b9`,
+      //   rootSemitone: _M3,
+      //   chordShapeId: "7b9",
+      //   colorProfile: {
+      //     major: {
+      //       exposedTone: 1,
+      //       usedTones: [[1], [3], [5], [7], [9]],
+      //       alteredTones: [9],
+      //     },
+      //   },
+      // },
       // {
       //   id: "dominantPh-root_M3-shape-phrygianDominant",
       //   getNotesSetName: (rootNote) => `${rootNote} Phrygian Dominant Scale`,
