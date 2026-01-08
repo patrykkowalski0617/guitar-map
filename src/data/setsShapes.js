@@ -1079,21 +1079,6 @@ const setsShapes = [
         ],
       },
       {
-        id: "dominant_27",
-        targetString: "E6",
-        shape: [
-          [0, 0],
-          [1, 4],
-          [1, 7],
-          [2, 10],
-          [2, 12],
-          [3, 16],
-          [4, 19],
-          [4, 22],
-          [5, 24],
-        ],
-      },
-      {
         id: "dominant_28",
         targetString: "E1",
         shape: [
@@ -2301,21 +2286,6 @@ const setsShapes = [
         ],
       },
       {
-        id: "dim7_21",
-        targetString: "E6",
-        shape: [
-          [0, 0],
-          [1, 3],
-          [1, 6],
-          [2, 9],
-          [3, 12],
-          [3, 15],
-          [4, 18],
-          [5, 21],
-          [5, 24],
-        ],
-      },
-      {
         id: "dim7_22",
         targetString: "E1",
         shape: [
@@ -2376,21 +2346,6 @@ const setsShapes = [
         ],
       },
       {
-        id: "dim7_27",
-        targetString: "E6",
-        shape: [
-          [0, 0],
-          [1, 3],
-          [2, 6],
-          [2, 9],
-          [3, 12],
-          [3, 15],
-          [4, 18],
-          [5, 21],
-          [5, 24],
-        ],
-      },
-      {
         id: "dim7_28",
         targetString: "E1",
         shape: [
@@ -2435,34 +2390,6 @@ const setsShapes = [
       {
         id: "dim7_31",
         targetString: "G4",
-        shape: [
-          [0, 0],
-          [1, 3],
-          [2, 6],
-          [2, 9],
-          [3, 12],
-          [4, 15],
-          [4, 18],
-          [5, 21],
-        ],
-      },
-      {
-        id: "dim7_32",
-        targetString: "B5",
-        shape: [
-          [0, 0],
-          [1, 3],
-          [2, 6],
-          [2, 9],
-          [3, 12],
-          [4, 15],
-          [4, 18],
-          [5, 21],
-        ],
-      },
-      {
-        id: "dim7_33",
-        targetString: "E6",
         shape: [
           [0, 0],
           [1, 3],
