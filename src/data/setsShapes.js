@@ -229,6 +229,18 @@ const setsShapes = [
           [5, 24],
         ],
       },
+
+      {
+        id: "M7_15a",
+        targetString: "D3",
+        shape: [
+          [0, 0],
+          [1, 4],
+          [2, 7],
+          [3, 11],
+          [3, 12],
+        ],
+      },
       {
         id: "M7_16",
         targetString: "G4",
